@@ -15,11 +15,11 @@ struct GuideChat: View {
     @State private var question: String = ""
     @State private var answer: String = ""
     @State private var isRecording: Bool = false
-    @State private var selectedLanguage = "en-US"
+    @State private var selectedLanguage = "pt-BR"
     @State private var imageOpacity: Double = 1.0
     @State private var isAnimating = false
 
-    @StateObject var speechRecognizer = SpeechRecognizer(locale: Locale(identifier: "en-US"))
+    @StateObject var speechRecognizer = SpeechRecognizer(locale: Locale(identifier: "pt-BR"))
 
     let ourOpenAI = OpenAI(apiToken: "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")
     
@@ -33,11 +33,20 @@ struct GuideChat: View {
                 Button(action: {
                     print("Abrir outra pagina")
                 }) {
-                    Image(systemName: "house.fill")
+                    Image(systemName: "house")
                         .foregroundColor(.fernGreen)
                         .font(.title2)
                 }
                 .position(x: geometry.size.width * 9 / 10, y: 16)
+                
+                Button(action: {
+                    print("Abrir outra pagina")
+                }) {
+                    Image(systemName: "clock")
+                        .foregroundColor(.fernGreen)
+                        .font(.title2)
+                }
+                .position(x: geometry.size.width * 1 / 10, y: 16)
                 
                 if answer.isEmpty {
                     Image(.eduGreen)
@@ -59,7 +68,7 @@ struct GuideChat: View {
                             }
                         
                         Button(action: manageMic) {
-                            Image(systemName: isRecording ? "mic.fill" : "mic.slash.fill")
+                            Image(systemName: !question.isEmpty && !isRecording ? "arrow.turn.right.up" : isRecording ? "mic.fill" : "mic.slash.fill")
                                 .foregroundColor(isRecording ? .red : .gray)
                         }
                     }
@@ -67,7 +76,7 @@ struct GuideChat: View {
                     .background(Color.textFieldGray)
                     .cornerRadius(40)
                     .padding(.horizontal)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 1.05)
+                    .position(x: geometry.size.width / 2, y: geometry.size.height / 1.02)
                     
                 } else {
                     ScrollView {
@@ -93,10 +102,12 @@ struct GuideChat: View {
         if !isRecording {
             speechRecognizer.resetTranscript()
             speechRecognizer.startTranscribing()
+            isRecording = true
         } else {
+            sendQuestion()
             speechRecognizer.stopTranscribing()
+            isRecording = false
         }
-        isRecording.toggle()
     }
     
     func sendQuestion() {
