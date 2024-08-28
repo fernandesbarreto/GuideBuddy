@@ -1,10 +1,3 @@
-//
-//  GuideChat.swift
-//  GuideBuddy
-//
-//  Created by Pedro Fernandes Barreto Costa on 26/08/24.
-//
-
 import SwiftUI
 import OpenAI
 import AVFoundation
@@ -20,6 +13,8 @@ struct GuideChat: View {
     @State private var selectedLanguage = "pt-BR"
     @State private var imageOpacity: Double = 1.0
     @State private var isAnimating = false
+    @State private var isSendingQuestion = false
+    @State private var showRestartButton = false
     
     @StateObject var speechRecognizer = SpeechRecognizer(locale: Locale(identifier: "pt-BR"))
     
@@ -49,7 +44,7 @@ struct GuideChat: View {
                     }
                     .position(x: geometry.size.width * 1 / 10, y: 16)
                     
-                    if answer.isEmpty {
+                    if answer.isEmpty{
                         Image(.eduGreen)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -57,27 +52,30 @@ struct GuideChat: View {
                             .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                             .opacity(imageOpacity)
                         
-                        HStack {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(.gray)
-                            
-                            TextField("Search", text: $question)
-                                .disableAutocorrection(true)
-                                .cornerRadius(8)
-                                .onSubmit {
-                                    sendQuestion()
+                        if !showRestartButton {
+                            HStack {
+                                Image(systemName: "magnifyingglass")
+                                    .foregroundColor(.gray)
+                                
+                                TextField("Search", text: $question)
+                                    .disableAutocorrection(true)
+                                    .cornerRadius(8)
+                                    .onSubmit {
+                                        sendQuestion()
+                                    }
+                                
+                                Button(action: manageMic) {
+                                    Image(systemName: buttonIconName)
+                                        .foregroundColor(buttonIconColor)
                                 }
-                            
-                            Button(action: manageMic) {
-                                Image(systemName: buttonIconName)
-                                    .foregroundColor(buttonIconColor)
+                                .disabled(isSendingQuestion)
                             }
+                            .padding(8)
+                            .background(Color.textFieldGray)
+                            .cornerRadius(40)
+                            .padding(.horizontal)
+                            .position(x: geometry.size.width / 2, y: geometry.size.height / 1.05)
                         }
-                        .padding(8)
-                        .background(Color.textFieldGray)
-                        .cornerRadius(40)
-                        .padding(.horizontal)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 1.05)
                         
                     } else {
                         ScrollView {
@@ -87,6 +85,15 @@ struct GuideChat: View {
                                 .frame(maxWidth: .infinity)
                         }
                         .frame(maxHeight: geometry.size.height * 0.8)
+                        Button(action: restartChat) {
+                            Text("Perguntar novamente")
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(.fernGreen)
+                                .cornerRadius(40)
+                        }
+                        .position(x: geometry.size.width / 2, y: geometry.size.height / 1.05)
                     }
                 }
                 .onReceive(speechRecognizer.$transcript) { transcript in
@@ -122,28 +129,28 @@ struct GuideChat: View {
     
     func manageMic() {
         if isRecording {
-            // Stop recording only, do not reset transcript or send question
             speechRecognizer.stopTranscribing()
             isRecording = false
         } else {
-            // If not recording and question is empty, start recording
             if question.isEmpty {
                 speechRecognizer.resetTranscript()
                 speechRecognizer.startTranscribing()
                 isRecording = true
             } else {
-                // If there is text in the question, send it
                 sendQuestion()
             }
         }
     }
     
     func sendQuestion() {
+        guard !isSendingQuestion else { return }
         dismissKeyboard()
         startFlickerAnimation()
         if question.isEmpty {
             return
         }
+        isSendingQuestion = true
+        
         let query = ChatQuery(
             messages: [.init(
                 role: .user,
@@ -164,6 +171,8 @@ struct GuideChat: View {
             }
             
             stopFlickerAnimation()
+            isSendingQuestion = false // Reset to false after response is received
+            showRestartButton = true // Show the restart button after getting an answer
         }
     }
     
@@ -188,6 +197,15 @@ struct GuideChat: View {
         withAnimation {
             imageOpacity = 1.0
         }
+    }
+    
+    func restartChat() {
+        question = ""
+        answer = ""
+        isRecording = false
+        isAnimating = false
+        imageOpacity = 1.0
+        showRestartButton = false
     }
 }
 

@@ -119,10 +119,9 @@ struct QueryHistory: View {
             HStack(spacing: 16) {
                 VStack(alignment: .leading) {
                     Text(prompt.question).font(.title2)
-                    HStack(spacing: 8) {
-                    }
                 }
             }
+            .padding(6)
         }
     }
     
