@@ -5,7 +5,6 @@
 //  Created by Pedro Fernandes Barreto Costa on 26/08/24.
 //
 
-
 import SwiftUI
 import OpenAI
 import AVFoundation
@@ -65,20 +64,20 @@ struct GuideChat: View {
                             TextField("Search", text: $question)
                                 .disableAutocorrection(true)
                                 .cornerRadius(8)
-                                .onSubmit() {
+                                .onSubmit {
                                     sendQuestion()
                                 }
                             
                             Button(action: manageMic) {
-                                Image(systemName: !question.isEmpty && !isRecording ? "arrow.turn.right.up" : isRecording ? "mic.fill" : "mic.slash.fill")
-                                    .foregroundColor(isRecording ? .red : .gray)
+                                Image(systemName: buttonIconName)
+                                    .foregroundColor(buttonIconColor)
                             }
                         }
                         .padding(8)
                         .background(Color.textFieldGray)
                         .cornerRadius(40)
                         .padding(.horizontal)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 1.02)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height / 1.05)
                         
                     } else {
                         ScrollView {
@@ -91,7 +90,9 @@ struct GuideChat: View {
                     }
                 }
                 .onReceive(speechRecognizer.$transcript) { transcript in
-                    question = transcript
+                    if(!transcript.isEmpty){
+                        question = transcript
+                    }
                 }
             }
             .onAppear {
@@ -101,22 +102,46 @@ struct GuideChat: View {
         }
     }
     
-    func manageMic() {
-        if !isRecording {
-            speechRecognizer.resetTranscript()
-            speechRecognizer.startTranscribing()
-            isRecording = true
+    var buttonIconName: String {
+        if isRecording {
+            return "mic.fill"
+        } else if !question.isEmpty {
+            return "arrow.turn.right.up"
         } else {
-            sendQuestion()
+            return "mic.slash.fill"
+        }
+    }
+    
+    var buttonIconColor: Color {
+        if isRecording {
+            return .red
+        } else {
+            return .gray
+        }
+    }
+    
+    func manageMic() {
+        if isRecording {
+            // Stop recording only, do not reset transcript or send question
             speechRecognizer.stopTranscribing()
             isRecording = false
+        } else {
+            // If not recording and question is empty, start recording
+            if question.isEmpty {
+                speechRecognizer.resetTranscript()
+                speechRecognizer.startTranscribing()
+                isRecording = true
+            } else {
+                // If there is text in the question, send it
+                sendQuestion()
+            }
         }
     }
     
     func sendQuestion() {
         dismissKeyboard()
         startFlickerAnimation()
-        if(question.isEmpty) {
+        if question.isEmpty {
             return
         }
         let query = ChatQuery(
