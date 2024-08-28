@@ -63,10 +63,11 @@ struct GuideChat: View {
                         ScrollView {
                             Text(answer)
                                 .multilineTextAlignment(.leading)
-                                .padding()
+                                .padding(.horizontal)
                                 .frame(maxWidth: .infinity)
                         }
-                        .frame(maxHeight: geometry.size.height * 0.8)
+                        .frame(height: geometry.size.height * 0.9)
+                        .padding(.bottom, geometry.size.height * 0.08)
                         Button(action: restartChat) {
                             Text("Perguntar novamente")
                                 .fontWeight(.bold)
