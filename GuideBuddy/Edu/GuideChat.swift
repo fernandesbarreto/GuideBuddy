@@ -25,24 +25,6 @@ struct GuideChat: View {
             GeometryReader { geometry in
                 ZStack {
                     Color(.background).edgesIgnoringSafeArea(.all)
-                    Text("GuideBuddy")
-                        .position(x: geometry.size.width / 2, y: 16)
-                    
-                    Button(action: {
-                        print("Abrir outra pagina")
-                    }) {
-                        Image(systemName: "house")
-                            .foregroundColor(.fernGreen)
-                            .font(.title2)
-                    }
-                    .position(x: geometry.size.width * 9 / 10, y: 16)
-                    
-                    NavigationLink(destination: QueryHistory(selectedAnswer: $answer)) {
-                        Image(systemName: "clock")
-                            .foregroundColor(.fernGreen)
-                            .font(.title2)
-                    }
-                    .position(x: geometry.size.width * 1 / 10, y: 16)
                     
                     if answer.isEmpty{
                         Image(.eduGreen)
