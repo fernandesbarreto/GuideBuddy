@@ -13,5 +13,6 @@ struct GuideBuddyApp: App {
         WindowGroup {
             GuideChat()
         }
+        .modelContainer(for: Prompt.self)
     }
 }

@@ -12,89 +12,92 @@ import AVFoundation
 import Speech
 
 struct GuideChat: View {
+    @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) var dismiss
+    
     @State private var question: String = ""
-    @State private var answer: String = ""
+    @State var answer: String = ""
     @State private var isRecording: Bool = false
     @State private var selectedLanguage = "pt-BR"
     @State private var imageOpacity: Double = 1.0
     @State private var isAnimating = false
-
+    
     @StateObject var speechRecognizer = SpeechRecognizer(locale: Locale(identifier: "pt-BR"))
-
+    
     let ourOpenAI = OpenAI(apiToken: "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")
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                Color(.background).edgesIgnoringSafeArea(.all)
-                Text("GuideBuddy")
-                    .position(x: geometry.size.width / 2, y: 16)
-                
-                Button(action: {
-                    print("Abrir outra pagina")
-                }) {
-                    Image(systemName: "house")
-                        .foregroundColor(.fernGreen)
-                        .font(.title2)
-                }
-                .position(x: geometry.size.width * 9 / 10, y: 16)
-                
-                Button(action: {
-                    print("Abrir outra pagina")
-                }) {
-                    Image(systemName: "clock")
-                        .foregroundColor(.fernGreen)
-                        .font(.title2)
-                }
-                .position(x: geometry.size.width * 1 / 10, y: 16)
-                
-                if answer.isEmpty {
-                    Image(.eduGreen)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 72, height: 72)
-                        .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                        .opacity(imageOpacity)
+        NavigationView {
+            GeometryReader { geometry in
+                ZStack {
+                    Color(.background).edgesIgnoringSafeArea(.all)
+                    Text("GuideBuddy")
+                        .position(x: geometry.size.width / 2, y: 16)
                     
-                    HStack {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.gray)
+                    Button(action: {
+                        print("Abrir outra pagina")
+                    }) {
+                        Image(systemName: "house")
+                            .foregroundColor(.fernGreen)
+                            .font(.title2)
+                    }
+                    .position(x: geometry.size.width * 9 / 10, y: 16)
+                    
+                    NavigationLink(destination: QueryHistory(selectedAnswer: $answer)) {
+                        Image(systemName: "clock")
+                            .foregroundColor(.fernGreen)
+                            .font(.title2)
+                    }
+                    .position(x: geometry.size.width * 1 / 10, y: 16)
+                    
+                    if answer.isEmpty {
+                        Image(.eduGreen)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 72, height: 72)
+                            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                            .opacity(imageOpacity)
                         
-                        TextField("Search", text: $question)
-                            .disableAutocorrection(true)
-                            .cornerRadius(8)
-                            .onSubmit() {
-                                sendQuestion()
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                                .foregroundColor(.gray)
+                            
+                            TextField("Search", text: $question)
+                                .disableAutocorrection(true)
+                                .cornerRadius(8)
+                                .onSubmit() {
+                                    sendQuestion()
+                                }
+                            
+                            Button(action: manageMic) {
+                                Image(systemName: !question.isEmpty && !isRecording ? "arrow.turn.right.up" : isRecording ? "mic.fill" : "mic.slash.fill")
+                                    .foregroundColor(isRecording ? .red : .gray)
                             }
-                        
-                        Button(action: manageMic) {
-                            Image(systemName: !question.isEmpty && !isRecording ? "arrow.turn.right.up" : isRecording ? "mic.fill" : "mic.slash.fill")
-                                .foregroundColor(isRecording ? .red : .gray)
                         }
+                        .padding(8)
+                        .background(Color.textFieldGray)
+                        .cornerRadius(40)
+                        .padding(.horizontal)
+                        .position(x: geometry.size.width / 2, y: geometry.size.height / 1.02)
+                        
+                    } else {
+                        ScrollView {
+                            Text(answer)
+                                .multilineTextAlignment(.leading)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                        }
+                        .frame(maxHeight: geometry.size.height * 0.8)
                     }
-                    .padding(8)
-                    .background(Color.textFieldGray)
-                    .cornerRadius(40)
-                    .padding(.horizontal)
-                    .position(x: geometry.size.width / 2, y: geometry.size.height / 1.02)
-                    
-                } else {
-                    ScrollView {
-                        Text(answer)
-                            .multilineTextAlignment(.leading)
-                            .padding()
-                            .frame(maxWidth: .infinity)
-                    }
-                    .frame(maxHeight: geometry.size.height * 0.8)
+                }
+                .onReceive(speechRecognizer.$transcript) { transcript in
+                    question = transcript
                 }
             }
-            .onReceive(speechRecognizer.$transcript) { transcript in
-                question = transcript
+            .onAppear {
+                selectedLanguage = UserDefaults.standard.string(forKey: "selectedLanguage") ?? "pt-BR"
+                changeLanguage(to: selectedLanguage)
             }
-        }
-        .onAppear {
-            selectedLanguage = UserDefaults.standard.string(forKey: "selectedLanguage") ?? "pt-BR"
-            changeLanguage(to: selectedLanguage)
         }
     }
     
@@ -113,7 +116,9 @@ struct GuideChat: View {
     func sendQuestion() {
         dismissKeyboard()
         startFlickerAnimation()
-
+        if(question.isEmpty) {
+            return
+        }
         let query = ChatQuery(
             messages: [.init(
                 role: .user,
@@ -122,12 +127,15 @@ struct GuideChat: View {
         
         ourOpenAI.chats(query: query) { result in
             switch result {
-                case .success(let chatResult):
-                    let content = chatResult.choices[0].message.content?.string
-                    print(content!)
-                    answer = content ?? "Erro ao obter resposta"
-                case .failure(_):
-                    answer = "O mago não pode responder no momento"
+            case .success(let chatResult):
+                let content = chatResult.choices[0].message.content?.string
+                print(content!)
+                answer = content ?? "Erro ao obter resposta"
+                let newPrompt = Prompt(question: question, answer: answer, timestamp: Date())
+                context.insert(newPrompt)
+                
+            case .failure(_):
+                answer = "O mago não pode responder no momento"
             }
             
             stopFlickerAnimation()
