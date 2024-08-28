@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct NavBar: View {
-    let action: ()->Void
+    let actionLeading: ()->Void
+    let actionTrailing: ()->Void
     var iconNameLeading: String
     var iconNameTrailing: String
+    
     var body: some View {
         HStack {
-            Button(action: { action() }) {
+            Button(action: { actionLeading() }) {
                 Image(systemName: iconNameLeading)
                     .foregroundStyle(Color.fernGreen)
                     .font(.title2)
@@ -26,7 +28,7 @@ struct NavBar: View {
             
             Spacer()
             
-            Button(action: { action() }) {
+            Button(action: { actionTrailing() }) {
                 Image(systemName: iconNameTrailing)
                     .foregroundStyle(Color.fernGreen)
                     .font(.title2)
@@ -39,5 +41,10 @@ struct NavBar: View {
 }
 
 #Preview {
-    NavBar(action: {}, iconNameLeading: "clock", iconNameTrailing: "house")
+    NavBar(
+        actionLeading: {},
+        actionTrailing: {},
+        iconNameLeading: "clock",
+        iconNameTrailing: "house"
+    )
 }

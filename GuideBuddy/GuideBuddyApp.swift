@@ -11,7 +11,7 @@ import SwiftUI
 struct GuideBuddyApp: App {
     var body: some Scene {
         WindowGroup {
-            EduSplitView()
+            EduView()
         }
         .modelContainer(for: Prompt.self)
     }

@@ -8,7 +8,7 @@ struct GuideChat: View {
     @Environment(\.dismiss) var dismiss
     
     @State private var question: String = ""
-    @State var answer: String = ""
+    @Binding var answer: String
     @State private var isRecording: Bool = false
     @State private var selectedLanguage = "pt-BR"
     @State private var imageOpacity: Double = 1.0
@@ -189,8 +189,4 @@ struct GuideChat: View {
         imageOpacity = 1.0
         showRestartButton = false
     }
-}
-
-#Preview {
-    GuideChat()
 }

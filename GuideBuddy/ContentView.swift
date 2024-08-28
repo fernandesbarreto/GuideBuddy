@@ -9,19 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationStack {
-            VStack {
-                NavBar(
-                    action: {
-                        print("Button tapped")
-                    },
-                    iconNameLeading: "clock",
-                    iconNameTrailing: "house"
-                )
-                GuideChat()
-                    .navigationBarTitleDisplayMode(.inline)
-            }
-        }
+        EduView()
     }
 }
 
