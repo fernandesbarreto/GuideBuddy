@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C126A5492C7F6A0200322D11 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C126A5482C7F6A0200322D11 /* NavBar.swift */; };
 		EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */; };
 		EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */; };
 		EBA4A5BF2C7D21A600ECD5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C126A5482C7F6A0200322D11 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		EBA4A5B72C7D21A500ECD5C2 /* GuideBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuideBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideBuddyApp.swift; sourceTree = "<group>"; };
 		EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -53,6 +55,7 @@
 			children = (
 				EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */,
 				EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */,
+				C126A5482C7F6A0200322D11 /* NavBar.swift */,
 				EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */,
 				EBA4A5C02C7D21A600ECD5C2 /* Preview Content */,
 			);
@@ -139,6 +142,7 @@
 			files = (
 				EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */,
 				EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */,
+				C126A5492C7F6A0200322D11 /* NavBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
