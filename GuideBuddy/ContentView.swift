@@ -9,19 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavBar(action: {}, iconNameLeading: "", iconNameTrailing: "person.crop.circle")
-        ScrollView{
-            ZStack{
-                Image("widgetRoxo")
-                HStack {
-                    Image("cachorro")
-                    Spacer()
-                }
-            }
-        }
+        MapView()
     }
     
 }
 #Preview {
-    EduView()
+    ContentView()
 }
