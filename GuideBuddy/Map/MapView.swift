@@ -75,16 +75,14 @@ struct MapView: View {
                     })
                     .onEnded { value in
                         let snapDistance = UIScreen.main.bounds.height * 0.25
-                        withAnimation {
-                            if value.translation.height < -snapDistance {
-                                offsetY = 0
-                            } else if value.translation.height > snapDistance {
-                                offsetY = UIScreen.main.bounds.height * 0.5
-                            } else {
-                                offsetY = previousOffsetY
-                            }
-                            previousOffsetY = offsetY
+                        if value.translation.height < -snapDistance {
+                            offsetY = 0
+                        } else if value.translation.height > snapDistance {
+                            offsetY = UIScreen.main.bounds.height * 0.4
+                        } else {
+                            offsetY = previousOffsetY
                         }
+                        previousOffsetY = offsetY
                     }
             )
         }
