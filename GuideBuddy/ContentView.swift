@@ -9,10 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        EduView()
+        NavBar(action: {}, iconNameLeading: "", iconNameTrailing: "person.crop.circle")
+        ScrollView{
+            ZStack{
+                Image("widgetRoxo")
+                HStack {
+                    Image("cachorro")
+                    Spacer()
+                }
+            }
+        }
     }
+    
 }
-
 #Preview {
     EduView()
 }
