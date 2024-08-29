@@ -7,20 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EB0A4DBC2C7F49C800092BA9 /* QueryHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */; };
+		EB0A4DC02C7FA3A200092BA9 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */; };
+		EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */; };
 		C126A5492C7F6A0200322D11 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C126A5482C7F6A0200322D11 /* NavBar.swift */; };
 		EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */; };
 		EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */; };
 		EBA4A5BF2C7D21A600ECD5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */; };
 		EBA4A5C22C7D21A600ECD5C2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA4A5C12C7D21A600ECD5C2 /* Preview Assets.xcassets */; };
+		EBA4A5CD2C7D232D00ECD5C2 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = EBA4A5CC2C7D232D00ECD5C2 /* OpenAI */; };
+		EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB948F62C7D24BB002F5375 /* GuideChat.swift */; };
+		EBB948FB2C7D275C002F5375 /* SpeechRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB948FA2C7D275C002F5375 /* SpeechRecognition.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryHistory.swift; sourceTree = "<group>"; };
+		EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
+		EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduView.swift; sourceTree = "<group>"; };
 		C126A5482C7F6A0200322D11 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		EBA4A5B72C7D21A500ECD5C2 /* GuideBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuideBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideBuddyApp.swift; sourceTree = "<group>"; };
 		EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBA4A5C12C7D21A600ECD5C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EBB948F62C7D24BB002F5375 /* GuideChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideChat.swift; sourceTree = "<group>"; };
+		EBB948F82C7D260E002F5375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EBB948FA2C7D275C002F5375 /* SpeechRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -28,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBA4A5CD2C7D232D00ECD5C2 /* OpenAI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,11 +66,15 @@
 		EBA4A5B92C7D21A500ECD5C2 /* GuideBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				EBB948F92C7D2750002F5375 /* Models */,
+				EBB948F82C7D260E002F5375 /* Info.plist */,
+				EBB948F52C7D24B2002F5375 /* Edu */,
 				EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */,
 				EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */,
 				C126A5482C7F6A0200322D11 /* NavBar.swift */,
 				EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */,
 				EBA4A5C02C7D21A600ECD5C2 /* Preview Content */,
+				EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */,
 			);
 			path = GuideBuddy;
 			sourceTree = "<group>";
@@ -68,6 +85,24 @@
 				EBA4A5C12C7D21A600ECD5C2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EBB948F52C7D24B2002F5375 /* Edu */ = {
+			isa = PBXGroup;
+			children = (
+				EBB948F62C7D24BB002F5375 /* GuideChat.swift */,
+				EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */,
+				EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */,
+			);
+			path = Edu;
+			sourceTree = "<group>";
+		};
+		EBB948F92C7D2750002F5375 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				EBB948FA2C7D275C002F5375 /* SpeechRecognition.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -86,6 +121,9 @@
 			dependencies = (
 			);
 			name = GuideBuddy;
+			packageProductDependencies = (
+				EBA4A5CC2C7D232D00ECD5C2 /* OpenAI */,
+			);
 			productName = GuideBuddy;
 			productReference = EBA4A5B72C7D21A500ECD5C2 /* GuideBuddy.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +152,9 @@
 				Base,
 			);
 			mainGroup = EBA4A5AE2C7D21A500ECD5C2;
+			packageReferences = (
+				EBA4A5CB2C7D232D00ECD5C2 /* XCRemoteSwiftPackageReference "OpenAI" */,
+			);
 			productRefGroup = EBA4A5B82C7D21A500ECD5C2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -140,8 +181,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB0A4DBC2C7F49C800092BA9 /* QueryHistory.swift in Sources */,
+				EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */,
 				EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */,
+				EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */,
 				EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */,
+				EB0A4DC02C7FA3A200092BA9 /* NavBar.swift in Sources */,
+				EBB948FB2C7D275C002F5375 /* SpeechRecognition.swift in Sources */,
 				C126A5492C7F6A0200322D11 /* NavBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,11 +325,14 @@
 				DEVELOPMENT_TEAM = KXKV68W5T2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GuideBuddy/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Permita que o GuideBuddy use o seu microfone";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Permita que o GuideBuddy traduza a sua voz para texto";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -308,11 +357,14 @@
 				DEVELOPMENT_TEAM = KXKV68W5T2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GuideBuddy/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Permita que o GuideBuddy use o seu microfone";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Permita que o GuideBuddy traduza a sua voz para texto";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -348,6 +400,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		EBA4A5CB2C7D232D00ECD5C2 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		EBA4A5CC2C7D232D00ECD5C2 /* OpenAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = EBA4A5CB2C7D232D00ECD5C2 /* XCRemoteSwiftPackageReference "OpenAI" */;
+			productName = OpenAI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = EBA4A5AF2C7D21A500ECD5C2 /* Project object */;
 }

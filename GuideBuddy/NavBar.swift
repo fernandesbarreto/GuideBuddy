@@ -8,48 +8,43 @@
 import SwiftUI
 
 struct NavBar: View {
-    let action: ()->Void
+    let actionLeading: ()->Void
+    let actionTrailing: ()->Void
     var iconNameLeading: String
     var iconNameTrailing: String
+    
     var body: some View {
-        NavigationStack {
-            ScrollView {
+        HStack {
+            Button(action: { actionLeading() }) {
+                Image(systemName: iconNameLeading)
+                    .foregroundStyle(Color.fernGreen)
+                    .font(.title2)
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(Color.white.opacity(0.8), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .navigationTitle("GuiBu")
             
+            Spacer()
             
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action:{ action() }, label: {
-                        
-                        Image(systemName: iconNameLeading)
-                            .foregroundStyle(Color.verdePrincipal)
-                    })
-                    
-                }
-                
-                
-                
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    
-                    Button(action: { action()
-                        
-                    },
-                           label: {
-                        Image(systemName: iconNameTrailing)
-                            .foregroundStyle(Color.verdePrincipal)
-                        
-                    })
-                }
+            Text("GuiBu")
+                .font(.headline)
+            
+            Spacer()
+            
+            Button(action: { actionTrailing() }) {
+                Image(systemName: iconNameTrailing)
+                    .foregroundStyle(Color.fernGreen)
+                    .font(.title2)
             }
         }
+        .padding()
+        .background(Color.white.opacity(0.8))
+        .toolbarBackground(.visible, for: .navigationBar)
     }
 }
 
 #Preview {
-    NavBar(action: {}, iconNameLeading: "clock", iconNameTrailing: "house")
+    NavBar(
+        actionLeading: {},
+        actionTrailing: {},
+        iconNameLeading: "clock",
+        iconNameTrailing: "house"
+    )
 }
