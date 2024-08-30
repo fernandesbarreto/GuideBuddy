@@ -108,7 +108,15 @@ struct QueryHistory: View {
                 .listStyle(.plain)
 
             }
+            
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
+            .navigationTitle("Histórico")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                  .background(Color.background)
         }
+        
     }
     
     private func promptRow(_ prompt: Prompt) -> some View {

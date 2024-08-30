@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "widHospital1x.png",
+      "filename" : "widhospitall1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "widHospital2x.png",
+      "filename" : "widhospitall2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "widHospital3x.png",
+      "filename" : "widhospitall3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

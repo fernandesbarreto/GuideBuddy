@@ -19,14 +19,16 @@ struct CarousselView: View {
                         ZStack{
                             Image(caroussel.images[index])
                             VStack {
-                                HStack {
-                                    Text(caroussel.titles[index])
-                                        .font(.system(size: 19,weight: .semibold , design: .rounded))
-                                        .foregroundStyle(caroussel.color[index])
-                                    Spacer()
-                                }
-                                .padding(10)
                                 Spacer()
+                                HStack {
+                                    Spacer()
+                                    Text(caroussel.titles[index])
+                                        .font(.system(size: 17,weight: .semibold , design: .rounded))
+                                        .foregroundStyle(caroussel.color[index])
+                                    
+                                }
+                                .padding(5)
+                               
                             }
                             .padding()
                         }
@@ -39,5 +41,5 @@ struct CarousselView: View {
     }
 }
 #Preview {
-    CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Meus documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(TestView())], color: [.white, .black, .white]))
+    CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(TestView())], color: [.white, .white, .white]))
 }

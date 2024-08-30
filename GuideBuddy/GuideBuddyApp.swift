@@ -14,5 +14,6 @@ struct GuideBuddyApp: App {
             HomeView()
         }
         .modelContainer(for: Prompt.self)
+        .modelContainer(for: Photo.self)
     }
 }

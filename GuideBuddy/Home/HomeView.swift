@@ -68,11 +68,11 @@ struct HomeView: View {
                                     Text("Emergência")
                                         .font(.system(size: 12))
                                         .foregroundStyle(.white)
-                                        .padding(.vertical, 2)
+                                        .padding(.vertical, 3)
                                 }
                             }
                         })
-                        
+                        Spacer()
                         NavigationLink(destination: TestView(), label: {
                             ZStack {
                                 Rectangle()
@@ -93,21 +93,22 @@ struct HomeView: View {
                         })
                         
                     }
-                   
+                    .frame(height: 177)
                     NavigationLink(destination: TestView(), label: {
                         ZStack{
                             Image("widMaps")
                             VStack {
-                               
+                                Spacer()
                                 HStack {
                                     Spacer()
                                     Text("Mapa")
                                         .font(.system(size: 22,weight: .semibold , design: .rounded))
                                         .foregroundStyle(.white)
+                                    
                                 
                                 }
                                 .padding(10)
-                                Spacer()
+                                
                             }
                             .padding()
                         }
@@ -119,7 +120,7 @@ struct HomeView: View {
                 .frame(width: 370)
                 .padding(.horizontal)
                 
-                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Meus documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(TestView())], color: [.white, .black, .black]))
+                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(TestView())], color: [.white, .white, .white]))
                     .padding(.horizontal, 8)
                 
                 NavigationLink(destination: TestView(), label: {
