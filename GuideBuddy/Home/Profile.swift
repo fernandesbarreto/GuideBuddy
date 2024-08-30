@@ -1,5 +1,5 @@
 //
-//  TestView.swift
+//  Profile.swift
 //  GuideBuddy
 //
 //  Created by Pedro Henrique Nunes da Silveira Bezerra on 29/08/24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TestView: View {
+struct Profile: View {
     var body: some View {
         NavigationStack{
             ScrollView{
@@ -17,7 +17,9 @@ struct TestView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.white.opacity(0.8), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
-            .navigationTitle("TestView")
+            .navigationTitle("Perfil")
+            
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action:{}, label: {
@@ -51,5 +53,5 @@ struct TestView: View {
 }
 
 #Preview {
-    TestView()
+    Profile()
 }

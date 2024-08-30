@@ -12,6 +12,7 @@
 		C152DB0F2C80B9300052256B /* CarousselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB0E2C80B9300052256B /* CarousselView.swift */; };
 		C152DB112C80B94E0052256B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB102C80B94E0052256B /* Category.swift */; };
 		C152DB132C80BA5F0052256B /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB122C80BA5F0052256B /* TestView.swift */; };
+		C152DB152C80C4140052256B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB142C80C4140052256B /* Profile.swift */; };
 		EB0A4DBC2C7F49C800092BA9 /* QueryHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */; };
 		EB0A4DC02C7FA3A200092BA9 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */; };
 		EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */; };
@@ -30,6 +31,7 @@
 		C152DB0E2C80B9300052256B /* CarousselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarousselView.swift; sourceTree = "<group>"; };
 		C152DB102C80B94E0052256B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		C152DB122C80BA5F0052256B /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
+		C152DB142C80C4140052256B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryHistory.swift; sourceTree = "<group>"; };
 		EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduView.swift; sourceTree = "<group>"; };
@@ -62,6 +64,7 @@
 				C152DB0E2C80B9300052256B /* CarousselView.swift */,
 				C152DB102C80B94E0052256B /* Category.swift */,
 				C152DB122C80BA5F0052256B /* TestView.swift */,
+				C152DB142C80C4140052256B /* Profile.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				C152DB132C80BA5F0052256B /* TestView.swift in Sources */,
 				C152DB0C2C80B5ED0052256B /* HomeView.swift in Sources */,
 				EB0A4DBC2C7F49C800092BA9 /* QueryHistory.swift in Sources */,
+				C152DB152C80C4140052256B /* Profile.swift in Sources */,
 				C152DB0F2C80B9300052256B /* CarousselView.swift in Sources */,
 				EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */,
 				EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */,
@@ -346,7 +350,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = KXKV68W5T2;
+				DEVELOPMENT_TEAM = D757SK75D9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
@@ -378,7 +382,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = KXKV68W5T2;
+				DEVELOPMENT_TEAM = D757SK75D9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;

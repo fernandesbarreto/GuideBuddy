@@ -16,13 +16,15 @@ struct EduView: View {
             VStack {
                 NavBar(
                     actionLeading: {
-                        isShowingQueryHistory = true
+                        print("Trailing button tapped")
+                        
                     },
                     actionTrailing: {
-                        print("Trailing button tapped")
+                       
+                        isShowingQueryHistory = true
                     },
-                    iconNameLeading: "clock",
-                    iconNameTrailing: "house"
+                    iconNameLeading: "",
+                    iconNameTrailing: "clock"
                 )
                 
                 GuideChat(answer: $answer)
