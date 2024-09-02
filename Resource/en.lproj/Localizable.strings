@@ -2,12 +2,11 @@
   Localizable.strings
   GuideBuddy
 
-  Created by Raquel Ribeiro Hatem de Farias on 28/08/24.
+  Created by Raquel Ribeiro Hatem de Farias on 30/08/24.
   
 */
-
-"lets_go" = "Vamos lá?";
-"fill_your_details" = "Preencha seus dados para começar";
-"user_age" = "Idade";
-"user_name" = "Nome do usuário";
-"start" = "Começar";
+"lets_go" = "Let's go";
+"fill_your_details" = "Fill in your details";
+"user_name" = "User name";
+"user_age" = "Age";
+"start" = "Start";
