@@ -29,13 +29,7 @@ let locations = [
 
 struct MapView: View {
     // Isso aqui embaixo eh só pra começar em Recife
-    @State private var position = MapCameraPosition.region(
-        MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: -8.050000, longitude: -34.90000),
-            span: MKCoordinateSpan(latitudeDelta: 1, longitudeDelta: 1)
-        )
-    )
-    
+    @State private var position = MapCameraPosition.automatic
     @State private var searchText = ""
     @State private var offsetY: CGFloat = UIScreen.main.bounds.height * 0.4
     @State private var previousOffsetY: CGFloat = UIScreen.main.bounds.height * 0.4
