@@ -21,119 +21,111 @@ class Photo {
 
 struct Profile: View {
     @State private var selectedImage: UIImage?
-        @State private var isImagePickerPresented = false
+    @State private var isImagePickerPresented = false
     @State private var selectedBackground: UIImage?
-        @State private var isBackgroundPickerPresented = false
+    @State private var isBackgroundPickerPresented = false
+
     var body: some View {
-        NavigationStack{
-            ScrollView{
+        NavigationStack {
+            ScrollView {
                 VStack {
                     ZStack {
-                        VStack{
-                            if let selectedBackground = selectedBackground {
-                                // Exibe a imagem capturada
-                                Image(uiImage: selectedBackground)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 393, height: 253)
-                                
-                                    .padding()
-                            } else {
-                                // Exibe um texto quando nenhuma imagem é selecionada
-                                Rectangle()
-                                    .foregroundStyle(.gray)
-                                    .frame(width: 393, height: 253)
-                                    .scaledToFill()
-                            }
-                            
-                            Button(action: {
-                                isBackgroundPickerPresented = true
-                            }) {
-                                Text("Toque para selecionar capa")
-                                    .font(.title2)
-                                    .padding()
-                                
-                                    .foregroundColor(.white)
-                                    .cornerRadius(10)
-                            }.frame(width: 393, height: 253)
-                                .sheet(isPresented: $isBackgroundPickerPresented) {
-                                    // Apresenta o ImagePicker quando o botão é pressionado
-                                    ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
-                                }
-                            Spacer()
-                            
-                        }
-                                if let selectedImage = selectedImage {
-                                    // Exibe a imagem capturada
-                                    Image(uiImage: selectedImage)
-                                        .resizable()
-                                        .scaledToFill()
-                                        .frame(width: 106, height: 106)
-                                        .cornerRadius(100)
-                                        .padding()
-                                } else {
-                                    // Exibe um texto quando nenhuma imagem é selecionada
-                                    Image("profileImage")
-                                        .frame(width: 106, height: 106)
-                                        .scaledToFill()
-                                }
-
-                                Button(action: {
-                                    isImagePickerPresented = true
-                                }) {
-                                    Text("     ")
+                        if let selectedBackground = selectedBackground {
+                            // Exibe a imagem capturada para a capa
+                            Image(uiImage: selectedBackground)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 393, height: 253)
+                                .clipped()
+                        } else {
+                            // Exibe um placeholder quando nenhuma imagem de capa é selecionada
+                            Rectangle()
+                                .foregroundColor(.gray)
+                                .frame(width: 393, height: 253)
+                                .overlay(
+                                    Text("Toque para selecionar capa")
                                         .font(.title2)
-                                        .padding()
-                                        
                                         .foregroundColor(.white)
-                                        .cornerRadius(10)
-                                }.frame(width: 106, height: 106)
-                                .sheet(isPresented: $isImagePickerPresented) {
-                                    // Apresenta o ImagePicker quando o botão é pressionado
-                                    ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
-                                }
-                            }
-Text("Pedro Nunes")
+                                        .padding()
+                                )
+                        }
+                        
+                        Button(action: {
+                            isBackgroundPickerPresented = true
+                        }) {
+                            // Botão invisível sobre a imagem para selecionar nova capa
+                            Color.clear.frame(width: 393, height: 253)
+                        }
+                        .sheet(isPresented: $isBackgroundPickerPresented) {
+                            // Apresenta o ImagePicker quando o botão é pressionado
+                            ImagePicker(selectedBackground: $selectedBackground, selectedImage: $selectedImage, sourceType: .photoLibrary)
+                        }
+                    }
+                    .offset(y: -30)
+                    Spacer()
+                        .frame(height: 20) // Espaçamento entre capa e foto de perfil
+                    
+                    ZStack {
+                        if let selectedImage = selectedImage {
+                            // Exibe a imagem capturada para o perfil
+                            Image(uiImage: selectedImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 106, height: 106)
+                                .clipShape(Circle())
+                        } else {
+                            // Exibe um placeholder quando nenhuma imagem de perfil é selecionada
+                            Image("profileImage")
+                                .resizable()
+                                .frame(width: 106, height: 106)
+                                .scaledToFill()
+                                .clipShape(Circle())
+                        }
+                        
+                        Button(action: {
+                            isImagePickerPresented = true
+                        }) {
+                            // Botão invisível sobre a imagem para selecionar nova foto de perfil
+                            Color.clear.frame(width: 106, height: 106)
+                        }
+                        .sheet(isPresented: $isImagePickerPresented) {
+                            // Apresenta o ImagePicker quando o botão é pressionado
+                            ImagePicker(selectedBackground: $selectedBackground, selectedImage: $selectedImage, sourceType: .camera)
+                        }
+                    }
+                    
+                    Text("Pedro Nunes")
+                        .font(.title)
+                        .padding(.top, 10)
+                    
                 }
-                
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(Color.white.opacity(0.8), for: .navigationBar)
+            .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .navigationTitle("Profile")
             
-            
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action:{}, label: {
-                        
-                        Image("")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30)
-                    })
-                  
-    
-                }
-                
-        
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Button(action: {}, label: {
+//                        Image(systemName: "")
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 30)
+//                    })
+//                }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-
-                    Button(action: {
-                       
-
-                    },
-                           label: {
-                        Image(systemName: "")
-                            .foregroundStyle(Color(.white))
-
+                    Button(action: {}, label: {
+                        Image(systemName: "ellipsis")
+                            .foregroundStyle(Color.white)
                     })
                 }
             }
         }
     }
 }
+
 
 #Preview {
     Profile()

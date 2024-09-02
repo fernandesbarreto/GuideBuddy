@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C12075EC2C828FB4005277B7 /* GaleryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12075EB2C828FB4005277B7 /* GaleryInput.swift */; };
 		C126A5492C7F6A0200322D11 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C126A5482C7F6A0200322D11 /* NavBar.swift */; };
+		C13656E92C8289F90056FB10 /* ProfileImageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13656E82C8289F90056FB10 /* ProfileImageInput.swift */; };
 		C152DB0C2C80B5ED0052256B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB0B2C80B5ED0052256B /* HomeView.swift */; };
 		C152DB0F2C80B9300052256B /* CarousselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB0E2C80B9300052256B /* CarousselView.swift */; };
 		C152DB112C80B94E0052256B /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB102C80B94E0052256B /* Category.swift */; };
@@ -31,7 +33,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C12075EB2C828FB4005277B7 /* GaleryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaleryInput.swift; sourceTree = "<group>"; };
 		C126A5482C7F6A0200322D11 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
+		C13656E82C8289F90056FB10 /* ProfileImageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageInput.swift; sourceTree = "<group>"; };
 		C152DB0B2C80B5ED0052256B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		C152DB0E2C80B9300052256B /* CarousselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarousselView.swift; sourceTree = "<group>"; };
 		C152DB102C80B94E0052256B /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
@@ -87,6 +91,8 @@
 				C152DB142C80C4140052256B /* Profile.swift */,
 				C152DB1F2C8204520052256B /* CameraButton.swift */,
 				C152DB212C8204E90052256B /* CameraInputt.swift */,
+				C13656E82C8289F90056FB10 /* ProfileImageInput.swift */,
+				C12075EB2C828FB4005277B7 /* GaleryInput.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -232,12 +238,14 @@
 				EB0A4DBC2C7F49C800092BA9 /* QueryHistory.swift in Sources */,
 				C152DB152C80C4140052256B /* Profile.swift in Sources */,
 				C152DB0F2C80B9300052256B /* CarousselView.swift in Sources */,
+				C13656E92C8289F90056FB10 /* ProfileImageInput.swift in Sources */,
 				EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */,
 				EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */,
 				EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */,
 				C152DB222C8204E90052256B /* CameraInputt.swift in Sources */,
 				EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */,
 				C152DB1D2C81FD450052256B /* CIImage+Extension.swift in Sources */,
+				C12075EC2C828FB4005277B7 /* GaleryInput.swift in Sources */,
 				EB0A4DC02C7FA3A200092BA9 /* NavBar.swift in Sources */,
 				EBB948FB2C7D275C002F5375 /* SpeechRecognition.swift in Sources */,
 				C152DB202C8204520052256B /* CameraButton.swift in Sources */,
