@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavBar(action: {}, iconNameLeading: "", iconNameTrailing: "person.crop.circle")
+        NavBar(actionLeading: {},actionTrailing: {}, iconNameLeading: "", iconNameTrailing: "person.crop.circle")
         ScrollView{
             ZStack{
                 Image("widgetRoxo")
