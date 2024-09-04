@@ -49,7 +49,7 @@
 		EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryHistory.swift; sourceTree = "<group>"; };
 		EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduView.swift; sourceTree = "<group>"; };
-		EBA4A5B72C7D21A500ECD5C2 /* GuideBuddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuideBuddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBA4A5B72C7D21A500ECD5C2 /* GuiBu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuiBu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideBuddyApp.swift; sourceTree = "<group>"; };
 		EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 		EBA4A5B82C7D21A500ECD5C2 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				EBA4A5B72C7D21A500ECD5C2 /* GuideBuddy.app */,
+				EBA4A5B72C7D21A500ECD5C2 /* GuiBu.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,9 +160,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		EBA4A5B62C7D21A500ECD5C2 /* GuideBuddy */ = {
+		EBA4A5B62C7D21A500ECD5C2 /* GuiBu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = EBA4A5C52C7D21A600ECD5C2 /* Build configuration list for PBXNativeTarget "GuideBuddy" */;
+			buildConfigurationList = EBA4A5C52C7D21A600ECD5C2 /* Build configuration list for PBXNativeTarget "GuiBu" */;
 			buildPhases = (
 				EBA4A5B32C7D21A500ECD5C2 /* Sources */,
 				EBA4A5B42C7D21A500ECD5C2 /* Frameworks */,
@@ -172,12 +172,12 @@
 			);
 			dependencies = (
 			);
-			name = GuideBuddy;
+			name = GuiBu;
 			packageProductDependencies = (
 				EBA4A5CC2C7D232D00ECD5C2 /* OpenAI */,
 			);
 			productName = GuideBuddy;
-			productReference = EBA4A5B72C7D21A500ECD5C2 /* GuideBuddy.app */;
+			productReference = EBA4A5B72C7D21A500ECD5C2 /* GuiBu.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -211,7 +211,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				EBA4A5B62C7D21A500ECD5C2 /* GuideBuddy */,
+				EBA4A5B62C7D21A500ECD5C2 /* GuiBu */,
 			);
 		};
 /* End PBXProject section */
@@ -458,7 +458,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		EBA4A5C52C7D21A600ECD5C2 /* Build configuration list for PBXNativeTarget "GuideBuddy" */ = {
+		EBA4A5C52C7D21A600ECD5C2 /* Build configuration list for PBXNativeTarget "GuiBu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				EBA4A5C62C7D21A600ECD5C2 /* Debug */,
