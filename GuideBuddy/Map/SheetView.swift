@@ -53,9 +53,9 @@ struct SheetView: View {
         }
         .padding()
         .interactiveDismissDisabled()
-        .presentationDetents([.height(80), .large])
+        .presentationDetents([.height(80), .medium])
         .presentationBackground(.regularMaterial)
-        .presentationBackgroundInteraction(.enabled(upThrough: .large))
+        .presentationBackgroundInteraction(.enabled(upThrough: .medium))
     }
 
     private func didTapOnCompletion(_ completion: SearchCompletions) {

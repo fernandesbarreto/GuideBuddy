@@ -9,13 +9,35 @@ import SwiftUI
 import MapKit
 
 struct SearchableMap: View {
-    @State private var position = MapCameraPosition.automatic
+    @State private var cameraPosition = MapCameraPosition.region(
+        MKCoordinateRegion(
+            center: CLLocationCoordinate2D(latitude: -8.05389, longitude: -34.88111),
+            span: MKCoordinateSpan(latitudeDelta: 0.36, longitudeDelta: 0.36)
+        )
+    )
+    
     @State private var searchResults = [SearchResult]()
     @State private var selectedLocation: SearchResult?
     @State private var isSheetPresented: Bool = true
-
+    
     var body: some View {
-        Map(position: $position, selection: $selectedLocation) {
+        mapView
+            .ignoresSafeArea()
+            .onChange(of: selectedLocation) { newValue in
+                isSheetPresented = true
+            }
+            .onChange(of: searchResults) { newValue in
+                if let firstResult = newValue.first, newValue.count == 1 {
+                    selectedLocation = firstResult
+                }
+            }
+            .sheet(isPresented: $isSheetPresented) {
+                SheetView(searchResults: $searchResults)
+            }
+    }
+
+    private var mapView: some View {
+        Map(position: $cameraPosition, selection: $selectedLocation) {
             ForEach(searchResults) { result in
                 Marker(coordinate: result.location) {
                     Image(systemName: "mappin")
@@ -23,21 +45,10 @@ struct SearchableMap: View {
                 .tag(result)
             }
         }
-        .ignoresSafeArea()
-        .onChange(of: selectedLocation) {
-            isSheetPresented = selectedLocation == nil
-        }
-        .onChange(of: searchResults) {
-            if let firstResult = searchResults.first, searchResults.count == 1 {
-                selectedLocation = firstResult
-            }
-        }
-        .sheet(isPresented: $isSheetPresented) {
-            SheetView(searchResults: $searchResults)
-        }
     }
 }
 
 #Preview {
     SearchableMap()
 }
+
