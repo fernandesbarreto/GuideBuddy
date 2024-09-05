@@ -142,7 +142,7 @@
 				EBB948F52C7D24B2002F5375 /* Edu */,
 				EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */,
 				EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */,
-				C0F65D252C7DF9180096B3B1 /* Login.swift */,
+				EBE656822C89E14000DD9C34 /* Login */,
 				C090E2122C81FD4C00F21058 /* Testinho.swift */,
 				C0F65D362C7F67BF0096B3B1 /* LanguageManager.swift */,
 				C126A5482C7F6A0200322D11 /* NavBar.swift */,
@@ -177,6 +177,14 @@
 				EBB948FA2C7D275C002F5375 /* SpeechRecognition.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		EBE656822C89E14000DD9C34 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C0F65D252C7DF9180096B3B1 /* Login.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
