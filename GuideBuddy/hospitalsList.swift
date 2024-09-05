@@ -8,92 +8,94 @@
 
 import SwiftUI
 
-struct ListaDeHospitaisView: View {
+struct HealthCategories: View {
     let categories = [
-    
         HealthyPlaceCategory(titulo: "Urgência e Emergência"),
-        HealthyPlaceCategory(titulo: "Clínica médica"),
-        HealthyPlaceCategory(titulo: "Saúde mental")
-        
+        HealthyPlaceCategory(titulo: "Clínica médica")
     ]
     
     var body: some View {
-        NavigationView {
-            List(categories) { doc in       // abaixo a segunda struct, o destino
-                NavigationLink(destination: HealthyPlaceOption ()) {
-                    Text(doc.titulo)
+        NavigationStack {
+            List(categories) { category in
+                NavigationLink(
+                    destination: HealthyPlaceOption(category: category)
+                ) {
+                    Text(category.titulo)
                 }
             }
-            .navigationTitle("Hospitais")
-        }
-    }
-    
-}
-
-
-struct HealthyPlaceOption:View {
-    
-    let hospitalOptions = [
-    
-        MockHospital(titulo: "h1, h2, h3"),
-        MockHospital(titulo: "h4, h5, h6"),
-        MockHospital(titulo: "h7, h8, h9")
-        
-    ]
-    
-    var body: some View {
-        
-        NavigationView {
-            List(hospitalOptions) { doc in
-                NavigationLink(destination: HealthyPlaceDescription ()) {
-                    Text(doc.titulo)
-                }
-            }
-            .navigationTitle("Hospitais dessa categoria")
+            .navigationTitle("Categorias de Saúde")
+          
         }
     }
 }
 
+struct HealthyPlaceOption: View {
+    let category: HealthyPlaceCategory
 
-struct HealthyPlaceDescription:View {
-    
-    let hosptitalDescricao = [
-    
-        HospitalDescricao(titulo: "hi blablabla"),
-        HospitalDescricao(titulo: "hi blablabla"),
-        HospitalDescricao(titulo: "hi blablabla")
-        
+    // Dicionário que mapeia categorias para suas listas de hospitais
+    private let hospitalsByCategory: [String: [MockHospital]] = [
+        "Urgência e Emergência": [
+            MockHospital(titulo: "Hospital da Restauração"),
+            MockHospital(titulo: "UPA Caxangá"),
+            MockHospital(titulo: "Hospital C")
+        ],
+        "Clínica médica": [
+            MockHospital(titulo: "Clínica A"),
+            MockHospital(titulo: "Clínica B"),
+            MockHospital(titulo: "Clínica C")
+        ]
     ]
-
-    var body: some View {
     
-        Text ("Colocar algo aqui")
+    var body: some View {
+        let hospitalOptions = hospitalsByCategory[category.titulo] ?? []
         
+        List(hospitalOptions) { hospital in
+            NavigationLink(
+                destination: HealthyPlaceDescription(hospital: hospital)
+            ) {
+                Text(hospital.titulo)
+            }
+        }
+        .navigationTitle("Hospitais para \(category.titulo)")
     }
 }
 
-
+struct HealthyPlaceDescription: View {
+    let hospital: MockHospital
+    
+    // Dicionário que mapeia hospitais para suas descrições
+    private let descriptionsByHospital: [String: String] = [
+        "Hospital da Restauração": "Descrição detalhada do Hospital da Restauração.",
+        "UPA Caxangá": hospitalDescription[0],
+        "Hospital C": "Descrição detalhada do Hospital C.",
+        "Clínica A": "Descrição detalhada da Clínica A.",
+        "Clínica B": "Descrição detalhada da Clínica B.",
+        "Clínica C": "Descrição detalhada da Clínica C."
+    ]
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Text(hospital.titulo)
+                .font(.title)
+                .padding(.bottom, 8)
+            Text(descriptionsByHospital[hospital.titulo] ?? "Descrição não disponível.")
+                .padding()
+        }
+        .navigationTitle(hospital.titulo)
+    }
+}
 
 struct MockHospital: Identifiable {
     var id = UUID()
     var titulo: String
 }
 
-struct HospitalDescricao: Identifiable {
-    var id = UUID()
-    var titulo: String
-}
-
-
-
-
-
-struct  HealthyPlaceCategory: Identifiable {
+struct HealthyPlaceCategory: Identifiable {
     let id = UUID()
     let titulo: String
 }
 
 #Preview {
-    ListaDeHospitaisView()
+    HealthCategories()
 }
 

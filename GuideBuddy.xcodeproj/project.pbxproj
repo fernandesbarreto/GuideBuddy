@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5528906B2C7F5144008B14AA /* DocsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528906A2C7F5144008B14AA /* DocsList.swift */; };
+		5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552BFA52C85D76700DE92BF /* HospitalData.swift */; };
 		5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C42C7F669200DC7332 /* AddDoc.swift */; };
 		5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C82C81E83100DC7332 /* hospitalsList.swift */; };
 		EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		5528906A2C7F5144008B14AA /* DocsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocsList.swift; sourceTree = "<group>"; };
+		5552BFA52C85D76700DE92BF /* HospitalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalData.swift; sourceTree = "<group>"; };
 		5572B2C42C7F669200DC7332 /* AddDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoc.swift; sourceTree = "<group>"; };
 		5572B2C62C8097CD00DC7332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5572B2C82C81E83100DC7332 /* hospitalsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hospitalsList.swift; sourceTree = "<group>"; };
@@ -52,6 +54,7 @@
 			isa = PBXGroup;
 			children = (
 				5572B2C82C81E83100DC7332 /* hospitalsList.swift */,
+				5552BFA52C85D76700DE92BF /* HospitalData.swift */,
 			);
 			name = Hospitals;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */,
+				5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */,
 				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
 				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
 				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
@@ -302,10 +306,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = KXKV68W5T2;
+				DEVELOPMENT_TEAM = 2GMZCBA59X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -332,10 +339,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = KXKV68W5T2;
+				DEVELOPMENT_TEAM = 2GMZCBA59X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "";
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
