@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "widdfaculdade1x.png",
+      "filename" : "widcolleges1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "widdfaculdade2x.png",
+      "filename" : "widcolleges2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "widdfaculdade3x.png",
+      "filename" : "widcolleges3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "widhospitalfinal1x.png",
+      "filename" : "widhosp1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "widhospitalfinal2x.png",
+      "filename" : "widhosp2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "widhospitalfinal3x.png",
+      "filename" : "widhosp3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
