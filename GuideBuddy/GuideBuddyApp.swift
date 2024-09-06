@@ -13,6 +13,6 @@ struct GuideBuddyApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: Prompt.self)
+        .modelContainer(for: [Prompt.self, Photos.self, User.self])
     }
 }

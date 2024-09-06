@@ -6,10 +6,17 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Query(sort: \User.age) private var user: [User]
+    
     var body: some View {
-        SearchableMap()
+        if(user.count == 1) {
+            HomeView()
+        } else {
+            Login()
+        }
     }
     
 }

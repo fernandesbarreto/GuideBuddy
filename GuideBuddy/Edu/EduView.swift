@@ -14,16 +14,18 @@ struct EduView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                NavBar(
-                    actionLeading: {
-                        isShowingQueryHistory = true
-                    },
-                    actionTrailing: {
-                        print("Trailing button tapped")
-                    },
-                    iconNameLeading: "clock",
-                    iconNameTrailing: "house"
-                )
+//                NavBar(
+//                    actionLeading: {
+//                        print("Trailing button tapped")
+//                        
+//                    },
+//                    actionTrailing: {
+//                       
+//                        isShowingQueryHistory = true
+//                    },
+//                    iconNameLeading: "",
+//                    iconNameTrailing: "clock"
+//                )
                 
                 GuideChat(answer: $answer)
                     .navigationBarTitleDisplayMode(.inline)
@@ -36,6 +38,25 @@ struct EduView: View {
                 }
                 .hidden()
             }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
+//            .toolbarBackground(.visible, for: .navigationBar)
+            .navigationTitle("GuiBu")
+            
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+
+                    NavigationLink(destination: QueryHistory(selectedAnswer: $answer),
+                           label: {
+                        Image(systemName: "clock")
+                            .foregroundStyle(Color.verdePrincipal)
+
+                    })
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+                  .background(Color.background)
         }
     }
 }
