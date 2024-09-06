@@ -54,7 +54,7 @@ struct HomeView: View {
                 })
                 HStack{
                     VStack{
-                        NavigationLink(destination: TestView(), label: {
+                        NavigationLink(destination: Emergencia(), label: {
                             ZStack {
                                 Rectangle()
                                     .frame(width: 77, height: 77)
