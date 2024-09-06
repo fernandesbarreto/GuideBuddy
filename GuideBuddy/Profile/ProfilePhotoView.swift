@@ -86,8 +86,8 @@ struct ProfilePhotoView: View {
                                 }
                                 .padding()
                             })
-                            .sheet(isPresented: $isBackgroundPickerPresented) {
-                                ImagePicker2(selectedBackground: $selectedBackground, sourceType: .photoLibrary)
+                            .sheet(isPresented: $isImagePickerPresented) {
+                                ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
                             }
                             Divider()
 

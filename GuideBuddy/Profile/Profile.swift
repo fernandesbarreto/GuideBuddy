@@ -9,13 +9,13 @@ import SwiftUI
 import SwiftData
 
 @Model
-class Photo {
-    var profilePhoto: Photo
-  
+class Photos {
+    var profilePhoto: String
+    var backgroundPhoto: String
     
-    init(profilePhoto: Photo) {
+    init(backgroudPhoto: String, profilePhoto: String) {
+        self.backgroundPhoto = backgroudPhoto
         self.profilePhoto = profilePhoto
-       
     }
 }
 

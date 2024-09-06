@@ -10,7 +10,8 @@ import UIKit
 
 
 struct ImagePicker: UIViewControllerRepresentable {
-   
+    @Environment(\.modelContext) private var context
+    
     @Binding var selectedImage: UIImage?
     @Environment(\.presentationMode) private var presentationMode
     var sourceType: UIImagePickerController.SourceType = .camera
