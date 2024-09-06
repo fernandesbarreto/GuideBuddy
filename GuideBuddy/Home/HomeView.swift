@@ -74,6 +74,7 @@ struct HomeView: View {
                                 }
                             }
                         })
+                        .shadow(radius: 5)
                         Spacer()
                         NavigationLink(destination: TestView(), label: {
                             ZStack {
@@ -93,7 +94,7 @@ struct HomeView: View {
                                 }
                             }
                         })
-                        
+                        .shadow(radius: 5)
                     }
                     .frame(height: 177)
                     NavigationLink(destination: TestView(), label: {
@@ -177,12 +178,13 @@ struct HomeView: View {
                     .frame(width: 363, height: 208)
                 })
                 .padding(10)
+                .shadow(radius: 5)
                 }
             .frame(width: 365)
                     
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
+//            .toolbarBackground(.visible, for: .navigationBar)
             .navigationTitle("Home")
             
             

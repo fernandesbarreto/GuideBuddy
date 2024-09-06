@@ -11,6 +11,7 @@
 		C090E2132C81FD4C00F21058 /* Testinho.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E2122C81FD4C00F21058 /* Testinho.swift */; };
 		C0F65D262C7DF9180096B3B1 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F65D252C7DF9180096B3B1 /* Login.swift */; };
 		C0F65D372C7F67BF0096B3B1 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F65D362C7F67BF0096B3B1 /* LanguageManager.swift */; };
+		C1130E992C8AFBB000CE4F98 /* ProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */; };
 		C12075EC2C828FB4005277B7 /* GaleryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12075EB2C828FB4005277B7 /* GaleryInput.swift */; };
 		C126A5492C7F6A0200322D11 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C126A5482C7F6A0200322D11 /* NavBar.swift */; };
 		C13656E92C8289F90056FB10 /* ProfileImageInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13656E82C8289F90056FB10 /* ProfileImageInput.swift */; };
@@ -22,8 +23,9 @@
 		C152DB192C81F1C50052256B /* CameraInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB182C81F1C50052256B /* CameraInput.swift */; };
 		C152DB1B2C81F4410052256B /* TitlwDiagrama.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB1A2C81F4410052256B /* TitlwDiagrama.swift */; };
 		C152DB1D2C81FD450052256B /* CIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB1C2C81FD450052256B /* CIImage+Extension.swift */; };
-		C152DB202C8204520052256B /* CameraButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB1F2C8204520052256B /* CameraButton.swift */; };
-		C152DB222C8204E90052256B /* CameraInputt.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB212C8204E90052256B /* CameraInputt.swift */; };
+		C152DB202C8204520052256B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB1F2C8204520052256B /* ImagePicker.swift */; };
+		C1A31E2A2C8B00210023A5F9 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A31E292C8B00210023A5F9 /* BackgroundImageView.swift */; };
+		C1A31E2C2C8B0A0B0023A5F9 /* PhotoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A31E2B2C8B0A0B0023A5F9 /* PhotoSheet.swift */; };
 		EB0A4DBC2C7F49C800092BA9 /* QueryHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */; };
 		EB0A4DC02C7FA3A200092BA9 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */; };
 		EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */; };
@@ -43,6 +45,7 @@
 		C090E2122C81FD4C00F21058 /* Testinho.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testinho.swift; sourceTree = "<group>"; };
 		C0F65D252C7DF9180096B3B1 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		C0F65D362C7F67BF0096B3B1 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoView.swift; sourceTree = "<group>"; };
 		C12075EB2C828FB4005277B7 /* GaleryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaleryInput.swift; sourceTree = "<group>"; };
 		C126A5482C7F6A0200322D11 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		C13656E82C8289F90056FB10 /* ProfileImageInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImageInput.swift; sourceTree = "<group>"; };
@@ -54,8 +57,9 @@
 		C152DB182C81F1C50052256B /* CameraInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInput.swift; sourceTree = "<group>"; };
 		C152DB1A2C81F4410052256B /* TitlwDiagrama.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitlwDiagrama.swift; sourceTree = "<group>"; };
 		C152DB1C2C81FD450052256B /* CIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CIImage+Extension.swift"; sourceTree = "<group>"; };
-		C152DB1F2C8204520052256B /* CameraButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraButton.swift; sourceTree = "<group>"; };
-		C152DB212C8204E90052256B /* CameraInputt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraInputt.swift; sourceTree = "<group>"; };
+		C152DB1F2C8204520052256B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		C1A31E292C8B00210023A5F9 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
+		C1A31E2B2C8B0A0B0023A5F9 /* PhotoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSheet.swift; sourceTree = "<group>"; };
 		EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryHistory.swift; sourceTree = "<group>"; };
 		EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduView.swift; sourceTree = "<group>"; };
@@ -107,10 +111,12 @@
 			isa = PBXGroup;
 			children = (
 				C152DB142C80C4140052256B /* Profile.swift */,
-				C152DB1F2C8204520052256B /* CameraButton.swift */,
-				C152DB212C8204E90052256B /* CameraInputt.swift */,
+				C152DB1F2C8204520052256B /* ImagePicker.swift */,
 				C13656E82C8289F90056FB10 /* ProfileImageInput.swift */,
 				C12075EB2C828FB4005277B7 /* GaleryInput.swift */,
+				C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */,
+				C1A31E292C8B00210023A5F9 /* BackgroundImageView.swift */,
+				C1A31E2B2C8B0A0B0023A5F9 /* PhotoSheet.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -276,15 +282,17 @@
 				EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */,
 				EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */,
 				EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */,
-				C152DB222C8204E90052256B /* CameraInputt.swift in Sources */,
 				EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */,
 				C0F65D372C7F67BF0096B3B1 /* LanguageManager.swift in Sources */,
 				C090E2132C81FD4C00F21058 /* Testinho.swift in Sources */,
 				C152DB1D2C81FD450052256B /* CIImage+Extension.swift in Sources */,
+				C1A31E2A2C8B00210023A5F9 /* BackgroundImageView.swift in Sources */,
+				C1130E992C8AFBB000CE4F98 /* ProfilePhotoView.swift in Sources */,
 				C12075EC2C828FB4005277B7 /* GaleryInput.swift in Sources */,
+				C1A31E2C2C8B0A0B0023A5F9 /* PhotoSheet.swift in Sources */,
 				EB0A4DC02C7FA3A200092BA9 /* NavBar.swift in Sources */,
 				EBB948FB2C7D275C002F5375 /* SpeechRecognition.swift in Sources */,
-				C152DB202C8204520052256B /* CameraButton.swift in Sources */,
+				C152DB202C8204520052256B /* ImagePicker.swift in Sources */,
 				C126A5492C7F6A0200322D11 /* NavBar.swift in Sources */,
 				C152DB1B2C81F4410052256B /* TitlwDiagrama.swift in Sources */,
 				C152DB112C80B94E0052256B /* Category.swift in Sources */,
@@ -435,7 +443,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = KXKV68W5T2;
+				DEVELOPMENT_TEAM = D757SK75D9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
@@ -469,7 +477,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = KXKV68W5T2;
+				DEVELOPMENT_TEAM = D757SK75D9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
