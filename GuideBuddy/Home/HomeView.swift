@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
-    var name: String = "Pedro Nunes"
+    @Query(sort: \User.age) private var user: [User]
+
     @State private var resultado: Double = 7.5
     @State private var animatedValue: Double = 0.0
     var body: some View {
@@ -24,7 +26,7 @@ struct HomeView: View {
                         }
                             
                         HStack {
-                            Text(name)
+                            Text(user[0].name)
                                 .font(.system(size: 24,weight: .semibold , design: .rounded))
                             .foregroundStyle(Color.verdePrincipal)
                             Spacer()
