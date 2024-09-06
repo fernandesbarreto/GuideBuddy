@@ -87,7 +87,7 @@ struct AdicionarDocumento: View {
                                         Button("Sim, excluir", role: .destructive) {
                                             // Lógica para excluir o item se o usuário confirmar
                                             print("Excluir item")
-                                            items.remove(at:items.count-1)
+                                            items.remove(at:index)
                                             
                                             showingConfirmation = false
                                         }
@@ -129,7 +129,7 @@ struct AdicionarDocumento: View {
                                     Button("Sim, excluir", role: .destructive) {
                                         // Lógica para excluir o item se o usuário confirmar
                                         print("Excluir item")
-                                        items.remove(at:items.count-1)
+                                        items.remove(at:index)
                                         
                                         showingConfirmation = false
                                     }
