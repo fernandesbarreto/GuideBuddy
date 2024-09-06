@@ -6,22 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Query(sort: \User.age) private var user: [User]
+    
     var body: some View {
-        NavBar(actionLeading: {},actionTrailing: {}, iconNameLeading: "", iconNameTrailing: "person.crop.circle")
-        ScrollView{
-            ZStack{
-                Image("widgetRoxo")
-                HStack {
-                    Image("cachorro")
-                    Spacer()
-                }
-            }
+        if(user.count == 1) {
+            HomeView()
+        } else {
+            Login()
         }
     }
     
 }
 #Preview {
-    EduView()
+    ContentView()
 }
