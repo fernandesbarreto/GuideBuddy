@@ -24,14 +24,14 @@ struct ProfilePhotoView: View {
                         .resizable()
                         .frame(width: 393, height: 393)
                         .scaledToFill()
-                        .clipped()
+                        
                       
                 }  else if let selectedBackground = selectedBackground {
                     Image(uiImage: selectedBackground)
                         .resizable()
-                        .frame(width: 393, height: 393)
                         .scaledToFill()
-                        .clipped()
+                        .frame(width: 393, height: 393)
+                      
                 } else {
                     ZStack{
                         Rectangle()

@@ -90,10 +90,11 @@ struct Profile: View {
                                 NavigationLink(destination: {
                                     ProfilePhotoView()
                                 }, label: {  Image("profileImage")
-                                    
+                                        .resizable()
                                         .frame(width: 106, height: 106)
-                                        .scaledToFill()
+                                        .scaledToFit()
                                         .clipShape(Circle())})
+                                
                              
                             }
                             
@@ -117,7 +118,7 @@ struct Profile: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
 //            .toolbarBackground(.visible, for: .navigationBar)
-            .navigationTitle("Perfil")
+//            .navigationTitle("Perfil")
             .toolbar {
 //                ToolbarItem(placement: .principal) {
 //                  Text("Perfil")
@@ -125,9 +126,12 @@ struct Profile: View {
 //                }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {}, label: {
+                    NavigationLink(destination: {
+                        EditProfileScreen()
+                    }, label: {
                         Text("Editar")
                             .foregroundStyle(Color.background)
+                            .shadow(radius: 5)
                     })
                 }
             }
