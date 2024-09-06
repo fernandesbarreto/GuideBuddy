@@ -11,6 +11,7 @@ import SwiftUI
 struct ProfilePhotoView: View {
     @State private var selectedImage: UIImage?
     @State private var isImagePickerPresented = false
+    @State private var isImagePickerGaleryPresented = false
     @State private var selectedBackground: UIImage?
     @State private var isBackgroundPickerPresented = false
     @State private var isPhotoPickerPresented = false
@@ -77,7 +78,7 @@ struct ProfilePhotoView: View {
                             }
                             Divider()
                             Button(action: {
-                                isBackgroundPickerPresented = true
+                                isImagePickerGaleryPresented = true
                             }, label: {
                                 HStack {
                                     Text("Escolher foto")
@@ -86,7 +87,7 @@ struct ProfilePhotoView: View {
                                 }
                                 .padding()
                             })
-                            .sheet(isPresented: $isImagePickerPresented) {
+                            .sheet(isPresented: $isImagePickerGaleryPresented) {
                                 ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
                             }
                             Divider()

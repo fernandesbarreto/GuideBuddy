@@ -12,6 +12,8 @@ struct BackgroundImageView: View {
     @State private var isImagePickerPresented = false
     @State private var selectedBackground: UIImage?
     @State private var isBackgroundPickerPresented = false
+    @State private var isBackgroundPickerGaleryPresented = false
+    @State private var showSheet = false
     var body: some View {
         NavigationStack{
             VStack{
@@ -33,13 +35,70 @@ struct BackgroundImageView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        isBackgroundPickerPresented = true
+                        showSheet = true
+                      
                     }, label: {
                         Text("Editar")
                             .foregroundStyle(Color.verdePrincipal)
                     })
-                    .sheet(isPresented: $isBackgroundPickerPresented) {
-                        ImagePicker2(selectedBackground: $selectedBackground, sourceType: .photoLibrary)
+                    .sheet(isPresented: $showSheet) {
+                        VStack {
+                            Text("Editar foto do perfil")
+                                .font(.headline)
+                                .padding()
+
+                            Divider()
+                            Button(action: {
+                                isBackgroundPickerPresented = true
+                            }, label: {
+                                HStack {
+                                    Text("Tirar foto")
+                                    Spacer()
+                                    Image(systemName: "camera")
+                                    
+                                }
+                                .padding()
+                            })
+                            .sheet(isPresented: $isBackgroundPickerPresented) {
+                                ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
+                            }
+                            Divider()
+                            Button(action: {
+                                isBackgroundPickerGaleryPresented = true
+                            }, label: {
+                                HStack {
+                                    Text("Escolher foto")
+                                    Spacer()
+                                    Image(systemName: "photo")
+                                }
+                                .padding()
+                            })
+                            .sheet(isPresented: $isBackgroundPickerGaleryPresented) {
+                                ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                            }
+                            Divider()
+
+                            // Opção para apagar foto
+                            Button(action: {
+                                
+                            }, label: {
+                                HStack {
+                                    Text("Apagar foto")
+                                        .foregroundColor(.red)
+                                    Spacer()
+                                    Image(systemName: "trash")
+                                    
+                                }
+                                
+                            })
+                            .padding()
+                           
+                                Spacer()
+                            }
+                        
+                        .padding()
+                        .presentationDetents([.fraction(0.4), .medium])
+                      
                     }
                 }
             }
@@ -50,3 +109,7 @@ struct BackgroundImageView: View {
 #Preview {
     BackgroundImageView()
 }
+/*.sheet(isPresented: $isBackgroundPickerPresented) {
+    ImagePicker2(selectedBackground: $selectedBackground, sourceType: .photoLibrary)
+}
+*/
