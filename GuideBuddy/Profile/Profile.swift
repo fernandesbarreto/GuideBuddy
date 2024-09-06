@@ -30,40 +30,42 @@ struct Profile: View {
             ScrollView {
                 VStack{
                     ZStack {
+                        NavigationLink(destination: BackgroundImageView(), label: {
                         if let selectedBackground = selectedBackground {
-                            // Exibe a imagem capturada para a capa
                             Image(uiImage: selectedBackground)
                                 .resizable()
                                 .scaledToFill()
-                                .frame(width: 393, height: 253)
+                                .frame(width: 393, height: 300)
                                 .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
                                 .clipped()
                                 .shadow(radius: 5)
                         } else {
                             // Exibe um placeholder quando nenhuma imagem de capa é selecionada
-                            Rectangle()
-                                .foregroundColor(.gray)
-                                .frame(width: 393, height: 253)
+                            Image("backgroundImage")
+                                .frame(width: 393, height: 300)
                                 .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
-                                .overlay(
-                                    Text("Toque para selecionar capa")
-                                        .font(.title2)
-                                        .foregroundColor(.white)
-                                        .padding()
-                                )
+                            //                                .overlay(
+                            //                                    Text("Toque para selecionar capa")
+                            //                                        .font(.title2)
+                            //                                        .foregroundColor(.white)
+                            //                                        .padding()
+                            //                                )
                                 .shadow(radius: 5)
                         }
+                           
+                        })
                         
-                        Button(action: {
-                            isBackgroundPickerPresented = true
-                        }) {
-                            // Botão invisível sobre a imagem para selecionar nova capa
-                            Color.clear.frame(width: 393, height: 253)
-                        }
-                        .sheet(isPresented: $isBackgroundPickerPresented) {
-                            // Apresenta o ImagePicker quando o botão é pressionado
-                            ImagePicker2(selectedBackground: $selectedBackground, sourceType: .photoLibrary)
-                        }
+//
+//                        Button(action: {
+//                            isBackgroundPickerPresented = true
+//                        }) {
+//                            // Botão invisível sobre a imagem para selecionar nova capa
+//                            Color.clear.frame(width: 393, height: 253)
+//                        }
+//                        .sheet(isPresented: $isBackgroundPickerPresented) {
+//                            // Apresenta o ImagePicker quando o botão é pressionado
+//                            ImagePicker2(selectedBackground: $selectedBackground, sourceType: .photoLibrary)
+//                        }
                     }
 //                    .offset(y: -30)
                     Spacer()
@@ -74,31 +76,28 @@ struct Profile: View {
                                 .foregroundStyle(Color.white)
                                 .frame(width: 120, height: 120)
                             if let selectedImage = selectedImage {
-                                // Exibe a imagem capturada para o perfil
-                                Image(uiImage: selectedImage)
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: 106, height: 106)
-                                    .clipShape(Circle())
+                                NavigationLink(destination: {
+                                    ProfilePhotoView()
+                                }, label: {
+                                    Image(uiImage: selectedImage)
+                                        .resizable()
+                                        .scaledToFill()
+                                        .frame(width: 106, height: 106)
+                                        .clipShape(Circle())
+                                })
+                               
                             } else {
-                                // Exibe um placeholder quando nenhuma imagem de perfil é selecionada
-                                Image("profileImage")
-                                    .resizable()
-                                    .frame(width: 106, height: 106)
-                                    .scaledToFill()
-                                    .clipShape(Circle())
+                                NavigationLink(destination: {
+                                    ProfilePhotoView()
+                                }, label: {  Image("profileImage")
+                                    
+                                        .frame(width: 106, height: 106)
+                                        .scaledToFill()
+                                        .clipShape(Circle())})
+                             
                             }
                             
-                            Button(action: {
-                                isImagePickerPresented = true
-                            }) {
-                                // Botão invisível sobre a imagem para selecionar nova foto de perfil
-                                Color.clear.frame(width: 106, height: 106)
-                            }
-                            .sheet(isPresented: $isImagePickerPresented) {
-                                // Apresenta o ImagePicker quando o botão é pressionado
-                                ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
-                            }
+                        
                         }
                    
                         VStack {
@@ -113,26 +112,22 @@ struct Profile: View {
                     }
                     .offset(y: -78)
                 }
+                .offset(y:-110)
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .navigationTitle("Profile")
-            
+//            .toolbarBackground(.visible, for: .navigationBar)
+            .navigationTitle("Perfil")
             .toolbar {
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    Button(action: {}, label: {
-//                        Image(systemName: "")
-//                            .resizable()
-//                            .scaledToFit()
-//                            .frame(width: 30)
-//                    })
+//                ToolbarItem(placement: .principal) {
+//                  Text("Perfil")
+//                        .foregroundStyle(.white)
 //                }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {}, label: {
-                        Image(systemName: "pencil")
-                            .foregroundStyle(Color.verdePrincipal)
+                        Text("Editar")
+                            .foregroundStyle(Color.background)
                     })
                 }
             }
@@ -159,7 +154,7 @@ struct RoundedCorner: Shape {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Profile()
     }
 }
 
