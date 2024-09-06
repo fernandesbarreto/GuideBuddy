@@ -20,9 +20,10 @@ struct AdicionarDocumento: View {
     @State private var isImporting = false
     @State private var fileURL: URL? = nil // Armazena a URL do arquivo importado
     @State private var fileContent: String = "" // Armazena o conteúdo do arquivo
-    
+    @State var showingConfirmation = false
     
     @State private var items: [Item] = []
+    
     
     var body: some View {
         NavigationView {
@@ -56,8 +57,21 @@ struct AdicionarDocumento: View {
                                 
                                 if let uiImage = item.selectedImage {
                                     
-                                    Button(action: {
-                                    }) {
+                                    Menu {
+                                        Button(action: {
+                                            // Ação para visualizar a imagem, pesquisar ampliar
+                                            
+                                            print("Visualizar imagem")
+                                        }) {
+                                            Label("Visualizar", systemImage: "eye")
+                                        }
+                                        Button(action: {
+                                            showingConfirmation = true
+                                          
+                                        }) {
+                                            Label("Excluir", systemImage: "trash")
+                                        }
+                                    } label: {
                                         Image(uiImage: uiImage)
                                             .resizable()
                                             .aspectRatio(contentMode: .fill)
@@ -65,27 +79,68 @@ struct AdicionarDocumento: View {
                                             .clipped()
                                             .cornerRadius(10)
                                     }
+                                    .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
+                                        Button("Cancelar", role: .cancel) {
+                                            // Ocultar o diálogo de confirmação se o usuário cancelar
+                                            showingConfirmation = false
+                                        }
+                                        Button("Sim, excluir", role: .destructive) {
+                                            // Lógica para excluir o item se o usuário confirmar
+                                            print("Excluir item")
+                                            items.remove(at:items.count-1)
+                                            
+                                            showingConfirmation = false
+                                        }
+                                    }
+                                    
                                 }
-                                
                             }
                             else if item.type == 1 {
-                                Image("pdfImage")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: 100, height: 100)
-                                    .clipped()
-                                    .cornerRadius(10)
+                                
+                                Menu {
+                                    Button(action: {
+                                        // Ação para visualizar a imagem, pesquisar ampliar
+                                        
+                                        print("Visualizar imagem")
+                                    }) {
+                                        Label("Visualizar", systemImage: "eye")
+                                    }
+                                    Button(action: {
+                                        showingConfirmation = true
+                                        //                                        self.items.remove(at: index)
+                                    }) {
+                                        Label("Excluir", systemImage: "trash")
+                                    }
+//
+                                } label: {
+                                    
+                                    Image("pdfImage")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 100, height: 100)
+                                        .clipped()
+                                        .cornerRadius(10)
+                                    
+                                }.confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
+                                    Button("Cancelar", role: .cancel) {
+                                        // Oculta o diálogo de confirmação se o usuário cancelar
+                                        showingConfirmation = false
+                                    }
+                                    Button("Sim, excluir", role: .destructive) {
+                                        // Lógica para excluir o item se o usuário confirmar
+                                        print("Excluir item")
+                                        items.remove(at:items.count-1)
+                                        
+                                        showingConfirmation = false
+                                    }
+                                }
+
                             }
                         }
-                        
                     }
                 }
             }
-            
-            //                if let fileURL = fileURL {
-            //                    Text("Arquivo Importado: \(fileURL.lastPathComponent)")
-            //                        .padding()
-            //                }
+
             
             if !fileContent.isEmpty {
                 Text("Conteúdo do Arquivo:")
