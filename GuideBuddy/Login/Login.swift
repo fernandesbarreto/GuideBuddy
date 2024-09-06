@@ -5,13 +5,27 @@
 //  Created by Raquel Ribeiro Hatem de Farias on 27/08/24.
 //
 
-import Foundation
 import SwiftUI
+import SwiftData
+
+@Model
+class User {
+    var name: String
+    var language: Int
+    var age: Int
+    
+    init(name: String, language: Int, age: Int) {
+        self.name = name
+        self.language = language
+        self.age = age
+    }
+}
 
 struct Login: View {
+    @Environment(\.modelContext) private var context
     
     @State private var name = ""
-    @State private var age: Double?
+    @State private var age: Int?
     @State private var languages: Int = 0
     @State var language = 0
     @State private var failedInput = false
@@ -52,6 +66,7 @@ struct Login: View {
                         .position(x: geometry.size.width/2, y: geometry.size.height/5)
                     
                     TextField(fourthText[language], value: $age, format: .number)
+                        .keyboardType(.numberPad)
                         .padding(.leading)
                         .frame(width: geometry.size.width*0.88, height: geometry.size.height*0.06)
                         .background(
@@ -60,22 +75,13 @@ struct Login: View {
                         )
                         .position(x: geometry.size.width/2, y: geometry.size.height/7.5)
                     
-                    Button {
-                        if name.isEmpty || age == nil {
-                            failedInput = true
-                        } else {
-                            // Navigate to the next screen
-                        }
-                    } label: {
-                        NavigationLink(destination: Testinho()) {
-                            Text(fifthText[language])
-                                .foregroundStyle(.white)
-                                .frame(width: geometry.size.width*0.88, height: geometry.size.height*0.07)
-                                .background((name.isEmpty || age == nil) ? Color.gray : Color.verde)
-                                .background(Color.verde)
-                                .cornerRadius(14)
-                        }
-                        .disabled(name.isEmpty || age == nil)
+                    Button (action: handleButtonTap) {
+                        Text(fifthText[language])
+                            .foregroundStyle(.white)
+                            .frame(width: geometry.size.width*0.88, height: geometry.size.height*0.07)
+                            .background((name.isEmpty || age == nil) ? Color.gray : Color.verde)
+                            .background(Color.verde)
+                            .cornerRadius(14)
                     }
                     .alert(fillData[language],
                            isPresented: $failedInput,
@@ -107,6 +113,15 @@ struct Login: View {
                 Spacer()
             }
         }
+    }
+    private func handleButtonTap() {
+        if name.isEmpty || age == nil {
+            failedInput = true
+        } else {
+            let user = User(name: name, language: language, age: age ?? 18)
+            context.insert(user)
+        }
+        print("info here \(name), \(language), \(String(describing: age))")
     }
 }
 
