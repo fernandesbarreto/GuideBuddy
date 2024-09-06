@@ -45,14 +45,13 @@ struct Profile: View {
             ScrollView {
                 VStack{
                     ZStack {
-                        NavigationLink(destination: BackgroundImageView(), label: {
+                        NavigationLink(destination: BackgroundImageView(selectedBackground: selectedBackground ?? nil), label: {
                             if let selectedBackground = selectedBackground {
                                 Image(uiImage: selectedBackground)
                                     .resizable()
                                     .scaledToFill()
                                     .frame(width: 393, height: 300)
                                     .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
-                                    .clipped()
                                     .shadow(radius: 5)
                             } else {
                                 Image("backgroundImage")
@@ -71,7 +70,7 @@ struct Profile: View {
                                 .frame(width: 120, height: 120)
                             if let selectedImage = selectedImage {
                                 NavigationLink(destination: {
-                                    ProfilePhotoView()
+                                    ProfilePhotoView(selectedImage: selectedImage)
                                 }, label: {
                                     Image(uiImage: selectedImage)
                                         .resizable()
@@ -84,7 +83,7 @@ struct Profile: View {
                                 NavigationLink(destination: {
                                     ProfilePhotoView()
                                 }, label: {
-                                    Image("profileImage")  // Fallback image
+                                    Image("profileImage")
                                         .frame(width: 106, height: 106)
                                         .scaledToFill()
                                         .clipShape(Circle())})

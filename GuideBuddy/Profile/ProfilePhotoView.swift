@@ -9,29 +9,19 @@ import SwiftUI
 
 
 struct ProfilePhotoView: View {
-    @State private var selectedImage: UIImage?
+    @State var selectedImage: UIImage?
     @State private var isImagePickerPresented = false
-    @State private var selectedBackground: UIImage?
     @State private var isBackgroundPickerPresented = false
-    @State private var isPhotoPickerPresented = false
     @State private var showSheet = false
     var body: some View {
         NavigationStack{
             VStack{
                 if let selectedImage = selectedImage {
-                    // Exibe a imagem capturada para o perfil
                     Image(uiImage: selectedImage)
                         .resizable()
                         .frame(width: 393, height: 393)
                         .scaledToFill()
-                        .clipped()
-                      
-                }  else if let selectedBackground = selectedBackground {
-                    Image(uiImage: selectedBackground)
-                        .resizable()
-                        .frame(width: 393, height: 393)
-                        .scaledToFill()
-                        .clipped()
+                    
                 } else {
                     ZStack{
                         Rectangle()
@@ -41,7 +31,7 @@ struct ProfilePhotoView: View {
                             .frame(width: 200, height: 200)
                     }
                 }
-              
+                
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
@@ -59,7 +49,7 @@ struct ProfilePhotoView: View {
                             Text("Editar foto do perfil")
                                 .font(.headline)
                                 .padding()
-
+                            
                             Divider()
                             Button(action: {
                                 isImagePickerPresented = true
@@ -90,10 +80,7 @@ struct ProfilePhotoView: View {
                                 ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
                             }
                             Divider()
-
-                            // Opção para apagar foto
                             Button(action: {
-                                
                             }, label: {
                                 HStack {
                                     Text("Apagar foto")
@@ -105,19 +92,19 @@ struct ProfilePhotoView: View {
                                 
                             })
                             .padding()
-                           
-                                Spacer()
-                            }
+                            
+                            Spacer()
+                        }
                         
                         .padding()
                         .presentationDetents([.fraction(0.4), .medium])
-                      
-                    }
+                        
                     }
                 }
             }
         }
     }
+}
 
 #Preview {
     ProfilePhotoView()

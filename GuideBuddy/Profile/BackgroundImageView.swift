@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct BackgroundImageView: View {
-    @State private var selectedImage: UIImage?
-    @State private var isImagePickerPresented = false
-    @State private var selectedBackground: UIImage?
-    @State private var isBackgroundPickerPresented = false
+    @State var selectedBackground: UIImage?
+    @State var isBackgroundPickerPresented = false
     var body: some View {
         NavigationStack{
             VStack{
