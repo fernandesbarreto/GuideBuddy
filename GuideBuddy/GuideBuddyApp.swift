@@ -11,8 +11,8 @@ import SwiftUI
 struct GuideBuddyApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Profile()
         }
-        .modelContainer(for: [Prompt.self, Photos.self, User.self])
+        .modelContainer(for: [Prompt.self, ProfilePhoto.self, BackgroundPhoto.self, User.self])
     }
 }
