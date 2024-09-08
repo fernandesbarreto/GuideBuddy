@@ -46,9 +46,9 @@ struct HomeView: View {
                                 Text("Acionar Helper")
                                     .font(.system(size: 22,weight: .semibold , design: .rounded))
                                     .foregroundStyle(.white)
-                            
+                                    .shadow(radius: 5)
                             }
-                            .padding(10)
+                            .padding(15)
                             
                         }
                         .padding()
@@ -56,7 +56,7 @@ struct HomeView: View {
                 })
                 HStack{
                     VStack{
-                        NavigationLink(destination: TestView(), label: {
+                        NavigationLink(destination: Emergency(), label: {
                             ZStack {
                                 Rectangle()
                                     .frame(width: 77, height: 77)
@@ -107,7 +107,7 @@ struct HomeView: View {
                                     Text("Mapa")
                                         .font(.system(size: 22,weight: .semibold , design: .rounded))
                                         .foregroundStyle(.white)
-                                    
+                                        .shadow(radius: 5)
                                 
                                 }
                                 .padding(10)
@@ -123,7 +123,7 @@ struct HomeView: View {
                 .frame(width: 370)
                 .padding(.horizontal)
                 
-                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(TestView())], color: [.white, .white, .white]))
+                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(Documents())], color: [.white, .white, .white]))
                     .padding(.horizontal, 8)
                 
                 NavigationLink(destination: TestView(), label: {

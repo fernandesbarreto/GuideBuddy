@@ -19,6 +19,11 @@
 		C152DB132C80BA5F0052256B /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB122C80BA5F0052256B /* TestView.swift */; };
 		C152DB152C80C4140052256B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB142C80C4140052256B /* Profile.swift */; };
 		C152DB202C8204520052256B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB1F2C8204520052256B /* ImagePicker.swift */; };
+		C190C8EF2C8D546F0000A490 /* Emergency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C190C8EE2C8D546F0000A490 /* Emergency.swift */; };
+		C190C8F12C8D55820000A490 /* AddDocuments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C190C8F02C8D55820000A490 /* AddDocuments.swift */; };
+		C190C8F32C8D55D20000A490 /* Documents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C190C8F22C8D55D20000A490 /* Documents.swift */; };
+		C190C8F52C8D5F860000A490 /* AgePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C190C8F42C8D5F860000A490 /* AgePicker.swift */; };
+		C190C8F72C8D652F0000A490 /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C190C8F62C8D652F0000A490 /* LanguagePicker.swift */; };
 		C1A31E2A2C8B00210023A5F9 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A31E292C8B00210023A5F9 /* BackgroundImageView.swift */; };
 		C1A31E2E2C8B2B460023A5F9 /* EditProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A31E2D2C8B2B460023A5F9 /* EditProfileScreen.swift */; };
 		EB0A4DBC2C7F49C800092BA9 /* QueryHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */; };
@@ -48,6 +53,11 @@
 		C152DB122C80BA5F0052256B /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		C152DB142C80C4140052256B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		C152DB1F2C8204520052256B /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		C190C8EE2C8D546F0000A490 /* Emergency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emergency.swift; sourceTree = "<group>"; };
+		C190C8F02C8D55820000A490 /* AddDocuments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDocuments.swift; sourceTree = "<group>"; };
+		C190C8F22C8D55D20000A490 /* Documents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Documents.swift; sourceTree = "<group>"; };
+		C190C8F42C8D5F860000A490 /* AgePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgePicker.swift; sourceTree = "<group>"; };
+		C190C8F62C8D652F0000A490 /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
 		C1A31E292C8B00210023A5F9 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		C1A31E2B2C8B0A0B0023A5F9 /* PhotoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSheet.swift; sourceTree = "<group>"; };
 		C1A31E2D2C8B2B460023A5F9 /* EditProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileScreen.swift; sourceTree = "<group>"; };
@@ -105,6 +115,8 @@
 				C1A31E292C8B00210023A5F9 /* BackgroundImageView.swift */,
 				C1A31E2B2C8B0A0B0023A5F9 /* PhotoSheet.swift */,
 				C1A31E2D2C8B2B460023A5F9 /* EditProfileScreen.swift */,
+				C190C8F42C8D5F860000A490 /* AgePicker.swift */,
+				C190C8F62C8D652F0000A490 /* LanguagePicker.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -142,6 +154,9 @@
 				EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */,
 				EBA4A5C02C7D21A600ECD5C2 /* Preview Content */,
 				EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */,
+				C190C8EE2C8D546F0000A490 /* Emergency.swift */,
+				C190C8F02C8D55820000A490 /* AddDocuments.swift */,
+				C190C8F22C8D55D20000A490 /* Documents.swift */,
 			);
 			path = GuideBuddy;
 			sourceTree = "<group>";
@@ -261,9 +276,14 @@
 			files = (
 				C0F65D262C7DF9180096B3B1 /* Login.swift in Sources */,
 				C152DB132C80BA5F0052256B /* TestView.swift in Sources */,
+				C190C8F32C8D55D20000A490 /* Documents.swift in Sources */,
+				C190C8F12C8D55820000A490 /* AddDocuments.swift in Sources */,
 				C152DB0C2C80B5ED0052256B /* HomeView.swift in Sources */,
+				C190C8F52C8D5F860000A490 /* AgePicker.swift in Sources */,
 				EB0A4DBC2C7F49C800092BA9 /* QueryHistory.swift in Sources */,
+				C190C8EF2C8D546F0000A490 /* Emergency.swift in Sources */,
 				C152DB152C80C4140052256B /* Profile.swift in Sources */,
+				C190C8F72C8D652F0000A490 /* LanguagePicker.swift in Sources */,
 				C1A31E2E2C8B2B460023A5F9 /* EditProfileScreen.swift in Sources */,
 				C152DB0F2C80B9300052256B /* CarousselView.swift in Sources */,
 				EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */,
