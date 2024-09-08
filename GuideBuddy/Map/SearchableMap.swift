@@ -11,7 +11,7 @@ import MapKit
 struct SearchableMap: View {
     @State private var cameraPosition = MapCameraPosition.region(
         MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: -8.05389, longitude: -34.88111),
+            center: CLLocationCoordinate2D(latitude: -8.05428, longitude: -34.8813),
             span: MKCoordinateSpan(latitudeDelta: 0.36, longitudeDelta: 0.36)
         )
     )

@@ -97,7 +97,7 @@ struct HomeView: View {
                         .shadow(radius: 5)
                     }
                     .frame(height: 177)
-                    NavigationLink(destination: TestView(), label: {
+                    NavigationLink(destination: SearchableMap(), label: {
                         ZStack{
                             Image("widMaps")
                             VStack {

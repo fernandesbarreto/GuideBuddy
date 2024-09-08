@@ -31,6 +31,8 @@ struct SearchResult: Identifiable, Hashable {
 @Observable
 class LocationService: NSObject, MKLocalSearchCompleterDelegate {
     private let completer: MKLocalSearchCompleter
+    private let fixedCoordinate = CLLocationCoordinate2D(latitude: -8.05428, longitude: -34.8813)
+    let regionRadius: CLLocationDistance = 30000
 
     var completions = [SearchCompletions]()
 
@@ -38,7 +40,11 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
         self.completer = completer
         super.init()
         self.completer.delegate = self
+        
+        let region = MKCoordinateRegion(center: fixedCoordinate, latitudinalMeters: regionRadius * 2, longitudinalMeters: regionRadius * 2)
+        self.completer.region = region
     }
+
 
     func update(queryFragment: String) {
         completer.resultTypes = .pointOfInterest
@@ -46,33 +52,51 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
     }
 
     func completerDidUpdateResults(_ completer: MKLocalSearchCompleter) {
-        completions = completer.results.map { completion in
-            let mapItem = completion.value(forKey: "_mapItem") as? MKMapItem
+        completions = completer.results.compactMap { completion in
+            guard let mapItem = completion.value(forKey: "_mapItem") as? MKMapItem,
+                  let location = mapItem.placemark.location else {
+                return nil
+            }
 
-            return .init(
+            let userLocation = CLLocation(latitude: fixedCoordinate.latitude, longitude: fixedCoordinate.longitude)
+            let distance = userLocation.distance(from: location)
+            
+            guard distance <= regionRadius else {
+                return nil
+            }
+
+            return SearchCompletions(
                 title: completion.title,
                 subTitle: completion.subtitle,
-                url: mapItem?.url
+                url: mapItem.url
             )
         }
     }
-    
-    func search(with query: String, coordinate: CLLocationCoordinate2D? = nil) async throws -> [SearchResult] {
+
+
+    func search(with query: String) async throws -> [SearchResult] {
         let mapKitRequest = MKLocalSearch.Request()
         mapKitRequest.naturalLanguageQuery = query
         mapKitRequest.resultTypes = .pointOfInterest
-        if let coordinate {
-            mapKitRequest.region = .init(.init(origin: .init(coordinate), size: .init(width: 1, height: 1)))
-        }
-        let search = MKLocalSearch(request: mapKitRequest)
 
+        let region = MKCoordinateRegion(center: fixedCoordinate, latitudinalMeters: regionRadius * 2, longitudinalMeters: regionRadius * 2)
+        mapKitRequest.region = region
+        
+        let search = MKLocalSearch(request: mapKitRequest)
         let response = try await search.start()
 
-        return response.mapItems.compactMap { mapItem in
-            guard let location = mapItem.placemark.location?.coordinate else { return nil }
+        let filteredResults = response.mapItems.filter { mapItem in
+            guard let location = mapItem.placemark.location else { return false }
+            let userLocation = CLLocation(latitude: fixedCoordinate.latitude, longitude: fixedCoordinate.longitude)
+            let distance = userLocation.distance(from: location)
 
-            return .init(location: location)
+            return distance <= regionRadius
         }
+
+        return filteredResults.map { mapItem in
+            let location = mapItem.placemark.location?.coordinate
+            return SearchResult(location: location!)
+        }
+
     }
 }
- 
