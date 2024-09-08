@@ -20,12 +20,19 @@ struct BackgroundImageView: View {
                 if let selectedBackground = selectedBackground {
                     Image(uiImage: selectedBackground)
                         .resizable()
-                        .scaledToFill()
-                        .frame(width: 393, height: 300)
-                        .clipped()
+                    .scaledToFill()
+                    .frame(width: 393, height: 393)
+                    .clipped()
+                    .shadow(radius: 5)
+                    .cornerRadius(25)
                 } else {
                     Image("backgroundImage")
-                        .frame(width: 393, height: 300)
+                        .resizable()
+                    .scaledToFill()
+                    .frame(width: 393, height: 393)
+                    .clipped()
+                    .shadow(radius: 5)
+                    .cornerRadius(25)
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -60,7 +67,7 @@ struct BackgroundImageView: View {
                                 .padding()
                             })
                             .sheet(isPresented: $isBackgroundPickerPresented) {
-                                ImagePicker(selectedImage: $selectedImage, sourceType: .camera)
+                                ImagePicker2(selectedBackground: $selectedBackground, sourceType: .camera)
                             }
                             Divider()
                             Button(action: {
@@ -74,7 +81,7 @@ struct BackgroundImageView: View {
                                 .padding()
                             })
                             .sheet(isPresented: $isBackgroundPickerGaleryPresented) {
-                                ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
+                                ImagePicker2(selectedBackground: $selectedBackground, sourceType: .photoLibrary)
                             }
                             Divider()
 

@@ -21,16 +21,21 @@ struct ProfilePhotoView: View {
                 if let selectedImage = selectedImage {
                     Image(uiImage: selectedImage)
                         .resizable()
-                        .frame(width: 393, height: 393)
-                        .scaledToFill()
-                    
+                    .scaledToFill()
+                    .frame(width: 393, height: 393)
+                    .clipped()
+                    .shadow(radius: 5)
+                    .cornerRadius(25)
                 } else {
                     ZStack{
                         Rectangle()
                             .frame(width: 393, height: 393)
                             .foregroundColor(Color.verdePrincipal)
+                            .cornerRadius(25)
+                            .shadow(radius: 5)
                         Image("profileImage2")
                             .frame(width: 200, height: 200)
+                            
                     }
                 }
                 
@@ -105,6 +110,7 @@ struct ProfilePhotoView: View {
                 }
             }
         }
+        
     }
 }
 

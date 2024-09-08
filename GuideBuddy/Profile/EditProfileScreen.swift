@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditProfileScreen: View {
  
-        @State private var selectedImage: UIImage?
+        @State var selectedImage: UIImage?
         @State private var isImagePickerPresented = false
         @State private var selectedBackground: UIImage?
         @State private var isBackgroundPickerPresented = false
@@ -22,7 +22,7 @@ struct EditProfileScreen: View {
                     Group {
                       List {
                           NavigationLink(destination: {
-                              ProfilePhotoView()
+                              ProfilePhotoView(selectedImage: selectedImage)
                           }, label: {
                               
                               HStack {
@@ -31,16 +31,12 @@ struct EditProfileScreen: View {
                                           // Exibe a imagem capturada para o perfil
                                           Image(uiImage: selectedImage)
                                               .resizable()
-                                              .frame(width: 80, height: 80)
                                               .scaledToFill()
-                                              .clipShape(Circle())
-                                            
-                                      }  else if let selectedBackground = selectedBackground {
-                                          Image(uiImage: selectedBackground)
-                                              .resizable()
                                               .frame(width: 80, height: 80)
-                                              .scaledToFill()
                                               .clipShape(Circle())
+                                          
+                                          
+                                        
                                       } else {
                                           ZStack{
                                               Image("profileImage")
@@ -51,16 +47,22 @@ struct EditProfileScreen: View {
                                       }
                                       Text("Editar")
                                           .foregroundStyle(Color.verdePrincipal)
+                                      
+                                
                                   }
                               }
                               
                           })
                           TextField("asd", text: $nome)
-                      
+                        
+                                 
+                           
+                            }
+                        
                       }
-                    }
                 Text("Idade")
-                  }
+                    }
+                
                 
                 
             
@@ -83,6 +85,7 @@ struct EditProfileScreen: View {
 //                    })
 //                }
             }
+            
         }
     }
 }
