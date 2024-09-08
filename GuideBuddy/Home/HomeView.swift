@@ -34,6 +34,7 @@ struct HomeView: View {
                         
                     }
                     .padding()
+                    .padding(.leading, 8)
                 
                 
                 NavigationLink(destination: EduView(), label: {
@@ -48,7 +49,8 @@ struct HomeView: View {
                                     .foregroundStyle(.white)
                                     .shadow(radius: 5)
                             }
-                            .padding(15)
+                            .padding(10)
+                            .padding(.trailing, 10)
                             
                         }
                         .padding()
