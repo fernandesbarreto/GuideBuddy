@@ -10,7 +10,7 @@ import SwiftData
 
 struct HomeView: View {
     @Query(sort: \User.age) private var user: [User]
-
+    @State var selectedImage: UIImage?
     @State private var resultado: Double = 7.5
     @State private var animatedValue: Double = 0.0
     var body: some View {
@@ -204,13 +204,19 @@ struct HomeView: View {
         
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-
-                    NavigationLink(destination: Profile(),
-                           label: {
-                        Image(systemName: "person.crop.circle")
-                            .foregroundStyle(Color.verdePrincipal)
-
+                    NavigationLink(destination: Profile(), label: {
+                        if let selectedImage = selectedImage {
+                            Image(uiImage: selectedImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 27, height: 27)
+                                .clipShape(Circle())
+                        } else {
+                            Image(systemName: "person.crop.circle")
+                                .foregroundStyle(Color.verdePrincipal)
+                        }
                     })
+                  
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

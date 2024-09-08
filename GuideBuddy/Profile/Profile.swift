@@ -37,7 +37,7 @@ struct Profile: View {
     @Query private var profilePhotos: [ProfilePhoto]
     @Query private var backgroundPhotos: [BackgroundPhoto]
     
-    @State private var selectedImage: UIImage?
+    @State var selectedImage: UIImage?
     @State private var selectedBackground: UIImage?
     
     var body: some View {
@@ -105,11 +105,11 @@ struct Profile: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-            .navigationTitle("Perfil")
+            /*.navigationTitle("Perfil")*/
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: {
-                        EditProfileScreen()
+                        EditProfileScreen(selectedImage: selectedImage)
                     }, label: {
                         Text("Editar")
                             .foregroundStyle(Color.background)
@@ -121,6 +121,7 @@ struct Profile: View {
                 loadImages()
             }
         }
+        
     }
     
     func loadImages() {
