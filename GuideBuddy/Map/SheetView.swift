@@ -12,6 +12,8 @@ struct SheetView: View {
     @State private var locationService = LocationService(completer: .init())
     @State private var search: String = ""
     @Binding var searchResults: [SearchResult]
+    
+    @State private var selectedDetent: PresentationDetent = .height(80) // Track the current sheet height state
 
     var body: some View {
         VStack {
@@ -53,7 +55,7 @@ struct SheetView: View {
         }
         .padding()
         .interactiveDismissDisabled()
-        .presentationDetents([.height(80), .medium])
+        .presentationDetents([.height(80), .medium], selection: $selectedDetent)
         .presentationBackground(.regularMaterial)
         .presentationBackgroundInteraction(.enabled(upThrough: .medium))
     }
@@ -62,9 +64,10 @@ struct SheetView: View {
         Task {
             if let singleLocation = try? await locationService.search(with: "\(completion.title) \(completion.subTitle)").first {
                 searchResults = [singleLocation]
-                print("resultado das buscas eh \(searchResults)")
+                selectedDetent = .height(80)
             }
         }
     }
 }
+
 

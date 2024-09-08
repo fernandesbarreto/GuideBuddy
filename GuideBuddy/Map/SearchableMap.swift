@@ -24,7 +24,7 @@ struct SearchableMap: View {
         mapView
             .ignoresSafeArea()
             .onChange(of: selectedLocation) { newValue in
-                isSheetPresented = true
+                isSheetPresented = selectedLocation == nil
             }
             .onChange(of: searchResults) { newValue in
                 if let firstResult = newValue.first, newValue.count == 1 {
