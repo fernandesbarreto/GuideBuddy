@@ -20,7 +20,6 @@
 		C152DB152C80C4140052256B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB142C80C4140052256B /* Profile.swift */; };
 		C152DB202C8204520052256B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB1F2C8204520052256B /* ImagePicker.swift */; };
 		C1A31E2A2C8B00210023A5F9 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A31E292C8B00210023A5F9 /* BackgroundImageView.swift */; };
-		C1A31E2C2C8B0A0B0023A5F9 /* PhotoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A31E2B2C8B0A0B0023A5F9 /* PhotoSheet.swift */; };
 		C1A31E2E2C8B2B460023A5F9 /* EditProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A31E2D2C8B2B460023A5F9 /* EditProfileScreen.swift */; };
 		EB0A4DBC2C7F49C800092BA9 /* QueryHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */; };
 		EB0A4DC02C7FA3A200092BA9 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */; };
@@ -426,7 +425,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = KXKV68W5T2;
+				DEVELOPMENT_TEAM = D757SK75D9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
@@ -460,7 +459,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = KXKV68W5T2;
+				DEVELOPMENT_TEAM = D757SK75D9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
