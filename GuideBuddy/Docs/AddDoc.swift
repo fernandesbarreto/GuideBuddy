@@ -14,24 +14,31 @@ class ItemEntity: Identifiable {
     var type: Int
     var imageData: Data?
     var pdfPath: String?
+    var area: String
 
-    init(type: Int, imageData: Data? = nil, pdfPath: String? = nil) {
+    init(type: Int, imageData: Data? = nil, pdfPath: String? = nil, area: String) {
         self.type = type
         self.imageData = imageData
         self.pdfPath = pdfPath
+        self.area = area
     }
 }
 
 
 struct AdicionarDocumento: View {
     @Environment(\.modelContext) private var context: ModelContext
-    
     let documento: Documento
     @State private var isImporting = false
     @State private var fileURL: URL? = nil
-    @Query private var items: [ItemEntity]
+    @Query private var allItems: [ItemEntity]
     @State private var selectedItem: ItemEntity? = nil
     @State private var showingConfirmation = false
+    
+    var filteredItems: [ItemEntity] {
+        allItems.filter { entity in
+            entity.area == documento.titulo
+        }
+    }
     
     var body: some View {
         NavigationView {
@@ -58,7 +65,7 @@ struct AdicionarDocumento: View {
                         .clipShape(RoundedRectangle(cornerRadius: 12.0))
                         .foregroundColor(.white)
                         
-                        ForEach(items, id: \.id) { item in
+                        ForEach(filteredItems, id: \.id) { item in
                             if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
                                 buildImageMenu(item: item, uiImage: uiImage)
                             } else if item.type == 1 {
@@ -168,11 +175,11 @@ struct AdicionarDocumento: View {
     }
 
     private func saveImageToSwiftData(imageData: Data) {
-        let newItem = ItemEntity(type: 0, imageData: imageData)
+        let newItem = ItemEntity(type: 0, imageData: imageData, area: documento.titulo)
         context.insert(newItem)
         try? context.save()
     }
-
+    
     private func savePDFToSwiftData(url: URL) {
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -182,7 +189,7 @@ struct AdicionarDocumento: View {
             if !fileManager.fileExists(atPath: destinationURL.path) {
                 try fileManager.copyItem(at: url, to: destinationURL)
             }
-            let newItem = ItemEntity(type: 1, pdfPath: destinationURL.lastPathComponent)
+            let newItem = ItemEntity(type: 1, pdfPath: destinationURL.lastPathComponent, area: documento.titulo)
             context.insert(newItem)
             try context.save()
             print("Saved file at: \(destinationURL.path)")
@@ -192,9 +199,7 @@ struct AdicionarDocumento: View {
     }
 
 
-
     private func deleteItem(item: ItemEntity) {
-        print("deleting item \(item.id) from list \(items.map({ item in return item.id}))")
         context.delete(item)
         try? context.save()
     }
