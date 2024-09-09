@@ -13,5 +13,6 @@ struct GuideBuddyApp: App {
         WindowGroup {
             ListaDeDocumentosView()
         }
+        .modelContainer(for: [Prompt.self, Photos.self, User.self])
     }
 }

@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  GuideBuddy
+
+  Created by Raquel Ribeiro Hatem de Farias on 30/08/24.
+  
+*/
+"lets_go" = "Vamos allá";
+"fill_your_details" = "Rellena tus datos";
+"user_name" = "Nombre de usuario";
+"user_age" = "Edad";
+"start" = "Comenzar";
