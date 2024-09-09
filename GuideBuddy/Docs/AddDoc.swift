@@ -226,6 +226,7 @@ struct PDFViewWrapper: View {
     var body: some View {
         PDFKitView(pdfPath: pdfPath)
             .navigationTitle("Visualizar PDF")
+            .padding(.top, 16)
     }
 }
 
