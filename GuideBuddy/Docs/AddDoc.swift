@@ -6,20 +6,31 @@
 
 import SwiftUI
 import PDFKit
+import SwiftData
 
-struct Item: Identifiable, Hashable {
-    let id = UUID()
-    let type: Int
-    let selectedImage: UIImage?
-    let pdf: URL? // Aqui é para armazenar a URL do PDF diretamente
+@Model
+class ItemEntity: Identifiable {
+    var id = UUID()
+    var type: Int
+    var imageData: Data?
+    var pdfURL: URL?
+
+    init(type: Int, imageData: Data? = nil, pdfURL: URL? = nil) {
+        self.type = type
+        self.imageData = imageData
+        self.pdfURL = pdfURL
+    }
 }
 
+
 struct AdicionarDocumento: View {
+    @Environment(\.modelContext) private var context: ModelContext
+    
     let documento: Documento
     @State private var isImporting = false
     @State private var fileURL: URL? = nil
-    @State private var items: [Item] = []
-    @State private var selectedItem: Item? = nil
+    @Query private var items: [ItemEntity]
+    @State private var selectedItem: ItemEntity? = nil
     @State private var showingConfirmation = false
     
     var body: some View {
@@ -47,103 +58,131 @@ struct AdicionarDocumento: View {
                         .clipShape(RoundedRectangle(cornerRadius: 12.0))
                         .foregroundColor(.white)
                         
-                        ForEach(Array(items.enumerated()), id: \.element) { index, item in
-                            if item.type == 0 {
-                                if let uiImage = item.selectedImage {
-                                    Menu {
-                                        Button(action: {
-                                            selectedItem = item
-                                        }) {
-                                            Label("Visualizar", systemImage: "eye")
-                                        }
-                                        Button(action: {
-                                            showingConfirmation = true
-                                        }) {
-                                            Label("Excluir", systemImage: "trash")
-                                        }
-                                    } label: {
-                                        Image(uiImage: uiImage)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .frame(width: 110, height: 110)
-                                            .clipped()
-                                            .cornerRadius(10)
-                                    }
-                                    .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
-                                        Button("Cancelar", role: .cancel) {
-                                            showingConfirmation = false
-                                        }
-                                        Button("Sim, excluir", role: .destructive) {
-                                            print("item at index \(index)")
-                                            items.remove(at: index)
-                                            showingConfirmation = false
-                                        }
-                                    }
-                                }
+                        ForEach(items, id: \.id) { item in
+                            if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
+                                buildImageMenu(item: item, uiImage: uiImage)
                             } else if item.type == 1 {
-                                Menu {
-                                    Button(action: {
-                                        selectedItem = item
-                                    }) {
-                                        Label("Visualizar", systemImage: "eye")
-                                    }
-                                    Button(action: {
-                                        showingConfirmation = true
-                                    }) {
-                                        Label("Excluir", systemImage: "trash")
-                                    }
-                                } label: {
-                                    Image("pdfImage")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 110, height: 110)
-                                        .clipped()
-                                        .cornerRadius(10)
-                                }
-                                .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
-                                    Button("Cancelar", role: .cancel) {
-                                        showingConfirmation = false
-                                    }
-                                    Button("Sim, excluir", role: .destructive) {
-                                        print("item at index \(index)")
-                                        items.remove(at: index)
-                                        showingConfirmation = false
-                                    }
-                                }
+                                buildPDFMenu(item: item)
                             }
                         }
                     }
                 }
-                    .padding(24)
-                    
+                .padding(24)
             }
             .fileImporter(isPresented: $isImporting, allowedContentTypes: [.pdf, .image]) { result in
-                switch result {
-                case .success(let url):
-                    self.fileURL = url
-                    _ = url.startAccessingSecurityScopedResource()
-                    if url.pathExtension == "pdf" {
-                        self.items.append(Item(type: 1, selectedImage: nil, pdf: url))
-                    } else {
-                        if let data = try? Data(contentsOf: url),
-                           let img = UIImage(data: data) {
-                            self.items.append(Item(type: 0, selectedImage: img, pdf: nil))
-                        }
-                    }
-                case .failure(let error):
-                    print("Erro ao importar o arquivo: \(error.localizedDescription)")
-                }
+                handleFileImport(result: result)
             }
             .navigationTitle("Detalhes")
             .navigationBarTitleDisplayMode(.inline)
             .sheet(item: $selectedItem) { item in
-                if item.type == 0, let uiImage = item.selectedImage {
+                if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
                     ImageView(image: uiImage)
-                } else if item.type == 1, let pdfURL = item.pdf {
+                } else if item.type == 1, let pdfURL = item.pdfURL {
                     PDFViewWrapper(pdfURL: pdfURL)
                 }
             }
         }
+    }
+    
+    private func buildImageMenu(item: ItemEntity, uiImage: UIImage) -> some View {
+        Menu {
+            Button(action: {
+                selectedItem = item
+            }) {
+                Label("Visualizar", systemImage: "eye")
+            }
+            Button(action: {
+                showingConfirmation = true
+                print("opening item with id \(item.id)")
+            }) {
+                Label("Excluir", systemImage: "trash")
+            }
+        } label: {
+            Image(uiImage: uiImage)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 110, height: 110)
+                .clipped()
+                .cornerRadius(10)
+        }
+        .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
+            Button("Cancelar", role: .cancel) {
+                showingConfirmation = false
+            }
+            Button("Sim, excluir", role: .destructive) {
+                deleteItem(item: item)
+                showingConfirmation = false
+            }
+        }
+    }
+
+    private func buildPDFMenu(item: ItemEntity) -> some View {
+        Menu {
+            Button(action: {
+                selectedItem = item
+                print("url is \(String(describing: item.pdfURL))")
+            }) {
+                Label("Visualizar", systemImage: "eye")
+            }
+            Button(action: {
+                showingConfirmation = true
+            }) {
+                Label("Excluir", systemImage: "trash")
+            }
+        } label: {
+            Image("pdfImage")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 110, height: 110)
+                .clipped()
+                .cornerRadius(10)
+        }
+        .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
+            Button("Cancelar", role: .cancel) {
+                showingConfirmation = false
+            }
+            Button("Sim, excluir", role: .destructive) {
+                deleteItem(item: item)
+                showingConfirmation = false
+            }
+        }
+    }
+    
+    private func handleFileImport(result: Result<URL, Error>) {
+        switch result {
+        case .success(let url):
+            self.fileURL = url
+            _ = url.startAccessingSecurityScopedResource()
+            if url.pathExtension == "pdf" {
+                savePDFToSwiftData(url: url)
+            } else {
+                if let data = try? Data(contentsOf: url),
+                   let _ = UIImage(data: data) {
+                    saveImageToSwiftData(imageData: data)
+                }
+            }
+        case .failure(let error):
+            print("Erro ao importar o arquivo: \(error.localizedDescription)")
+        }
+    }
+
+    private func saveImageToSwiftData(imageData: Data) {
+        let newItem = ItemEntity(type: 0, imageData: imageData)
+        context.insert(newItem)
+        try? context.save()
+    }
+
+    private func savePDFToSwiftData(url: URL) {
+        let newItem = ItemEntity(type: 1, pdfURL: url)
+        print("url is \(url)")
+        context.insert(newItem)
+        try? context.save()
+    }
+
+    private func deleteItem(item: ItemEntity) {
+        print("deleting item \(item.id) from list \(items.map({ item in return item.id}))")
+        context.delete(item)
+        try? context.save()
     }
 }
 
@@ -179,11 +218,9 @@ struct PDFKitView: UIViewRepresentable {
         if let document = PDFDocument(url: pdfURL) {
             pdfView.document = document
         }
-        pdfView.autoScales = true // Ajusta o zoom automaticamente
+        pdfView.autoScales = true
         return pdfView
     }
 
     func updateUIView(_ uiView: PDFView, context: Context) {}
 }
-
-
