@@ -6,19 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Query(sort: \User.age) private var user: [User]
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        if(user.count == 1) {
+            HomeView()
+        } else {
+            Login()
         }
-        .padding()
     }
+    
 }
-
 #Preview {
     ContentView()
 }
