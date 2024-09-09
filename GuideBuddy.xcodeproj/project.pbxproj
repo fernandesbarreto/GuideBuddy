@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5528906B2C7F5144008B14AA /* DocsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528906A2C7F5144008B14AA /* DocsList.swift */; };
+		5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552BFA52C85D76700DE92BF /* HospitalData.swift */; };
+		5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C42C7F669200DC7332 /* AddDoc.swift */; };
+		5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C82C81E83100DC7332 /* hospitalsList.swift */; };
+		558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC8B52C8E999F006F491E /* OpenDocView.swift */; };
 		C090E20F2C81F3D500F21058 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C090E20D2C81F3D500F21058 /* Localizable.strings */; };
 		C090E2132C81FD4C00F21058 /* Testinho.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E2122C81FD4C00F21058 /* Testinho.swift */; };
 		C0F65D262C7DF9180096B3B1 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F65D252C7DF9180096B3B1 /* Login.swift */; };
@@ -21,13 +26,7 @@
 		C152DB202C8204520052256B /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C152DB1F2C8204520052256B /* ImagePicker.swift */; };
 		C1A31E2A2C8B00210023A5F9 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A31E292C8B00210023A5F9 /* BackgroundImageView.swift */; };
 		EB0A4DBC2C7F49C800092BA9 /* QueryHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */; };
-		EB0A4DC02C7FA3A200092BA9 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */; };
 		EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */; };
-		5528906B2C7F5144008B14AA /* DocsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528906A2C7F5144008B14AA /* DocsList.swift */; };
-		5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552BFA52C85D76700DE92BF /* HospitalData.swift */; };
-		5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C42C7F669200DC7332 /* AddDoc.swift */; };
-		5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C82C81E83100DC7332 /* hospitalsList.swift */; };
-		558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC8B52C8E999F006F491E /* OpenDocView.swift */; };
 		EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */; };
 		EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */; };
 		EBA4A5BF2C7D21A600ECD5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */; };
@@ -68,7 +67,6 @@
 		EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EBA4A5C12C7D21A600ECD5C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EBB948F62C7D24BB002F5375 /* GuideChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideChat.swift; sourceTree = "<group>"; };
-		EBB948F82C7D260E002F5375 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		EBB948FA2C7D275C002F5375 /* SpeechRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognition.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +82,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5528906C2C7F543C008B14AA /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				5528906A2C7F5144008B14AA /* DocsList.swift */,
+				5572B2C42C7F669200DC7332 /* AddDoc.swift */,
+				558BC8B52C8E999F006F491E /* OpenDocView.swift */,
+			);
+			path = Docs;
+			sourceTree = "<group>";
+		};
+		5572B2C72C80BF9300DC7332 /* Hospitals */ = {
+			isa = PBXGroup;
+			children = (
+				5572B2C82C81E83100DC7332 /* hospitalsList.swift */,
+				5552BFA52C85D76700DE92BF /* HospitalData.swift */,
+			);
+			name = Hospitals;
+			sourceTree = "<group>";
+		};
 		C0F65D302C7F5FDF0096B3B1 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,23 +132,12 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
-		5528906C2C7F543C008B14AA /* Docs */ = {
+		EB3C3F522C8F38C4001188B0 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				5528906A2C7F5144008B14AA /* DocsList.swift */,
-				5572B2C42C7F669200DC7332 /* AddDoc.swift */,
-				558BC8B52C8E999F006F491E /* OpenDocView.swift */,
+				EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */,
 			);
-			path = Docs;
-			sourceTree = "<group>";
-		};
-		5572B2C72C80BF9300DC7332 /* Hospitals */ = {
-			isa = PBXGroup;
-			children = (
-				5572B2C82C81E83100DC7332 /* hospitalsList.swift */,
-				5552BFA52C85D76700DE92BF /* HospitalData.swift */,
-			);
-			name = Hospitals;
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		EBA4A5AE2C7D21A500ECD5C2 = {
@@ -140,6 +146,7 @@
 				C0F65D302C7F5FDF0096B3B1 /* Resource */,
 				EBA4A5B92C7D21A500ECD5C2 /* GuideBuddy */,
 				EBA4A5B82C7D21A500ECD5C2 /* Products */,
+				EB3C3F522C8F38C4001188B0 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -303,7 +310,6 @@
 				C1A31E2A2C8B00210023A5F9 /* BackgroundImageView.swift in Sources */,
 				C1130E992C8AFBB000CE4F98 /* ProfilePhotoView.swift in Sources */,
 				C12075EC2C828FB4005277B7 /* GaleryInput.swift in Sources */,
-				EB0A4DC02C7FA3A200092BA9 /* NavBar.swift in Sources */,
 				EBB948FB2C7D275C002F5375 /* SpeechRecognition.swift in Sources */,
 				C152DB202C8204520052256B /* ImagePicker.swift in Sources */,
 				C126A5492C7F6A0200322D11 /* NavBar.swift in Sources */,
