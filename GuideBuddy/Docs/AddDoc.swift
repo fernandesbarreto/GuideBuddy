@@ -113,7 +113,7 @@ struct AdicionarDocumento: View {
                             }
                         }
                     }
-                }.border(.blue)
+                }
                     .padding(24)
                     
             }
