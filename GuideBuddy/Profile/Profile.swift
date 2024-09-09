@@ -9,67 +9,60 @@ import SwiftUI
 import SwiftData
 
 @Model
-class Photos {
-    var profilePhoto: String
-    var backgroundPhoto: String
+class ProfilePhoto {
+    var profilePhotoData: Data
     
-    init(backgroudPhoto: String, profilePhoto: String) {
-        self.backgroundPhoto = backgroudPhoto
-        self.profilePhoto = profilePhoto
+    init(profilePhoto: UIImage) {
+        self.profilePhotoData = profilePhoto.jpegData(compressionQuality: 1.0) ?? Data()
+    }
+    func getProfilePhoto() -> UIImage? {
+        return UIImage(data: self.profilePhotoData)
+    }
+}
+
+@Model
+class BackgroundPhoto {
+    var backgroundPhotoData: Data
+    
+    init(backgroundPhoto: UIImage) {
+        self.backgroundPhotoData = backgroundPhoto.jpegData(compressionQuality: 1.0) ?? Data()
+    }
+    
+    func getBackgroundPhoto() -> UIImage? {
+        return UIImage(data: self.backgroundPhotoData)
     }
 }
 
 struct Profile: View {
-    @State private var selectedImage: UIImage?
-    @State private var isImagePickerPresented = false
+    @Query private var profilePhotos: [ProfilePhoto]
+    @Query private var backgroundPhotos: [BackgroundPhoto]
+    
+    @State var selectedImage: UIImage?
     @State private var selectedBackground: UIImage?
-    @State private var isBackgroundPickerPresented = false
-
+    
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack{
                     ZStack {
-                        NavigationLink(destination: BackgroundImageView(), label: {
-                        if let selectedBackground = selectedBackground {
-                            Image(uiImage: selectedBackground)
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: 393, height: 300)
-                                .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
-                                .clipped()
-                                .shadow(radius: 5)
-                        } else {
-                            // Exibe um placeholder quando nenhuma imagem de capa é selecionada
-                            Image("backgroundImage")
-                                .frame(width: 393, height: 300)
-                                .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
-                            //                                .overlay(
-                            //                                    Text("Toque para selecionar capa")
-                            //                                        .font(.title2)
-                            //                                        .foregroundColor(.white)
-                            //                                        .padding()
-                            //                                )
-                                .shadow(radius: 5)
-                        }
-                           
+                        NavigationLink(destination: BackgroundImageView(selectedBackground: selectedBackground ?? nil), label: {
+                            if let selectedBackground = selectedBackground {
+                                Image(uiImage: selectedBackground)
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: 393, height: 300)
+                                    .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
+                                    .shadow(radius: 5)
+                            } else {
+                                Image("backgroundImage")
+                                    .frame(width: 393, height: 300)
+                                    .cornerRadius(15, corners: [.bottomLeft, .bottomRight])
+                                    .shadow(radius: 5)
+                            }
                         })
-                        
-//
-//                        Button(action: {
-//                            isBackgroundPickerPresented = true
-//                        }) {
-//                            // Botão invisível sobre a imagem para selecionar nova capa
-//                            Color.clear.frame(width: 393, height: 253)
-//                        }
-//                        .sheet(isPresented: $isBackgroundPickerPresented) {
-//                            // Apresenta o ImagePicker quando o botão é pressionado
-//                            ImagePicker2(selectedBackground: $selectedBackground, sourceType: .photoLibrary)
-//                        }
                     }
-//                    .offset(y: -30)
                     Spacer()
-                        .frame(height: 20) // Espaçamento entre capa e foto de perfil
+                        .frame(height: 20)
                     VStack{
                         ZStack {
                             Circle()
@@ -77,7 +70,7 @@ struct Profile: View {
                                 .frame(width: 120, height: 120)
                             if let selectedImage = selectedImage {
                                 NavigationLink(destination: {
-                                    ProfilePhotoView()
+                                    ProfilePhotoView(selectedImage: selectedImage)
                                 }, label: {
                                     Image(uiImage: selectedImage)
                                         .resizable()
@@ -85,25 +78,21 @@ struct Profile: View {
                                         .frame(width: 106, height: 106)
                                         .clipShape(Circle())
                                 })
-                               
+                                
                             } else {
                                 NavigationLink(destination: {
                                     ProfilePhotoView()
                                 }, label: {  Image("profileImage")
-                                    
+                                        .resizable()
                                         .frame(width: 106, height: 106)
-                                        .scaledToFill()
+                                        .scaledToFit()
                                         .clipShape(Circle())})
-                             
                             }
-                            
-                        
                         }
-                   
                         VStack {
                             Text("Pedro Nunes")
                                 .font(.system(size: 24,weight: .regular , design: .rounded))
-                            .padding(.top, 10)
+                                .padding(.top, 10)
                             
                             Text("29")
                                 .font(.system(size: 24,weight: .regular , design: .rounded))
@@ -116,26 +105,39 @@ struct Profile: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
+
 //            .toolbarBackground(.visible, for: .navigationBar)
             .navigationTitle("perfil")
             .toolbar {
-//                ToolbarItem(placement: .principal) {
-//                  Text("Perfil")
-//                        .foregroundStyle(.white)
-//                }
-                
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {}, label: {
-                        Text("editar")
+
+                    NavigationLink(destination: {
+                        EditProfileScreen(selectedImage: selectedImage)
+                    }, label: {
+                        Text("Editar")
                             .foregroundStyle(Color.background)
+                            .shadow(radius: 5)
                     })
                 }
+            }
+            .onAppear {
+                loadImages()
             }
         }
         
     }
     
+    func loadImages() {
+        if let profilePhoto = profilePhotos.last {
+            selectedImage = profilePhoto.getProfilePhoto()
+        }
+        
+        if let backgroundPhoto = backgroundPhotos.last {
+            selectedBackground = backgroundPhoto.getBackgroundPhoto()
+        }
+    }
 }
+
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
         clipShape(RoundedCorner(radius: radius, corners: corners))
@@ -145,7 +147,7 @@ extension View {
 struct RoundedCorner: Shape {
     var radius: CGFloat
     var corners: UIRectCorner
-
+    
     func path(in rect: CGRect) -> Path {
         let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
@@ -161,3 +163,4 @@ struct ContentView_Previews: PreviewProvider {
 #Preview {
     Profile()
 }
+

@@ -25,7 +25,7 @@ struct CarousselView: View {
                                     Text(caroussel.titles[index])
                                         .font(.system(size: 17,weight: .semibold , design: .rounded))
                                         .foregroundStyle(caroussel.color[index])
-                                    
+                                        .shadow(radius: 5)
                                 }
                                 .padding(5)
                                

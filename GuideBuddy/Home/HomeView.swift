@@ -10,7 +10,7 @@ import SwiftData
 
 struct HomeView: View {
     @Query(sort: \User.age) private var user: [User]
-
+    @State var selectedImage: UIImage?
     @State private var resultado: Double = 7.5
     @State private var animatedValue: Double = 0.0
     var body: some View {
@@ -34,6 +34,7 @@ struct HomeView: View {
                         
                     }
                     .padding()
+                    .padding(.leading, 8)
                 
                 
                 NavigationLink(destination: EduView(), label: {
@@ -46,9 +47,10 @@ struct HomeView: View {
                                 Text("Acionar Helper")
                                     .font(.system(size: 22,weight: .semibold , design: .rounded))
                                     .foregroundStyle(.white)
-                            
+                                    .shadow(radius: 5)
                             }
                             .padding(10)
+                            .padding(.trailing, 10)
                             
                         }
                         .padding()
@@ -56,7 +58,7 @@ struct HomeView: View {
                 })
                 HStack{
                     VStack{
-                        NavigationLink(destination: TestView(), label: {
+                        NavigationLink(destination: Emergency(), label: {
                             ZStack {
                                 Rectangle()
                                     .frame(width: 77, height: 77)
@@ -107,7 +109,7 @@ struct HomeView: View {
                                     Text("Mapa")
                                         .font(.system(size: 22,weight: .semibold , design: .rounded))
                                         .foregroundStyle(.white)
-                                    
+                                        .shadow(radius: 5)
                                 
                                 }
                                 .padding(10)
@@ -123,7 +125,7 @@ struct HomeView: View {
                 .frame(width: 370)
                 .padding(.horizontal)
                 
-                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(TestView())], color: [.white, .white, .white]))
+                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(Documents())], color: [.white, .white, .white]))
                     .padding(.horizontal, 8)
                 
                 NavigationLink(destination: TestView(), label: {
@@ -204,13 +206,19 @@ struct HomeView: View {
         
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-
-                    NavigationLink(destination: Profile(),
-                           label: {
-                        Image(systemName: "person.crop.circle")
-                            .foregroundStyle(Color.verdePrincipal)
-
+                    NavigationLink(destination: Profile(), label: {
+                        if let selectedImage = selectedImage {
+                            Image(uiImage: selectedImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 27, height: 27)
+                                .clipShape(Circle())
+                        } else {
+                            Image(systemName: "person.crop.circle")
+                                .foregroundStyle(Color.verdePrincipal)
+                        }
                     })
+                  
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
