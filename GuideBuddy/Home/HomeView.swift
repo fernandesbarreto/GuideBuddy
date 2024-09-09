@@ -6,9 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct HomeView: View {
-    var name: String = "Pedro Nunes"
+    @Query(sort: \User.age) private var user: [User]
+
     @State private var resultado: Double = 7.5
     @State private var animatedValue: Double = 0.0
     var body: some View {
@@ -24,7 +26,7 @@ struct HomeView: View {
                         }
                             
                         HStack {
-                            Text(name)
+                            Text(user[0].name)
                                 .font(.system(size: 24,weight: .semibold , design: .rounded))
                             .foregroundStyle(Color.verdePrincipal)
                             Spacer()
@@ -72,6 +74,7 @@ struct HomeView: View {
                                 }
                             }
                         })
+                        .shadow(radius: 5)
                         Spacer()
                         NavigationLink(destination: TestView(), label: {
                             ZStack {
@@ -91,7 +94,7 @@ struct HomeView: View {
                                 }
                             }
                         })
-                        
+                        .shadow(radius: 5)
                     }
                     .frame(height: 177)
                     NavigationLink(destination: TestView(), label: {
@@ -120,7 +123,7 @@ struct HomeView: View {
                 .frame(width: 370)
                 .padding(.horizontal)
                 
-                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(TestView())], color: [.white, .white, .white]))
+                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
                     .padding(.horizontal, 8)
                 
                 NavigationLink(destination: TestView(), label: {
@@ -175,12 +178,13 @@ struct HomeView: View {
                     .frame(width: 363, height: 208)
                 })
                 .padding(10)
+                .shadow(radius: 5)
                 }
             .frame(width: 365)
                     
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
+//            .toolbarBackground(.visible, for: .navigationBar)
             .navigationTitle("Home")
             
             

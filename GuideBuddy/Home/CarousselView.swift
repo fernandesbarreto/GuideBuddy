@@ -11,7 +11,7 @@ struct CarousselView: View {
     var caroussel: Category
     var body: some View {
         
-        ScrollView(. horizontal, content: {
+        ScrollView(.horizontal, showsIndicators: false, content: {
             HStack(spacing: -5){
                 ForEach(0..<caroussel.images.count, id: \.self){ index in
                     NavigationLink(destination: caroussel.destination[index],
