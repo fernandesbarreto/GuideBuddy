@@ -152,7 +152,7 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
             let placeID = try await googlePlacesService.getPlaceID(for: location!)
             print("placeID is \(String(describing: placeID))")
             
-            searchResults.append(SearchResult(location: location!, title: placeID ?? "Local", subTitle: mapItem.name ?? "", placeID: mapItem.description))
+            searchResults.append(SearchResult(location: location!, title: mapItem.placemark.name ?? "Local", subTitle: mapItem.placemark.subtitle ?? "", placeID: placeID))
         }
 
         return searchResults
