@@ -24,9 +24,9 @@
 "defesa_civil" = "Civil Defense";
 "bombeiro" = "Firefighter";
 "central_atendimento_mulher" = "Women's Assistance Center";
-"hospital" = "Hospitals"
-"documento" = "Documents"
-"faculdade" = "Universities"
+"hospital" = "Hospitals";
+"documento" = "Documents";
+"faculdade" = "Universities";
 "passaporte" = "Passport";
 "comprovante_de_residencia" = "Proof of residence";
 "carta_aceite" = "University acceptance letter";
