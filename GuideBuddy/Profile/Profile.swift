@@ -117,7 +117,7 @@ struct Profile: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
 //            .toolbarBackground(.visible, for: .navigationBar)
-            .navigationTitle("Perfil")
+            .navigationTitle("perfil")
             .toolbar {
 //                ToolbarItem(placement: .principal) {
 //                  Text("Perfil")
@@ -126,7 +126,7 @@ struct Profile: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {}, label: {
-                        Text("Editar")
+                        Text("editar")
                             .foregroundStyle(Color.background)
                     })
                 }
