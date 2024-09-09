@@ -44,7 +44,7 @@ struct Login: View {
                     
                     TextField(thirdText[language], text: $name)
                         .padding(.leading)
-                        .frame(width: geometry.size.width*0.88, height: geometry.size.height*0.06)
+                        .frame(width: geometry.size.width*0.88, height: 48)
                         .background(
                             RoundedRectangle(cornerRadius: 8)
                                 .fill(Color.barraTexto)
@@ -53,7 +53,7 @@ struct Login: View {
                     
                     TextField(fourthText[language], value: $age, format: .number)
                         .padding(.leading)
-                        .frame(width: geometry.size.width*0.88, height: geometry.size.height*0.06)
+                        .frame(width: geometry.size.width*0.88, height: 48)
                         .background(
                             RoundedRectangle(cornerRadius: 8)
                                 .fill(Color.barraTexto)
@@ -70,7 +70,7 @@ struct Login: View {
                         NavigationLink(destination: Testinho()) {
                             Text(fifthText[language])
                                 .foregroundStyle(.white)
-                                .frame(width: geometry.size.width*0.88, height: geometry.size.height*0.07)
+                                .frame(width: geometry.size.width*0.88, height: 50)
                                 .background((name.isEmpty || age == nil) ? Color.gray : Color.verde)
                                 .background(Color.verde)
                                 .cornerRadius(14)
