@@ -16,23 +16,38 @@ struct SearchableMap: View {
         )
     )
     
+    @State private var locationService = LocationService(completer: .init())
     @State private var searchResults = [SearchResult]()
     @State private var selectedLocation: SearchResult?
-    @State private var isSheetPresented: Bool = true
     
+    @State private var isSheetViewPresented: Bool = true
+    @State private var isSheetPlaceViewPresented: Bool = false
+    @State private var placeImages: [URL?] = []
     var body: some View {
         mapView
             .ignoresSafeArea()
             .onChange(of: selectedLocation) { newValue in
-                isSheetPresented = selectedLocation == nil
-            }
-            .onChange(of: searchResults) { newValue in
-                if let firstResult = newValue.first, newValue.count == 1 {
-                    selectedLocation = firstResult
+                print("selectedLocation \(selectedLocation) and new value \(newValue)")
+                if let location = newValue {
+                    Task {
+                        placeImages = await locationService.fetchImages(for: [location])
+                        isSheetViewPresented = false
+                        isSheetPlaceViewPresented = true
+                    }
                 }
             }
-            .sheet(isPresented: $isSheetPresented) {
+            .onChange(of: searchResults) { newValue in
+                if !newValue.isEmpty {
+                    isSheetViewPresented = true
+                }
+            }
+            .sheet(isPresented: $isSheetViewPresented) {
                 SheetView(searchResults: $searchResults)
+            }
+            .sheet(isPresented: $isSheetPlaceViewPresented) {
+                if let location = selectedLocation {
+                    SheetPlaceView(location: location, images: placeImages)
+                }
             }
     }
 
@@ -40,7 +55,9 @@ struct SearchableMap: View {
         Map(position: $cameraPosition, selection: $selectedLocation) {
             ForEach(searchResults) { result in
                 Marker(coordinate: result.location) {
-                    Image(systemName: "mappin")
+                    Image(systemName: "mappin.circle.fill")
+                        .foregroundColor(.red)
+                        .font(.title)
                 }
                 .tag(result)
             }

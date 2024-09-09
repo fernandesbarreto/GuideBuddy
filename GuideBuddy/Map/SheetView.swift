@@ -70,4 +70,54 @@ struct SheetView: View {
     }
 }
 
+struct SheetPlaceView: View {
+    @Environment(\.dismiss) private var dismiss
+    
+    let location: SearchResult
+    let images: [URL?]
 
+    var body: some View {
+        NavigationView {
+            VStack {
+                Text("\(location.title)")
+                    .font(.title2)
+                    .padding()
+
+                if images.isEmpty {
+                    Text("Nenhuma imagem disponível")
+                        .foregroundColor(.gray)
+                } else {
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(images.compactMap { $0 }, id: \.self) { url in
+                                AsyncImage(url: url) { image in
+                                    image
+                                        .resizable()
+                                        .scaledToFill()
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .frame(width: 200, height: 200)
+                                .cornerRadius(10)
+                                .padding()
+                            }
+                        }
+                    }
+                }
+            }
+            .navigationTitle("Place Images")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Dismiss") {
+                        dismiss()
+                    }
+                }
+            }
+        }
+    }
+}
+
+#Preview {
+    SheetPlaceView(location: SearchResult(location: CLLocationCoordinate2D(latitude: -8.05428, longitude: -34.8813), title: "Baixada Fluminense", subTitle: "Baixada Fluminense", placeID: nil), images: [])
+}
