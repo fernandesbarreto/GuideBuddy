@@ -13,12 +13,12 @@ class ItemEntity: Identifiable {
     var id = UUID()
     var type: Int
     var imageData: Data?
-    var pdfURL: URL?
+    var pdfPath: String?
 
-    init(type: Int, imageData: Data? = nil, pdfURL: URL? = nil) {
+    init(type: Int, imageData: Data? = nil, pdfPath: String? = nil) {
         self.type = type
         self.imageData = imageData
-        self.pdfURL = pdfURL
+        self.pdfPath = pdfPath
     }
 }
 
@@ -77,8 +77,8 @@ struct AdicionarDocumento: View {
             .sheet(item: $selectedItem) { item in
                 if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
                     ImageView(image: uiImage)
-                } else if item.type == 1, let pdfURL = item.pdfURL {
-                    PDFViewWrapper(pdfURL: pdfURL)
+                } else if item.type == 1, let pdfPath = item.pdfPath {
+                    PDFViewWrapper(pdfPath: pdfPath)
                 }
             }
         }
@@ -120,7 +120,7 @@ struct AdicionarDocumento: View {
         Menu {
             Button(action: {
                 selectedItem = item
-                print("url is \(String(describing: item.pdfURL))")
+                print("Resolving bookmark for item with id \(item.id)")
             }) {
                 Label("Visualizar", systemImage: "eye")
             }
@@ -147,6 +147,7 @@ struct AdicionarDocumento: View {
             }
         }
     }
+
     
     private func handleFileImport(result: Result<URL, Error>) {
         switch result {
@@ -173,11 +174,24 @@ struct AdicionarDocumento: View {
     }
 
     private func savePDFToSwiftData(url: URL) {
-        let newItem = ItemEntity(type: 1, pdfURL: url)
-        print("url is \(url)")
-        context.insert(newItem)
-        try? context.save()
+        let fileManager = FileManager.default
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let destinationURL = documentsDirectory.appendingPathComponent(url.lastPathComponent)
+        
+        do {
+            if !fileManager.fileExists(atPath: destinationURL.path) {
+                try fileManager.copyItem(at: url, to: destinationURL)
+            }
+            let newItem = ItemEntity(type: 1, pdfPath: destinationURL.lastPathComponent)
+            context.insert(newItem)
+            try context.save()
+            print("Saved file at: \(destinationURL.path)")
+        } catch {
+            print("Failed to copy file: \(error.localizedDescription)")
+        }
     }
+
+
 
     private func deleteItem(item: ItemEntity) {
         print("deleting item \(item.id) from list \(items.map({ item in return item.id}))")
@@ -202,25 +216,35 @@ struct ImageView: View {
 }
 
 struct PDFViewWrapper: View {
-    let pdfURL: URL
+    let pdfPath: String
 
     var body: some View {
-        PDFKitView(pdfURL: pdfURL)
+        PDFKitView(pdfPath: pdfPath)
             .navigationTitle("Visualizar PDF")
     }
 }
 
 struct PDFKitView: UIViewRepresentable {
-    let pdfURL: URL
+    let pdfPath: String
 
     func makeUIView(context: Context) -> PDFView {
         let pdfView = PDFView()
-        if let document = PDFDocument(url: pdfURL) {
+        
+        let fileManager = FileManager.default
+        let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let fileURL = documentsDirectory.appendingPathComponent(pdfPath)
+
+        if let document = PDFDocument(url: fileURL) {
             pdfView.document = document
+        } else {
+            print("Failed to load PDF at path: \(fileURL.path)")
         }
+        
         pdfView.autoScales = true
         return pdfView
     }
 
-    func updateUIView(_ uiView: PDFView, context: Context) {}
+    func updateUIView(_ uiView: PDFView, context: Context) {
+        // aq eh só um stub pra conformar com a classe
+    }
 }
