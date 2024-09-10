@@ -114,7 +114,7 @@ struct Profile: View {
                     NavigationLink(destination: {
                         EditProfileScreen(selectedImage: selectedImage)
                     }, label: {
-                        Text("Editar")
+                        Text("editar")
                             .foregroundStyle(Color.background)
                             .shadow(radius: 5)
                     })

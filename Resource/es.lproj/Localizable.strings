@@ -11,6 +11,8 @@
 "user_age" = "Edad";
 "start" = "Comenzar";
 "Editar" = "Editar";
+"ola" = "Hola";
+"linguagem" = "Idioma";
 "perfil" = "Perfil";
 "PerguntarNovamente" = "Preguntar de nuevo";
 "acionar_helper" = "Activar ayudante";
@@ -37,4 +39,19 @@
 "cpf" = "CPF (Registro de Contribuyente)";
 "historico_escolar" = "Historial académico";
 "laudo_medico" = "Informes médicos";
+"editar_perfil" = "Editar perfil";
+"anos" = "años";
+"idade_selecionada" = "Edade seleccionada";
+"age_select" = "Seleccioa tu edade";
+"editar_foto" = "Editar foto do perfil";
+"profile_pic" = "Foto de perfil";
+"tirar_foto" = "Tomar foto";
+"escolher_foto" = "Elegir foto";
+"apagar_foto" = "Borrar foto";
+"capa" = "Capa";
+"selecionar_linguagem" = "Seleccionar idioma";
+"hoje" = "Hoy";
+"ontem" = "Ayer";
+"semana" = "Últimos 7 Días";
+"antes" = "Anterior a 7 Días";
 

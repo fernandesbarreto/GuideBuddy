@@ -9,6 +9,8 @@
 "fill_your_details" = "Fill in your details";
 "user_name" = "User name";
 "user_age" = "Age";
+"ola" = "Hello";
+"linguagem" = "Language";
 "start" = "Start";
 "Editar" = "Edit";
 "perfil" = "Profile";
@@ -37,3 +39,19 @@
 "cpf" = "CPF (Taxpayer Registry Number)";
 "historico_escolar" = "School transcript";
 "laudo_medico" = "Medical reports";
+"editar_perfil" = "Edit profile";
+"anos" = "years";
+"idade_selecionada" = "Age selected";
+"age_select" = "Select your age";
+"editar_foto" = "Edit profile picture";
+"profile_pic" = "Profile picture";
+"tirar_foto" = "Take photo";
+"escolher_foto" = "Choose photo";
+"apagar_foto" = "Delete photo";
+"capa" = "Cover";
+"selecionar_linguagem" = "Select language";
+"hoje" = "Today";
+"ontem" = "Yesterday";
+"semana" = "Last 7 Days";
+"antes" = "Earlier than 7 Days";
+

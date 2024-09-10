@@ -10,16 +10,16 @@ import SwiftUI
 struct Documents: View {
     let documentos = [
     
-        Documento(titulo: "Passaporte"),
-        Documento(titulo: "Comprovante de residência"),
-        Documento(titulo: "Carta de aceite universitário"),
-        Documento(titulo: "Passagens"),
-        Documento(titulo: "Comprovante financeiro"),
-        Documento(titulo: "Visto de Estudo"),
-        Documento(titulo: "Carta de Indicação"),
-        Documento(titulo: "CPF"),
-        Documento(titulo: "Histórico Escolar"),
-        Documento(titulo: "Laudos Médicos")
+        Documento(titulo: "passaporte".localized),
+        Documento(titulo: "comprovante_de_residencia".localized),
+        Documento(titulo: "carta_aceite".localized),
+        Documento(titulo: "passagens".localized),
+        Documento(titulo: "comprovante_fincanceiro".localized),
+        Documento(titulo: "visto_de_estudo".localized),
+        Documento(titulo: "carta_de_indicacao".localized),
+        Documento(titulo: "cpf".localized),
+        Documento(titulo: "historico_escolar".localized),
+        Documento(titulo: "laudo_medico".localized)
         
     ]
     
@@ -31,7 +31,7 @@ struct Documents: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("Documentos")
+            .navigationTitle("documento")
             
         }
     }

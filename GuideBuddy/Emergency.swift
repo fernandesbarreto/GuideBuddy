@@ -10,12 +10,12 @@ import SwiftUI
 struct Emergency: View {
 
     let emergencyNumbers = [
-        ("Ambulância", "192"),
-        ("Polícia Civil", "197"),
-        ("Polícia Militar", "190"),
-        ("Defesa Civil", "199"),
-        ("Bombeiro", "193"),
-        ("Central de Atendimento à Mulher", "180")
+        ("ambulancia".localized, "192"),
+        ("policia_civil".localized, "197"),
+        ("policia_militar".localized, "190"),
+        ("defesa_civil".localized, "199"),
+        ("bombeiro".localized, "193"),
+        ("central_atendimento_mulher".localized, "180")
     ]
     
     var body: some View {
@@ -38,7 +38,7 @@ struct Emergency: View {
                 .padding(.vertical, 8)
             }
         }
-        .navigationTitle("Emergência")
+        .navigationTitle("emergencia")
     }
     
     func makeCall(to number: String) {

@@ -14,15 +14,15 @@ struct LanguagePicker: View {
     var body: some View {
         NavigationView {
             Form {
-                Picker("Selecione a linguagem", selection: $selectedLanguage) {
+                Picker("selecione_linguagem", selection: $selectedLanguage) {
                     ForEach(languages, id: \.self) { language in
                         Text("\(language)").tag(language)
                     }
                 }
                 .pickerStyle(WheelPickerStyle())
-                .accessibilityLabel("Idade selecionada")
+                .accessibilityLabel("idade_selecionada")
             }
-            .navigationBarTitle("Idade", displayMode: .inline)
+            .navigationBarTitle("user_age", displayMode: .inline)
         }
     }
 }

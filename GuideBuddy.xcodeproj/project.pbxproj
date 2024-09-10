@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C090E20F2C81F3D500F21058 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C090E20D2C81F3D500F21058 /* Localizable.strings */; };
 		C090E2132C81FD4C00F21058 /* Testinho.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E2122C81FD4C00F21058 /* Testinho.swift */; };
+		C090E2252C8F414400F21058 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E2242C8F414400F21058 /* LanguageManager.swift */; };
 		C0F65D262C7DF9180096B3B1 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F65D252C7DF9180096B3B1 /* Login.swift */; };
 		C1130E992C8AFBB000CE4F98 /* ProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */; };
 		C12075EC2C828FB4005277B7 /* GaleryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12075EB2C828FB4005277B7 /* GaleryInput.swift */; };
@@ -43,6 +44,7 @@
 		C090E2102C81F3DD00F21058 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C090E2112C81F3DD00F21058 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C090E2122C81FD4C00F21058 /* Testinho.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testinho.swift; sourceTree = "<group>"; };
+		C090E2242C8F414400F21058 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		C0F65D252C7DF9180096B3B1 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoView.swift; sourceTree = "<group>"; };
 		C12075EB2C828FB4005277B7 /* GaleryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaleryInput.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				C0F65D252C7DF9180096B3B1 /* Login.swift */,
+				C090E2242C8F414400F21058 /* LanguageManager.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0F65D262C7DF9180096B3B1 /* Login.swift in Sources */,
+				C090E2252C8F414400F21058 /* LanguageManager.swift in Sources */,
 				C152DB132C80BA5F0052256B /* TestView.swift in Sources */,
 				C190C8F32C8D55D20000A490 /* Documents.swift in Sources */,
 				C190C8F12C8D55820000A490 /* AddDocuments.swift in Sources */,
@@ -445,7 +449,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = D757SK75D9;
+				DEVELOPMENT_TEAM = LVN5VFR7TN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
@@ -479,7 +483,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = D757SK75D9;
+				DEVELOPMENT_TEAM = LVN5VFR7TN;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;

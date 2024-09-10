@@ -58,7 +58,7 @@ struct QueryHistory: View {
                     if prompts.count != 0 {
                         List {
                             if !promptsToday().isEmpty {
-                                Section(header: Text("Hoje")) {
+                                Section(header: Text("hoje")) {
                                     ForEach(promptsToday()) { prompt in
                                         promptRow(prompt)
                                     }
@@ -69,7 +69,7 @@ struct QueryHistory: View {
                             }
                             
                             if !promptsYesterday().isEmpty {
-                                Section(header: Text("Ontem")) {
+                                Section(header: Text("ontem")) {
                                     ForEach(promptsYesterday()) { prompt in
                                         promptRow(prompt)
                                     }
@@ -80,7 +80,7 @@ struct QueryHistory: View {
                             }
                             
                             if !promptsLast7Days().isEmpty {
-                                Section(header: Text("Últimos 7 Dias")) {
+                                Section(header: Text("semana")) {
                                     ForEach(promptsLast7Days()) { prompt in
                                         promptRow(prompt)
                                     }
@@ -91,7 +91,7 @@ struct QueryHistory: View {
                             }
                             
                             if !promptsAllTime().isEmpty {
-                                Section(header: Text("Anterior a 7 Dias")) {
+                                Section(header: Text("antes")) {
                                     ForEach(promptsAllTime()) { prompt in
                                         promptRow(prompt)
                                     }
