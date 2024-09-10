@@ -75,14 +75,24 @@ struct UnifiedSheetView: View {
     }
 
     private func placeDetailView(for location: SearchResult) -> some View {
-        VStack {
+        VStack(alignment: .leading) {
+            HStack {
+                Button("Voltar") {
+                    selectedLocation = nil
+                    selectedDetent = .height(80)
+                }
+                .padding()
+                Spacer()
+            }
+
             Text(location.title)
                 .font(.title2)
-                .padding()
+                .padding([.leading, .trailing, .bottom])
 
             if placeImages.isEmpty {
                 Text("Nenhuma imagem disponível")
                     .foregroundColor(.gray)
+                    .padding(.leading)
             } else {
                 ScrollView(.horizontal) {
                     HStack(alignment: .center) {
@@ -101,17 +111,13 @@ struct UnifiedSheetView: View {
                     }
                 }
             }
-            Button("Voltar para busca") {
-                selectedLocation = nil
-                selectedDetent = .height(80)
-            }
-            .padding(.top, 8)
         }
         .padding()
         .onAppear {
             selectedDetent = .medium
         }
     }
+
 
     private func didTapOnCompletion(_ completion: SearchCompletions) {
         Task {
