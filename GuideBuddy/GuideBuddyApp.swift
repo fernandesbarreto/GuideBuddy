@@ -17,6 +17,6 @@ struct GuideBuddyApp: App {
             //Login()
               .environmentObject(languageManager)
         }
-        .modelContainer(for: [Prompt.self, ProfilePhoto.self, BackgroundPhoto.self, User.self])
+        .modelContainer(for: [Prompt.self, ProfilePhoto.self, BackgroundPhoto.self, User.self, ItemEntity.self])
     }
 }
