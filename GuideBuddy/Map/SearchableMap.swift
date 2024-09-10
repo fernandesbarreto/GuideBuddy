@@ -19,35 +19,31 @@ struct SearchableMap: View {
     @State private var locationService = LocationService(completer: .init())
     @State private var searchResults = [SearchResult]()
     @State private var selectedLocation: SearchResult?
-    
-    @State private var isSheetViewPresented: Bool = true
-    @State private var isSheetPlaceViewPresented: Bool = false
     @State private var placeImages: [URL?] = []
+    
+    @State private var isSheetPresented: Bool = true
+
     var body: some View {
         mapView
             .ignoresSafeArea()
             .onChange(of: selectedLocation) { newValue in
-                print("selectedLocation \(selectedLocation) and new value \(newValue)")
                 if let location = newValue {
                     Task {
                         placeImages = await locationService.fetchImages(for: [location])
-                        isSheetViewPresented = false
-                        isSheetPlaceViewPresented = true
                     }
                 }
             }
             .onChange(of: searchResults) { newValue in
                 if !newValue.isEmpty {
-                    isSheetViewPresented = true
+                    isSheetPresented = true
                 }
             }
-            .sheet(isPresented: $isSheetViewPresented) {
-                SheetView(searchResults: $searchResults)
-            }
-            .sheet(isPresented: $isSheetPlaceViewPresented) {
-                if let location = selectedLocation {
-                    SheetPlaceView(location: location, images: placeImages)
-                }
+            .sheet(isPresented: $isSheetPresented) {
+                UnifiedSheetView(
+                    searchResults: $searchResults,
+                    selectedLocation: $selectedLocation,
+                    placeImages: $placeImages
+                )
             }
     }
 
@@ -59,7 +55,6 @@ struct SearchableMap: View {
                         .foregroundColor(.red)
                         .font(.title)
                 }
-                .tag(result)
             }
         }
     }
@@ -68,4 +63,3 @@ struct SearchableMap: View {
 #Preview {
     SearchableMap()
 }
-

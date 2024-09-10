@@ -8,14 +8,32 @@
 import SwiftUI
 import MapKit
 
-struct SheetView: View {
+import SwiftUI
+import MapKit
+
+struct UnifiedSheetView: View {
     @State private var locationService = LocationService(completer: .init())
     @State private var search: String = ""
     @Binding var searchResults: [SearchResult]
-    
-    @State private var selectedDetent: PresentationDetent = .height(80) // Track the current sheet height state
+    @Binding var selectedLocation: SearchResult?
+    @State private var selectedDetent: PresentationDetent = .height(80) // Start collapsed
+    @Binding var placeImages: [URL?]
 
     var body: some View {
+        VStack {
+            if let location = selectedLocation {
+                placeDetailView(for: location)
+            } else {
+                searchView
+            }
+        }
+        .interactiveDismissDisabled()
+        .presentationDetents([.height(80), .medium], selection: $selectedDetent)
+        .presentationBackground(.regularMaterial)
+        .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+    }
+
+    private var searchView: some View {
         VStack {
             HStack {
                 Image(systemName: "magnifyingglass")
@@ -50,77 +68,58 @@ struct SheetView: View {
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
         }
+        .padding()
         .onChange(of: search) {
             locationService.update(queryFragment: search)
         }
+    }
+
+    private func placeDetailView(for location: SearchResult) -> some View {
+        VStack {
+            Text(location.title)
+                .font(.title2)
+                .padding()
+
+            if placeImages.isEmpty {
+                Text("Nenhuma imagem disponível")
+                    .foregroundColor(.gray)
+            } else {
+                ScrollView(.horizontal) {
+                    HStack(alignment: .center) {
+                        ForEach(placeImages.compactMap { $0 }, id: \.self) { url in
+                            AsyncImage(url: url) { image in
+                                image
+                                    .resizable()
+                                    .scaledToFill()
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .frame(width: 280, height: 280)
+                            .cornerRadius(10)
+                            .padding()
+                        }
+                    }
+                }
+            }
+            Button("Voltar para busca") {
+                selectedLocation = nil
+                selectedDetent = .height(80)
+            }
+            .padding(.top, 8)
+        }
         .padding()
-        .interactiveDismissDisabled()
-        .presentationDetents([.height(80), .medium], selection: $selectedDetent)
-        .presentationBackground(.regularMaterial)
-        .presentationBackgroundInteraction(.enabled(upThrough: .medium))
+        .onAppear {
+            selectedDetent = .medium
+        }
     }
 
     private func didTapOnCompletion(_ completion: SearchCompletions) {
         Task {
             if let singleLocation = try? await locationService.search(with: "\(completion.title) \(completion.subTitle)").first {
                 searchResults = [singleLocation]
-                selectedDetent = .height(80)
+                selectedLocation = singleLocation
+                selectedDetent = .medium
             }
         }
     }
-}
-
-struct SheetPlaceView: View {
-    @Environment(\.dismiss) private var dismiss
-    
-    let location: SearchResult
-    let images: [URL?]
-
-    var body: some View {
-        NavigationView {
-            VStack {
-                Text("\(location.title)")
-                    .font(.title2)
-                    .padding()
-
-                if images.isEmpty {
-                    Text("Nenhuma imagem disponível")
-                        .foregroundColor(.gray)
-                } else {
-                    ScrollView(.horizontal) {
-                        HStack (alignment: .center) {
-                            ForEach(images.compactMap { $0 }, id: \.self) { url in
-                                AsyncImage(url: url) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFill()
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                .frame(width: 320, height: 320)
-                                .cornerRadius(10)
-                                .padding()
-                            }
-                        }
-                    }
-                }
-            }
-            .navigationTitle("Descrição do local")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) {
-                    Button("Dismiss") {
-                        dismiss()
-                    }
-                }
-            }
-            .onAppear() {
-                print("images are \(images)")
-            }
-        }
-    }
-}
-
-#Preview {
-    SheetPlaceView(location: SearchResult(location: CLLocationCoordinate2D(latitude: -8.05428, longitude: -34.8813), title: "Baixada Fluminense", subTitle: "Baixada Fluminense", placeID: nil), images: [])
 }
