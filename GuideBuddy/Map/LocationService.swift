@@ -36,8 +36,8 @@ struct SearchResult: Identifiable, Hashable {
 class GooglePlacesService {
     private let apiKey = "AIzaSyAVTheOOGF5wzxX8xte5fsToDRvzHXFM-w"
     
-    func getPlaceID(for location: CLLocationCoordinate2D) async throws -> String? {
-        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location.latitude),\(location.longitude)&radius=100&key=\(apiKey)"
+    func getPlaceID(for location: CLLocationCoordinate2D, description: String) async throws -> String? {
+        let urlString = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=\(location.latitude),\(location.longitude)&radius=100&keyword=\(description)&key=\(apiKey)"
         
         guard let url = URL(string: urlString) else {
             print("primeiro erro")
@@ -149,7 +149,7 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
         var searchResults = [SearchResult]()
         for mapItem in filteredResults {
             let location = mapItem.placemark.location?.coordinate
-            let placeID = try await googlePlacesService.getPlaceID(for: location!)
+            let placeID = try await googlePlacesService.getPlaceID(for: location!, description: mapItem.name ?? "")
             print("placeID is \(String(describing: placeID))")
             
             searchResults.append(SearchResult(location: location!, title: mapItem.placemark.name ?? "Local", subTitle: mapItem.placemark.subtitle ?? "", placeID: placeID))
@@ -164,11 +164,9 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
         for result in searchResults {
             print("iterating with \(String(describing: result.placeID))")
             if let placeID = result.placeID {
-                print("opcao 1")
                 let photoUrl = try? await googlePlacesService.getPhotoURL(for: placeID)
                 imageUrls.append(photoUrl)
             } else {
-                print("opcao 2")
                 imageUrls.append(nil)
             }
         }

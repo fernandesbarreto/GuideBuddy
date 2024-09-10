@@ -88,7 +88,7 @@ struct SheetPlaceView: View {
                         .foregroundColor(.gray)
                 } else {
                     ScrollView(.horizontal) {
-                        HStack {
+                        HStack (alignment: .center) {
                             ForEach(images.compactMap { $0 }, id: \.self) { url in
                                 AsyncImage(url: url) { image in
                                     image
@@ -97,7 +97,7 @@ struct SheetPlaceView: View {
                                 } placeholder: {
                                     ProgressView()
                                 }
-                                .frame(width: 200, height: 200)
+                                .frame(width: 320, height: 320)
                                 .cornerRadius(10)
                                 .padding()
                             }
@@ -105,7 +105,7 @@ struct SheetPlaceView: View {
                     }
                 }
             }
-            .navigationTitle("Place Images")
+            .navigationTitle("Descrição do local")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -113,6 +113,9 @@ struct SheetPlaceView: View {
                         dismiss()
                     }
                 }
+            }
+            .onAppear() {
+                print("images are \(images)")
             }
         }
     }
