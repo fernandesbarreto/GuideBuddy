@@ -21,8 +21,9 @@ struct SearchResult: Identifiable, Hashable {
     let id = UUID()
     let location: CLLocationCoordinate2D
     let title: String
-    let subTitle: String
+    let subTitle: String?
     let placeID: String?
+    let url: URL?
 
     static func == (lhs: SearchResult, rhs: SearchResult) -> Bool {
         lhs.id == rhs.id
@@ -148,24 +149,28 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
 
         var searchResults = [SearchResult]()
         for mapItem in filteredResults {
-            let location = mapItem.placemark.location?.coordinate
-            let placeID = try await googlePlacesService.getPlaceID(for: location!, description: mapItem.name ?? "")
-            print("placeID is \(String(describing: placeID))")
+            let location = mapItem.placemark.location?.coordinate ?? fixedCoordinate
+            let title = mapItem.name ?? "Local"
+            let subTitle = mapItem.placemark.subtitle ?? ""
+            let url = mapItem.url
+            let placeID = try? await googlePlacesService.getPlaceID(for: location, description: title)
+            print("Fetched placeID: \(String(describing: placeID))")
             
-            searchResults.append(SearchResult(location: location!, title: mapItem.placemark.name ?? "Local", subTitle: mapItem.placemark.subtitle ?? "", placeID: placeID))
+            searchResults.append(SearchResult(location: location, title: title, subTitle: subTitle, placeID: placeID, url: url))
         }
 
         return searchResults
     }
 
     func fetchImages(for searchResults: [SearchResult]) async -> [URL?] {
-        print("to aqui mano")
         var imageUrls = [URL?]()
         for result in searchResults {
-            print("iterating with \(String(describing: result.placeID))")
             if let placeID = result.placeID {
-                let photoUrl = try? await googlePlacesService.getPhotoURL(for: placeID)
-                imageUrls.append(photoUrl)
+                if let photoUrl = try? await googlePlacesService.getPhotoURL(for: placeID) {
+                    imageUrls.append(photoUrl)
+                } else {
+                    imageUrls.append(nil)
+                }
             } else {
                 imageUrls.append(nil)
             }

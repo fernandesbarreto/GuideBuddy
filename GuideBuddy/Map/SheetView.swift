@@ -75,19 +75,38 @@ struct UnifiedSheetView: View {
     }
 
     private func placeDetailView(for location: SearchResult) -> some View {
-        VStack(alignment: .leading) {
+        VStack{
+            Spacer()
+            
             HStack {
                 Button("Voltar") {
                     selectedLocation = nil
                     selectedDetent = .height(80)
                 }
                 .padding()
+                
                 Spacer()
             }
 
             Text(location.title)
                 .font(.title2)
                 .padding([.leading, .trailing, .bottom])
+                .lineLimit(nil)
+                .minimumScaleFactor(0.75)
+            
+            if let subtitle = location.subTitle, !subtitle.isEmpty {
+                Text(subtitle)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+                    .padding([.leading, .trailing, .bottom])
+            }
+
+            if let url = location.url {
+                Link("\(url)", destination: url)
+                    .font(.headline)
+                    .foregroundColor(.blue)
+                    .padding([.leading, .trailing, .bottom])
+            }
 
             if placeImages.isEmpty {
                 Text("Nenhuma imagem disponível")
@@ -117,7 +136,6 @@ struct UnifiedSheetView: View {
             selectedDetent = .medium
         }
     }
-
 
     private func didTapOnCompletion(_ completion: SearchCompletions) {
         Task {
