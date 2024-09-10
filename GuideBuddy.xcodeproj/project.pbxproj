@@ -196,6 +196,7 @@
 				C190C8F02C8D55820000A490 /* AddDocuments.swift */,
 				C190C8F22C8D55D20000A490 /* Documents.swift */,
 				5528906C2C7F543C008B14AA /* Docs */,
+				C190C8EE2C8D546F0000A490 /* Emergency.swift */,
 			);
 			path = GuideBuddy;
 			sourceTree = "<group>";
@@ -488,7 +489,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = D757SK75D9;
+				DEVELOPMENT_TEAM = KXKV68W5T2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
@@ -522,7 +523,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = D757SK75D9;
+				DEVELOPMENT_TEAM = KXKV68W5T2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
