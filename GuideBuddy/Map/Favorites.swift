@@ -21,16 +21,34 @@ struct Favorites: View {
             List {
                 ForEach(location, id: \.id) { item in
                     NavigationLink(destination: SearchableMap(location: item)) {
-                        Text(item.name)
+                        HStack {
+                            Text(item.name)
+                            Spacer()
+                            Button(action: {
+                                itemToDelete = item
+                                deletionIndexSet = IndexSet(integer: location.firstIndex(of: item)!)
+                                showDeleteAlert = true
+                            }) {
+                                Image(systemName: "trash")
+                                    .foregroundColor(.red)
+                            }
+                            .buttonStyle(BorderlessButtonStyle())
+                        }
                     }
                 }
-                .onDelete(perform: handleDelete)
+                .onDelete { indexSet in
+                    deletionIndexSet = indexSet
+                    if let index = indexSet.first {
+                        itemToDelete = location[index]
+                        showDeleteAlert = true
+                    }
+                }
             }
             .alert(isPresented: $showDeleteAlert) {
                 Alert(
                     title: Text("confirmar"),
-                    message: Text("ceretza"),
-                    primaryButton: .destructive(Text("delete")) {
+                    message: Text("certeza"),
+                    primaryButton: .destructive(Text("deletar")) {
                         if let indexSet = deletionIndexSet {
                             deleteItems(at: indexSet)
                         }
@@ -42,14 +60,7 @@ struct Favorites: View {
         }
     }
     
-    private func handleDelete(at offsets: IndexSet) {
-        // Capture the index set for confirmation
-        deletionIndexSet = offsets
-        showDeleteAlert = true
-    }
-    
     private func deleteItems(at offsets: IndexSet) {
-        // Delete the items at the given offsets
         for index in offsets {
             let item = location[index]
             context.delete(item)
@@ -60,5 +71,3 @@ struct Favorites: View {
 #Preview {
     Favorites()
 }
-
-
