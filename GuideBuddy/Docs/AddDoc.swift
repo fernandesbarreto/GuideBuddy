@@ -33,6 +33,8 @@ struct AdicionarDocumento: View {
     @Query private var allItems: [ItemEntity]
     @State private var selectedItem: ItemEntity? = nil
     @State private var showingConfirmation = false
+    @State private var activityItems: [Any] = []
+    @State private var isShowingShareSheet = false
     
     var filteredItems: [ItemEntity] {
         allItems.filter { entity in
@@ -70,6 +72,86 @@ struct AdicionarDocumento: View {
                                 buildImageMenu(item: item, uiImage: uiImage)
                             } else if item.type == 1 {
                                 buildPDFMenu(item: item)
+                        // ForEach(Array(items.enumerated()), id: \.element) { index, item in
+                        //     if item.type == 0 {
+                        //         if let uiImage = item.selectedImage {
+                        //             Menu {
+                        //                 Button(action: {
+                        //                     selectedItem = item
+                        //                 }) {
+                        //                     Label("Visualizar", systemImage: "eye")
+                        //                 }
+                                        
+                        //                 Button(action: {
+                        //                     activityItems = [uiImage]
+                        //                     isShowingShareSheet = true
+                        //                 }) {
+                        //                     Label("Compartilhar", systemImage: "square.and.arrow.up")
+                        //                 }
+                                        
+                        //                 Button(action: {
+                        //                     showingConfirmation = true
+                        //                 }) {
+                        //                     Label("Excluir", systemImage: "trash")
+                        //                 }
+                        //             } label: {
+                        //                 Image(uiImage: uiImage)
+                        //                     .resizable()
+                        //                     .aspectRatio(contentMode: .fill)
+                        //                     .frame(width: 110, height: 110)
+                        //                     .clipped()
+                        //                     .cornerRadius(10)
+                        //             }
+                        //             .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
+                        //                 Button("Cancelar", role: .cancel) {
+                        //                     showingConfirmation = false
+                        //                 }
+                        //                 Button("Sim, excluir", role: .destructive) {
+                        //                     items.remove(at: index)
+                        //                     showingConfirmation = false
+                        //                 }
+                        //             }
+                        //         }
+                        //     } else if item.type == 1 {
+                        //         Menu {
+                        //             Button(action: {
+                        //                 selectedItem = item
+                        //             }) {
+                        //                 Label("Visualizar", systemImage: "eye")
+                        //             }
+                                    
+                        //             // Adiciona a opção Compartilhar para PDF
+                        //             if let pdfURL = item.pdf {
+                        //                 Button(action: {
+                        //                     activityItems = [pdfURL]
+                        //                     isShowingShareSheet = true
+                        //                 }) {
+                        //                     Label("Compartilhar", systemImage: "square.and.arrow.up")
+                        //                 }
+                        //             }
+                                    
+                        //             Button(action: {
+                        //                 showingConfirmation = true
+                        //             }) {
+                        //                 Label("Excluir", systemImage: "trash")
+                        //             }
+                        //         } label: {
+                        //             Image("pdfImage")
+                        //                 .resizable()
+                        //                 .aspectRatio(contentMode: .fill)
+                        //                 .frame(width: 110, height: 110)
+                        //                 .clipped()
+                        //                 .cornerRadius(10)
+                        //         }
+                        //         .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
+                        //             Button("Cancelar", role: .cancel) {
+                        //                 showingConfirmation = false
+                        //             }
+                        //             Button("Sim, excluir", role: .destructive) {
+                        //                 items.remove(at: index)
+                        //                 showingConfirmation = false
+                        //             }
+                        //         }
                             }
                         }
                     }
@@ -87,6 +169,9 @@ struct AdicionarDocumento: View {
                 } else if item.type == 1, let pdfPath = item.pdfPath {
                     PDFViewWrapper(pdfPath: pdfPath)
                 }
+            }
+            .sheet(isPresented: $isShowingShareSheet) {
+                ActivityView(activityItems: activityItems)
             }
         }
     }
@@ -253,4 +338,14 @@ struct PDFKitView: UIViewRepresentable {
     func updateUIView(_ uiView: PDFView, context: Context) {
         // aq eh só um stub pra conformar com a classe
     }
+}
+
+struct ActivityView: UIViewControllerRepresentable {
+    let activityItems: [Any]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }

@@ -11,7 +11,7 @@
 		5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552BFA52C85D76700DE92BF /* HospitalData.swift */; };
 		5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C42C7F669200DC7332 /* AddDoc.swift */; };
 		5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C82C81E83100DC7332 /* hospitalsList.swift */; };
-		558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC8B52C8E999F006F491E /* OpenDocView.swift */; };
+		558BC8B82C90847F006F491E /* Extension1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC8B72C90847F006F491E /* Extension1.swift */; };
 		5528906B2C7F5144008B14AA /* DocsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528906A2C7F5144008B14AA /* DocsList.swift */; };
 		5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552BFA52C85D76700DE92BF /* HospitalData.swift */; };
 		5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C42C7F669200DC7332 /* AddDoc.swift */; };
@@ -52,7 +52,7 @@
 		5572B2C42C7F669200DC7332 /* AddDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoc.swift; sourceTree = "<group>"; };
 		5572B2C62C8097CD00DC7332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5572B2C82C81E83100DC7332 /* hospitalsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hospitalsList.swift; sourceTree = "<group>"; };
-		558BC8B52C8E999F006F491E /* OpenDocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenDocView.swift; sourceTree = "<group>"; };
+		558BC8B72C90847F006F491E /* Extension1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension1.swift; sourceTree = "<group>"; };
 		C090E20E2C81F3D500F21058 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C090E2102C81F3DD00F21058 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C090E2112C81F3DD00F21058 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -103,7 +103,6 @@
 			children = (
 				5528906A2C7F5144008B14AA /* DocsList.swift */,
 				5572B2C42C7F669200DC7332 /* AddDoc.swift */,
-				558BC8B52C8E999F006F491E /* OpenDocView.swift */,
 			);
 			path = Docs;
 			sourceTree = "<group>";
@@ -113,6 +112,7 @@
 			children = (
 				5572B2C82C81E83100DC7332 /* hospitalsList.swift */,
 				5552BFA52C85D76700DE92BF /* HospitalData.swift */,
+				558BC8B72C90847F006F491E /* Extension1.swift */,
 			);
 			name = Hospitals;
 			sourceTree = "<group>";
@@ -339,6 +339,13 @@
 				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
 				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
 				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
+				558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */,
+				EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */,
+				5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */,
+				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
+				558BC8B82C90847F006F491E /* Extension1.swift in Sources */,
+				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
+				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
 				EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */,
 				C090E2132C81FD4C00F21058 /* Testinho.swift in Sources */,
 				C1A31E2A2C8B00210023A5F9 /* BackgroundImageView.swift in Sources */,
@@ -348,7 +355,6 @@
 				C152DB202C8204520052256B /* ImagePicker.swift in Sources */,
 				C126A5492C7F6A0200322D11 /* NavBar.swift in Sources */,
 				C152DB112C80B94E0052256B /* Category.swift in Sources */,
-				558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
