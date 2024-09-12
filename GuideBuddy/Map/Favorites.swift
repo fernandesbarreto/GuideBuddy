@@ -28,9 +28,9 @@ struct Favorites: View {
             }
             .alert(isPresented: $showDeleteAlert) {
                 Alert(
-                    title: Text("Confirm Deletion"),
-                    message: Text("Are you sure you want to delete this item?"),
-                    primaryButton: .destructive(Text("Delete")) {
+                    title: Text("confirmar"),
+                    message: Text("ceretza"),
+                    primaryButton: .destructive(Text("delete")) {
                         if let indexSet = deletionIndexSet {
                             deleteItems(at: indexSet)
                         }
@@ -38,7 +38,7 @@ struct Favorites: View {
                     secondaryButton: .cancel()
                 )
             }
-            .navigationTitle("Favorites")
+            .navigationTitle("favoritos")
         }
     }
     

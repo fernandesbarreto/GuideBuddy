@@ -54,4 +54,6 @@
 "ontem" = "Ayer";
 "semana" = "Últimos 7 Días";
 "antes" = "Anterior a 7 Días";
-
+"confirmar" = "Eliminar";
+"certeza" =  "¿Está seguro de que desea eliminar este elemento?";
+"deletar" = "Eliminar";

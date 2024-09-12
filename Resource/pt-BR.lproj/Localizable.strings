@@ -56,3 +56,6 @@
 "ontem" = "Ontem";
 "semana" = "Últimos 7 Dias";
 "antes" = "Anterior a 7 Dias";
+"confirmar" = "Deletar";
+"certeza" = "Você tem certeza de que deseja excluir este item?";
+"deletar" = "Deletar";

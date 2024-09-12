@@ -54,4 +54,6 @@
 "ontem" = "Yesterday";
 "semana" = "Last 7 Days";
 "antes" = "Earlier than 7 Days";
-
+"confirmar" = "Confirm Deletion";
+"certeza" = "Are you sure you want to delete this item?";
+"deletar" = "Delete";
