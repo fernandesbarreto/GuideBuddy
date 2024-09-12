@@ -137,7 +137,7 @@ struct GuideChat: View {
         let query = ChatQuery(
             messages: [.init(
                 role: .user,
-                content: "Você é um assistente virtual para estudantes estrangeiros que residem em Recife. Antes de responder essa pergunta, avise (EM APENAS UMA PALAVRA, SEM `EIXO:`, `TEMA:` OU SIMILARES) qual é o eixo de interesse da questão: Transporte; Saúde; Moradia; Segurança; Documentação. Depois, responda a pergunta, pesquisando se necessário e informando quais locais em Recife podem ser prestativos: " + question)!],
+                content: "prompt".localized + question)!],
             model: .gpt4_o_mini)
         
         ourOpenAI.chats(query: query) { result in
@@ -154,8 +154,8 @@ struct GuideChat: View {
             }
             
             stopFlickerAnimation()
-            isSendingQuestion = false // Reset to false after response is received
-            showRestartButton = true // Show the restart button after getting an answer
+            isSendingQuestion = false
+            showRestartButton = true
         }
     }
     
