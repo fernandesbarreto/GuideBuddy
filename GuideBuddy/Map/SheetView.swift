@@ -28,7 +28,7 @@ struct UnifiedSheetView: View {
     @State private var search: String = ""
     @Binding var searchResults: [SearchResult]
     @Binding var selectedLocation: SearchResult?
-    @State private var selectedDetent: PresentationDetent = .height(80) // Start collapsed
+    @State private var selectedDetent: PresentationDetent = .height(80)
     @Binding var placeImages: [URL?]
     @Query private var savedLocations: [SavedLocation] // Fetch saved locations directly
 
@@ -46,17 +46,28 @@ struct UnifiedSheetView: View {
         .presentationBackgroundInteraction(.enabled(upThrough: .medium))
     }
 
+    @State private var isLoading = false
+
     private var searchView: some View {
         VStack {
             HStack {
                 Image(systemName: "magnifyingglass")
+                
                 TextField("Procure por algum lugar", text: $search)
                     .autocorrectionDisabled()
                     .onSubmit {
                         Task {
+                            isLoading = true
                             searchResults = (try? await locationService.search(with: search)) ?? []
+                            isLoading = false
                         }
                     }
+                
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .padding(.leading, 8)
+                }
             }
 
             Spacer()
@@ -97,8 +108,9 @@ struct UnifiedSheetView: View {
         }
     }
 
+
     private func placeDetailView(for location: SearchResult) -> some View {
-        VStack{
+        VStack(alignment: .leading) {
             Spacer()
             
             HStack {
@@ -107,20 +119,30 @@ struct UnifiedSheetView: View {
                     selectedDetent = .height(80)
                 }
                 .padding()
-                
+
                 Spacer()
+
+                Button(action: {
+                    print("Tapped")
+                }, label: {
+                    Image(systemName: "star")
+                })
+                .padding(.trailing)
             }
 
             Text(location.title)
                 .font(.title2)
+                .multilineTextAlignment(.leading)
                 .padding([.leading, .trailing, .bottom])
                 .lineLimit(nil)
                 .minimumScaleFactor(0.75)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             if let subtitle = location.subTitle, !subtitle.isEmpty {
                 Text(subtitle)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
                     .padding([.leading, .trailing, .bottom])
             }
 
@@ -128,7 +150,9 @@ struct UnifiedSheetView: View {
                 Link("\(url)", destination: url)
                     .font(.headline)
                     .foregroundColor(.blue)
-                    .padding([.leading, .trailing, .bottom])
+                    .padding([.leading, .trailing])
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.75)
             }
 
             if placeImages.isEmpty {
@@ -136,29 +160,34 @@ struct UnifiedSheetView: View {
                     .foregroundColor(.gray)
                     .padding(.leading)
             } else {
-                ScrollView(.horizontal) {
-                    HStack(alignment: .center) {
-                        ForEach(placeImages.compactMap { $0 }, id: \.self) { url in
-                            AsyncImage(url: url) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .frame(width: 280, height: 280)
-                            .cornerRadius(10)
-                            .padding()
-                        }
+                ForEach(placeImages.compactMap { $0 }, id: \.self) { url in
+                    AsyncImage(url: url) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity, minHeight: 340, maxHeight: 340)
+                            .clipped()
+                    } placeholder: {
+                        ProgressView()
                     }
+                    .cornerRadius(10)
                 }
             }
         }
-        .padding()
+        .padding([.top, .bottom])
         .onAppear {
             selectedDetent = .medium
+            print("location is \(location)")
         }
+        .frame(
+            minWidth: 0,
+            maxWidth: .infinity,
+            minHeight: 0,
+            maxHeight: .infinity,
+            alignment: .topLeading
+        )
     }
+
 
     private func didTapOnCompletion(_ completion: SearchCompletions) {
         Task {
