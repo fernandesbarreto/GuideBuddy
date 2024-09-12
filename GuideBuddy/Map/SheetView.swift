@@ -142,21 +142,27 @@ struct UnifiedSheetView: View {
                         image
                             .resizable()
                             .scaledToFill()
-                            .frame(maxWidth: .infinity, maxHeight: 240)
+                            .frame(maxWidth: .infinity, minHeight: 340, maxHeight: 340)
                             .clipped()
                     } placeholder: {
                         ProgressView()
                     }
                     .cornerRadius(10)
-                    .padding([.leading, .trailing, .bottom])
                 }
             }
         }
-        .padding()
+        .padding([.top, .bottom])
         .onAppear {
             selectedDetent = .medium
             print("location is \(location)")
         }
+        .frame(
+            minWidth: 0,
+            maxWidth: .infinity,
+            minHeight: 0,
+            maxHeight: .infinity,
+            alignment: .topLeading
+        )
     }
 
 
