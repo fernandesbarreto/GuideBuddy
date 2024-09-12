@@ -11,12 +11,8 @@
 		5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552BFA52C85D76700DE92BF /* HospitalData.swift */; };
 		5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C42C7F669200DC7332 /* AddDoc.swift */; };
 		5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C82C81E83100DC7332 /* hospitalsList.swift */; };
+		558BC8B62C8E999F006F491E /* (null) in Sources */ = {isa = PBXBuildFile; };
 		558BC8B82C90847F006F491E /* Extension1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC8B72C90847F006F491E /* Extension1.swift */; };
-		5528906B2C7F5144008B14AA /* DocsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5528906A2C7F5144008B14AA /* DocsList.swift */; };
-		5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552BFA52C85D76700DE92BF /* HospitalData.swift */; };
-		5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C42C7F669200DC7332 /* AddDoc.swift */; };
-		5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C82C81E83100DC7332 /* hospitalsList.swift */; };
-		558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC8B52C8E999F006F491E /* OpenDocView.swift */; };
 		C090E20F2C81F3D500F21058 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C090E20D2C81F3D500F21058 /* Localizable.strings */; };
 		C090E2132C81FD4C00F21058 /* Testinho.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E2122C81FD4C00F21058 /* Testinho.swift */; };
 		C090E2252C8F414400F21058 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E2242C8F414400F21058 /* LanguageManager.swift */; };
@@ -194,10 +190,8 @@
 				C126A5482C7F6A0200322D11 /* NavBar.swift */,
 				EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */,
 				EBA4A5C02C7D21A600ECD5C2 /* Preview Content */,
-				5528906C2C7F543C008B14AA /* Docs */,
 				C190C8EE2C8D546F0000A490 /* Emergency.swift */,
 				5528906C2C7F543C008B14AA /* Docs */,
-				EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */,
 			);
 			path = GuideBuddy;
 			sourceTree = "<group>";
@@ -333,13 +327,13 @@
 				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
 				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
 				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
-				558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */,
+				558BC8B62C8E999F006F491E /* (null) in Sources */,
 				EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */,
 				5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */,
 				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
 				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
 				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
-				558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */,
+				558BC8B62C8E999F006F491E /* (null) in Sources */,
 				EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */,
 				5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */,
 				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
@@ -501,7 +495,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = D757SK75D9;
+				DEVELOPMENT_TEAM = KXKV68W5T2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
@@ -536,7 +530,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = D757SK75D9;
+				DEVELOPMENT_TEAM = KXKV68W5T2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;

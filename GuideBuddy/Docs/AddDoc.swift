@@ -24,7 +24,6 @@ class ItemEntity: Identifiable {
     }
 }
 
-
 struct AdicionarDocumento: View {
     @Environment(\.modelContext) private var context: ModelContext
     let documento: Documento
@@ -72,86 +71,6 @@ struct AdicionarDocumento: View {
                                 buildImageMenu(item: item, uiImage: uiImage)
                             } else if item.type == 1 {
                                 buildPDFMenu(item: item)
-                        // ForEach(Array(items.enumerated()), id: \.element) { index, item in
-                        //     if item.type == 0 {
-                        //         if let uiImage = item.selectedImage {
-                        //             Menu {
-                        //                 Button(action: {
-                        //                     selectedItem = item
-                        //                 }) {
-                        //                     Label("Visualizar", systemImage: "eye")
-                        //                 }
-                                        
-                        //                 Button(action: {
-                        //                     activityItems = [uiImage]
-                        //                     isShowingShareSheet = true
-                        //                 }) {
-                        //                     Label("Compartilhar", systemImage: "square.and.arrow.up")
-                        //                 }
-                                        
-                        //                 Button(action: {
-                        //                     showingConfirmation = true
-                        //                 }) {
-                        //                     Label("Excluir", systemImage: "trash")
-                        //                 }
-                        //             } label: {
-                        //                 Image(uiImage: uiImage)
-                        //                     .resizable()
-                        //                     .aspectRatio(contentMode: .fill)
-                        //                     .frame(width: 110, height: 110)
-                        //                     .clipped()
-                        //                     .cornerRadius(10)
-                        //             }
-                        //             .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
-                        //                 Button("Cancelar", role: .cancel) {
-                        //                     showingConfirmation = false
-                        //                 }
-                        //                 Button("Sim, excluir", role: .destructive) {
-                        //                     items.remove(at: index)
-                        //                     showingConfirmation = false
-                        //                 }
-                        //             }
-                        //         }
-                        //     } else if item.type == 1 {
-                        //         Menu {
-                        //             Button(action: {
-                        //                 selectedItem = item
-                        //             }) {
-                        //                 Label("Visualizar", systemImage: "eye")
-                        //             }
-                                    
-                        //             // Adiciona a opção Compartilhar para PDF
-                        //             if let pdfURL = item.pdf {
-                        //                 Button(action: {
-                        //                     activityItems = [pdfURL]
-                        //                     isShowingShareSheet = true
-                        //                 }) {
-                        //                     Label("Compartilhar", systemImage: "square.and.arrow.up")
-                        //                 }
-                        //             }
-                                    
-                        //             Button(action: {
-                        //                 showingConfirmation = true
-                        //             }) {
-                        //                 Label("Excluir", systemImage: "trash")
-                        //             }
-                        //         } label: {
-                        //             Image("pdfImage")
-                        //                 .resizable()
-                        //                 .aspectRatio(contentMode: .fill)
-                        //                 .frame(width: 110, height: 110)
-                        //                 .clipped()
-                        //                 .cornerRadius(10)
-                        //         }
-                        //         .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
-                        //             Button("Cancelar", role: .cancel) {
-                        //                 showingConfirmation = false
-                        //             }
-                        //             Button("Sim, excluir", role: .destructive) {
-                        //                 items.remove(at: index)
-                        //                 showingConfirmation = false
-                        //             }
-                        //         }
                             }
                         }
                     }
@@ -184,8 +103,13 @@ struct AdicionarDocumento: View {
                 Label("Visualizar", systemImage: "eye")
             }
             Button(action: {
+                activityItems = [uiImage]
+                isShowingShareSheet = true
+            }) {
+                Label("Compartilhar", systemImage: "square.and.arrow.up")
+            }
+            Button(action: {
                 showingConfirmation = true
-                print("opening item with id \(item.id)")
             }) {
                 Label("Excluir", systemImage: "trash")
             }
@@ -212,9 +136,19 @@ struct AdicionarDocumento: View {
         Menu {
             Button(action: {
                 selectedItem = item
-                print("Resolving bookmark for item with id \(item.id)")
             }) {
                 Label("Visualizar", systemImage: "eye")
+            }
+            Button(action: {
+                if let pdfPath = item.pdfPath {
+                    let fileManager = FileManager.default
+                    let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+                    let fileURL = documentsDirectory.appendingPathComponent(pdfPath)
+                    activityItems = [fileURL]
+                    isShowingShareSheet = true
+                }
+            }) {
+                Label("Compartilhar", systemImage: "square.and.arrow.up")
             }
             Button(action: {
                 showingConfirmation = true
