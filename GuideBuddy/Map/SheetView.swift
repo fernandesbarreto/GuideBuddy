@@ -16,7 +16,7 @@ struct UnifiedSheetView: View {
     @State private var search: String = ""
     @Binding var searchResults: [SearchResult]
     @Binding var selectedLocation: SearchResult?
-    @State private var selectedDetent: PresentationDetent = .height(80) // Start collapsed
+    @State private var selectedDetent: PresentationDetent = .height(80)
     @Binding var placeImages: [URL?]
 
     var body: some View {
@@ -75,25 +75,36 @@ struct UnifiedSheetView: View {
     }
 
     private func placeDetailView(for location: SearchResult) -> some View {
-        VStack{
+        VStack {
             Spacer()
-            
-            HStack {
-                Button("Voltar") {
-                    selectedLocation = nil
-                    selectedDetent = .height(80)
+
+            ZStack {
+                HStack {
+                    Button("Voltar") {
+                        selectedLocation = nil
+                        selectedDetent = .height(80)
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
+
+                    Spacer()
+                    
+                    Button(action: {
+                        print("Tapped")
+                    }, label: {
+                        Image(systemName: "star")
+                    })
                 }
-                .padding()
-                
-                Spacer()
             }
 
+            
             Text(location.title)
                 .font(.title2)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding([.leading, .trailing, .bottom])
                 .lineLimit(nil)
                 .minimumScaleFactor(0.75)
+                .frame(maxWidth: .infinity)
             
             if let subtitle = location.subTitle, !subtitle.isEmpty {
                 Text(subtitle)
@@ -107,7 +118,7 @@ struct UnifiedSheetView: View {
                     .font(.headline)
                     .fixedSize(horizontal: false, vertical: true)
                     .foregroundColor(.blue)
-                    .padding([.leading, .trailing, .bottom])
+                    .padding([.leading, .trailing])
                     .lineLimit(nil)
                     .minimumScaleFactor(0.75)
             }
@@ -117,8 +128,7 @@ struct UnifiedSheetView: View {
                     .foregroundColor(.gray)
                     .padding(.leading)
             } else {
-                ScrollView(.horizontal) {
-                    HStack(alignment: .center) {
+                    HStack(alignment: .center, spacing: 16) {
                         ForEach(placeImages.compactMap { $0 }, id: \.self) { url in
                             AsyncImage(url: url) { image in
                                 image
@@ -127,20 +137,22 @@ struct UnifiedSheetView: View {
                             } placeholder: {
                                 ProgressView()
                             }
-                            .frame(width: 280, height: 280)
+                            .frame(width: 240, height: 240)
                             .cornerRadius(10)
                             .padding()
                         }
                     }
-                }
+                    .frame(maxWidth: .infinity)
             }
+
         }
         .padding()
         .onAppear {
             selectedDetent = .medium
-            print("location is \(location )")
+            print("location is \(location)")
         }
     }
+
 
     private func didTapOnCompletion(_ completion: SearchCompletions) {
         Task {
