@@ -19,7 +19,7 @@ struct HomeView: View {
                 
                     VStack{
                         HStack {
-                            Text("Olá,")
+                            Text("ola".localized)
                                 .font(.system(size: 24,weight: .regular , design: .rounded))
                             .foregroundStyle(.black)
                             Spacer()
@@ -44,7 +44,7 @@ struct HomeView: View {
                             Spacer()
                             HStack {
                                 Spacer()
-                                Text("Acionar Helper")
+                                Text("acionar_helper")
                                     .font(.system(size: 22,weight: .semibold , design: .rounded))
                                     .foregroundStyle(.white)
                                     .shadow(radius: 5)
@@ -69,7 +69,7 @@ struct HomeView: View {
                                         .font(.system(size: 32,weight: .semibold , design: .rounded))
                                     .foregroundStyle(.white)
                                     
-                                    Text("Emergência")
+                                    Text("emergencia")
                                         .font(.system(size: 12))
                                         .foregroundStyle(.white)
                                         .padding(.vertical, 3)
@@ -78,7 +78,7 @@ struct HomeView: View {
                         })
                         .shadow(radius: 5)
                         Spacer()
-                        NavigationLink(destination: TestView(), label: {
+                        NavigationLink(destination: Favorites(), label: {
                             ZStack {
                                 Rectangle()
                                     .frame(width: 77, height: 77)
@@ -89,7 +89,7 @@ struct HomeView: View {
                                         .font(.system(size: 32,weight: .semibold , design: .rounded))
                                     .foregroundStyle(.white)
                                     
-                                    Text("Favoritos")
+                                    Text("favoritos")
                                         .font(.system(size: 12))
                                         .foregroundStyle(.white)
                                         .padding(.vertical, 2)
@@ -99,14 +99,14 @@ struct HomeView: View {
                         .shadow(radius: 5)
                     }
                     .frame(height: 177)
-                    NavigationLink(destination: TestView(), label: {
+                    NavigationLink(destination: SearchableMap(), label: {
                         ZStack{
                             Image("widMaps")
                             VStack {
                                 Spacer()
                                 HStack {
                                     Spacer()
-                                    Text("Mapa")
+                                    Text("mapas".localized)
                                         .font(.system(size: 22,weight: .semibold , design: .rounded))
                                         .foregroundStyle(.white)
                                         .shadow(radius: 5)
@@ -125,7 +125,7 @@ struct HomeView: View {
                 .frame(width: 370)
                 .padding(.horizontal)
                 
-                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(MapUFPE()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
+                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["hospital".localized, "faculdade".localized,"documento".localized], destination: [AnyView(HealthCategories()), AnyView(TestView()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
                     .padding(.horizontal, 8)
                 
                 NavigationLink(destination: TestView(), label: {
@@ -223,6 +223,9 @@ struct HomeView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
                   .background(Color.background)
+        }
+        .onAppear() {
+            print("user defaults ON APPEAR \(String(describing: UserDefaults.standard.value(forKey: "AppleLanguage")))")
         }
       
     }

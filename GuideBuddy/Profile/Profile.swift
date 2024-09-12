@@ -105,13 +105,16 @@ struct Profile: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-            /*.navigationTitle("Perfil")*/
+
+//            .toolbarBackground(.visible, for: .navigationBar)
+            .navigationTitle("perfil")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
+
                     NavigationLink(destination: {
                         EditProfileScreen(selectedImage: selectedImage)
                     }, label: {
-                        Text("Editar")
+                        Text("editar")
                             .foregroundStyle(Color.background)
                             .shadow(radius: 5)
                     })

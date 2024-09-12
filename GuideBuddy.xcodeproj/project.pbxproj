@@ -11,9 +11,12 @@
 		5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552BFA52C85D76700DE92BF /* HospitalData.swift */; };
 		5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C42C7F669200DC7332 /* AddDoc.swift */; };
 		5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C82C81E83100DC7332 /* hospitalsList.swift */; };
-		558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC8B52C8E999F006F491E /* OpenDocView.swift */; };
+		558BC8B62C8E999F006F491E /* (null) in Sources */ = {isa = PBXBuildFile; };
+		558BC8B82C90847F006F491E /* Extension1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC8B72C90847F006F491E /* Extension1.swift */; };
 		C090E20F2C81F3D500F21058 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C090E20D2C81F3D500F21058 /* Localizable.strings */; };
 		C090E2132C81FD4C00F21058 /* Testinho.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E2122C81FD4C00F21058 /* Testinho.swift */; };
+		C090E2252C8F414400F21058 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E2242C8F414400F21058 /* LanguageManager.swift */; };
+		C090E2302C9307C400F21058 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E22F2C9307C400F21058 /* Favorites.swift */; };
 		C0F65D262C7DF9180096B3B1 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F65D252C7DF9180096B3B1 /* Login.swift */; };
 		C1130E992C8AFBB000CE4F98 /* ProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */; };
 		C12075EC2C828FB4005277B7 /* GaleryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12075EB2C828FB4005277B7 /* GaleryInput.swift */; };
@@ -41,6 +44,9 @@
 		EBA4A5CD2C7D232D00ECD5C2 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = EBA4A5CC2C7D232D00ECD5C2 /* OpenAI */; };
 		EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB948F62C7D24BB002F5375 /* GuideChat.swift */; };
 		EBB948FB2C7D275C002F5375 /* SpeechRecognition.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB948FA2C7D275C002F5375 /* SpeechRecognition.swift */; };
+		EBED16992C8B51B200DB4F1B /* SearchableMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED16922C8B51B200DB4F1B /* SearchableMap.swift */; };
+		EBED169B2C8B51B200DB4F1B /* SheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED16942C8B51B200DB4F1B /* SheetView.swift */; };
+		EBED169D2C8B51B200DB4F1B /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED16962C8B51B200DB4F1B /* LocationService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,11 +55,13 @@
 		5572B2C42C7F669200DC7332 /* AddDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoc.swift; sourceTree = "<group>"; };
 		5572B2C62C8097CD00DC7332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5572B2C82C81E83100DC7332 /* hospitalsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hospitalsList.swift; sourceTree = "<group>"; };
-		558BC8B52C8E999F006F491E /* OpenDocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenDocView.swift; sourceTree = "<group>"; };
+		558BC8B72C90847F006F491E /* Extension1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension1.swift; sourceTree = "<group>"; };
 		C090E20E2C81F3D500F21058 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C090E2102C81F3DD00F21058 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C090E2112C81F3DD00F21058 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C090E2122C81FD4C00F21058 /* Testinho.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testinho.swift; sourceTree = "<group>"; };
+		C090E2242C8F414400F21058 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		C090E22F2C9307C400F21058 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		C0F65D252C7DF9180096B3B1 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoView.swift; sourceTree = "<group>"; };
 		C12075EB2C828FB4005277B7 /* GaleryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaleryInput.swift; sourceTree = "<group>"; };
@@ -83,6 +91,9 @@
 		EBA4A5C12C7D21A600ECD5C2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		EBB948F62C7D24BB002F5375 /* GuideChat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideChat.swift; sourceTree = "<group>"; };
 		EBB948FA2C7D275C002F5375 /* SpeechRecognition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognition.swift; sourceTree = "<group>"; };
+		EBED16922C8B51B200DB4F1B /* SearchableMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableMap.swift; sourceTree = "<group>"; };
+		EBED16942C8B51B200DB4F1B /* SheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SheetView.swift; sourceTree = "<group>"; };
+		EBED16962C8B51B200DB4F1B /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +113,6 @@
 			children = (
 				5528906A2C7F5144008B14AA /* DocsList.swift */,
 				5572B2C42C7F669200DC7332 /* AddDoc.swift */,
-				558BC8B52C8E999F006F491E /* OpenDocView.swift */,
 			);
 			path = Docs;
 			sourceTree = "<group>";
@@ -112,6 +122,7 @@
 			children = (
 				5572B2C82C81E83100DC7332 /* hospitalsList.swift */,
 				5552BFA52C85D76700DE92BF /* HospitalData.swift */,
+				558BC8B72C90847F006F491E /* Extension1.swift */,
 			);
 			name = Hospitals;
 			sourceTree = "<group>";
@@ -197,14 +208,13 @@
 		EBA4A5B92C7D21A500ECD5C2 /* GuideBuddy */ = {
 			isa = PBXGroup;
 			children = (
-				C15583552C93341100376E91 /* MapIllustrated */,
-				C1ED26CE2C906DFF00A91282 /* Slangs */,
-				C152DB1E2C8204390052256B /* Profile */,
-				C152DB0D2C80B91C0052256B /* Home */,
-				EBB948F92C7D2750002F5375 /* Models */,
-				EBB948F52C7D24B2002F5375 /* Edu */,
 				5572B2C72C80BF9300DC7332 /* Hospitals */,
 				5572B2C62C8097CD00DC7332 /* Info.plist */,
+				C152DB1E2C8204390052256B /* Profile */,
+				C152DB0D2C80B91C0052256B /* Home */,
+				EBC86AB42C80B8AF0097633F /* Map */,
+				EBB948F92C7D2750002F5375 /* Models */,
+				EBB948F52C7D24B2002F5375 /* Edu */,
 				EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */,
 				EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */,
 				EBE656822C89E14000DD9C34 /* Login */,
@@ -212,8 +222,8 @@
 				C126A5482C7F6A0200322D11 /* NavBar.swift */,
 				EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */,
 				EBA4A5C02C7D21A600ECD5C2 /* Preview Content */,
-				5528906C2C7F543C008B14AA /* Docs */,
 				C190C8EE2C8D546F0000A490 /* Emergency.swift */,
+				5528906C2C7F543C008B14AA /* Docs */,
 			);
 			path = GuideBuddy;
 			sourceTree = "<group>";
@@ -244,10 +254,22 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		EBC86AB42C80B8AF0097633F /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				EBED16962C8B51B200DB4F1B /* LocationService.swift */,
+				EBED16922C8B51B200DB4F1B /* SearchableMap.swift */,
+				EBED16942C8B51B200DB4F1B /* SheetView.swift */,
+				C090E22F2C9307C400F21058 /* Favorites.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
 		EBE656822C89E14000DD9C34 /* Login */ = {
 			isa = PBXGroup;
 			children = (
 				C0F65D252C7DF9180096B3B1 /* Login.swift */,
+				C090E2242C8F414400F21058 /* LanguageManager.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -332,6 +354,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0F65D262C7DF9180096B3B1 /* Login.swift in Sources */,
+				C090E2252C8F414400F21058 /* LanguageManager.swift in Sources */,
 				C152DB132C80BA5F0052256B /* TestView.swift in Sources */,
 				C152DB0C2C80B5ED0052256B /* HomeView.swift in Sources */,
 				C190C8F52C8D5F860000A490 /* AgePicker.swift in Sources */,
@@ -345,10 +368,23 @@
 				C1ED26D22C906EC600A91282 /* SlangsView.swift in Sources */,
 				EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */,
 				EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */,
+				5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */,
+				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
+				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
+				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
+				558BC8B62C8E999F006F491E /* (null) in Sources */,
+				EBED16992C8B51B200DB4F1B /* SearchableMap.swift in Sources */,
+				EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */,
+				5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */,
+				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
+				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
+				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
+				558BC8B62C8E999F006F491E /* (null) in Sources */,
 				EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */,
 				5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */,
 				C15583592C93358B00376E91 /* BuildingView.swift in Sources */,
 				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
+				558BC8B82C90847F006F491E /* Extension1.swift in Sources */,
 				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
 				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
 				EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */,
@@ -359,8 +395,10 @@
 				EBB948FB2C7D275C002F5375 /* SpeechRecognition.swift in Sources */,
 				C152DB202C8204520052256B /* ImagePicker.swift in Sources */,
 				C126A5492C7F6A0200322D11 /* NavBar.swift in Sources */,
+				EBED169D2C8B51B200DB4F1B /* LocationService.swift in Sources */,
+				EBED169B2C8B51B200DB4F1B /* SheetView.swift in Sources */,
+				C090E2302C9307C400F21058 /* Favorites.swift in Sources */,
 				C152DB112C80B94E0052256B /* Category.swift in Sources */,
-				558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -518,6 +556,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -552,6 +591,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (

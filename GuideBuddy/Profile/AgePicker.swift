@@ -14,15 +14,15 @@ struct AgePickerView: View {
     var body: some View {
         NavigationView {
             Form {
-                Picker("Selecione sua idade", selection: $selectedAge) {
+                Picker("age_select", selection: $selectedAge) {
                     ForEach(0..<117) { age in  // Idades de 0 a 100
                         Text("\(age) anos").tag(age)
                     }
                 }
                 .pickerStyle(WheelPickerStyle())  // Apresenta no estilo roda
-                .accessibilityLabel("Idade selecionada")
+                .accessibilityLabel("idade_selecionada")
             }
-            .navigationBarTitle("Idade", displayMode: .inline)
+            .navigationBarTitle("user_age", displayMode: .inline)
         }
     }
 }
