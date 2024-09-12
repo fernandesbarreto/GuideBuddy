@@ -87,51 +87,48 @@ struct UnifiedSheetView: View {
 
 
     private func placeDetailView(for location: SearchResult) -> some View {
-        VStack {
+        VStack(alignment: .leading) {
             Spacer()
-
-            ZStack {
-                HStack {
-                    Button("Voltar") {
-                        selectedLocation = nil
-                        selectedDetent = .height(80)
-                    }
-                    .padding()
-                    .frame(maxWidth: .infinity, alignment: .leading)
-
-                    Spacer()
-                    
-                    Button(action: {
-                        print("Tapped")
-                    }, label: {
-                        Image(systemName: "star")
-                    })
+            
+            HStack {
+                Button("Voltar") {
+                    selectedLocation = nil
+                    selectedDetent = .height(80)
                 }
+                .padding()
+
+                Spacer()
+
+                Button(action: {
+                    print("Tapped")
+                }, label: {
+                    Image(systemName: "star")
+                })
+                .padding(.trailing)
             }
 
-            
             Text(location.title)
                 .font(.title2)
-                .fixedSize(horizontal: false, vertical: true)
+                .multilineTextAlignment(.leading)
                 .padding([.leading, .trailing, .bottom])
                 .lineLimit(nil)
                 .minimumScaleFactor(0.75)
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             if let subtitle = location.subTitle, !subtitle.isEmpty {
                 Text(subtitle)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
+                    .multilineTextAlignment(.leading)
                     .padding([.leading, .trailing, .bottom])
             }
 
             if let url = location.url {
                 Link("\(url)", destination: url)
                     .font(.headline)
-                    .fixedSize(horizontal: false, vertical: true)
                     .foregroundColor(.blue)
                     .padding([.leading, .trailing])
-                    .lineLimit(nil)
+                    .lineLimit(1)
                     .minimumScaleFactor(0.75)
             }
 
@@ -140,23 +137,20 @@ struct UnifiedSheetView: View {
                     .foregroundColor(.gray)
                     .padding(.leading)
             } else {
-                    HStack(alignment: .center, spacing: 16) {
-                        ForEach(placeImages.compactMap { $0 }, id: \.self) { url in
-                            AsyncImage(url: url) { image in
-                                image
-                                    .resizable()
-                                    .scaledToFill()
-                            } placeholder: {
-                                ProgressView()
-                            }
-                            .frame(width: 240, height: 240)
-                            .cornerRadius(10)
-                            .padding()
-                        }
+                ForEach(placeImages.compactMap { $0 }, id: \.self) { url in
+                    AsyncImage(url: url) { image in
+                        image
+                            .resizable()
+                            .scaledToFill()
+                            .frame(maxWidth: .infinity, maxHeight: 240)
+                            .clipped()
+                    } placeholder: {
+                        ProgressView()
                     }
-                    .frame(maxWidth: .infinity)
+                    .cornerRadius(10)
+                    .padding([.leading, .trailing, .bottom])
+                }
             }
-
         }
         .padding()
         .onAppear {
