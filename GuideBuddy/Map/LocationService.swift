@@ -129,6 +129,7 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
     }
 
     func search(with query: String) async throws -> [SearchResult] {
+        print("searching with \(query)")
         let mapKitRequest = MKLocalSearch.Request()
         mapKitRequest.naturalLanguageQuery = query
         mapKitRequest.resultTypes = .pointOfInterest
@@ -149,6 +150,7 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
 
         var searchResults = [SearchResult]()
         for mapItem in filteredResults {
+            print("mapitem is\(mapItem)")
             let location = mapItem.placemark.location?.coordinate ?? fixedCoordinate
             let title = mapItem.name ?? "Local"
             let subTitle = mapItem.placemark.subtitle ?? ""

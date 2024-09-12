@@ -90,6 +90,7 @@ struct UnifiedSheetView: View {
 
             Text(location.title)
                 .font(.title2)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding([.leading, .trailing, .bottom])
                 .lineLimit(nil)
                 .minimumScaleFactor(0.75)
@@ -104,8 +105,11 @@ struct UnifiedSheetView: View {
             if let url = location.url {
                 Link("\(url)", destination: url)
                     .font(.headline)
+                    .fixedSize(horizontal: false, vertical: true)
                     .foregroundColor(.blue)
                     .padding([.leading, .trailing, .bottom])
+                    .lineLimit(nil)
+                    .minimumScaleFactor(0.75)
             }
 
             if placeImages.isEmpty {
@@ -134,6 +138,7 @@ struct UnifiedSheetView: View {
         .padding()
         .onAppear {
             selectedDetent = .medium
+            print("location is \(location )")
         }
     }
 
