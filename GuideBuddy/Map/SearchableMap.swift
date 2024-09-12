@@ -130,6 +130,7 @@ struct SearchableMap: View {
                         .foregroundColor(.red)
                         .font(.title)
                 }
+                .tag(result)
             }
         }
     }
