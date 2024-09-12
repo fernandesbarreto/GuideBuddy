@@ -78,7 +78,7 @@ struct HomeView: View {
                         })
                         .shadow(radius: 5)
                         Spacer()
-                        NavigationLink(destination: TestView(), label: {
+                        NavigationLink(destination: Favorites(), label: {
                             ZStack {
                                 Rectangle()
                                     .frame(width: 77, height: 77)

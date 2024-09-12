@@ -7,17 +7,30 @@
 
 import SwiftUI
 import MapKit
+import SwiftData
 
-import SwiftUI
-import MapKit
+@Model
+class SavedLocation: Identifiable {
+    let id = UUID()
+    let name: String
+    let latitude: Double
+    let longitude: Double
+    init(name: String, latitude: Double, longitude: Double) {
+        self.name = name
+        self.longitude = longitude
+        self.latitude = latitude
+    }
+}
 
 struct UnifiedSheetView: View {
+    @Environment(\.modelContext) private var context
     @State private var locationService = LocationService(completer: .init())
     @State private var search: String = ""
     @Binding var searchResults: [SearchResult]
     @Binding var selectedLocation: SearchResult?
     @State private var selectedDetent: PresentationDetent = .height(80) // Start collapsed
     @Binding var placeImages: [URL?]
+    @Query private var savedLocations: [SavedLocation] // Fetch saved locations directly
 
     var body: some View {
         VStack {
@@ -52,9 +65,19 @@ struct UnifiedSheetView: View {
                 ForEach(locationService.completions) { completion in
                     Button(action: { didTapOnCompletion(completion) }) {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(completion.title)
-                                .font(.headline)
-                                .fontDesign(.rounded)
+                            HStack {
+                                Text(completion.title)
+                                    .font(.headline)
+                                    .fontDesign(.rounded)
+                                
+                                // Show filled or empty star based on save status
+                                Button(action: {
+                                    toggleSave(for: completion)
+                                }, label: {
+                                    Image(systemName: isLocationSaved(completion) ? "star.fill" : "star")
+                                        .foregroundColor(isLocationSaved(completion) ? .yellow : .primary)
+                                })
+                            }
                             Text(completion.subTitle)
                             if let url = completion.url {
                                 Link(url.absoluteString, destination: url)
@@ -145,5 +168,30 @@ struct UnifiedSheetView: View {
                 selectedDetent = .medium
             }
         }
+    }
+
+    // MARK: - Helper Methods
+
+    private func toggleSave(for completion: SearchCompletions) {
+        if let savedLocation = savedLocations.first(where: {
+            $0.latitude == completion.latitude && $0.longitude == completion.longitude
+        }) {
+            // Location is already saved, so remove it
+            context.delete(savedLocation)
+        } else {
+            // Location is not saved, so save it
+            let newLocation = SavedLocation(
+                name: completion.title,
+                latitude: completion.latitude ?? 0,
+                longitude: completion.longitude ?? 0
+            )
+            context.insert(newLocation)
+        }
+    }
+
+    private func isLocationSaved(_ completion: SearchCompletions) -> Bool {
+        return savedLocations.contains(where: {
+            $0.latitude == completion.latitude && $0.longitude == completion.longitude
+        })
     }
 }

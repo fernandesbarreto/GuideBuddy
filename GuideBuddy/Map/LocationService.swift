@@ -14,6 +14,8 @@ struct SearchCompletions: Identifiable {
     let title: String
     let subTitle: String
     var url: URL?
+    let latitude: Double?
+    let longitude: Double?
 }
 
 
@@ -21,6 +23,8 @@ struct SearchResult: Identifiable, Hashable {
     let id = UUID()
     let location: CLLocationCoordinate2D
     let title: String
+    let latitude: Double
+    let longitude: Double
     let subTitle: String?
     let placeID: String?
     let url: URL?
@@ -123,7 +127,9 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
             return SearchCompletions(
                 title: completion.title,
                 subTitle: completion.subtitle,
-                url: mapItem.url
+                url: mapItem.url,
+                latitude: mapItem.placemark.location?.coordinate.latitude,
+                longitude: mapItem.placemark.location?.coordinate.longitude
             )
         }
     }
@@ -156,7 +162,7 @@ class LocationService: NSObject, MKLocalSearchCompleterDelegate {
             let placeID = try? await googlePlacesService.getPlaceID(for: location, description: title)
             print("Fetched placeID: \(String(describing: placeID))")
             
-            searchResults.append(SearchResult(location: location, title: title, subTitle: subTitle, placeID: placeID, url: url))
+            searchResults.append(SearchResult(location: location, title: title, latitude: location.latitude, longitude: location.longitude, subTitle: subTitle, placeID: placeID, url: url))
         }
 
         return searchResults
