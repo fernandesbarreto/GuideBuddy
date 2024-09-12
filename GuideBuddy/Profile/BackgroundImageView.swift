@@ -37,7 +37,7 @@ struct BackgroundImageView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-            .navigationTitle("Capa")
+            .navigationTitle("capa")
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -45,12 +45,12 @@ struct BackgroundImageView: View {
                         showSheet = true
                       
                     }, label: {
-                        Text("Editar")
+                        Text("editar")
                             .foregroundStyle(Color.verdePrincipal)
                     })
                     .sheet(isPresented: $showSheet) {
                         VStack {
-                            Text("Editar foto do perfil")
+                            Text("editar_foto")
                                 .font(.headline)
                                 .padding()
 
@@ -59,7 +59,7 @@ struct BackgroundImageView: View {
                                 isBackgroundPickerPresented = true
                             }, label: {
                                 HStack {
-                                    Text("Tirar foto")
+                                    Text("tirar_foto")
                                     Spacer()
                                     Image(systemName: "camera")
                                     
@@ -74,7 +74,7 @@ struct BackgroundImageView: View {
                                 isBackgroundPickerGaleryPresented = true
                             }, label: {
                                 HStack {
-                                    Text("Escolher foto")
+                                    Text("escolher_foto")
                                     Spacer()
                                     Image(systemName: "photo")
                                 }
@@ -90,7 +90,7 @@ struct BackgroundImageView: View {
                                 
                             }, label: {
                                 HStack {
-                                    Text("Apagar foto")
+                                    Text("apagar_foto")
                                         .foregroundColor(.red)
                                     Spacer()
                                     Image(systemName: "trash")
