@@ -28,7 +28,7 @@ struct UnifiedSheetView: View {
     @State private var search: String = ""
     @Binding var searchResults: [SearchResult]
     @Binding var selectedLocation: SearchResult?
-    @State private var selectedDetent: PresentationDetent = .height(80)
+    @State private var selectedDetent: PresentationDetent = .height(96)
     @Binding var placeImages: [URL?]
     @Query private var savedLocations: [SavedLocation] // Fetch saved locations directly
 
@@ -41,7 +41,7 @@ struct UnifiedSheetView: View {
             }
         }
         .interactiveDismissDisabled()
-        .presentationDetents([.height(80), .medium], selection: $selectedDetent)
+        .presentationDetents([.height(96), .medium], selection: $selectedDetent)
         .presentationBackground(.regularMaterial)
         .presentationBackgroundInteraction(.enabled(upThrough: .medium))
     }
@@ -116,7 +116,7 @@ struct UnifiedSheetView: View {
             HStack {
                 Button("Voltar") {
                     selectedLocation = nil
-                    selectedDetent = .height(80)
+                    selectedDetent = .height(96)
                 }
                 .padding()
 
