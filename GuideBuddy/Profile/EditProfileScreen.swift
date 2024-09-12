@@ -26,7 +26,7 @@ struct EditProfileScreen: View {
             VStack {
                 List {
                     // Primeiro grupo com título (para edição da foto do perfil)
-                    Section(header: Text("Foto de Perfil")) {
+                    Section(header: Text("profile_pic")) {
                         NavigationLink(destination: {
                             ProfilePhotoView(selectedImage: selectedImage)
                         }, label: {
@@ -49,7 +49,7 @@ struct EditProfileScreen: View {
                                         }
                                     }
                                 Spacer()
-                                    Text("Editar")
+                                    Text("editar")
                                         .foregroundStyle(Color.verdePrincipal)
                                 
                             }
@@ -57,10 +57,10 @@ struct EditProfileScreen: View {
                     }
                     
                     // Segundo grupo com título (campos de texto)
-                    Section(header: Text("Nome")) {
-                        TextField("Nome", text: $nome)
+                    Section(header: Text("user_name")) {
+                        TextField("user_name", text: $nome)
                     }
-                    Section(header: Text("Idade")) {
+                    Section(header: Text("user_age")) {
                        /* TextField("Idade", text: $idade)*/
                         
                         HStack {
@@ -68,7 +68,7 @@ struct EditProfileScreen: View {
                             Spacer()
                             Button(action: { 
                                 showAgePicker = true}, label: {
-                                    Text("Editar")
+                                    Text("editar")
                                         .foregroundStyle(Color.verdePrincipal)
                                 })
                                  // Aciona a apresentação do modal
@@ -79,13 +79,13 @@ struct EditProfileScreen: View {
                              }
    
                     }
-                    Section(header: Text("Linguagem")) {
+                    Section(header: Text("linguagem")) {
                         HStack {
                             Text("\(selectedLanguage)")
                             Spacer()
                             Button(action: {
                                 showLanguagePicker = true}, label: {
-                                    Text("Editar")
+                                    Text("editar")
                                         .foregroundStyle(Color.verdePrincipal)
                                 })
                                  // Aciona a apresentação do modal
@@ -100,7 +100,7 @@ struct EditProfileScreen: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
 //            .toolbarBackground(.visible, for: .navigationBar)
-            .navigationTitle("Editar perfil")
+            .navigationTitle("editar_perfil")
             .toolbar {
 //                ToolbarItem(placement: .principal) {
 //                  Text("Perfil")

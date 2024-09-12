@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="GuideBuddy/InfoPlist.xcstrings" source-language="pt-BR" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="15.4" build-num="15F31d"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName" xml:space="preserve">
+        <source>GuiBu</source>
+        <note>Bundle name</note>
+      </trans-unit>
+      <trans-unit id="NSCameraUsageDescription" xml:space="preserve">
+        <source>GuiBu quer usar sua câmera</source>
+        <note>Privacy - Camera Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSMicrophoneUsageDescription" xml:space="preserve">
+        <source>Permita que o GuideBuddy use o seu microfone</source>
+        <note>Privacy - Microphone Usage Description</note>
+      </trans-unit>
+      <trans-unit id="NSSpeechRecognitionUsageDescription" xml:space="preserve">
+        <source>Permita que o GuideBuddy traduza a sua voz para texto</source>
+        <note>Privacy - Speech Recognition Usage Description</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Resource/pt-BR.lproj/Localizable.strings" source-language="pt-BR" target-language="en" datatype="plaintext">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="15.4" build-num="15F31d"/>
+    </header>
+    <body>
+      <trans-unit id="%@" xml:space="preserve">
+        <source>%@</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%lld" xml:space="preserve">
+        <source>%lld</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="%lld anos" xml:space="preserve">
+        <source>%lld anos</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="29" xml:space="preserve">
+        <source>29</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Cancelar" xml:space="preserve">
+        <source>Cancelar</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Conteúdo do Arquivo:" xml:space="preserve">
+        <source>Conteúdo do Arquivo:</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Desafios" xml:space="preserve">
+        <source>Desafios</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Detalhes" xml:space="preserve">
+        <source>Detalhes</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Emergência" xml:space="preserve">
+        <source>Emergência</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excluir" xml:space="preserve">
+        <source>Excluir</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Excluir da lista?" xml:space="preserve">
+        <source>Excluir da lista?</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Faça uma pergunta!" xml:space="preserve">
+        <source>Faça uma pergunta!</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="GuiBu" xml:space="preserve">
+        <source>GuiBu</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Hello, worldddd!" xml:space="preserve">
+        <source>Hello, worldddd!</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Histórico" xml:space="preserve">
+        <source>Histórico</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Home" xml:space="preserve">
+        <source>Home</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="OK" xml:space="preserve">
+        <source>OK</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Pedro Nunes" xml:space="preserve">
+        <source>Pedro Nunes</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Search" xml:space="preserve">
+        <source>Search</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Sim, excluir" xml:space="preserve">
+        <source>Sim, excluir</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="TestView" xml:space="preserve">
+        <source>TestView</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="Visualizar" xml:space="preserve">
+        <source>Visualizar</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="acionar_helper" xml:space="preserve">
+        <source>Acionar Helper</source>
+        <target>Activate Helper</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="age_select" xml:space="preserve">
+        <source>Selecione sua idade</source>
+        <target>Select your age</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="ambulancia" xml:space="preserve">
+        <source>Ambulância</source>
+        <target>Ambulance</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="anos" xml:space="preserve">
+        <source>anos</source>
+        <target>years</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="antes" xml:space="preserve">
+        <source>Anterior a 7 Dias</source>
+        <target>Earlier than 7 Days</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="apagar_foto" xml:space="preserve">
+        <source>Apagar foto</source>
+        <target>Delete photo</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="bombeiro" xml:space="preserve">
+        <source>Bombeiro</source>
+        <target>Firefighter</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="capa" xml:space="preserve">
+        <source>Capa</source>
+        <target>Cover</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="carta_aceite" xml:space="preserve">
+        <source>Carta de aceite universitário</source>
+        <target>University acceptance letter</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="carta_de_indicacao" xml:space="preserve">
+        <source>Carta de indicação</source>
+        <target>Recommendation letter</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="central_atendimento_mulher" xml:space="preserve">
+        <source>Central de Atendimento à Mulher</source>
+        <target>Women's Assistance Center</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="comprovante_de_residencia" xml:space="preserve">
+        <source>Comprovante de residência</source>
+        <target>Proof of residence</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="comprovante_fincanceiro" xml:space="preserve">
+        <source>Comprovante financeiro</source>
+        <target>Financial statement</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="cpf" xml:space="preserve">
+        <source>CPF</source>
+        <target>CPF (Taxpayer Registry Number)</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="defesa_civil" xml:space="preserve">
+        <source>Defesa Civil</source>
+        <target>Civil Defense</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="documento" xml:space="preserve">
+        <source>Documentos</source>
+        <target>Documents</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="editar" xml:space="preserve">
+        <source>Editar</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="editar_foto" xml:space="preserve">
+        <source>Editar foto do perfil</source>
+        <target>Edit profile picture</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="editar_perfil" xml:space="preserve">
+        <source>Editar perfil</source>
+        <target>Edit profile</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="emergencia" xml:space="preserve">
+        <source>Emergência</source>
+        <target>Emergency</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="emergency_title" xml:space="preserve">
+        <source>Emergência</source>
+        <target>Emergency</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="escolher_foto" xml:space="preserve">
+        <source>Escolher foto</source>
+        <target>Choose photo</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="faculdade" xml:space="preserve">
+        <source>Faculdades</source>
+        <target>Universities</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="favoritos" xml:space="preserve">
+        <source>Favoritos</source>
+        <target>Favorite</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="fill_your_details" xml:space="preserve">
+        <source>Preencha seus dados</source>
+        <target>Fill in your details</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="historico_escolar" xml:space="preserve">
+        <source>Histórico Escolar</source>
+        <target>School transcript</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="hoje" xml:space="preserve">
+        <source>Hoje</source>
+        <target>Today</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="hospital" xml:space="preserve">
+        <source>Hospitais</source>
+        <target>Hospitals</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="idade_selecionada" xml:space="preserve">
+        <source>Idade selecionada</source>
+        <target>Age selected</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="laudo_medico" xml:space="preserve">
+        <source>Laudos médicos</source>
+        <target>Medical reports</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="lets_go" xml:space="preserve">
+        <source>Vamos lá?</source>
+        <target>Let's go</target>
+        <note>Localizable.strings
+  GuideBuddy
+
+  Created by Raquel Ribeiro Hatem de Farias on 30/08/24.</note>
+      </trans-unit>
+      <trans-unit id="linguagem" xml:space="preserve">
+        <source>Lingua</source>
+        <target>Language</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="mapas" xml:space="preserve">
+        <source>Mapas</source>
+        <target>Maps</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="ola" xml:space="preserve">
+        <source>Olá</source>
+        <target>Hello</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="ontem" xml:space="preserve">
+        <source>Ontem</source>
+        <target>Yesterday</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="passagens" xml:space="preserve">
+        <source>Passagens</source>
+        <target>Tickets</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="passaporte" xml:space="preserve">
+        <source>Passaporte</source>
+        <target>Passport</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="perfil" xml:space="preserve">
+        <source>Perfil</source>
+        <target>Profile</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="perguntar_novamente" xml:space="preserve">
+        <source>Perguntar novamente</source>
+        <note/>
+      </trans-unit>
+      <trans-unit id="policia_civil" xml:space="preserve">
+        <source>Polícia Civil</source>
+        <target>Civil Police</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="policia_militar" xml:space="preserve">
+        <source>Polícia Militar</source>
+        <target>Military Police</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="profile_pic" xml:space="preserve">
+        <source>Foto de perfil</source>
+        <target>Profile picture</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="selecionar_linguagem" xml:space="preserve">
+        <source>Selecione a linguagem</source>
+        <target>Select language</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="selecione_linguagem" xml:space="preserve">
+        <source>selecione_linguagem</source>
+        <note>No comment provided by engineer.</note>
+      </trans-unit>
+      <trans-unit id="semana" xml:space="preserve">
+        <source>Últimos 7 Dias</source>
+        <target>Last 7 Days</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="start" xml:space="preserve">
+        <source>Começar</source>
+        <target>Start</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="tirar_foto" xml:space="preserve">
+        <source>Tirar foto</source>
+        <target>Take photo</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="user_age" xml:space="preserve">
+        <source>Idade</source>
+        <target>Age</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="user_name" xml:space="preserve">
+        <source>Nome do usuário</source>
+        <target>User name</target>
+        <note/>
+      </trans-unit>
+      <trans-unit id="visto_de_estudo" xml:space="preserve">
+        <source>Visto de estudo</source>
+        <target>Student visa</target>
+        <note/>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

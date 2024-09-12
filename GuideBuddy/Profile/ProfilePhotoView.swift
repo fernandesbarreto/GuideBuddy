@@ -42,18 +42,18 @@ struct ProfilePhotoView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-            .navigationTitle("Foto de perfil")
+            .navigationTitle("profile_pic")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showSheet = true
                     }, label: {
-                        Text("Editar")
+                        Text("editar")
                             .foregroundStyle(Color.verdePrincipal)
                     })
                     .sheet(isPresented: $showSheet) {
                         VStack {
-                            Text("Editar foto do perfil")
+                            Text("editar_foto")
                                 .font(.headline)
                                 .padding()
                             
@@ -62,7 +62,7 @@ struct ProfilePhotoView: View {
                                 isImagePickerPresented = true
                             }, label: {
                                 HStack {
-                                    Text("Tirar foto")
+                                    Text("tirar_foto")
                                     Spacer()
                                     Image(systemName: "camera")
                                     
@@ -77,7 +77,7 @@ struct ProfilePhotoView: View {
                                 isImagePickerGaleryPresented = true
                             }, label: {
                                 HStack {
-                                    Text("Escolher foto")
+                                    Text("escolher_foto")
                                     Spacer()
                                     Image(systemName: "photo")
                                 }
@@ -90,7 +90,7 @@ struct ProfilePhotoView: View {
                             Button(action: {
                             }, label: {
                                 HStack {
-                                    Text("Apagar foto")
+                                    Text("apagar_foto")
                                         .foregroundColor(.red)
                                     Spacer()
                                     Image(systemName: "trash")
