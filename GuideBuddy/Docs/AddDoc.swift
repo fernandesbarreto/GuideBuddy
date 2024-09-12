@@ -24,7 +24,6 @@ class ItemEntity: Identifiable {
     }
 }
 
-
 struct AdicionarDocumento: View {
     @Environment(\.modelContext) private var context: ModelContext
     let documento: Documento
@@ -33,6 +32,8 @@ struct AdicionarDocumento: View {
     @Query private var allItems: [ItemEntity]
     @State private var selectedItem: ItemEntity? = nil
     @State private var showingConfirmation = false
+    @State private var activityItems: [Any] = []
+    @State private var isShowingShareSheet = false
     
     var filteredItems: [ItemEntity] {
         allItems.filter { entity in
@@ -88,6 +89,9 @@ struct AdicionarDocumento: View {
                     PDFViewWrapper(pdfPath: pdfPath)
                 }
             }
+            .sheet(isPresented: $isShowingShareSheet) {
+                ActivityView(activityItems: activityItems)
+            }
         }
     }
     
@@ -99,8 +103,13 @@ struct AdicionarDocumento: View {
                 Label("Visualizar", systemImage: "eye")
             }
             Button(action: {
+                activityItems = [uiImage]
+                isShowingShareSheet = true
+            }) {
+                Label("Compartilhar", systemImage: "square.and.arrow.up")
+            }
+            Button(action: {
                 showingConfirmation = true
-                print("opening item with id \(item.id)")
             }) {
                 Label("Excluir", systemImage: "trash")
             }
@@ -127,9 +136,19 @@ struct AdicionarDocumento: View {
         Menu {
             Button(action: {
                 selectedItem = item
-                print("Resolving bookmark for item with id \(item.id)")
             }) {
                 Label("Visualizar", systemImage: "eye")
+            }
+            Button(action: {
+                if let pdfPath = item.pdfPath {
+                    let fileManager = FileManager.default
+                    let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+                    let fileURL = documentsDirectory.appendingPathComponent(pdfPath)
+                    activityItems = [fileURL]
+                    isShowingShareSheet = true
+                }
+            }) {
+                Label("Compartilhar", systemImage: "square.and.arrow.up")
             }
             Button(action: {
                 showingConfirmation = true
@@ -253,4 +272,14 @@ struct PDFKitView: UIViewRepresentable {
     func updateUIView(_ uiView: PDFView, context: Context) {
         // aq eh só um stub pra conformar com a classe
     }
+}
+
+struct ActivityView: UIViewControllerRepresentable {
+    let activityItems: [Any]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
