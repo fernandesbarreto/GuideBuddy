@@ -29,7 +29,7 @@ struct Favorites: View {
             .alert(isPresented: $showDeleteAlert) {
                 Alert(
                     title: Text("confirmar"),
-                    message: Text("ceretza"),
+                    message: Text("certeza"),
                     primaryButton: .destructive(Text("delete")) {
                         if let indexSet = deletionIndexSet {
                             deleteItems(at: indexSet)
@@ -43,13 +43,13 @@ struct Favorites: View {
     }
     
     private func handleDelete(at offsets: IndexSet) {
-        // Capture the index set for confirmation
+       
         deletionIndexSet = offsets
         showDeleteAlert = true
     }
     
     private func deleteItems(at offsets: IndexSet) {
-        // Delete the items at the given offsets
+        
         for index in offsets {
             let item = location[index]
             context.delete(item)
