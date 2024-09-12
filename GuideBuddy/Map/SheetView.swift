@@ -33,17 +33,28 @@ struct UnifiedSheetView: View {
         .presentationBackgroundInteraction(.enabled(upThrough: .medium))
     }
 
+    @State private var isLoading = false
+
     private var searchView: some View {
         VStack {
             HStack {
                 Image(systemName: "magnifyingglass")
+                
                 TextField("Procure por algum lugar", text: $search)
                     .autocorrectionDisabled()
                     .onSubmit {
                         Task {
+                            isLoading = true
                             searchResults = (try? await locationService.search(with: search)) ?? []
+                            isLoading = false
                         }
                     }
+                
+                if isLoading {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                        .padding(.leading, 8)
+                }
             }
 
             Spacer()
@@ -73,6 +84,7 @@ struct UnifiedSheetView: View {
             locationService.update(queryFragment: search)
         }
     }
+
 
     private func placeDetailView(for location: SearchResult) -> some View {
         VStack {
