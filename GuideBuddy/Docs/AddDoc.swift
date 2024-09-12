@@ -11,7 +11,7 @@ struct Item: Identifiable, Hashable {
     let id = UUID()
     let type: Int
     let selectedImage: UIImage?
-    let pdf: URL? // Aqui é para armazenar a URL do PDF diretamente
+    let pdf: URL?
 }
 
 struct AdicionarDocumento: View {
@@ -21,6 +21,8 @@ struct AdicionarDocumento: View {
     @State private var items: [Item] = []
     @State private var selectedItem: Item? = nil
     @State private var showingConfirmation = false
+    @State private var activityItems: [Any] = []
+    @State private var isShowingShareSheet = false
     
     var body: some View {
         NavigationView {
@@ -56,6 +58,14 @@ struct AdicionarDocumento: View {
                                         }) {
                                             Label("Visualizar", systemImage: "eye")
                                         }
+                                        
+                                        Button(action: {
+                                            activityItems = [uiImage]
+                                            isShowingShareSheet = true
+                                        }) {
+                                            Label("Compartilhar", systemImage: "square.and.arrow.up")
+                                        }
+                                        
                                         Button(action: {
                                             showingConfirmation = true
                                         }) {
@@ -74,7 +84,6 @@ struct AdicionarDocumento: View {
                                             showingConfirmation = false
                                         }
                                         Button("Sim, excluir", role: .destructive) {
-                                            print("item at index \(index)")
                                             items.remove(at: index)
                                             showingConfirmation = false
                                         }
@@ -87,6 +96,17 @@ struct AdicionarDocumento: View {
                                     }) {
                                         Label("Visualizar", systemImage: "eye")
                                     }
+                                    
+                                    // Adiciona a opção Compartilhar para PDF
+                                    if let pdfURL = item.pdf {
+                                        Button(action: {
+                                            activityItems = [pdfURL]
+                                            isShowingShareSheet = true
+                                        }) {
+                                            Label("Compartilhar", systemImage: "square.and.arrow.up")
+                                        }
+                                    }
+                                    
                                     Button(action: {
                                         showingConfirmation = true
                                     }) {
@@ -105,7 +125,6 @@ struct AdicionarDocumento: View {
                                         showingConfirmation = false
                                     }
                                     Button("Sim, excluir", role: .destructive) {
-                                        print("item at index \(index)")
                                         items.remove(at: index)
                                         showingConfirmation = false
                                     }
@@ -113,9 +132,7 @@ struct AdicionarDocumento: View {
                             }
                         }
                     }
-                }.border(.blue)
-                    .padding(24)
-                    
+                }
             }
             .fileImporter(isPresented: $isImporting, allowedContentTypes: [.pdf, .image]) { result in
                 switch result {
@@ -142,6 +159,9 @@ struct AdicionarDocumento: View {
                 } else if item.type == 1, let pdfURL = item.pdf {
                     PDFViewWrapper(pdfURL: pdfURL)
                 }
+            }
+            .sheet(isPresented: $isShowingShareSheet) {
+                ActivityView(activityItems: activityItems)
             }
         }
     }
@@ -186,4 +206,12 @@ struct PDFKitView: UIViewRepresentable {
     func updateUIView(_ uiView: PDFView, context: Context) {}
 }
 
+struct ActivityView: UIViewControllerRepresentable {
+    let activityItems: [Any]
 
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+    }
+
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+}
