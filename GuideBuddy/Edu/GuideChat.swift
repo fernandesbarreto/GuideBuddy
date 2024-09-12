@@ -69,7 +69,7 @@ struct GuideChat: View {
                         .frame(height: geometry.size.height * 0.9)
                         .padding(.bottom, geometry.size.height * 0.08)
                         Button(action: restartChat) {
-                            Text("Perguntar novamente")
+                            Text("perguntar_novamente")
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
                                 .padding()

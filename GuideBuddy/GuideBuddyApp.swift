@@ -9,10 +9,14 @@ import SwiftUI
 
 @main
 struct GuideBuddyApp: App {
+    @StateObject private var languageManager = LanguageManager()
+    
     var body: some Scene {
         WindowGroup {
-            ListaDeDocumentosView()
+            ContentView()
+            //Login()
+              .environmentObject(languageManager)
         }
-        .modelContainer(for: [Prompt.self, Photos.self, User.self])
+        .modelContainer(for: [Prompt.self, ProfilePhoto.self, BackgroundPhoto.self, User.self, ItemEntity.self])
     }
 }

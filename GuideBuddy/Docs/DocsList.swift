@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ListaDeDocumentosView: View {
     let documentos = [
-    
         Documento(titulo: "Passaporte"),
         Documento(titulo: "Comprovante de residência"),
         Documento(titulo: "Carta de aceite universitário"),
@@ -20,7 +19,6 @@ struct ListaDeDocumentosView: View {
         Documento(titulo: "CPF"),
         Documento(titulo: "Histórico Escolar"),
         Documento(titulo: "Laudos Médicos")
-        
     ]
     
     var body: some View {
@@ -33,7 +31,6 @@ struct ListaDeDocumentosView: View {
             .navigationTitle("Documentos")
         }
     }
-    
 }
 
 struct Documento: Identifiable {

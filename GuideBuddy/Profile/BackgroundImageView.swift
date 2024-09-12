@@ -10,36 +10,102 @@ import SwiftUI
 struct BackgroundImageView: View {
     @State private var selectedImage: UIImage?
     @State private var isImagePickerPresented = false
-    @State private var selectedBackground: UIImage?
-    @State private var isBackgroundPickerPresented = false
+    @State private var isBackgroundPickerGaleryPresented = false
+    @State private var showSheet = false
+    @State var selectedBackground: UIImage?
+    @State var isBackgroundPickerPresented = false
     var body: some View {
         NavigationStack{
             VStack{
                 if let selectedBackground = selectedBackground {
                     Image(uiImage: selectedBackground)
                         .resizable()
-                        .scaledToFill()
-                        .frame(width: 393, height: 300)
-                        .clipped()
+                    .scaledToFill()
+                    .frame(width: 393, height: 393)
+                    .clipped()
+                    .shadow(radius: 5)
+                    .cornerRadius(25)
                 } else {
                     Image("backgroundImage")
-                        .frame(width: 393, height: 300)
+                        .resizable()
+                    .scaledToFill()
+                    .frame(width: 393, height: 393)
+                    .clipped()
+                    .shadow(radius: 5)
+                    .cornerRadius(25)
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-            .navigationTitle("Capa")
+            .navigationTitle("capa")
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
-                        isBackgroundPickerPresented = true
+                        showSheet = true
+                      
                     }, label: {
-                        Text("Editar")
+                        Text("editar")
                             .foregroundStyle(Color.verdePrincipal)
                     })
-                    .sheet(isPresented: $isBackgroundPickerPresented) {
-                        ImagePicker2(selectedBackground: $selectedBackground, sourceType: .photoLibrary)
+                    .sheet(isPresented: $showSheet) {
+                        VStack {
+                            Text("editar_foto")
+                                .font(.headline)
+                                .padding()
+
+                            Divider()
+                            Button(action: {
+                                isBackgroundPickerPresented = true
+                            }, label: {
+                                HStack {
+                                    Text("tirar_foto")
+                                    Spacer()
+                                    Image(systemName: "camera")
+                                    
+                                }
+                                .padding()
+                            })
+                            .sheet(isPresented: $isBackgroundPickerPresented) {
+                                ImagePicker2(selectedBackground: $selectedBackground, sourceType: .camera)
+                            }
+                            Divider()
+                            Button(action: {
+                                isBackgroundPickerGaleryPresented = true
+                            }, label: {
+                                HStack {
+                                    Text("escolher_foto")
+                                    Spacer()
+                                    Image(systemName: "photo")
+                                }
+                                .padding()
+                            })
+                            .sheet(isPresented: $isBackgroundPickerGaleryPresented) {
+                                ImagePicker2(selectedBackground: $selectedBackground, sourceType: .photoLibrary)
+                            }
+                            Divider()
+
+                            // Opção para apagar foto
+                            Button(action: {
+                                
+                            }, label: {
+                                HStack {
+                                    Text("apagar_foto")
+                                        .foregroundColor(.red)
+                                    Spacer()
+                                    Image(systemName: "trash")
+                                    
+                                }
+                                
+                            })
+                            .padding()
+                           
+                                Spacer()
+                            }
+                        
+                        .padding()
+                        .presentationDetents([.fraction(0.4), .medium])
+                      
                     }
                 }
             }
@@ -50,3 +116,7 @@ struct BackgroundImageView: View {
 #Preview {
     BackgroundImageView()
 }
+/*.sheet(isPresented: $isBackgroundPickerPresented) {
+    ImagePicker2(selectedBackground: $selectedBackground, sourceType: .photoLibrary)
+}
+*/

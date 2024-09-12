@@ -9,63 +9,60 @@ import SwiftUI
 
 
 struct ProfilePhotoView: View {
-    @State private var selectedImage: UIImage?
+    @State var selectedImage: UIImage?
     @State private var isImagePickerPresented = false
+    @State private var isImagePickerGaleryPresented = false
     @State private var selectedBackground: UIImage?
     @State private var isBackgroundPickerPresented = false
-    @State private var isPhotoPickerPresented = false
     @State private var showSheet = false
     var body: some View {
         NavigationStack{
             VStack{
                 if let selectedImage = selectedImage {
-                    // Exibe a imagem capturada para o perfil
                     Image(uiImage: selectedImage)
                         .resizable()
-                        .frame(width: 393, height: 393)
-                        .scaledToFill()
-                        .clipped()
-                      
-                }  else if let selectedBackground = selectedBackground {
-                    Image(uiImage: selectedBackground)
-                        .resizable()
-                        .frame(width: 393, height: 393)
-                        .scaledToFill()
-                        .clipped()
+                    .scaledToFill()
+                    .frame(width: 393, height: 393)
+                    .clipped()
+                    .shadow(radius: 5)
+                    .cornerRadius(25)
                 } else {
                     ZStack{
                         Rectangle()
                             .frame(width: 393, height: 393)
                             .foregroundColor(Color.verdePrincipal)
+                            .cornerRadius(25)
+                            .shadow(radius: 5)
                         Image("profileImage2")
                             .frame(width: 200, height: 200)
+                            
                     }
                 }
-              
+                
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-            .navigationTitle("Foto de perfil")
+            .navigationTitle("profile_pic")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(action: {
                         showSheet = true
                     }, label: {
-                        Text("Editar")
+                        Text("editar")
                             .foregroundStyle(Color.verdePrincipal)
                     })
                     .sheet(isPresented: $showSheet) {
                         VStack {
-                            Text("Editar foto do perfil")
+                            Text("editar_foto")
                                 .font(.headline)
                                 .padding()
-
+                            
                             Divider()
                             Button(action: {
                                 isImagePickerPresented = true
                             }, label: {
                                 HStack {
-                                    Text("Tirar foto")
+                                    Text("tirar_foto")
                                     Spacer()
                                     Image(systemName: "camera")
                                     
@@ -77,26 +74,23 @@ struct ProfilePhotoView: View {
                             }
                             Divider()
                             Button(action: {
-                                isBackgroundPickerPresented = true
+                                isImagePickerGaleryPresented = true
                             }, label: {
                                 HStack {
-                                    Text("Escolher foto")
+                                    Text("escolher_foto")
                                     Spacer()
                                     Image(systemName: "photo")
                                 }
                                 .padding()
                             })
-                            .sheet(isPresented: $isImagePickerPresented) {
+                            .sheet(isPresented: $isImagePickerGaleryPresented) {
                                 ImagePicker(selectedImage: $selectedImage, sourceType: .photoLibrary)
                             }
                             Divider()
-
-                            // Opção para apagar foto
                             Button(action: {
-                                
                             }, label: {
                                 HStack {
-                                    Text("Apagar foto")
+                                    Text("apagar_foto")
                                         .foregroundColor(.red)
                                     Spacer()
                                     Image(systemName: "trash")
@@ -105,19 +99,20 @@ struct ProfilePhotoView: View {
                                 
                             })
                             .padding()
-                           
-                                Spacer()
-                            }
+                            
+                            Spacer()
+                        }
                         
                         .padding()
                         .presentationDetents([.fraction(0.4), .medium])
-                      
-                    }
+                        
                     }
                 }
             }
         }
+        
     }
+}
 
 #Preview {
     ProfilePhotoView()

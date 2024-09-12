@@ -7,12 +7,17 @@
 
 import SwiftUI
 import UIKit
+import SwiftData
 
 
 struct ImagePicker: UIViewControllerRepresentable {
-    @Environment(\.modelContext) private var context
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(self)
+    }
+    
     
     @Binding var selectedImage: UIImage?
+    @Environment(\.modelContext) private var context
     @Environment(\.presentationMode) private var presentationMode
     var sourceType: UIImagePickerController.SourceType = .camera
 
@@ -26,15 +31,10 @@ struct ImagePicker: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {
         // Nothing to update
     }
-
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(self)
-    }
-
+    
     class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
         let parent: ImagePicker
         
-
         init(_ parent: ImagePicker) {
             self.parent = parent
         }
@@ -42,7 +42,9 @@ struct ImagePicker: UIViewControllerRepresentable {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let image = info[.originalImage] as? UIImage {
                 parent.selectedImage = image
-            
+                if let modelContext = parent.context as? ModelContext {
+                    modelContext.insert(ProfilePhoto(profilePhoto: image))
+                }
             }
 
             parent.presentationMode.wrappedValue.dismiss()

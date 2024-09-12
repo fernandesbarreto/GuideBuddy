@@ -11,7 +11,7 @@ struct CarousselView: View {
     var caroussel: Category
     var body: some View {
         
-        ScrollView(. horizontal, content: {
+        ScrollView(.horizontal, showsIndicators: false, content: {
             HStack(spacing: -5){
                 ForEach(0..<caroussel.images.count, id: \.self){ index in
                     NavigationLink(destination: caroussel.destination[index],
@@ -25,7 +25,7 @@ struct CarousselView: View {
                                     Text(caroussel.titles[index])
                                         .font(.system(size: 17,weight: .semibold , design: .rounded))
                                         .foregroundStyle(caroussel.color[index])
-                                    
+                                        .shadow(radius: 5)
                                 }
                                 .padding(5)
                                
@@ -41,5 +41,5 @@ struct CarousselView: View {
     }
 }
 #Preview {
-    CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(TestView())], color: [.white, .white, .white]))
+    CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["hospital".localized, "faculdade".localized,"documento".localized], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(TestView())], color: [.white, .white, .white]))
 }

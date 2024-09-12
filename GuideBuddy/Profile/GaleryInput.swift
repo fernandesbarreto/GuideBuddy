@@ -5,29 +5,29 @@
 //  Created by Pedro Henrique Nunes da Silveira Bezerra on 30/08/24.
 //
 
-import Foundation
+import SwiftData
 import SwiftUI
 import UIKit
 
-// Criando um wrapper para UIImagePickerController
 struct ImagePicker2: UIViewControllerRepresentable {
     @Binding var selectedBackground: UIImage?
     @Environment(\.presentationMode) private var presentationMode
+    @Environment(\.modelContext) private var context
     var sourceType: UIImagePickerController.SourceType = .photoLibrary
+
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(self)
+    }
 
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = context.coordinator
         imagePicker.sourceType = sourceType
-        imagePicker.allowsEditing = false // ou true se você quiser permitir edição
+        imagePicker.allowsEditing = false
         return imagePicker
     }
 
     func updateUIViewController(_ uiViewController: UIImagePickerController, context: Context) {}
-
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
 
     class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
         let parent: ImagePicker2
@@ -39,6 +39,11 @@ struct ImagePicker2: UIViewControllerRepresentable {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 parent.selectedBackground = image
+                
+                // Insert into context
+                if let modelContext = parent.context as? ModelContext {
+                    modelContext.insert(BackgroundPhoto(backgroundPhoto: image))
+                }
             }
 
             parent.presentationMode.wrappedValue.dismiss()
