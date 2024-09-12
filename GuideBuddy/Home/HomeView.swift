@@ -125,7 +125,7 @@ struct HomeView: View {
                 .frame(width: 370)
                 .padding(.horizontal)
                 
-                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(TestView()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
+                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["Hospitais", "Faculdades","Documentos"], destination: [AnyView(TestView()), AnyView(MapUFPE()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
                     .padding(.horizontal, 8)
                 
                 NavigationLink(destination: TestView(), label: {

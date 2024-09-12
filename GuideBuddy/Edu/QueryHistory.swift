@@ -110,8 +110,6 @@ struct QueryHistory: View {
             }
             
             .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
             .navigationTitle("Histórico")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
                   .background(Color.background)

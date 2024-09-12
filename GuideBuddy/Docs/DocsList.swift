@@ -22,13 +22,14 @@ struct ListaDeDocumentosView: View {
     ]
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List(documentos) { doc in
                 NavigationLink(destination: AdicionarDocumento(documento: doc)) {
                     Text(doc.titulo)
                 }
             }
             .navigationTitle("Documentos")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

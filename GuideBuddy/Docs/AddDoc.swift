@@ -41,7 +41,7 @@ struct AdicionarDocumento: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(alignment: .leading) {
                 Text(documento.titulo)
                     .font(.headline)
