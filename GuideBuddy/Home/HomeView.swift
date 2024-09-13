@@ -129,7 +129,24 @@ struct HomeView: View {
                     .padding(.horizontal, 8)
                 
                 NavigationLink(destination: TestView(), label: {
-                   Image("slangsWid")
+                    
+                    ZStack {
+                        Image("slangsWid")
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                Text("Gírias")
+                                    .font(.system(size: 22,weight: .semibold , design: .rounded))
+                                    .foregroundStyle(.white)
+                                    .shadow(radius: 5)
+                            }
+                            .padding(10)
+                            .padding(.trailing, 10)
+                            
+                        }
+                        .padding()
+                    }
                 })
                 .padding(5)
                 .shadow(radius: 5)
