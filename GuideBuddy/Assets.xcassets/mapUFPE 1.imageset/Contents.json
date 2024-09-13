@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "cfchparacodigo.png",
+      "filename" : "mapaufpe.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cfchparacodigo 1.png",
+      "filename" : "mapaufpe 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cfchparacodigo 2.png",
+      "filename" : "mapaufpe 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

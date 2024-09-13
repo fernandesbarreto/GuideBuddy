@@ -125,61 +125,13 @@ struct HomeView: View {
                 .frame(width: 370)
                 .padding(.horizontal)
                 
-                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["hospital".localized, "faculdade".localized,"documento".localized], destination: [AnyView(HealthCategories()), AnyView(TestView()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
+                CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["hospital".localized, "faculdade".localized,"documento".localized], destination: [AnyView(HealthCategories()), AnyView(MapUFPE()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
                     .padding(.horizontal, 8)
                 
                 NavigationLink(destination: TestView(), label: {
-                    ZStack {
-                        Rectangle()
-                            .frame(width: 363, height: 208)
-                            .foregroundStyle(Color.ourorange)
-                        .cornerRadius(20)
-                        HStack{
-                            ZStack {
-                                
-                                Circle()
-                                    .stroke(lineWidth: 30)
-                                    .opacity(0.2)
-                                    .foregroundColor(Color.gray)
-                                    .frame(width: 140)
-                                if resultado > 0 {
-                                    Circle()
-                                        .trim(from: 0.0, to: CGFloat(min(resultado / 10, 1.0)))
-                                        .stroke(
-                                                                AngularGradient(
-                                                                    gradient: Gradient(colors: [.background]),
-                                                                    center: .center
-                                                                ),
-                                                                style: StrokeStyle(lineWidth: 35, lineCap: .round, lineJoin: .round)
-                                                            )
-                                        .rotationEffect(Angle(degrees: 270.0))
-                                        .animation(.linear, value: resultado / 10)
-                                        .frame(width: 140)
-                                }
-                                Image("setinha2")
-                                    .offset(y: -70)
-                               /* Text("\(resultado*10, specifier: "%.0f")")
-                                    .animation(.easeInOut.speed(0.5), value: animatedValue)
-                                    .foregroundColor(.white)
-                                    .font(.system (size:32))
-                                    .bold()
-                                */
-                            }
-                            .padding(.leading, 35)
-                            Spacer()
-                            VStack {
-                                Text("Desafios")
-                                    .font(.system(size: 22,weight: .semibold , design: .rounded))
-                                .foregroundStyle(.white)
-                            }
-                            .padding(.trailing, 35)
-                          
-                            
-                        }
-                    }
-                    .frame(width: 363, height: 208)
+                   Image("slangsWid")
                 })
-                .padding(10)
+                .padding(5)
                 .shadow(radius: 5)
                 }
             .frame(width: 365)
