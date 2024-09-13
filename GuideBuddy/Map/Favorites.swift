@@ -17,7 +17,7 @@ struct Favorites: View {
     @State private var deletionIndexSet: IndexSet?
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(location, id: \.id) { item in
                     NavigationLink(destination: SearchableMap(location: item)) {
@@ -39,6 +39,7 @@ struct Favorites: View {
                 )
             }
             .navigationTitle("favoritos")
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
     

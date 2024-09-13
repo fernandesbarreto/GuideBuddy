@@ -14,45 +14,54 @@ struct MapUFPE: View {
     @State private var lastScale: CGFloat = 1.0
     
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView([.horizontal, .vertical], showsIndicators: false) {
-                ZStack {
-                    Image("mapUFPE")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                    
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                    
-                    BuildingView(buildings: [
-                        Building(image: "CFCH", position: CGPoint(x: 100, y: 200)),
-                        Building(image: "CAC", position: CGPoint(x: 300, y: 500))
-                    ])
-                }
-                .scaleEffect(scale)
-                .offset(x: offset.width, y: offset.height)
-                .gesture(DragGesture()
-                    .onChanged { value in
-                        offset = CGSize(
-                            width: lastOffset.width + value.translation.width,
-                            height: lastOffset.height + value.translation.height
+        NavigationStack{
+            
+            VStack{
+                GeometryReader { geometry in
+                    ScrollView([.horizontal, .vertical], showsIndicators: false) {
+                        ZStack {
+                            Image("mapUFPE")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                            
+                                .frame(width: geometry.size.width, height: geometry.size.height)
+                            
+                            BuildingView(buildings: [
+                                Building(image: "CFCH", position: CGPoint(x: 100, y: 200)),
+                                Building(image: "CAC", position: CGPoint(x: 300, y: 500))
+                            ])
+                        }
+                        .scaleEffect(scale)
+                        .offset(x: offset.width, y: offset.height)
+                        .gesture(DragGesture()
+                            .onChanged { value in
+                                offset = CGSize(
+                                    width: lastOffset.width + value.translation.width,
+                                    height: lastOffset.height + value.translation.height
+                                )
+                            }
+                            .onEnded { _ in
+                                lastOffset = offset
+                            }
+                        )
+                        .gesture(MagnificationGesture()
+                            .onChanged { value in
+                                scale = lastScale * value
+                            }
+                            .onEnded { value in
+                                lastScale = scale
+                            }
                         )
                     }
-                    .onEnded { _ in
-                        lastOffset = offset
-                    }
-                )
-                .gesture(MagnificationGesture()
-                    .onChanged { value in
-                        scale = lastScale * value
-                    }
-                    .onEnded { value in
-                    lastScale = scale
+                    .frame(width: geometry.size.width, height: geometry.size.height)
                 }
-                )
+                .edgesIgnoringSafeArea(.all)
             }
-            .frame(width: geometry.size.width, height: geometry.size.height)
+            .navigationTitle("Faculdades")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
+            .toolbarBackground(.visible, for: .navigationBar)
         }
-        .edgesIgnoringSafeArea(.all)
     }
 }
 
