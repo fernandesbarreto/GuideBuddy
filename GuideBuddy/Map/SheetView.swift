@@ -124,7 +124,7 @@ struct UnifiedSheetView: View {
                 Button(action: {
                     toggleSave(for: SearchCompletions(title: location.title, subTitle: location.subTitle ?? "", latitude: location.latitude, longitude: location.longitude))
                 }, label: {
-                    Image(systemName: "star")
+                    Image(systemName: isLocationSaved(SearchCompletions(title: location.title, subTitle: location.subTitle ?? "", latitude: location.latitude, longitude: location.longitude)) ? "star.fill" : "star")
                 })
                 .padding(.trailing)
             }
