@@ -25,7 +25,6 @@ struct HomeView: View {
                     EmergencyFavoritesSection()
                     
                     CarousselView(caroussel: Category(images: ["widDocuments", "widUniversities", "widHospital"], titles: ["documento".localized, "faculdade".localized,"hospital".localized], destination: [AnyView(ListaDeDocumentosView()), AnyView(MapUFPE()), AnyView(HealthCategories())], color: [.white, .white, .white]))
-                        .padding(.horizontal, 8)
                         .frame(width: 400)
                     
                     DailySlangLink(resultado: $resultado)

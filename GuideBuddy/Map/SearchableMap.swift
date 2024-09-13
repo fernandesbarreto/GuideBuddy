@@ -122,7 +122,6 @@ struct SearchableMap: View {
                         )
                     }
                     .onAppear {
-                        // Center map on the saved location if provided
                         if let location = location {
                             cameraPosition = MapCameraPosition.region(
                                 MKCoordinateRegion(
