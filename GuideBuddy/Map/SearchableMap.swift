@@ -22,7 +22,9 @@
 //    @State private var placeImages: [URL?] = []
 //    
 //    @State private var isSheetPresented: Bool = true
-//
+//    
+//    
+//    var location: SavedLocation?
 //
 //    var body: some View {
 //        mapView
@@ -46,6 +48,17 @@
 //                    placeImages: $placeImages
 //                )
 //            }
+//            .onAppear {
+//                
+//                if let location = location {
+//                    cameraPosition = MapCameraPosition.region(
+//                        MKCoordinateRegion(
+//                            center: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
+//                            span: MKCoordinateSpan(latitudeDelta: 0.36, longitudeDelta: 0.36)
+//                        )
+//                    )
+//                }
+//            }
 //    }
 //
 //    private var mapView: some View {
@@ -64,8 +77,6 @@
 //#Preview {
 //    SearchableMap()
 //}
-
-
 import SwiftUI
 import MapKit
 
@@ -84,7 +95,6 @@ struct SearchableMap: View {
     
     @State private var isSheetPresented: Bool = true
     
-    // New state to handle selected saved location
     var location: SavedLocation?
 
     var body: some View {
@@ -133,13 +143,13 @@ struct SearchableMap: View {
 
     private var mapView: some View {
         Map(position: $cameraPosition, selection: $selectedLocation) {
-            ForEach(searchResults) { result in
-                Marker(coordinate: result.location) {
+            if let location = location {
+                Marker(coordinate: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)) {
                     Image(systemName: "mappin.circle.fill")
                         .foregroundColor(.red)
                         .font(.title)
                 }
-                .tag(result)
+                .tag(location)
             }
         }
     }
