@@ -174,7 +174,7 @@ struct DailySlangLink: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Text("acionar_helper")
+                        Text("Gírias")
                             .font(.system(size: 22, weight: .semibold, design: .rounded))
                             .foregroundStyle(.white)
                             .shadow(radius: 5)
@@ -196,7 +196,7 @@ struct ProfileLink: View {
     
     var body: some View {
         NavigationLink(destination: Profile(), label: {
-            if let image = selectedImage.first?.getProfilePhoto() {
+            if let image = selectedImage.last?.getProfilePhoto() {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()

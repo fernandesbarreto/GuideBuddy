@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "mapaufpe.png",
+      "filename" : "mapafinal.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "mapaufpe 1.png",
+      "filename" : "mapafinal 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "mapaufpe 2.png",
+      "filename" : "mapafinal 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
