@@ -24,7 +24,7 @@ struct HomeView: View {
                     
                     EmergencyFavoritesSection()
                     
-                    CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["hospital".localized, "faculdade".localized,"documento".localized], destination: [AnyView(HealthCategories()), AnyView(TestView()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
+                    CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["hospital".localized, "faculdade".localized,"documento".localized], destination: [AnyView(HealthCategories()), AnyView(MapUFPE()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
                         .padding(.horizontal, 8)
                     
                     DailySlangLink(resultado: $resultado)
@@ -33,7 +33,6 @@ struct HomeView: View {
                 .frame(width: 365)
                 .padding(.horizontal)
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
                 .navigationTitle("Home")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
@@ -41,7 +40,6 @@ struct HomeView: View {
                     }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.background)
             }
         }
         .onAppear() {
@@ -68,8 +66,7 @@ struct GreetingSection: View {
                 Spacer()
             }
         }
-        .padding()
-        .padding(.leading, 8)
+        .padding(.leading, 5)
     }
 }
 
@@ -171,43 +168,20 @@ struct DailySlangLink: View {
     var body: some View {
         NavigationLink(destination: DailySlangView(), label: {
             ZStack {
-                Rectangle()
-                    .frame(width: 363, height: 208)
-                    .foregroundStyle(Color.ourorange)
-                    .cornerRadius(20)
-                HStack{
-                    ZStack {
-                        Circle()
-                            .stroke(lineWidth: 30)
-                            .opacity(0.2)
-                            .foregroundColor(Color.gray)
-                            .frame(width: 140)
-                        if resultado > 0 {
-                            Circle()
-                                .trim(from: 0.0, to: CGFloat(min(resultado / 10, 1.0)))
-                                .stroke(
-                                    AngularGradient(
-                                        gradient: Gradient(colors: [.background]),
-                                        center: .center
-                                    ),
-                                    style: StrokeStyle(lineWidth: 35, lineCap: .round, lineJoin: .round)
-                                )
-                                .rotationEffect(Angle(degrees: 270.0))
-                                .animation(.linear, value: resultado / 10)
-                                .frame(width: 140)
-                        }
-                        Image("setinha2")
-                            .offset(y: -70)
-                    }
-                    .padding(.leading, 35)
+             Image("slangsWid")
+                VStack {
                     Spacer()
-                    VStack {
-                        Text("Gírias")
+                    HStack {
+                        Spacer()
+                        Text("acionar_helper")
                             .font(.system(size: 22, weight: .semibold, design: .rounded))
                             .foregroundStyle(.white)
+                            .shadow(radius: 5)
                     }
-                    .padding(.trailing, 35)
+                    .padding(10)
+                    .padding(.trailing, 10)
                 }
+                .padding()
             }
             .frame(width: 363, height: 208)
         })
