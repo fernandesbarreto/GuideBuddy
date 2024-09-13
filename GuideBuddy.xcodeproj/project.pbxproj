@@ -31,6 +31,7 @@
 		C155835E2C93ADDE00376E91 /* BuildingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C155835D2C93ADDE00376E91 /* BuildingView.swift */; };
 		C17344702C93E7DA00BA20FA /* BuildingDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C173446F2C93E7DA00BA20FA /* BuildingDetailView.swift */; };
 		C17344722C93E8B700BA20FA /* UFPEPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17344712C93E8B700BA20FA /* UFPEPlaces.swift */; };
+		C17344742C943D2900BA20FA /* Faculdades.swift in Sources */ = {isa = PBXBuildFile; fileRef = C17344732C943D2900BA20FA /* Faculdades.swift */; };
 		C190C8EF2C8D546F0000A490 /* Emergency.swift in Sources */ = {isa = PBXBuildFile; fileRef = C190C8EE2C8D546F0000A490 /* Emergency.swift */; };
 		C190C8F52C8D5F860000A490 /* AgePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C190C8F42C8D5F860000A490 /* AgePicker.swift */; };
 		C190C8F72C8D652F0000A490 /* LanguagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C190C8F62C8D652F0000A490 /* LanguagePicker.swift */; };
@@ -79,6 +80,7 @@
 		C155835D2C93ADDE00376E91 /* BuildingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingView.swift; sourceTree = "<group>"; };
 		C173446F2C93E7DA00BA20FA /* BuildingDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildingDetailView.swift; sourceTree = "<group>"; };
 		C17344712C93E8B700BA20FA /* UFPEPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UFPEPlaces.swift; sourceTree = "<group>"; };
+		C17344732C943D2900BA20FA /* Faculdades.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Faculdades.swift; sourceTree = "<group>"; };
 		C190C8EE2C8D546F0000A490 /* Emergency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Emergency.swift; sourceTree = "<group>"; };
 		C190C8F42C8D5F860000A490 /* AgePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AgePicker.swift; sourceTree = "<group>"; };
 		C190C8F62C8D652F0000A490 /* LanguagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePicker.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				C155835D2C93ADDE00376E91 /* BuildingView.swift */,
 				C173446F2C93E7DA00BA20FA /* BuildingDetailView.swift */,
 				C17344712C93E8B700BA20FA /* UFPEPlaces.swift */,
+				C17344732C943D2900BA20FA /* Faculdades.swift */,
 			);
 			path = MapUniversity;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
 				558BC8B62C8E999F006F491E /* (null) in Sources */,
 				EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */,
+				C17344742C943D2900BA20FA /* Faculdades.swift in Sources */,
 				C155835C2C93AC2B00376E91 /* MapUFPE.swift in Sources */,
 				EB58451E2C939DAE00B66DF8 /* Slang.swift in Sources */,
 				5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */,

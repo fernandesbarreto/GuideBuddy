@@ -24,7 +24,7 @@ struct HomeView: View {
                     
                     EmergencyFavoritesSection()
                     
-                    CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["hospital".localized, "faculdade".localized,"documento".localized], destination: [AnyView(HealthCategories()), AnyView(MapUFPE()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
+                    CarousselView(caroussel: Category(images: ["widDocuments", "widUniversities", "widHospital"], titles: ["documento".localized, "faculdade".localized,"hospital".localized], destination: [AnyView(ListaDeDocumentosView()), AnyView(MapUFPE()), AnyView(HealthCategories())], color: [.white, .white, .white]))
                         .padding(.horizontal, 8)
                         .frame(width: 400)
                     
@@ -97,6 +97,26 @@ struct AcionarHelperLink: View {
 struct EmergencyFavoritesSection: View {
     var body: some View {
         HStack{
+            
+            NavigationLink(destination: SearchableMap(), label: {
+                ZStack{
+                    Image("widMaps")
+                    VStack {
+                        Spacer()
+                        HStack {
+                            Spacer()
+                            Text("mapas".localized)
+                                .font(.system(size: 22, weight: .semibold, design: .rounded))
+                                .foregroundStyle(.white)
+                                .shadow(radius: 5)
+                        }
+                        .padding(10)
+                    }
+                    .padding()
+                }
+            })
+            .frame(width: 280, height: 195)
+            
             VStack{
                 NavigationLink(destination: Emergency(), label: {
                     ZStack {
@@ -123,7 +143,7 @@ struct EmergencyFavoritesSection: View {
                         Rectangle()
                             .frame(width: 77, height: 77)
                             .cornerRadius(15)
-                            .foregroundStyle(.ourorange)
+                            .foregroundStyle(.verdePrincipal)
                         VStack {
                             Image(systemName: "bookmark.fill")
                                 .font(.system(size: 32, weight: .semibold, design: .rounded))
@@ -139,24 +159,6 @@ struct EmergencyFavoritesSection: View {
                 .shadow(radius: 5)
             }
             .frame(height: 177)
-            NavigationLink(destination: SearchableMap(), label: {
-                ZStack{
-                    Image("widMaps")
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
-                            Text("mapas".localized)
-                                .font(.system(size: 22, weight: .semibold, design: .rounded))
-                                .foregroundStyle(.white)
-                                .shadow(radius: 5)
-                        }
-                        .padding(10)
-                    }
-                    .padding()
-                }
-            })
-            .frame(width: 280, height: 195)
         }
         .frame(width: 370)
         .padding(.horizontal)
@@ -177,7 +179,7 @@ struct DailySlangLink: View {
                         Text("Gírias")
                             .font(.system(size: 22, weight: .semibold, design: .rounded))
                             .foregroundStyle(.white)
-                            .shadow(radius: 5)
+//                            .shadow(radius: 3)
                     }
                     .padding(10)
                     .padding(.trailing, 10)

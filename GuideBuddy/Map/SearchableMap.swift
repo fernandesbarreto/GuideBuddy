@@ -88,37 +88,46 @@ struct SearchableMap: View {
     var location: SavedLocation?
 
     var body: some View {
-        mapView
-            .ignoresSafeArea()
-            .onChange(of: selectedLocation) { newValue in
-                if let location = newValue {
-                    Task {
-                        placeImages = await locationService.fetchImages(for: [location])
+        NavigationStack{
+            VStack{
+                mapView
+                    .ignoresSafeArea()
+                    .onChange(of: selectedLocation) { newValue in
+                        if let location = newValue {
+                            Task {
+                                placeImages = await locationService.fetchImages(for: [location])
+                            }
+                        }
                     }
-                }
-            }
-            .onChange(of: searchResults) { newValue in
-                if !newValue.isEmpty {
-                    isSheetPresented = true
-                }
-            }
-            .sheet(isPresented: $isSheetPresented) {
-                UnifiedSheetView(
-                    searchResults: $searchResults,
-                    selectedLocation: $selectedLocation,
-                    placeImages: $placeImages
-                )
-            }
-            .onAppear {
-                // Center map on the saved location if provided
-                if let location = location {
-                    cameraPosition = MapCameraPosition.region(
-                        MKCoordinateRegion(
-                            center: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
-                            span: MKCoordinateSpan(latitudeDelta: 0.36, longitudeDelta: 0.36)
+                    .onChange(of: searchResults) { newValue in
+                        if !newValue.isEmpty {
+                            isSheetPresented = true
+                        }
+                    }
+                    .sheet(isPresented: $isSheetPresented) {
+                        UnifiedSheetView(
+                            searchResults: $searchResults,
+                            selectedLocation: $selectedLocation,
+                            placeImages: $placeImages
                         )
-                    )
-                }
+                    }
+                    .onAppear {
+                        // Center map on the saved location if provided
+                        if let location = location {
+                            cameraPosition = MapCameraPosition.region(
+                                MKCoordinateRegion(
+                                    center: CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude),
+                                    span: MKCoordinateSpan(latitudeDelta: 0.36, longitudeDelta: 0.36)
+                                )
+                            )
+                        }
+                    }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
+
+            .toolbarBackground(.visible, for: .navigationBar)
+            .navigationTitle("Mapa")
             }
     }
 

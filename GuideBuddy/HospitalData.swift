@@ -37,7 +37,7 @@ let hospitalDescription = [
     • Queimaduras
     • Traumato-ortopedia
 
-    Avenida Agamenon Magalhães, S/N, Derby, Recife – PE
+    Avenida Agamenon Magalhães, S/N\n   Derby, Recife – PE
  
     Telefone: (81) 3181.5400
 

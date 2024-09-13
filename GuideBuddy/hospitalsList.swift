@@ -28,7 +28,7 @@ struct HealthCategories: View {
                 }
             }
             .navigationTitle("Saúde")
-          
+            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
@@ -79,6 +79,7 @@ struct HealthyPlaceOption: View {
             }) {
                 Text(hospital.titulo)
                     .foregroundStyle(Color.black)
+                 
             }
             .sheet(item: $selectedHospital) { hospital in
                 HealthyPlaceDescription(hospital: hospital)
@@ -126,8 +127,12 @@ struct HealthyPlaceDescription: View {
                    .padding(.top, 8)
                    
                
-               Text(descriptionsByHospital[hospital.titulo] ?? "Descrição não disponível.")
-                   .padding()
+               HStack {
+                   Text(descriptionsByHospital[hospital.titulo] ?? "Descrição não disponível.")
+                       .padding()
+                   .multilineTextAlignment(.leading)
+                   .offset(x: -10)
+               }
                
                Spacer()
            }
