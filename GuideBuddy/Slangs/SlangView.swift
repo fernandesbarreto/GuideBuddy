@@ -19,24 +19,30 @@ struct DailySlangView: View {
     var body: some View {
         VStack(spacing: 20) {
             
+
             VStack(alignment: .leading) {
                 Text(dailySlang.slang)
                     .font(.largeTitle)
                     .fontWeight(.bold)
                     .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 Text("Definição: \(dailySlang.definition)")
                     .font(.body)
                     .multilineTextAlignment(.leading)
                     .padding([.top, .bottom])
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 Text("Exemplo: \(dailySlang.examples)")
                     .font(.body)
                     .multilineTextAlignment(.leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .fixedSize(horizontal: false, vertical: true)
             }
-            .frame(maxWidth: 320)
-            .frame(height: 280)
-            //.border(.black)
+            .frame(maxWidth: .infinity)
+            .frame(height: 280, alignment: .top)
             
             Spacer()
             
@@ -65,7 +71,7 @@ struct DailySlangView: View {
             
             HStack {
                 Button(action: {
-                    if(currentDayOffset > 0) {
+                    if currentDayOffset > 0 {
                         currentDayOffset -= 1
                     } else {
                         currentDayOffset = slangs.count - 1
@@ -77,7 +83,7 @@ struct DailySlangView: View {
                 Spacer()
                 
                 Button(action: {
-                    if(currentDayOffset < slangs.count - 1) {
+                    if currentDayOffset < slangs.count - 1 {
                         currentDayOffset += 1
                     } else {
                         currentDayOffset = 0
@@ -98,6 +104,3 @@ struct DailySlangView: View {
 #Preview {
     DailySlangView()
 }
-
-
-
