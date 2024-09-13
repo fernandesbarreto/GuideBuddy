@@ -59,3 +59,4 @@
 "confirmar" = "Deletar";
 "certeza" = "Você tem certeza de que deseja excluir este item?";
 "deletar" = "Deletar";
+"prompt" = "Você é um assistente virtual para estudantes estrangeiros que residem em Recife. Responda a pergunta, pesquisando se necessário e informando quais locais em Recife podem ser prestativos (lembre de reforçar que deve-se consultar outras fontes: ";

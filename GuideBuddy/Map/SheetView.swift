@@ -28,9 +28,9 @@ struct UnifiedSheetView: View {
     @State private var search: String = ""
     @Binding var searchResults: [SearchResult]
     @Binding var selectedLocation: SearchResult?
-    @State private var selectedDetent: PresentationDetent = .height(80)
+    @State private var selectedDetent: PresentationDetent = .height(96)
     @Binding var placeImages: [URL?]
-    @Query private var savedLocations: [SavedLocation] // Fetch saved locations directly
+    @Query private var savedLocations: [SavedLocation]
 
     var body: some View {
         VStack {
@@ -41,7 +41,7 @@ struct UnifiedSheetView: View {
             }
         }
         .interactiveDismissDisabled()
-        .presentationDetents([.height(80), .medium], selection: $selectedDetent)
+        .presentationDetents([.height(96), .medium], selection: $selectedDetent)
         .presentationBackground(.regularMaterial)
         .presentationBackgroundInteraction(.enabled(upThrough: .medium))
     }
@@ -80,8 +80,7 @@ struct UnifiedSheetView: View {
                                 Text(completion.title)
                                     .font(.headline)
                                     .fontDesign(.rounded)
-                                
-                                // Show filled or empty star based on save status
+
                                 Button(action: {
                                     toggleSave(for: completion)
                                 }, label: {
@@ -116,16 +115,16 @@ struct UnifiedSheetView: View {
             HStack {
                 Button("Voltar") {
                     selectedLocation = nil
-                    selectedDetent = .height(80)
+                    selectedDetent = .height(96)
                 }
                 .padding()
 
                 Spacer()
 
                 Button(action: {
-                    print("Tapped")
+                    toggleSave(for: SearchCompletions(title: location.title, subTitle: location.subTitle ?? "", latitude: location.latitude, longitude: location.longitude))
                 }, label: {
-                    Image(systemName: "star")
+                    Image(systemName: isLocationSaved(SearchCompletions(title: location.title, subTitle: location.subTitle ?? "", latitude: location.latitude, longitude: location.longitude)) ? "star.fill" : "star")
                 })
                 .padding(.trailing)
             }
@@ -205,10 +204,10 @@ struct UnifiedSheetView: View {
         if let savedLocation = savedLocations.first(where: {
             $0.latitude == completion.latitude && $0.longitude == completion.longitude
         }) {
-            // Location is already saved, so remove it
+
             context.delete(savedLocation)
         } else {
-            // Location is not saved, so save it
+
             let newLocation = SavedLocation(
                 name: completion.title,
                 latitude: completion.latitude ?? 0,

@@ -47,7 +47,7 @@ struct Favorites: View {
             .alert(isPresented: $showDeleteAlert) {
                 Alert(
                     title: Text("confirmar"),
-                    message: Text("certeza"),
+                    message: Text("Certeza?"),
                     primaryButton: .destructive(Text("deletar")) {
                         if let indexSet = deletionIndexSet {
                             deleteItems(at: indexSet)
@@ -58,6 +58,12 @@ struct Favorites: View {
             }
             .navigationTitle("favoritos")
         }
+    }
+    
+    private func handleDelete(at offsets: IndexSet) {
+       
+        deletionIndexSet = offsets
+        showDeleteAlert = true
     }
     
     private func deleteItems(at offsets: IndexSet) {

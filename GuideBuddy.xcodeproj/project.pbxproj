@@ -11,11 +11,12 @@
 		5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552BFA52C85D76700DE92BF /* HospitalData.swift */; };
 		5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C42C7F669200DC7332 /* AddDoc.swift */; };
 		5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5572B2C82C81E83100DC7332 /* hospitalsList.swift */; };
-		558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC8B52C8E999F006F491E /* OpenDocView.swift */; };
+		558BC8B62C8E999F006F491E /* (null) in Sources */ = {isa = PBXBuildFile; };
+		558BC8B82C90847F006F491E /* Extension1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558BC8B72C90847F006F491E /* Extension1.swift */; };
 		C090E20F2C81F3D500F21058 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C090E20D2C81F3D500F21058 /* Localizable.strings */; };
 		C090E2132C81FD4C00F21058 /* Testinho.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E2122C81FD4C00F21058 /* Testinho.swift */; };
-		C090E2302C9307C400F21058 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E22F2C9307C400F21058 /* Favorites.swift */; };
 		C090E2252C8F414400F21058 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E2242C8F414400F21058 /* LanguageManager.swift */; };
+		C090E2302C9307C400F21058 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = C090E22F2C9307C400F21058 /* Favorites.swift */; };
 		C0F65D262C7DF9180096B3B1 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F65D252C7DF9180096B3B1 /* Login.swift */; };
 		C1130E992C8AFBB000CE4F98 /* ProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */; };
 		C12075EC2C828FB4005277B7 /* GaleryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12075EB2C828FB4005277B7 /* GaleryInput.swift */; };
@@ -33,6 +34,8 @@
 		C1A31E2E2C8B2B460023A5F9 /* EditProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A31E2D2C8B2B460023A5F9 /* EditProfileScreen.swift */; };
 		EB0A4DBC2C7F49C800092BA9 /* QueryHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */; };
 		EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */; };
+		EB58451C2C939D3D00B66DF8 /* SlangView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB58451B2C939D3D00B66DF8 /* SlangView.swift */; };
+		EB58451E2C939DAE00B66DF8 /* Slang.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB58451D2C939DAE00B66DF8 /* Slang.swift */; };
 		EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */; };
 		EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */; };
 		EBA4A5BF2C7D21A600ECD5C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */; };
@@ -51,13 +54,13 @@
 		5572B2C42C7F669200DC7332 /* AddDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoc.swift; sourceTree = "<group>"; };
 		5572B2C62C8097CD00DC7332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		5572B2C82C81E83100DC7332 /* hospitalsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hospitalsList.swift; sourceTree = "<group>"; };
-		558BC8B52C8E999F006F491E /* OpenDocView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenDocView.swift; sourceTree = "<group>"; };
+		558BC8B72C90847F006F491E /* Extension1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension1.swift; sourceTree = "<group>"; };
 		C090E20E2C81F3D500F21058 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		C090E2102C81F3DD00F21058 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C090E2112C81F3DD00F21058 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C090E2122C81FD4C00F21058 /* Testinho.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testinho.swift; sourceTree = "<group>"; };
-		C090E22F2C9307C400F21058 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		C090E2242C8F414400F21058 /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
+		C090E22F2C9307C400F21058 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		C0F65D252C7DF9180096B3B1 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoView.swift; sourceTree = "<group>"; };
 		C12075EB2C828FB4005277B7 /* GaleryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaleryInput.swift; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 		EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryHistory.swift; sourceTree = "<group>"; };
 		EB0A4DBF2C7FA3A200092BA9 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EduView.swift; sourceTree = "<group>"; };
+		EB58451B2C939D3D00B66DF8 /* SlangView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlangView.swift; sourceTree = "<group>"; };
+		EB58451D2C939DAE00B66DF8 /* Slang.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Slang.swift; sourceTree = "<group>"; };
 		EBA4A5B72C7D21A500ECD5C2 /* GuiBu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GuiBu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideBuddyApp.swift; sourceTree = "<group>"; };
 		EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -106,7 +111,6 @@
 			children = (
 				5528906A2C7F5144008B14AA /* DocsList.swift */,
 				5572B2C42C7F669200DC7332 /* AddDoc.swift */,
-				558BC8B52C8E999F006F491E /* OpenDocView.swift */,
 			);
 			path = Docs;
 			sourceTree = "<group>";
@@ -116,6 +120,7 @@
 			children = (
 				5572B2C82C81E83100DC7332 /* hospitalsList.swift */,
 				5552BFA52C85D76700DE92BF /* HospitalData.swift */,
+				558BC8B72C90847F006F491E /* Extension1.swift */,
 			);
 			name = Hospitals;
 			sourceTree = "<group>";
@@ -163,6 +168,15 @@
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+		EB58451A2C939D2D00B66DF8 /* Slangs */ = {
+			isa = PBXGroup;
+			children = (
+				EB58451B2C939D3D00B66DF8 /* SlangView.swift */,
+				EB58451D2C939DAE00B66DF8 /* Slang.swift */,
+			);
+			path = Slangs;
+			sourceTree = "<group>";
+		};
 		EBA4A5AE2C7D21A500ECD5C2 = {
 			isa = PBXGroup;
 			children = (
@@ -184,13 +198,14 @@
 		EBA4A5B92C7D21A500ECD5C2 /* GuideBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				EB58451A2C939D2D00B66DF8 /* Slangs */,
+				5572B2C72C80BF9300DC7332 /* Hospitals */,
+				5572B2C62C8097CD00DC7332 /* Info.plist */,
 				C152DB1E2C8204390052256B /* Profile */,
 				C152DB0D2C80B91C0052256B /* Home */,
 				EBC86AB42C80B8AF0097633F /* Map */,
 				EBB948F92C7D2750002F5375 /* Models */,
 				EBB948F52C7D24B2002F5375 /* Edu */,
-				5572B2C72C80BF9300DC7332 /* Hospitals */,
-				5572B2C62C8097CD00DC7332 /* Info.plist */,
 				EBA4A5BA2C7D21A500ECD5C2 /* GuideBuddyApp.swift */,
 				EBA4A5BC2C7D21A500ECD5C2 /* ContentView.swift */,
 				EBE656822C89E14000DD9C34 /* Login */,
@@ -198,8 +213,8 @@
 				C126A5482C7F6A0200322D11 /* NavBar.swift */,
 				EBA4A5BE2C7D21A600ECD5C2 /* Assets.xcassets */,
 				EBA4A5C02C7D21A600ECD5C2 /* Preview Content */,
-				5528906C2C7F543C008B14AA /* Docs */,
 				C190C8EE2C8D546F0000A490 /* Emergency.swift */,
+				5528906C2C7F543C008B14AA /* Docs */,
 			);
 			path = GuideBuddy;
 			sourceTree = "<group>";
@@ -342,10 +357,24 @@
 				C152DB0F2C80B9300052256B /* CarousselView.swift in Sources */,
 				EB0A4DC22C7FA9EC00092BA9 /* EduView.swift in Sources */,
 				EBA4A5BD2C7D21A500ECD5C2 /* ContentView.swift in Sources */,
+				5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */,
+				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
+				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
+				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
+				558BC8B62C8E999F006F491E /* (null) in Sources */,
 				EBED16992C8B51B200DB4F1B /* SearchableMap.swift in Sources */,
 				EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */,
 				5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */,
 				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
+				EB58451C2C939D3D00B66DF8 /* SlangView.swift in Sources */,
+				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
+				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
+				558BC8B62C8E999F006F491E /* (null) in Sources */,
+				EBB948F72C7D24BB002F5375 /* GuideChat.swift in Sources */,
+				EB58451E2C939DAE00B66DF8 /* Slang.swift in Sources */,
+				5552BFA62C85D76700DE92BF /* HospitalData.swift in Sources */,
+				5572B2C92C81E83100DC7332 /* hospitalsList.swift in Sources */,
+				558BC8B82C90847F006F491E /* Extension1.swift in Sources */,
 				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
 				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
 				EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */,
@@ -360,7 +389,6 @@
 				EBED169B2C8B51B200DB4F1B /* SheetView.swift in Sources */,
 				C090E2302C9307C400F21058 /* Favorites.swift in Sources */,
 				C152DB112C80B94E0052256B /* Category.swift in Sources */,
-				558BC8B62C8E999F006F491E /* OpenDocView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -507,7 +535,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = LVN5VFR7TN;
+				DEVELOPMENT_TEAM = KXKV68W5T2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
@@ -542,7 +570,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"GuideBuddy/Preview Content\"";
-				DEVELOPMENT_TEAM = LVN5VFR7TN;
+				DEVELOPMENT_TEAM = KXKV68W5T2;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GuideBuddy/Info.plist;
