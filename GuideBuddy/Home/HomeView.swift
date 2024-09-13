@@ -26,6 +26,7 @@ struct HomeView: View {
                     
                     CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["hospital".localized, "faculdade".localized,"documento".localized], destination: [AnyView(HealthCategories()), AnyView(TestView()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
                         .padding(.horizontal, 8)
+                        .frame(width: 400)
                     
                     DailySlangLink(resultado: $resultado)
                     
