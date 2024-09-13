@@ -128,7 +128,7 @@ struct HomeView: View {
                 CarousselView(caroussel: Category(images: ["widHospital", "widUniversities", "widDocuments"], titles: ["hospital".localized, "faculdade".localized,"documento".localized], destination: [AnyView(HealthCategories()), AnyView(TestView()), AnyView(ListaDeDocumentosView())], color: [.white, .white, .white]))
                     .padding(.horizontal, 8)
                 
-                NavigationLink(destination: TestView(), label: {
+                NavigationLink(destination: DailySlangView(), label: {
                     ZStack {
                         Rectangle()
                             .frame(width: 363, height: 208)
@@ -168,7 +168,7 @@ struct HomeView: View {
                             .padding(.leading, 35)
                             Spacer()
                             VStack {
-                                Text("Desafios")
+                                Text("Gírias")
                                     .font(.system(size: 22,weight: .semibold , design: .rounded))
                                 .foregroundStyle(.white)
                             }
