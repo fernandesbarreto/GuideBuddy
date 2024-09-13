@@ -35,6 +35,7 @@ class BackgroundPhoto {
 
 struct Profile: View {
     @Query private var profilePhotos: [ProfilePhoto]
+    @Query private var user: [User]
     @Query private var backgroundPhotos: [BackgroundPhoto]
     
     @State var selectedImage: UIImage?
@@ -90,11 +91,11 @@ struct Profile: View {
                             }
                         }
                         VStack {
-                            Text("Pedro Nunes")
+                            Text(user[0].name ?? "Usuário")
                                 .font(.system(size: 24,weight: .regular , design: .rounded))
                                 .padding(.top, 10)
                             
-                            Text("29")
+                            Text(String(user[0].age) ?? "24")
                                 .font(.system(size: 24,weight: .regular , design: .rounded))
                                 .padding(.top, 2)
                         }
