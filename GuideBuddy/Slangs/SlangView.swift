@@ -17,87 +17,101 @@ struct DailySlangView: View {
     }
     
     var body: some View {
-        VStack(spacing: 20) {
-            
+        NavigationStack {
+            VStack(spacing: 20) {
+                
 
-            VStack(alignment: .leading) {
-                Text(dailySlang.slang)
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .fixedSize(horizontal: false, vertical: true)
-                
-                Text("Definição: \(dailySlang.definition)")
-                    .font(.body)
-                    .multilineTextAlignment(.leading)
-                    .padding([.top, .bottom])
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .fixedSize(horizontal: false, vertical: true)
-                
-                Text("Exemplo: \(dailySlang.examples)")
-                    .font(.body)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .fixedSize(horizontal: false, vertical: true)
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 280, alignment: .top)
-            
-            Spacer()
-            
-            if let image = UIImage(named: dailySlang.imageName) {
-                VStack {
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 300, maxHeight: 200)
-                        .cornerRadius(10)
+                VStack(alignment: .leading) {
+                    Text(dailySlang.slang)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                    
+                    Text("Definição: \(dailySlang.definition)")
+                        .font(.body)
+                        .multilineTextAlignment(.leading)
+                        .padding([.top, .bottom])
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .fixedSize(horizontal: false, vertical: true)
+                    
+                    Text("Exemplo: \(dailySlang.examples)")
+                        .font(.body)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                .frame(width: 300, height: 200)
-            } else {
-                VStack {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 300, maxHeight: 200)
-                        .cornerRadius(10)
-                        .foregroundColor(.gray)
-                }
-                .frame(width: 300, height: 200)
-            }
-            
-            Spacer()
-            
-            HStack {
-                Button(action: {
-                    if currentDayOffset > 0 {
-                        currentDayOffset -= 1
-                    } else {
-                        currentDayOffset = slangs.count - 1
+                .frame(maxWidth: .infinity)
+                .frame(height: 280, alignment: .top)
+                
+                Spacer()
+                
+                if let image = UIImage(named: dailySlang.imageName) {
+                    VStack {
+                        Image(uiImage: image)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 300, maxHeight: 200)
+                            .cornerRadius(10)
                     }
-                }) {
-                    Text("Anterior")
+                    .frame(width: 300, height: 200)
+                } else {
+                    VStack {
+                        Image(systemName: "photo")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 300, maxHeight: 200)
+                            .cornerRadius(10)
+                            .foregroundColor(.gray)
+                    }
+                    .frame(width: 300, height: 200)
                 }
                 
                 Spacer()
                 
-                Button(action: {
-                    if currentDayOffset < slangs.count - 1 {
-                        currentDayOffset += 1
-                    } else {
-                        currentDayOffset = 0
+                HStack {
+                    Button(action: {
+                        if currentDayOffset > 0 {
+                            currentDayOffset -= 1
+                        } else {
+                            currentDayOffset = slangs.count - 1
+                        }
+                    }) {
+                        ZStack {
+                            Image("SlangButtonOrange")
+                            Text("Anterior")
+                                .foregroundStyle(.white)
+                                .bold()
+                        }
                     }
-                }) {
-                    Text("Próxima")
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        if currentDayOffset < slangs.count - 1 {
+                            currentDayOffset += 1
+                        } else {
+                            currentDayOffset = 0
+                        }
+                    }) {
+                        ZStack {
+                            Image("SlangButtonOrange")
+                            Text("Próxima")
+                                .foregroundStyle(.white)
+                                .bold()
+                        }
+                    }
                 }
+                .padding(.horizontal)
+                .offset(y: 20)
+                
+                Spacer()
             }
-            .padding(.horizontal)
-            
-            Spacer()
-        }
-        .padding()
+            .padding()
         .navigationTitle("Gírias")
+        .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 

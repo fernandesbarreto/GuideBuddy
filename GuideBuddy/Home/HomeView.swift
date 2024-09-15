@@ -144,7 +144,7 @@ struct EmergencyFavoritesSection: View {
                             .cornerRadius(15)
                             .foregroundStyle(.verdePrincipal)
                         VStack {
-                            Image(systemName: "bookmark.fill")
+                            Image(systemName: "star.fill")
                                 .font(.system(size: 32, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.white)
                             
