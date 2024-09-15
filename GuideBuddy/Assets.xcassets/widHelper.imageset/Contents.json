@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "cachorro+frame1x.png",
+      "filename" : "WidHelper1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "cachorro=frame2x.png",
+      "filename" : "WidHelper2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "cachorro+frame3x.png",
+      "filename" : "WidHelper3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

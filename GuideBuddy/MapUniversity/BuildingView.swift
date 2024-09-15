@@ -42,12 +42,13 @@ struct BuildingDetail: Identifiable{
     let description: String
     let image: String
     let navtitle: String
+    let cellphoneNumbers: [String]
 }
 
 let allBuildings: [BuildingDetail] = [
-    BuildingDetail(title: "CFCH", description: "Faculdade de Filosofia e Ciências Humanas", image: "cfch_image", navtitle: "CFCH"),
-    BuildingDetail(title: "CAC", description: "Centro de Artes e Comunicação", image: "cac_image", navtitle: "CAC"),
-    BuildingDetail(title: "CIN", description: "Centro de Informática", image: "cin_image", navtitle: "CIN")
+    BuildingDetail(title: "CFCH", description: "Faculdade de Filosofia e Ciências Humanas", image: "cfch_image", navtitle: "CFCH", cellphoneNumbers: ["995215663"]),
+    BuildingDetail(title: "CAC", description: "Centro de Artes e Comunicação", image: "cac_image", navtitle: "CAC", cellphoneNumbers: ["995215663"]),
+    BuildingDetail(title: "CIN", description: "Centro de Informática", image: "cin_image", navtitle: "CIN", cellphoneNumbers: ["995215663"])
 ]
 
 #Preview {

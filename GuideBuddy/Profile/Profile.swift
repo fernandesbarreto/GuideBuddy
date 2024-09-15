@@ -108,14 +108,14 @@ struct Profile: View {
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
 
 //            .toolbarBackground(.visible, for: .navigationBar)
-            .navigationTitle("perfil")
+            .navigationTitle("Perfil")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
 
                     NavigationLink(destination: {
                         EditProfileScreen(selectedImage: selectedImage)
                     }, label: {
-                        Text("editar")
+                        Text("Editar")
                             .foregroundStyle(Color.background)
                             .shadow(radius: 5)
                     })
@@ -161,7 +161,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-#Preview {
-    Profile()
-}
+//#Preview {
+//    Profile()
+//}
 

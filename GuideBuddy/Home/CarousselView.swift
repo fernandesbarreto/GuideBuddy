@@ -18,6 +18,7 @@ struct CarousselView: View {
                                    label: {
                         ZStack{
                             Image(caroussel.images[index])
+                                .shadow(radius: 2)
                             VStack {
                                 Spacer()
                                 HStack {
@@ -25,17 +26,19 @@ struct CarousselView: View {
                                     Text(caroussel.titles[index])
                                         .font(.system(size: 17,weight: .semibold , design: .rounded))
                                         .foregroundStyle(caroussel.color[index])
-                                        .shadow(radius: 5)
+                                        .shadow(radius: 2)
                                 }
-                                .padding(5)
+                                .padding(.trailing, 10)
                                
                             }
                             .padding()
                         }
                         .frame(width: 250, height: 130)
                     })
+                   
                 }
             }
+            .padding(.leading, 5)
         })
         
     }

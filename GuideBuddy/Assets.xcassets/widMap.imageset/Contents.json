@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "widmap1x.png",
+      "filename" : "WdMap1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "widmap2x.png",
+      "filename" : "WdMap2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "widmap3x.png",
+      "filename" : "WdMap3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

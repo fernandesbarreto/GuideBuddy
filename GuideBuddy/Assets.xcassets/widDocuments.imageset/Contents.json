@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "widdocs1x.png",
+      "filename" : "WidDocumentos1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "widdocs2x.png",
+      "filename" : "WidDocumentos2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "widdocs3x.png",
+      "filename" : "WidDocumentos3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

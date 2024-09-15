@@ -21,7 +21,7 @@ struct HomeView: View {
                     GreetingSection(user: user)
                     
                     AcionarHelperLink()
-                    
+                        .padding(6)
                     EmergencyFavoritesSection()
                     
                     CarousselView(caroussel: Category(images: ["widDocuments", "widUniversities", "widHospital"], titles: ["documento".localized, "faculdade".localized,"hospital".localized], destination: [AnyView(ListaDeDocumentosView()), AnyView(MapUFPE()), AnyView(HealthCategories())], color: [.white, .white, .white]))
@@ -61,6 +61,7 @@ struct GreetingSection: View {
             }
             HStack {
                 Text(user.first?.name ?? "User")
+//                Text("Nome")
                     .font(.system(size: 24, weight: .semibold, design: .rounded))
                     .foregroundStyle(Color.verdePrincipal)
                 Spacer()
@@ -82,14 +83,15 @@ struct AcionarHelperLink: View {
                         Text("acionar_helper")
                             .font(.system(size: 22, weight: .semibold, design: .rounded))
                             .foregroundStyle(.white)
-                            .shadow(radius: 5)
+                            .shadow(radius: 2)
                     }
-                    .padding(10)
+//
                     .padding(.trailing, 10)
                 }
                 .padding()
             }
         })
+        .shadow(radius: 2)
     }
 }
 
@@ -107,15 +109,17 @@ struct EmergencyFavoritesSection: View {
                             Text("mapas".localized)
                                 .font(.system(size: 22, weight: .semibold, design: .rounded))
                                 .foregroundStyle(.white)
-                                .shadow(radius: 5)
+                                .shadow(radius: 2)
                         }
-                        .padding(10)
+//
                     }
                     .padding()
                 }
             })
-            .frame(width: 280, height: 195)
-            
+            .shadow(radius: 2)
+            .padding(.trailing, 10)
+//            .frame(width: 280, height: 195)
+            Spacer()
             VStack{
                 NavigationLink(destination: Emergency(), label: {
                     ZStack {
@@ -155,12 +159,12 @@ struct EmergencyFavoritesSection: View {
                         }
                     }
                 })
-                .shadow(radius: 5)
+                .shadow(radius: 2)
             }
             .frame(height: 177)
         }
-        .frame(width: 370)
-        .padding(.horizontal)
+        
+              .padding(8)
     }
 }
 
@@ -188,7 +192,7 @@ struct DailySlangLink: View {
             .frame(width: 363, height: 208)
         })
         .padding(10)
-        .shadow(radius: 5)
+        .shadow(radius: 2)
     }
 }
 
@@ -209,4 +213,7 @@ struct ProfileLink: View {
             }
         })
     }
+}
+#Preview {
+    HomeView()
 }
