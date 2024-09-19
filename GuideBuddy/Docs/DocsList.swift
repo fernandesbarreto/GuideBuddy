@@ -6,20 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ListaDeDocumentosView: View {
-    @State var documentos = [
-        Documento(titulo: "Passaporte"),
-        Documento(titulo: "Comprovante de residência"),
-        Documento(titulo: "Carta de aceite universitário"),
-        Documento(titulo: "Passagens"),
-        Documento(titulo: "Comprovante financeiro"),
-        Documento(titulo: "Visto de Estudo"),
-        Documento(titulo: "Carta de Indicação"),
-        Documento(titulo: "CPF"),
-        Documento(titulo: "Histórico Escolar"),
-        Documento(titulo: "Laudos Médicos")
-    ]
+    @Query private var user: [User]
+    @State var documentos: [Documento] = []
     
     @State private var isAddingCategory = false
     @State private var newCategoryName = ""
@@ -80,6 +71,10 @@ struct ListaDeDocumentosView: View {
                                    .presentationDetents([.fraction(0.3), .medium])
                                }
             
+        }.onAppear() {
+            documentos = (user.last?.documentos ?? []).map({ title in
+                return Documento(titulo: title)
+            })
         }
         
     }
@@ -88,17 +83,20 @@ struct ListaDeDocumentosView: View {
     // Função para adicionar uma nova categoria (documento)
     private func addCategory(named name: String) {
         let newDocumento = Documento(titulo: name)
+        user.last?.documentos.append(newDocumento.titulo)
         documentos.append(newDocumento)
     }
     
     // Função para mover os documentos
     private func move(from source: IndexSet, to destination: Int) {
         documentos.move(fromOffsets: source, toOffset: destination)
+        user.last?.documentos.move(fromOffsets: source, toOffset: destination)
     }
     
     // Função para deletar os documentos
     private func delete(at offsets: IndexSet) {
         documentos.remove(atOffsets: offsets)
+        user.last?.documentos.remove(atOffsets: offsets)
     }
 }
 

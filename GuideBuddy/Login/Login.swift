@@ -144,16 +144,27 @@
 import SwiftUI
 import SwiftData
 
+
+@Model
+class Document {
+    var title: String
+    init(title: String) {
+        self.title = title
+    }
+}
+
 @Model
 class User {
     var name: String
     var language: Int
     var age: Int
+    var documentos: [String]
     
-    init(name: String, language: Int, age: Int) {
+    init(name: String, language: Int, age: Int, documentos: [String]) {
         self.name = name
         self.language = language
         self.age = age
+        self.documentos = documentos
     }
 }
 
@@ -176,84 +187,102 @@ struct Login: View {
     let thirdText = ["Nome do usuário", "User name", "Nombre de usuario"]
     let fourthText = ["Idade", "Age", "Edad"]
     let fifthText = ["Começar", "Start", "Comezar"]
+    let documentos: [String] =  ["Passaporte",
+         "Comprovante de residência",
+         "Carta de aceite universitário",
+         "Passagens",
+         "Comprovante financeiro",
+         "Visto de Estudo",
+         "Carta de Indicação",
+         "CPF",
+         "Histórico Escolar",
+         "Laudos Médicos"]
+    
     
     var body: some View {
         NavigationStack {
             GeometryReader { geometry in
                 
 
-                ScrollView {
-                    Image("GuideBuddy")
-                        .position(x: geometry.size.width/2, y: geometry.size.height/3.5)
-                    VStack(alignment: .leading) {
-                       
-                        Spacer()
-                        
-                        Text(firstText[language])
-                            .padding(.top, 350)
+                ZStack {
+                    
+                    
+                    VStack {
+//                        Image("GuideBuddy")
+//                            .resizable()
+//                            .frame(width: 106, height: 32)
+                        AnimationScreen()
+                            .position(x: geometry.size.width/2, y: geometry.size.height/3.5)
+                        VStack(alignment: .leading) {
+                           
+                            Spacer()
+                            
+                            Text(firstText[language])
+                                .padding(.top, 350)
 
-                        Text(secondText[language])
-                            .padding(.top, 0)
+                            Text(secondText[language])
+                                .padding(.top, 0)
 
-                        TextField(thirdText[language], text: $name)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(Color.barraTexto)
-                            )
-                            .padding(.bottom, 10)
+                            TextField(thirdText[language], text: $name)
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color.barraTexto)
+                                )
+                                .padding(.bottom, 10)
 
-                        TextField(fourthText[language], value: $age, format: .number)
-                            .keyboardType(.numberPad)
-                            .padding()
-                            .background(
-                                RoundedRectangle(cornerRadius: 8)
-                                    .fill(Color.barraTexto)
-                            )
-                            .padding(.bottom, 30)
-                        
-                        
+                            TextField(fourthText[language], value: $age, format: .number)
+                                .keyboardType(.numberPad)
+                                .padding()
+                                .background(
+                                    RoundedRectangle(cornerRadius: 8)
+                                        .fill(Color.barraTexto)
+                                )
+                                .padding(.bottom, 30)
+                            
+                            
 
-                        Button(action: {
-                            languageManager.setLanguage(languageCodes[language])
-                            handleButtonTap()
-                            //languageManager.setLanguage(languageCodes[language])
-                        }) {
-                            Text(fifthText[language])
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity, minHeight: 50)
-                                .background((name.isEmpty || age == nil) ? Color.gray : Color.verde)
-                                .cornerRadius(14)
-                        }
-                        .alert(fillData[language],
-                               isPresented: $failedInput,
-                               actions: {
-                            Button("OK", role: .cancel, action: {})
-                        })
-                        .padding(.bottom, 50)
-
-                        HStack {
-                            Button {
-                                languages = (languages - 1 + flags.count) % flags.count
-                                language = (language - 1 + 3) % 3
-                            } label: {
-                                Image(systemName: "chevron.left")
+                            Button(action: {
+                                languageManager.setLanguage(languageCodes[language])
+                                handleButtonTap()
+                                //languageManager.setLanguage(languageCodes[language])
+                            }) {
+                                Text(fifthText[language])
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity, minHeight: 50)
+                                    .background((name.isEmpty || age == nil) ? Color.gray : Color.verde)
+                                    .cornerRadius(14)
                             }
+                            .alert(fillData[language],
+                                   isPresented: $failedInput,
+                                   actions: {
+                                Button("OK", role: .cancel, action: {})
+                            })
+                            .padding(.bottom, 50)
 
-                            Image(flags[languages])
-//                                .resizable()
-//                                .frame(width: 24, height: 24)
+                            HStack {
+                                Button {
+                                    languages = (languages - 1 + flags.count) % flags.count
+                                    language = (language - 1 + 3) % 3
+                                } label: {
+                                    Image(systemName: "chevron.left")
+                                }
 
-                            Button {
-                                languages = (languages + 1) % flags.count
-                                language = (language + 1 + 3) % 3
-                            } label: {
-                                Image(systemName: "chevron.right")
+                                Image(flags[languages])
+    //                                .resizable()
+    //                                .frame(width: 24, height: 24)
+
+                                Button {
+                                    languages = (languages + 1) % flags.count
+                                    language = (language + 1 + 3) % 3
+                                } label: {
+                                    Image(systemName: "chevron.right")
+                                }
                             }
+                            .frame(maxWidth: .infinity, alignment: .center)
                         }
-                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding()
                     }
-                    .padding()
                 }
 
 
@@ -266,7 +295,7 @@ struct Login: View {
         if name.isEmpty || age == nil {
             failedInput = true
         } else {
-            let user = User(name: name, language: language, age: age ?? 18)
+            let user = User(name: name, language: language, age: age ?? 18, documentos: documentos)
             context.insert(user)
         }
     }

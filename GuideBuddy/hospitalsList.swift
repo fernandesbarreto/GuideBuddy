@@ -142,6 +142,7 @@ struct HealthyPlaceDescription: View {
            .padding()
            .navigationTitle(hospital.titulo)
            .navigationBarTitleDisplayMode(.inline)
+           
        }
 
 }
