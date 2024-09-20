@@ -204,84 +204,86 @@ struct Login: View {
             GeometryReader { geometry in
                 
 
-                ZStack {
-                    
-                    
-                    ScrollView {
-//                        Image("GuideBuddy")
-//                            .resizable()
-//                            .frame(width: 106, height: 32)
+                ScrollView {
+                    ZStack {
                         AnimationScreen()
                             .position(x: geometry.size.width/2, y: geometry.size.height/3.5)
-                        VStack(alignment: .leading) {
-                           
-                            Spacer()
+                        
+                        VStack {
+    //                        Image("GuideBuddy")
+    //                            .resizable()
+    //                            .frame(width: 106, height: 32)
                             
-                            Text(firstText[language])
-                                .padding(.top, 350)
+                            VStack(alignment: .leading) {
+                               
+                                Spacer()
+                                
+                                Text(firstText[language])
+                                    .padding(.top, 350)
 
-                            Text(secondText[language])
-                                .padding(.top, 0)
+                                Text(secondText[language])
+                                    .padding(.top, 0)
 
-                            TextField(thirdText[language], text: $name)
-                                .padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(Color.barraTexto)
-                                )
-                                .padding(.bottom, 10)
+                                TextField(thirdText[language], text: $name)
+                                    .padding()
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .fill(Color.barraTexto)
+                                    )
+                                    .padding(.bottom, 10)
 
-                            TextField(fourthText[language], value: $age, format: .number)
-                                .keyboardType(.numberPad)
-                                .padding()
-                                .background(
-                                    RoundedRectangle(cornerRadius: 8)
-                                        .fill(Color.barraTexto)
-                                )
-                                .padding(.bottom, 30)
-                            
-                            
+                                TextField(fourthText[language], value: $age, format: .number)
+                                    .keyboardType(.numberPad)
+                                    .padding()
+                                    .background(
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .fill(Color.barraTexto)
+                                    )
+                                    .padding(.bottom, 30)
+                                
+                                
 
-                            Button(action: {
-                                languageManager.setLanguage(languageCodes[language])
-                                handleButtonTap()
-                                //languageManager.setLanguage(languageCodes[language])
-                            }) {
-                                Text(fifthText[language])
-                                    .foregroundColor(.white)
-                                    .frame(maxWidth: .infinity, minHeight: 50)
-                                    .background((name.isEmpty || age == nil) ? Color.gray : Color.verde)
-                                    .cornerRadius(14)
-                            }
-                            .alert(fillData[language],
-                                   isPresented: $failedInput,
-                                   actions: {
-                                Button("OK", role: .cancel, action: {})
-                            })
-                            .padding(.bottom, 50)
-
-                            HStack {
-                                Button {
-                                    languages = (languages - 1 + flags.count) % flags.count
-                                    language = (language - 1 + 3) % 3
-                                } label: {
-                                    Image(systemName: "chevron.left")
+                                Button(action: {
+                                    languageManager.setLanguage(languageCodes[language])
+                                    handleButtonTap()
+                                    //languageManager.setLanguage(languageCodes[language])
+                                }) {
+                                    Text(fifthText[language])
+                                        .foregroundColor(.white)
+                                        .frame(maxWidth: .infinity, minHeight: 50)
+                                        .background((name.isEmpty || age == nil) ? Color.gray : Color.verde)
+                                        .cornerRadius(14)
                                 }
+                                .alert(fillData[language],
+                                       isPresented: $failedInput,
+                                       actions: {
+                                    Button("OK", role: .cancel, action: {})
+                                })
+                                .padding(.bottom, 50)
 
-                                Image(flags[languages])
-    //                                .resizable()
-    //                                .frame(width: 24, height: 24)
+                                HStack {
+                                    Button {
+                                        languages = (languages - 1 + flags.count) % flags.count
+                                        language = (language - 1 + 3) % 3
+                                    } label: {
+                                        Image(systemName: "chevron.left")
+                                    }
 
-                                Button {
-                                    languages = (languages + 1) % flags.count
-                                    language = (language + 1 + 3) % 3
-                                } label: {
-                                    Image(systemName: "chevron.right")
+                                    Image(flags[languages])
+        //                                .resizable()
+        //                                .frame(width: 24, height: 24)
+
+                                    Button {
+                                        languages = (languages + 1) % flags.count
+                                        language = (language + 1 + 3) % 3
+                                    } label: {
+                                        Image(systemName: "chevron.right")
+                                    }
                                 }
+                                .frame(maxWidth: .infinity, alignment: .center)
                             }
-                            .frame(maxWidth: .infinity, alignment: .center)
+                            .padding()
                         }
-                        .padding()
                     }
                 }
 

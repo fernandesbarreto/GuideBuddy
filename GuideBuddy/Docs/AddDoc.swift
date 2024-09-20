@@ -15,12 +15,14 @@ class ItemEntity: Identifiable {
     var imageData: Data?
     var pdfPath: String?
     var area: String
+//    var name: String
 
-    init(type: Int, imageData: Data? = nil, pdfPath: String? = nil, area: String) {
+    init(type: Int, imageData: Data? = nil, pdfPath: String? = nil, area: String/*, name: String*/) {
         self.type = type
         self.imageData = imageData
         self.pdfPath = pdfPath
         self.area = area
+//        self.name = name
     }
 }
 
@@ -82,13 +84,23 @@ struct AdicionarDocumento: View {
             }
             .navigationTitle("Detalhes")
             .navigationBarTitleDisplayMode(.inline)
-            .sheet(item: $selectedItem) { item in
+//            .sheet(item: $selectedItem) { item in
+//                if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
+//                    ImageView(image: uiImage)
+//                } else if item.type == 1, let pdfPath = item.pdfPath {
+//                    PDFViewWrapper(pdfPath: pdfPath)
+//                }
+//            }
+            .popover(item: $selectedItem) { item in
                 if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
                     ImageView(image: uiImage)
                 } else if item.type == 1, let pdfPath = item.pdfPath {
                     PDFViewWrapper(pdfPath: pdfPath)
                 }
             }
+//            .popover(item: $isShowingShareSheet, content: { _ in
+//                ActivityView(activityItems: activityItems)
+//            })
             .sheet(isPresented: $isShowingShareSheet) {
                 ActivityView(activityItems: activityItems)
             }

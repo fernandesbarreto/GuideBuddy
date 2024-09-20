@@ -46,14 +46,27 @@ struct AnimationScreen: View {
 
     var body: some View {
         ZStack {
-            if showpaw{
-                Image("paws") // Imagem do vetor "guibu"
-                    .resizable()
-                    .transition(.scale)
-                    .frame(width: 393, height: 85)
-                    .animation(.easeIn(duration: 1.0), value: showpaw)
-            } else {}
+            VStack{
+                if showpaw{
+                    Image("paws") // Imagem do vetor "guibu"
+                        .resizable()
+                        .transition(.scale)
+                        .frame(width: 393, height: 85)
+//                        .animation(.easeOut(duration: 1.0), value: showpaw)
+                        .mask(
+                            Rectangle()
+                                .frame(width: revealAmount, height: 85) // Controla a área visível da imagem
+                        )
+                        .animation(.easeInOut(duration: 20.0), value: revealAmount)
+                } else {}
+            }
+            .onAppear {
+                withAnimation {
+                    revealAmount = 393
+                }
             
+        }
+            .offset(y: 500)
             VStack {
                 Spacer()
                 
