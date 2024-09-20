@@ -207,7 +207,7 @@ struct Login: View {
                 ZStack {
                     
                     
-                    VStack {
+                    ScrollView {
 //                        Image("GuideBuddy")
 //                            .resizable()
 //                            .frame(width: 106, height: 32)

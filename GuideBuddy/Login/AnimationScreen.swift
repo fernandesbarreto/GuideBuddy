@@ -42,56 +42,67 @@ struct AnimationScreen: View {
     @State private var revealAmount: CGFloat = 0
     @State private var showGuibu: Bool = false
     @State private var firstAnimationComplete: Bool = false
+    @State private var showpaw: Bool = false
 
     var body: some View {
-        VStack {
-            Spacer()
-            
-            if firstAnimationComplete {
-                if showGuibu {
-                    Image("GuiBu") // Imagem do vetor "guibu"
-                        .resizable()
-                        .transition(.scale) // Transição com escala
-                        .frame(width: 106, height: 32)
-                        .animation(.easeInOut(duration: 1.0), value: showGuibu)
-                } else {
-                    Image("GuideBuddy") // Imagem do vetor "guidebuddy"
-                        .resizable()
-                        .transition(.scale) // Transição com escala
-                        .frame(width: 230, height: 31)
-                        .animation(.easeInOut(duration: 1.0), value: showGuibu)
-                }
-            } else {
-                Image("GuideBuddy") // Substitua pelo nome da sua imagem
+        ZStack {
+            if showpaw{
+                Image("paws") // Imagem do vetor "guibu"
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 235, height: 31) // Define o tamanho final da imagem
-                    .mask(
-                        Rectangle()
-                            .frame(width: revealAmount, height: 200) // Controla a área visível da imagem
-                    )
-                    .animation(.easeInOut(duration: 2.0), value: revealAmount)
-            }
+                    .transition(.scale)
+                    .frame(width: 393, height: 85)
+                    .animation(.easeIn(duration: 1.0), value: showpaw)
+            } else {}
             
-            Spacer()
-            
-            if firstAnimationComplete {
-          
+            VStack {
+                Spacer()
+                
+                if firstAnimationComplete {
+                    if showGuibu {
+                        Image("GuiBu") // Imagem do vetor "guibu"
+                            .resizable()
+                            .transition(.scale) // Transição com escala
+                            .frame(width: 106, height: 32)
+                            .animation(.easeInOut(duration: 1.0), value: showGuibu)
+                    } else {
+                        Image("GuideBuddy") // Imagem do vetor "guidebuddy"
+                            .resizable()
+                            .transition(.scale) // Transição com escala
+                            .frame(width: 230, height: 31)
+                            .animation(.easeInOut(duration: 1.0), value: showGuibu)
+                    }
+                } else {
+                    Image("GuideBuddy") // Substitua pelo nome da sua imagem
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 235, height: 31) // Define o tamanho final da imagem
+                        .mask(
+                            Rectangle()
+                                .frame(width: revealAmount, height: 200) // Controla a área visível da imagem
+                        )
+                        .animation(.easeInOut(duration: 2.0), value: revealAmount)
+                }
+                
+                Spacer()
+                
+                if firstAnimationComplete {
+              
+                }
             }
-        }
-        .onAppear {
-            withAnimation {
-                revealAmount = 300
-            }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                firstAnimationComplete = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                    // Inicia a segunda animação
-                    withAnimation {
-                        showGuibu.toggle()
+            .onAppear {
+                withAnimation {
+                    revealAmount = 300
+                }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+                    firstAnimationComplete = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                        // Inicia a segunda animação
+                        withAnimation {
+                            showGuibu.toggle()
+                        }
                     }
                 }
-            }
+        }
         }
     }
 }
