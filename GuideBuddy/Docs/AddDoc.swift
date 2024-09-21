@@ -91,13 +91,13 @@ struct AdicionarDocumento: View {
 //                    PDFViewWrapper(pdfPath: pdfPath)
 //                }
 //            }
-            .popover(item: $selectedItem) { item in
-                if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
-                    ImageView(image: uiImage)
-                } else if item.type == 1, let pdfPath = item.pdfPath {
-                    PDFViewWrapper(pdfPath: pdfPath)
-                }
-            }
+//            .popover(item: $selectedItem) { item in
+//                if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
+//                    ImageView(image: uiImage)
+//                } else if item.type == 1, let pdfPath = item.pdfPath {
+//                    PDFViewWrapper(pdfPath: pdfPath)
+//                }
+//            }
 //            .popover(item: $isShowingShareSheet, content: { _ in
 //                ActivityView(activityItems: activityItems)
 //            })
@@ -109,11 +109,17 @@ struct AdicionarDocumento: View {
     
     private func buildImageMenu(item: ItemEntity, uiImage: UIImage) -> some View {
         Menu {
-            Button(action: {
-                selectedItem = item
-            }) {
-                Label("Visualizar", systemImage: "eye")
+            NavigationLink(
+                destination: DocumentDetailView(item: item) // Leva para a nova tela com o documento
+            ) {
+                Label("Visualizar", systemImage: "eye") // O estilo do botão com ícone e texto
             }
+
+//            Button(action: {
+//                selectedItem = item
+//            }) {
+//                Label("Visualizar", systemImage: "eye")
+//            }
             Button(action: {
                 activityItems = [uiImage]
                 isShowingShareSheet = true
@@ -146,11 +152,16 @@ struct AdicionarDocumento: View {
 
     private func buildPDFMenu(item: ItemEntity) -> some View {
         Menu {
-            Button(action: {
-                selectedItem = item
-            }) {
-                Label("Visualizar", systemImage: "eye")
+            NavigationLink(
+                destination: DocumentDetailView(item: item) // Leva para a nova tela com o documento
+            ) {
+                Label("Visualizar", systemImage: "eye") // O estilo do botão com ícone e texto
             }
+//            Button(action: {
+//                selectedItem = item
+//            }) {
+//                Label("Visualizar", systemImage: "eye")
+//            }
             Button(action: {
                 if let pdfPath = item.pdfPath {
                     let fileManager = FileManager.default
@@ -247,8 +258,7 @@ struct ImageView: View {
                 .padding()
             Spacer()
         }
-        .navigationTitle("Visualizar Imagem")
-    }
+            }
 }
 
 struct PDFViewWrapper: View {
@@ -256,8 +266,7 @@ struct PDFViewWrapper: View {
 
     var body: some View {
         PDFKitView(pdfPath: pdfPath)
-            .navigationTitle("Visualizar PDF")
-            .padding(.top, 16)
+            
     }
 }
 

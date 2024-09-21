@@ -11,6 +11,7 @@ import SwiftData
 struct ListaDeDocumentosView: View {
     @Query private var user: [User]
     @State var documentos: [Documento] = []
+    @Query private var itemEntity: [ItemEntity]
     
     @State private var isAddingCategory = false
     @State private var newCategoryName = ""
@@ -103,6 +104,8 @@ struct ListaDeDocumentosView: View {
 struct Documento: Identifiable {
     let id = UUID()
     let titulo: String
+    var imageData: Data? = nil  // Dados de imagem opcionais
+       var pdfPath: String? = nil
 }
 
 
