@@ -126,6 +126,9 @@ struct AdicionarDocumento: View {
             }) {
                 Label("Compartilhar", systemImage: "square.and.arrow.up")
             }
+            .sheet(isPresented: $isShowingShareSheet) {
+                ActivityView(activityItems: activityItems)
+            }
             Button(action: {
                 showingConfirmation = true
             }) {

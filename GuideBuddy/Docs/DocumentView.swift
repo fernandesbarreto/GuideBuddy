@@ -48,34 +48,34 @@ struct DocumentDetailView: View {
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
             .navigationTitle("Detalhes")
-            .navigationBarItems(trailing: HStack {
-               
-                Button(action: {
-//                    activityItems = [uiImage]
-                    isShowingShareSheet = true
-                }) {
-                    Image(systemName: "square.and.arrow.up")
-                        .foregroundColor(Color.verdePrincipal)
-                }
-                
-           
-                Button(action: {
-                    showingConfirmation = true
-                }) {
-                    Image(systemName: "trash")
-                        .foregroundColor(Color.red)
-                }
-            })
-            .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
-                Button("Cancelar", role: .cancel) {
-                    showingConfirmation = false
-                }
-                Button("Sim, excluir", role: .destructive) {
-//                    deleteItem(item: item)
-                    showingConfirmation = false
-                }
+            .navigationBarItems(trailing: Button(action: {
+//                activityItems = [uiImage]
+                isShowingShareSheet = true
+                      }) {
+                          Image(systemName: "square.and.arrow.up")
+                              .foregroundColor(Color.verdePrincipal)
+                      })
+            .sheet(isPresented: $isShowingShareSheet) {
+                ActivityView(activityItems: activityItems)
             }
-
+                      .toolbar {
+                          Button(action:{
+                              showingConfirmation = true
+                          }, label: {
+                              Image(systemName: "trash")
+                                  .foregroundColor(Color.red)
+                          })
+                          
+                      }
+                      .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
+                          Button("Cancelar", role: .cancel) {
+                              showingConfirmation = false
+                          }
+                          Button("Sim, excluir", role: .destructive) {
+//                              deleteItem(item: item)
+                              showingConfirmation = false
+                          }
+                      }
         }
     }
 }
