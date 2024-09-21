@@ -9,17 +9,17 @@ import Foundation
 import SwiftUI
 
 struct AgePickerView: View {
-    @Binding var selectedAge : Int  // Idade padrão selecionada
+    @Binding var selectedAge : Int 
     
     var body: some View {
         NavigationView {
             Form {
                 Picker("age_select", selection: $selectedAge) {
-                    ForEach(0..<117) { age in  // Idades de 0 a 100
+                    ForEach(0..<117) { age in
                         Text("\(age) anos").tag(age)
                     }
                 }
-                .pickerStyle(WheelPickerStyle())  // Apresenta no estilo roda
+                .pickerStyle(WheelPickerStyle())
                 .accessibilityLabel("idade_selecionada")
             }
             .navigationBarTitle("user_age", displayMode: .inline)

@@ -80,7 +80,7 @@ struct AcionarHelperLink: View {
                     Spacer()
                     HStack {
                         Spacer()
-                        Text("acionar_helper")
+                        Text("Acionar GuiBu")
                             .font(.system(size: 22, weight: .semibold, design: .rounded))
                             .foregroundStyle(.white)
                             .shadow(radius: 2)

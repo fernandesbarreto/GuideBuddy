@@ -1,13 +1,13 @@
 //
-//  BuildingDetailView.swift
+//  HospitalView.swift
 //  GuiBu
 //
-//  Created by Pedro Henrique Nunes da Silveira Bezerra on 13/09/24.
+//  Created by Pedro Henrique Nunes da Silveira Bezerra on 21/09/24.
 //
 
 import SwiftUI
 
-struct BuildingDetailView: View {
+struct HospitalView: View {
     var building: BuildingDetail
     let specificBuilding = allBuildings[0]
     @State var places: [BuildingDetail] = allBuildings
@@ -62,7 +62,7 @@ struct BuildingDetailView: View {
                                         .underline()
                                 }
                                 Button(action: {}, label: {
-                                    Text("Hello")
+                                   
                                 })
                                 
                             }
@@ -78,7 +78,7 @@ struct BuildingDetailView: View {
         }
     }
 }
-    func makeCall(to number: String) {
+    func makeACall(to number: String) {
         let tel = "tel://\(number)"
         guard let url = URL(string: tel) else { return }
         if UIApplication.shared.canOpenURL(url) {
@@ -86,5 +86,6 @@ struct BuildingDetailView: View {
         }
     }
 #Preview {
-    BuildingDetailView(building: BuildingDetail(title: "Centro de Filosofia e Cências Humanas", description: "O Centro de Filosofia e Ciências Humanas (CFCH), assim denominado a partir de 1974, resultou da fusão de vários departamentos da antiga Faculdade de Filosofia, Ciências e Letras de Pernambuco (FAFIPE), criada em 1950, e do Instituto de Ciências do Homem, inicialmente denominado de Instituto de Filosofia e Ciências Humanas. O Centro é formado por 08 (oito) departamentos – Antropologia e Museologia; Arqueologia; Ciências Geográficas; Sociologia; Ciência Política; Filosofia; História e Psicologia. Edificado em uma área de 25.690 m², além dos departamentos este Centro abriga diversos laboratórios de pesquisa e ensino, como também uma biblioteca setorial.", image: "https://www.ufpe.br/documents/40615/67578/CFCH-camerabaixa.JPG/9398eae5-85d8-4847-9a8b-1e0db9c6fc49?t=1499881089418", navtitle: "CFCH", cellphoneNumbers: ["995215663"]))
+    HospitalView(building: BuildingDetail(title: "", description: "", image: "", navtitle: "", cellphoneNumbers: ["995215663"]))
 }
+

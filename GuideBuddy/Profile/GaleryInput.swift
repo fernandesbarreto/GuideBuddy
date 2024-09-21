@@ -39,8 +39,7 @@ struct ImagePicker2: UIViewControllerRepresentable {
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
             if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
                 parent.selectedBackground = image
-                
-                // Insert into context
+
                 if let modelContext = parent.context as? ModelContext {
                     modelContext.insert(BackgroundPhoto(backgroundPhoto: image))
                 }

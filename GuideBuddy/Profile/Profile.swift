@@ -106,8 +106,6 @@ struct Profile: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-
-//            .toolbarBackground(.visible, for: .navigationBar)
             .navigationTitle("Perfil")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {

@@ -92,8 +92,7 @@ struct HealthyPlaceOption: View {
 
 struct HealthyPlaceDescription: View {
     let hospital: MockHospital
-    
-    // Dicionário que mapeia hospitais para suas descrições
+
     private let descriptionsByHospital: [String: String] = [
         "Hospital da Restauração": hospitalDescription[1],
         "UPA Caxangá": hospitalDescription[0],

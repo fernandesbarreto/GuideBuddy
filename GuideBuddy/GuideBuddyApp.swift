@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct GuideBuddyApp: App {
     @StateObject private var languageManager = LanguageManager()
-    
     var body: some Scene {
         WindowGroup {
             ContentView()

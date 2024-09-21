@@ -167,7 +167,16 @@ class User {
         self.documentos = documentos
     }
 }
+@Model
+class Item {
+    var name: String
+    @Relationship var owner: User
 
+    init(name: String, owner: User) {
+        self.name = name
+        self.owner = owner
+    }
+}
 struct Login: View {
     @Environment(\.modelContext) private var context
     @EnvironmentObject var languageManager: LanguageManager

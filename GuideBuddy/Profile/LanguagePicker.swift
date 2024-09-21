@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct LanguagePicker: View {
-    @Binding var selectedLanguage : String  // Idade padrão selecionada
+    @Binding var selectedLanguage : String
     let languages = ["Português", "Español", "English"]
     var body: some View {
         NavigationView {

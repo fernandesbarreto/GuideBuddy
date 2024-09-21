@@ -12,7 +12,6 @@ struct MapUFPE: View {
     @State private var offset: CGSize = .zero
     @State private var lastOffset: CGSize = .zero
     @State private var lastScale: CGFloat = 1.0
-//    @State var faculdadeSelecionada = Epoca.semana
     @State private var selectedFaculdade: Faculdades = .ufpe
 
     var body: some View {
@@ -25,14 +24,14 @@ struct MapUFPE: View {
                     switch selectedFaculdade{
                     case .ufpe:
                         ZStack {
-                            // Container que engloba o mapa e os prédios
+                        
                             ZStack {
-                                // Imagem do mapa
+                    
                                 Image("MapUFPE")
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
                                 
-                                // View que contém os prédios
+                                
                                 BuildingView(buildings: [
                                     Building(image: "CFCH", position: CGPoint(x: 96, y: 350), size: CGSize(width: 30, height: 30), destination: AnyView(BuildingDetailView(building: BuildingDetail(title: "Centro de Filosofia e Cências Humanas", description: "O Centro de Filosofia e Ciências Humanas (CFCH), assim denominado a partir de 1974, resultou da fusão de vários departamentos da antiga Faculdade de Filosofia, Ciências e Letras de Pernambuco (FAFIPE), criada em 1950, e do Instituto de Ciências do Homem, inicialmente denominado de Instituto de Filosofia e Ciências Humanas. O Centro é formado por 08 (oito) departamentos – Antropologia e Museologia; Arqueologia; Ciências Geográficas; Sociologia; Ciência Política; Filosofia; História e Psicologia. Edificado em uma área de 25.690 m², além dos departamentos este Centro abriga diversos laboratórios de pesquisa e ensino, como também uma biblioteca setorial.Estrutura", image: "https://www.ufpe.br/documents/40615/67578/CFCH-camerabaixa.JPG/9398eae5-85d8-4847-9a8b-1e0db9c6fc49?t=1499881089418", navtitle: "CFCH", cellphoneNumbers: ["+55 81 98300-4947"])))),
                                     Building(image: "CAC", position: CGPoint(x: 93, y: 383), size: CGSize(width: 20, height: 20), destination: AnyView(BuildingDetailView(building: BuildingDetail(title: "Centro de Artes e Comunicação", description: "A criação do Centro de Artes e Comunicação ocorreu em 1975, pela junção da Escola das Belas Artes, da Faculdade de Arquitetura, do Departamento de Letras e do Curso de Biblioteconomia.                                                                                                                       Considerado o centro de efervescência cultural da universidade, o CAC realiza atividades, apresentações, eventos e exposições periódicas de artes plásticas, desenho, projetos arquitetônicos, música, dança, literatura, design, fotografia, produção audio-visual, produção de mídia, mídia digital, teatro, performance, além de ciência da informação e pesquisa.                                                                                                                                 A biblioteca Joaquim Cardozo, no CAC, possui um acervo que está totalmente direcionado para atender os cursos de graduação e pós-graduação ofertados no Centro. Se encontra também na biblioteca a sala do acervo da coleção histórica da Oficina Guaianases de Gravuras. Na Galeria Capibaribe, o CAC recebe artistas locais, regionais e coletivas de estudantes para vários tipos de exposição, performance e experimentação. Os temas sociais também fazem parte das discussões no Centro por meio da Comissão de Direitos Humanos Dom Hélder Câmara (CDH) que, na sua composição, conta com professores de diversos departamentos e estudantes da graduação. Também abriga o Núcleo de Línguas e Culturas (NLC), um projeto de extensão voltado para o ensino de línguas estrangeiras e suas respectivas culturas, com o objetivo de proporcionar experiência profissional pedagógico-cultural aos alunos de graduação e pós-graduação e fomentar o intercâmbio entre alunos/professores dos países cujas línguas e culturas estão sendo estudadas ou serão ensinadas.                                                                                                                                         A Diretoria do CAC é composta por equipes setoriais de atendimento as necessidades e demandas de apoio acadêmico, administrativos, de serviços outros como a: secretaria da Direção; de apoio acadêmico o Núcleo de Estudos e Assessoria Pedagógica (NEAP); de infraestrutura e administração a Coordenação de Infraestrutura, Finanças e Compras (CIFIC); para acesso a laboratório de informática e serviços técnicos de manutenção o Laboratório de Informática e Ensino da Graduação (LIEG); para impulsionar, divulgar e avaliar ações extensionistas acadêmicas a Coordenação Setorial de Extensão (CSE); e para difundir através de mídia impressa e digital as atividades e eventos do Centro e de interesse deste a Coordenação de Comunicação e Design (CCD). O CAC ocupa uma área de 15.500 metros quadrados, distribuídos entre salas de aula, departamentos, setores, biblioteca, teatro, núcleos de pesquisas, laboratórios, hemeroteca, oficinas, estúdios, auditórios, anfiteatro, galeria de arte e jardins.                                                                                                       Integram o CAC oito Departamentos Acadêmicos. Conheça mais sobre cada um destes setores através destes links: Arquitetura e Urbanismo, Ciência da Informação, Comunicação Social, Design, Expressão Gráfica, Letras, Música e Artes.", image: "https://www.ufpe.br/documents/40615/2532249/fotcac10.12.19.JPG/ff1018b0-5e74-40d8-b3fc-3766027110c4?t=1576000450352", navtitle: "CAC", cellphoneNumbers: ["+55 81 98300-4947"])))),
@@ -48,8 +47,8 @@ struct MapUFPE: View {
                                     Building(image: "OCEANOGRAFIA", position: CGPoint(x: 135, y: 490), size: CGSize(width: 15, height: 15), destination: AnyView(BuildingDetailView(building: BuildingDetail(title: "Museu de Oceanografia", description: "Ao longo de mais de 50 anos de trabalho, o Departamento  de Oceanografia reuniu importante acervo científico que documenta não só toda a história do conhecimento oceanográfico a partir do início de seu funcionamento, como também a biodiversidade da plataforma continental e do domínio marítimo adjacente ao Brasil, com ênfase às regiões Norte e Nordeste, porém com abrangência geográfica que se estende até o norte da Argentina. Nesta área de abrangência geográfica, ressaltam-se as comissões oceanográficas nacionais e internacionais, tendo como principal área de prospecção a plataforma continental brasileira. O material resultante destas expedições, bem como o proveniente de inúmeras coletas costeiras e estuarinas, concomitantemente com os espécimes obtidos através de intercâmbios com outras coleções científicas nacionais (FURG, USP, MNRJ, UFRJ, UERJ, UESC, dentre outras) e estrangeiras (laboratórios de Paris, Washington, Frankfurt, etc) compõe um acervo conjunto de 15.000 lotes de crustáceos, 7.000 de moluscos, 4.000 de outros invertebrados (particularmente poliquetas e esponjas), 8.000 de plâncton (fitoplâncton e zooplâncton) e 1.300 de peixes. ", image: "https://www.ufpe.br/documents/1208775/1208915/WhatsApp+Image+2020-03-27+at+10.24.01+AM+%281%29.jpeg/11055bb5-5f00-4e43-bfa0-c058b6d39190?t=1585346590867", navtitle: "Oceanografia", cellphoneNumbers: ["+55 81 98300-4947"]))))
                                 ])
                             }
-                            .scaleEffect(scale) // Aplicando o zoom em todo o container
-                            .offset(x: offset.width, y: offset.height) // Aplicando o movimento em todo o container
+                            .scaleEffect(scale)
+                            .offset(x: offset.width, y: offset.height)
                             .gesture(DragGesture()
                                 .onChanged { value in
                                     offset = CGSize(
@@ -58,15 +57,15 @@ struct MapUFPE: View {
                                     )
                                 }
                                 .onEnded { _ in
-                                    lastOffset = offset // Salvando a última posição após o arrasto
+                                    lastOffset = offset
                                 }
                             )
                             .gesture(MagnificationGesture()
                                 .onChanged { value in
-                                    scale = lastScale * value // Aplicando o zoom com base no último valor
+                                    scale = lastScale * value
                                 }
                                 .onEnded { value in
-                                    lastScale = scale // Salvando o último estado do zoom
+                                    lastScale = scale
                                 }
                             )
                         }
@@ -75,26 +74,56 @@ struct MapUFPE: View {
                     case .ufrpe:
                         Text("mapaUFRPE")
                     }
-                    Picker("Selecione a faculdade", selection: $selectedFaculdade) {
-                                        Text("UFPE").tag(Faculdades.ufpe)
-                                        Text("UFRPE").tag(Faculdades.ufrpe)
-                                    }
-                                    .pickerStyle(SegmentedPickerStyle())
-                                    .padding(.horizontal)
-                                    .offset(y: -320)
+//
                 }
-                .navigationBarTitleDisplayMode(.inline)
                 .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
 
                 .toolbarBackground(.visible, for: .navigationBar)
                 .navigationTitle("Faculdades")
+                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: TestView(), label: {
+                        Menu {
+                            Text("Selecione o filtro")
+                            
+                            
+                            Button(action: {
+                             
+                            }) {
+                                Label("Blocos", systemImage: "building")
+                            }
+                            Button(action: {
+                             
+                            }) {
+                                Label("Núcleos", systemImage: "building.columns")
+                            }
+                           
+                            Button(action: {
+                              
+                            }) {
+                                Label("Paradas de ônibus", systemImage: "bus.fill")
+                            }
+                            Button(action: {
+                              
+                            }) {
+                                Label("Restaurante Universitário", systemImage: "fork.knife")
+                            }
+                        } label: {
                             Image(systemName: "line.3.horizontal.decrease.circle")
                                 .foregroundStyle(Color.verdePrincipal)
-                        })
+                        }
+                        
+
                        
+                    }
+                    ToolbarItem(placement: .principal) {
+                        Picker("Selecione a faculdade", selection: $selectedFaculdade) {
+                            Text(" UFPE").tag(Faculdades.ufpe)
+                            Text("UFRPE").tag(Faculdades.ufrpe)
+                        }
+                        .pickerStyle(SegmentedPickerStyle())
+                        .frame(width: 150)
+                                       .scaleEffect(0.9)
                     }
                 }
             }

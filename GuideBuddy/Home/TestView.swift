@@ -8,47 +8,55 @@
 import SwiftUI
 
 struct TestView: View {
-    var body: some View {
-        NavigationStack{
-            ScrollView{
-                
-                
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(Color.white.opacity(0.8), for: .navigationBar)
-            .toolbarBackground(.visible, for: .navigationBar)
-            .navigationTitle("TestView")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action:{}, label: {
-                        
-                        Image("")
+        @State private var selectedTab = 0
+        let tabs = ["Progress", "Activities"]
+
+        var body: some View {
+            NavigationStack {
+                VStack {
+                    // Conteúdo conforme a seleção
+                    if selectedTab == 0 {
+                        Text("Progress View")
+                            .padding()
+                    } else {
+                        Text("Activities View")
+                            .padding()
+                    }
+                }
+                .navigationTitle("You")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .principal) {
+                        Picker("Options", selection: $selectedTab) {
+                            ForEach(0..<tabs.count) { index in
+                                Text(self.tabs[index])
+                                    .tag(index)
+                            }
+                        }
+                        .pickerStyle(SegmentedPickerStyle()) // Estilo segmentado
+                        .frame(width: 200) // Controla o tamanho do picker
+                    }
+
+                    // Ícone à esquerda
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Image(systemName: "person.circle")
                             .resizable()
-                            .scaledToFit()
-                            .frame(width: 30)
-                    })
-                  
-    
-                }
-                
-        
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
+                            .frame(width: 30, height: 30)
+                    }
 
-                    Button(action: {
-                       
-
-                    },
-                           label: {
-                        Image(systemName: "")
-                            .foregroundStyle(Color(.white))
-
-                    })
-                }
+                    // Ícone à direita
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Image(systemName: "gear")
+                            .resizable()
+                            .frame(width: 25, height: 25)
+                    }
+            }
             }
         }
     }
-}
+
+
+
 
 #Preview {
     TestView()
