@@ -21,6 +21,7 @@
 		C1052CB02C9BA4D700EAD60B /* AnimationScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1052CAF2C9BA4D700EAD60B /* AnimationScreen.swift */; };
 		C1052CB22C9E6A3800EAD60B /* DocumentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1052CB12C9E6A3800EAD60B /* DocumentView.swift */; };
 		C1052CB42C9F519300EAD60B /* HospitalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1052CB32C9F519300EAD60B /* HospitalView.swift */; };
+		C1052CB62C9F53A700EAD60B /* ModelHospitalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1052CB52C9F53A700EAD60B /* ModelHospitalView.swift */; };
 		C1130E992C8AFBB000CE4F98 /* ProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */; };
 		C12075EC2C828FB4005277B7 /* GaleryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12075EB2C828FB4005277B7 /* GaleryInput.swift */; };
 		C126A5492C7F6A0200322D11 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C126A5482C7F6A0200322D11 /* NavBar.swift */; };
@@ -73,6 +74,7 @@
 		C1052CAF2C9BA4D700EAD60B /* AnimationScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationScreen.swift; sourceTree = "<group>"; };
 		C1052CB12C9E6A3800EAD60B /* DocumentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentView.swift; sourceTree = "<group>"; };
 		C1052CB32C9F519300EAD60B /* HospitalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalView.swift; sourceTree = "<group>"; };
+		C1052CB52C9F53A700EAD60B /* ModelHospitalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHospitalView.swift; sourceTree = "<group>"; };
 		C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoView.swift; sourceTree = "<group>"; };
 		C12075EB2C828FB4005277B7 /* GaleryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaleryInput.swift; sourceTree = "<group>"; };
 		C126A5482C7F6A0200322D11 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				5552BFA52C85D76700DE92BF /* HospitalData.swift */,
 				558BC8B72C90847F006F491E /* Extension1.swift */,
 				C1052CB32C9F519300EAD60B /* HospitalView.swift */,
+				C1052CB52C9F53A700EAD60B /* ModelHospitalView.swift */,
 			);
 			name = Hospitals;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			files = (
 				C0F65D262C7DF9180096B3B1 /* Login.swift in Sources */,
 				C17344722C93E8B700BA20FA /* UFPEPlaces.swift in Sources */,
+				C1052CB62C9F53A700EAD60B /* ModelHospitalView.swift in Sources */,
 				C155835E2C93ADDE00376E91 /* BuildingView.swift in Sources */,
 				C090E2252C8F414400F21058 /* LanguageManager.swift in Sources */,
 				C152DB132C80BA5F0052256B /* TestView.swift in Sources */,

@@ -16,7 +16,7 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack{
-            ScrollView{
+            ScrollView(showsIndicators: false){
                 VStack{
                     GreetingSection(user: user)
                     
