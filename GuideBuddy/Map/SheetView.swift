@@ -69,7 +69,9 @@ struct UnifiedSheetView: View {
                         .padding(.leading, 8)
                 }
             }
-
+            .padding()
+            .background(Color.white.opacity(0.4))  // Fundo semi-transparente
+            .cornerRadius(100)  // Bordas arredondadas
             Spacer()
 
             List {

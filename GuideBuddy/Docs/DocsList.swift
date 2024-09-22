@@ -55,8 +55,8 @@ struct ListaDeDocumentosView: View {
                                        Button(action: {
                                            if !newCategoryName.isEmpty {
                                                addCategory(named: newCategoryName)
-                                               isAddingCategory = false // Fechar o sheet após adicionar
-                                               newCategoryName = "" // Limpar o campo após adicionar
+                                               isAddingCategory = false 
+                                               newCategoryName = ""
                                            }
                                        }, label: {
                                            ZStack {
@@ -81,20 +81,20 @@ struct ListaDeDocumentosView: View {
     }
     
     
-    // Função para adicionar uma nova categoria (documento)
+    
     private func addCategory(named name: String) {
         let newDocumento = Documento(titulo: name)
         user.last?.documentos.append(newDocumento.titulo)
         documentos.append(newDocumento)
     }
     
-    // Função para mover os documentos
+   
     private func move(from source: IndexSet, to destination: Int) {
         documentos.move(fromOffsets: source, toOffset: destination)
         user.last?.documentos.move(fromOffsets: source, toOffset: destination)
     }
     
-    // Função para deletar os documentos
+    
     private func delete(at offsets: IndexSet) {
         documentos.remove(atOffsets: offsets)
         user.last?.documentos.remove(atOffsets: offsets)
@@ -104,7 +104,7 @@ struct ListaDeDocumentosView: View {
 struct Documento: Identifiable {
     let id = UUID()
     let titulo: String
-    var imageData: Data? = nil  // Dados de imagem opcionais
+    var imageData: Data? = nil
        var pdfPath: String? = nil
 }
 

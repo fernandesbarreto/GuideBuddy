@@ -9,6 +9,7 @@ import SwiftUI
 
 
 struct ProfilePhotoView: View {
+    @Environment(\.modelContext) private var context
     @State var selectedImage: UIImage?
     @State private var isImagePickerPresented = false
     @State private var isImagePickerGaleryPresented = false
@@ -108,10 +109,32 @@ struct ProfilePhotoView: View {
                         
                     }
                 }
+                ToolbarItem(placement: .bottomBar) {
+                    Button(action:{
+//                        context.delete(selectedImage)
+                        selectedImage = nil
+                        
+                    }, label: {
+                        ZStack{
+//                            Rectangle()
+//                                .frame(width: 70, height: 45)
+//                                .foregroundColor(.gray)
+//                                .opacity(0.2)
+//                                .cornerRadius(10)
+                                    
+                            Image(systemName: "trash")
+                                .foregroundStyle(.red)
+                        }
+                      })
+                  }
             }
         }
         
     }
+//    func deleteImage() {
+//        context.delete(selectedImage)
+//        selectedImage = nil
+//    }
 }
 
 #Preview {

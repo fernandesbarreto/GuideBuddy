@@ -127,6 +127,7 @@ struct EmergencyFavoritesSection: View {
                             .frame(width: 77, height: 77)
                             .cornerRadius(15)
                             .foregroundStyle(.red)
+                            .shadow(radius: 5)
                         VStack {
                             Image(systemName: "light.beacon.max.fill")
                                 .font(.system(size: 32, weight: .semibold, design: .rounded))
@@ -134,12 +135,13 @@ struct EmergencyFavoritesSection: View {
                             
                             Text("emergencia")
                                 .font(.system(size: 12))
+                                .bold()
                                 .foregroundStyle(.white)
                                 .padding(.vertical, 3)
                         }
                     }
                 })
-                .shadow(radius: 5)
+//                .shadow(radius: 5)
                 Spacer()
                 NavigationLink(destination: Favorites(), label: {
                     ZStack {
@@ -147,6 +149,7 @@ struct EmergencyFavoritesSection: View {
                             .frame(width: 77, height: 77)
                             .cornerRadius(15)
                             .foregroundStyle(.verdePrincipal)
+                            .shadow(radius: 5)
                         VStack {
                             Image(systemName: "star.fill")
                                 .font(.system(size: 32, weight: .semibold, design: .rounded))
@@ -154,12 +157,13 @@ struct EmergencyFavoritesSection: View {
                             
                             Text("favoritos")
                                 .font(.system(size: 12))
+                                .bold()
                                 .foregroundStyle(.white)
                                 .padding(.vertical, 2)
                         }
                     }
                 })
-                .shadow(radius: 2)
+               
             }
             .frame(height: 177)
         }
