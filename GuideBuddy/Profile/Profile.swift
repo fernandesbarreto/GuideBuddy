@@ -140,7 +140,7 @@ struct Profile: View {
                         RoundedRectangle(cornerRadius: 25)
                             .frame(width: 60, height: 30)
                             .foregroundStyle(.white)
-                            .opacity(0.2)
+                            .opacity(0.6)
                             
                         Text("Perfil")
                             .foregroundStyle(.black)

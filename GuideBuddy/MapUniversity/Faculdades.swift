@@ -12,3 +12,10 @@ enum Faculdades: String, CaseIterable {
     case ufrpe = "UFRPE"
 
 }
+enum BuildingUFPE: String, CaseIterable {
+    case blocos = "Blocos"
+    case parada = "Parada"
+    case nucleos = "Núcleos"
+    case restaurante = "Restaurante"
+}
+
