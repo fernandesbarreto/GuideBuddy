@@ -15,14 +15,14 @@ class ItemEntity: Identifiable {
     var imageData: Data?
     var pdfPath: String?
     var area: String
-//    var name: String
+    var name: String
 
-    init(type: Int, imageData: Data? = nil, pdfPath: String? = nil, area: String/*, name: String*/) {
+    init(type: Int, imageData: Data? = nil, pdfPath: String? = nil, area: String, name: String) {
         self.type = type
         self.imageData = imageData
         self.pdfPath = pdfPath
         self.area = area
-//        self.name = name
+        self.name = name
     }
 }
 
@@ -55,18 +55,22 @@ struct AdicionarDocumento: View {
                                          GridItem(.fixed(120)),
                                          GridItem(.fixed(120))], spacing: 20) {
                         
-                        Button(action: {
-                            isImporting = true
-                        }) {
-                            Image(systemName: "plus")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
-                                .padding(40)
+                        VStack {
+                            Button(action: {
+                                isImporting = true
+                            }) {
+                                Image(systemName: "plus")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+                                    .padding(40)
+                            }
+                            .background(Color(white: 0.9))
+                            .clipShape(RoundedRectangle(cornerRadius: 12.0))
+                            .foregroundColor(.white)
+                            Text("")
+                                .font(.caption)
                         }
-                        .background(Color(white: 0.9))
-                        .clipShape(RoundedRectangle(cornerRadius: 12.0))
-                        .foregroundColor(.white)
                         
                         ForEach(filteredItems, id: \.id) { item in
                             if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
@@ -135,12 +139,19 @@ struct AdicionarDocumento: View {
                 Label("Excluir", systemImage: "trash")
             }
         } label: {
-            Image(uiImage: uiImage)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 110, height: 110)
-                .clipped()
-                .cornerRadius(10)
+            VStack {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 110, height: 110)
+                    .clipped()
+                    .cornerRadius(10)
+                Text(item.name)
+                    .font(.caption)
+                    .foregroundStyle(.black)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            }
         }
         .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
             Button("Cancelar", role: .cancel) {
@@ -182,12 +193,19 @@ struct AdicionarDocumento: View {
                 Label("Excluir", systemImage: "trash")
             }
         } label: {
-            Image("pdfImage")
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: 110, height: 110)
-                .clipped()
-                .cornerRadius(10)
+            VStack {
+                Image("pdfImage")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 110, height: 110)
+                    .clipped()
+                    .cornerRadius(10)
+                Text(item.name)
+                    .font(.caption)
+                    .foregroundStyle(.black)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            }
         }
         .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
             Button("Cancelar", role: .cancel) {
@@ -206,12 +224,14 @@ struct AdicionarDocumento: View {
         case .success(let url):
             self.fileURL = url
             _ = url.startAccessingSecurityScopedResource()
+            let fileName = url.lastPathComponent
+            
             if url.pathExtension == "pdf" {
-                savePDFToSwiftData(url: url)
+                savePDFToSwiftData(url: url, fileName: fileName)
             } else {
                 if let data = try? Data(contentsOf: url),
                    let _ = UIImage(data: data) {
-                    saveImageToSwiftData(imageData: data)
+                    saveImageToSwiftData(imageData: data, imageName: fileName)
                 }
             }
         case .failure(let error):
@@ -219,13 +239,14 @@ struct AdicionarDocumento: View {
         }
     }
 
-    private func saveImageToSwiftData(imageData: Data) {
-        let newItem = ItemEntity(type: 0, imageData: imageData, area: documento.titulo)
+
+    private func saveImageToSwiftData(imageData: Data, imageName: String) {
+        let newItem = ItemEntity(type: 0, imageData: imageData, area: documento.titulo, name: imageName)
         context.insert(newItem)
         try? context.save()
     }
     
-    private func savePDFToSwiftData(url: URL) {
+    private func savePDFToSwiftData(url: URL, fileName: String) {
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let destinationURL = documentsDirectory.appendingPathComponent(url.lastPathComponent)
@@ -234,7 +255,7 @@ struct AdicionarDocumento: View {
             if !fileManager.fileExists(atPath: destinationURL.path) {
                 try fileManager.copyItem(at: url, to: destinationURL)
             }
-            let newItem = ItemEntity(type: 1, pdfPath: destinationURL.lastPathComponent, area: documento.titulo)
+            let newItem = ItemEntity(type: 1, pdfPath: destinationURL.lastPathComponent, area: documento.titulo, name: fileName)
             context.insert(newItem)
             try context.save()
             print("Saved file at: \(destinationURL.path)")
