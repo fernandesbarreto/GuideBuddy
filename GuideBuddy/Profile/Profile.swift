@@ -108,15 +108,45 @@ struct Profile: View {
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
             .navigationTitle("Perfil")
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 25)
+                            .frame(width: 78, height: 30)
+                            .foregroundStyle(.white)
+                            .opacity(0.2)
+                            
+                    }
+                    .offset(x: -76)
+                }
                 ToolbarItem(placement: .navigationBarTrailing) {
 
                     NavigationLink(destination: {
                         EditProfileScreen(selectedImage: selectedImage)
                     }, label: {
-                        Text("Editar")
-                            .foregroundStyle(Color.background)
-                            .shadow(radius: 5)
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 25)
+                                .frame(width: 60, height: 30)
+                                .foregroundStyle(.white)
+                                .opacity(0.2)
+                                
+                            Text("Editar")
+                                .foregroundStyle(Color.black)
+                                
+                        }
                     })
+                }
+                ToolbarItem(placement: .principal) {
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 25)
+                            .frame(width: 60, height: 30)
+                            .foregroundStyle(.white)
+                            .opacity(0.2)
+                            
+                        Text("Perfil")
+                            .foregroundStyle(.black)
+                            .font(.system(size: 17,weight: .medium , design: .rounded))
+                    }
+                    .frame(width: 60, height: 30)
                 }
             }
             .onAppear {

@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "profilefoto1x.png",
+      "filename" : "guibufotoperfil.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "peofilefoto2x.png",
+      "filename" : "2xxx.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "profilefoto3x.png",
+      "filename" : "3xxx.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

@@ -11,7 +11,7 @@ struct HospitalView: View {
     var hospital: HospitalModel
     let specificBuilding = allBuildings[0]
     @State var places: [HospitalModel] = allHospitalPlaces
-    
+    @Environment(\.presentationMode) var presentationMode
     var body: some View {
         NavigationStack{
             ScrollView(showsIndicators: false) {
@@ -73,7 +73,7 @@ struct HospitalView: View {
                                                         .font(.body)
                                                         .padding(.horizontal, 10)
                                                         .padding(.vertical, 6)
-                                                        .background(Color.hospitalPurple.opacity(0.2))
+                                                        .background(Color.verdePrincipal.opacity(0.2))
                                                         .cornerRadius(8)
                                                 }
                                             }
@@ -91,7 +91,7 @@ struct HospitalView: View {
                                                         .font(.body)
                                                         .padding(.horizontal, 10)
                                                         .padding(.vertical, 6)
-                                                        .background(Color.hospitalPurple.opacity(0.2))
+                                                        .background(Color.verdePrincipal.opacity(0.1))
                                                         .cornerRadius(8)
                                                 }
                                             }
@@ -109,7 +109,7 @@ struct HospitalView: View {
                                                         .font(.body)
                                                         .padding(.horizontal, 10)
                                                         .padding(.vertical, 6)
-                                                        .background(Color.hospitalPurple.opacity(0.2))
+                                                        .background(Color.verdePrincipal.opacity(0.1))
                                                         .cornerRadius(8)
                                                 }
                                             }
@@ -156,8 +156,27 @@ struct HospitalView: View {
                     
                     
                 }
+                .navigationBarBackButtonHidden(false)
 //                .navigationTitle(hospital.navTitle)
                 .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 25)
+                                .frame(width: 78, height: 30)
+                                .foregroundStyle(.white)
+                                .opacity(0.3)
+                                
+                        }
+                        .offset(x: -76)
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button(action: {}, label: {})
+                    }
+                    ToolbarItem(placement: .principal){
+                        Text("")
+                    }
+                }
                 
             }
             .ignoresSafeArea()

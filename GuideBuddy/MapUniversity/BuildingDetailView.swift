@@ -15,8 +15,21 @@ struct BuildingDetailView: View {
     var body: some View {
         NavigationStack{
             ScrollView {
-                
-                
+                AsyncImage(url: URL(string: building.image)) { image in
+                    image
+                        .resizable()
+                    //                        .resizable()
+                        .scaledToFit()
+                    //                        .frame(width: 370)
+                    //
+                } placeholder: {
+                    
+                    ProgressView()
+                }
+                .cornerRadius(10.0)
+                .frame(width: 393, height: 267)
+                .clipped()
+                .offset(y: -8)
                 Text(building.title)
                     .font(.title)
                     .fontWeight(.bold)
@@ -25,18 +38,7 @@ struct BuildingDetailView: View {
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.leading, 15)
                 
-                AsyncImage(url: URL(string: building.image)) { image in
-                    image
-                        .resizable()
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 370)
-                    
-                } placeholder: {
-                 
-                    ProgressView()
-                }
-                Spacer()
+//                Spacer()
                 VStack {
                     LazyVStack(alignment: .leading, spacing: 20) {
                        
