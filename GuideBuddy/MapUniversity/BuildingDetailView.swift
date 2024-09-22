@@ -181,6 +181,22 @@ struct BuildingDetailView: View {
                 .navigationTitle(building.navtitle)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar{
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 25)
+                                .frame(width: 78, height: 30)
+                                .foregroundStyle(.white)
+                                .opacity(0.9)
+                                
+                        }
+                        .offset(x: -76)
+                    }
+                    ToolbarItem(placement: .navigationBarTrailing){
+                        Button(action: {}, label: {})
+                    }
+                    ToolbarItem(placement: .principal){
+                        Text("")
+                    }
                     ToolbarItem(placement: .principal) {
                         ZStack{
                             RoundedRectangle(cornerRadius: 25)

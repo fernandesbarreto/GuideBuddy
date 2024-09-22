@@ -286,7 +286,7 @@ struct HospitalView: View {
                             RoundedRectangle(cornerRadius: 25)
                                 .frame(width: 78, height: 30)
                                 .foregroundStyle(.white)
-                                .opacity(0.5)
+                                .opacity(0.9)
                                 
                         }
                         .offset(x: -76)

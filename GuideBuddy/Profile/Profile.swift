@@ -113,7 +113,7 @@ struct Profile: View {
                         RoundedRectangle(cornerRadius: 25)
                             .frame(width: 78, height: 30)
                             .foregroundStyle(.white)
-                            .opacity(0.2)
+                            .opacity(0.6)
                             
                     }
                     .offset(x: -76)
@@ -127,7 +127,7 @@ struct Profile: View {
                             RoundedRectangle(cornerRadius: 25)
                                 .frame(width: 60, height: 30)
                                 .foregroundStyle(.white)
-                                .opacity(0.2)
+                                .opacity(0.6)
                                 
                             Text("Editar")
                                 .foregroundStyle(Color.black)
