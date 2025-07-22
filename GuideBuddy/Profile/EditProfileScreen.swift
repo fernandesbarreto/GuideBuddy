@@ -111,7 +111,7 @@ struct EditProfileScreen: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
+            .toolbarBackground(.regularMaterial)
             .navigationTitle("editar_perfil")
             .toolbar {
 //                ToolbarItem(placement: .principal) {

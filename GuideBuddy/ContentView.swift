@@ -12,11 +12,12 @@ struct ContentView: View {
     @Query(sort: \User.age) private var user: [User]
     
     var body: some View {
-        if(user.count == 1) {
-            HomeView()
-        } else {
-            Login()
-        }
+//        if(user.count == 1) {
+//            HomeView()
+//        } else {
+//            StartView()
+//        }
+        StartView()
     }
     
 }

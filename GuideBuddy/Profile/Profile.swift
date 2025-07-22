@@ -106,13 +106,13 @@ struct Profile: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
-            .navigationTitle("Perfil")
+//            .navigationTitle("Perfil")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     ZStack{
                         RoundedRectangle(cornerRadius: 25)
                             .frame(width: 78, height: 30)
-                            .foregroundStyle(.white)
+                            .foregroundStyle(.regularMaterial)
                             .opacity(0.6)
                             
                     }
@@ -124,30 +124,30 @@ struct Profile: View {
                         EditProfileScreen(selectedImage: selectedImage)
                     }, label: {
                         ZStack{
-                            RoundedRectangle(cornerRadius: 25)
-                                .frame(width: 60, height: 30)
-                                .foregroundStyle(.white)
+                            Circle()
+                                .frame(width: 30, height: 30)
+                                .foregroundStyle(.regularMaterial)
                                 .opacity(0.6)
                                 
-                            Text("Editar")
+                            Image(systemName: "pencil")
                                 .foregroundStyle(Color.black)
                                 
                         }
                     })
                 }
-                ToolbarItem(placement: .principal) {
-                    ZStack{
-                        RoundedRectangle(cornerRadius: 25)
-                            .frame(width: 60, height: 30)
-                            .foregroundStyle(.white)
-                            .opacity(0.6)
-                            
-                        Text("Perfil")
-                            .foregroundStyle(.black)
-                            .font(.system(size: 17,weight: .medium , design: .rounded))
-                    }
-                    .frame(width: 60, height: 30)
-                }
+//                ToolbarItem(placement: .principal) {
+//                    ZStack{
+//                        RoundedRectangle(cornerRadius: 25)
+//                            .frame(width: 60, height: 30)
+//                            .foregroundStyle(.white)
+//                            .opacity(0.6)
+//                            
+//                        Text("Perfil")
+//                            .foregroundStyle(.black)
+//                            .font(.system(size: 17,weight: .medium , design: .rounded))
+//                    }
+//                    .frame(width: 60, height: 30)
+//                }
             }
             .onAppear {
                 loadImages()

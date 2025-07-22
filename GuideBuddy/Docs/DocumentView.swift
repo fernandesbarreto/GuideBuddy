@@ -45,7 +45,7 @@ struct DocumentDetailView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
+            .toolbarBackground(.regularMaterial)
             .toolbarBackground(.visible, for: .navigationBar)
             .navigationTitle("Detalhes")
             .navigationBarItems(trailing: Button(action: {

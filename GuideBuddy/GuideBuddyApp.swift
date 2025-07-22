@@ -13,7 +13,7 @@ struct GuideBuddyApp: App {
     @StateObject private var languageManager = LanguageManager()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            StartView()
             //Login()
               .environmentObject(languageManager)
         }

@@ -28,7 +28,7 @@ struct ListaDeDocumentosView: View {
                     .onMove(perform: move) // Permite mover itens
                 }
             }
-            
+            .toolbarBackground(.regularMaterial)
             .navigationTitle("Documentos")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button(action: {
@@ -71,6 +71,7 @@ struct ListaDeDocumentosView: View {
                                    .padding()
                                    .presentationDetents([.fraction(0.3), .medium])
                                }
+                      .background(.regularMaterial)
             
         }.onAppear() {
             documentos = (user.last?.documentos ?? []).map({ title in

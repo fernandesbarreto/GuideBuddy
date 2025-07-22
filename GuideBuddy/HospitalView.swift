@@ -95,6 +95,7 @@ struct HospitalView: View {
                         ProgressView()
                     }
                     .cornerRadius(10.0)
+                   
                     .frame(width: 393, height: 267)
                     .clipped()
                     .offset(y: -8)
@@ -230,7 +231,7 @@ struct HospitalView: View {
                                                         .font(.body)
                                                         .padding(.horizontal, 10)
                                                         .padding(.vertical, 6)
-                                                        .background(Color.verdePrincipal.opacity(0.2))
+                                                        .background(Color.verdePrincipal.opacity(0.1))
                                                         .cornerRadius(8)
                                                 }
                                             }
@@ -279,17 +280,11 @@ struct HospitalView: View {
                     
                     
                 }
+                .navigationBarBackButtonHidden(true)
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 25)
-                                .frame(width: 78, height: 30)
-                                .foregroundStyle(.white)
-                                .opacity(0.9)
-                                
-                        }
-                        .offset(x: -76)
+                      
                     }
                     ToolbarItem(placement: .navigationBarTrailing){
                         Button(action: {}, label: {})

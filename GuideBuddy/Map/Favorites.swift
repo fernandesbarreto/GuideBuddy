@@ -56,6 +56,7 @@ struct Favorites: View {
                     secondaryButton: .cancel()
                 )
             }
+            .toolbarBackground(.regularMaterial)
             .navigationTitle("favoritos")
             .navigationBarTitleDisplayMode(.inline)
         }

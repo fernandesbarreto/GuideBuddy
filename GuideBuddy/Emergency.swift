@@ -38,6 +38,7 @@ struct Emergency: View {
                 .padding(.vertical, 8)
             }
         }
+        .toolbarBackground(.regularMaterial)
         .navigationTitle("emergencia")
     }
     

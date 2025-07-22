@@ -34,6 +34,7 @@ struct HomeView: View {
                 .padding(.horizontal)
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationTitle("Home")
+                .toolbarBackground(.regularMaterial)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         ProfileLink(selectedImage: selectedImage)
