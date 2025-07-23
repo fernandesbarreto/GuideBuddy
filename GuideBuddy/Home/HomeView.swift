@@ -36,9 +36,9 @@ struct HomeView: View {
                 .navigationTitle("Home")
                 .toolbarBackground(.regularMaterial)
                 .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        ProfileLink(selectedImage: selectedImage)
-                    }
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        ProfileLink(selectedImage: selectedImage)
+//                    }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }

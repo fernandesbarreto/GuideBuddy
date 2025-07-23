@@ -10,6 +10,7 @@ import Foundation
 enum Faculdades: String, CaseIterable {
     case ufpe = "UFPE"
     case ufrpe = "UFRPE"
+    case ifpe = "IFPE"
 
 }
 enum BuildingUFPE: String, CaseIterable {

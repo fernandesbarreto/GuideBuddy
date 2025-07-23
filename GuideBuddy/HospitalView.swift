@@ -81,222 +81,258 @@ struct HospitalView: View {
         ]
     var body: some View {
         NavigationStack{
-            ScrollView(showsIndicators: false) {
-                
-                    AsyncImage(url: URL(string: hospital.image)) { image in
-                        image
-                            .resizable()
-                        //                        .resizable()
-                            .scaledToFit()
-                        //                        .frame(width: 370)
-                        //
-                    } placeholder: {
-                        
-                        ProgressView()
-                    }
-                    .cornerRadius(10.0)
-                   
-                    .frame(width: 393, height: 267)
-                    .clipped()
-                    .offset(y: -8)
-                    Text(hospital.title)
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.leading)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .padding(.leading, 15)
-                 
-                
-                VStack {
-                    LazyVStack(alignment: .leading, spacing: 15) {
-                       
-                        Section() {
+            
+            VStack {
+                ZStack {
+                    VStack{
+                        AsyncImage(url: URL(string: hospital.image)) { image in
+                            image
+                                .resizable()
+                                .frame(width: UIScreen.main.bounds.width * 1, height: UIScreen.main.bounds.height * 0.4)
+                                .clipped()
+                                .scaledToFill()
                             
-                            NavigationLink(
-                                destination: SearchableMap(location: SavedLocation(name: hospital.title, latitude:hospital.latitude, longitude: hospital.longitude)),
-                                label: {
-                                    HStack {
-                                        Image(systemName: "location.fill")
-                                            .foregroundStyle(Color.verdePrincipal)
-                                        Text(hospital.location) // Aqui pode ser o nome da localização ou algo mais descritivo
-                                            .multilineTextAlignment(.leading)
-                                            .foregroundStyle(Color.gray)
-                                    }
-                                }
-                            )
-
+                        } placeholder: {
+                            
+                            ProgressView()
+                            
                         }
-                        .padding(.horizontal)
-//                        .padding(.bottom)
-                        Section(header: Text("Contatos")
-                            .font(.body)
-                            .bold()){
-                                ScrollView(.horizontal, showsIndicators: false){
-                                    HStack{
-                                        Button(action: {
-                                            showNumbersSheet = true
-                                        }, label: {
-                                            ZStack {
-                                                Rectangle()
-                                                    .frame(width: 175, height: 70)
-                                                    .cornerRadius(15)
-                                                    .foregroundStyle(.gray)
-                                                    .opacity(0.1)
-                                                    .shadow(radius: 5)
-                                                VStack {
-                                                    Image(systemName: "phone.fill")
-                                                        .font(.system(size: 25, weight: .semibold, design: .rounded))
-                                                        .foregroundStyle(Color.verdePrincipal)
-                                                        .opacity(0.8)
-                                                    
-                                                    Text("Telefone")
-                                                        .font(.system(size: 12))
-                                                        .bold()
-                                                        .foregroundStyle(Color.verdePrincipal)
-                                                        .padding(.vertical, 3)
-                                                        .opacity(0.8)
-                                                }
+                        
+                        
+                        .frame(width: UIScreen.main.bounds.width * 1, height: UIScreen.main.bounds.height * 0.4)
+                        .clipped()
+                      
+                        
+                    }
+                    .frame(width: UIScreen.main.bounds.width * 1, height: UIScreen.main.bounds.height * 0.35)
+                    //                .clipped()
+                    
+                    .padding(.bottom, UIScreen.main.bounds.height * 0.8)
+                    
+                    ScrollView(showsIndicators: false) {
+                        
+                        
+                        
+                        
+                        VStack {
+                            Text(hospital.title)
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.leading, 15)
+                                .padding(.top, 15)
+                            LazyVStack(alignment: .leading, spacing: 15) {
+                                
+                                Section() {
+                                    
+                                    NavigationLink(
+                                        destination: SearchableMap(location: SavedLocation(name: hospital.title, latitude:hospital.latitude, longitude: hospital.longitude)),
+                                        label: {
+                                            HStack {
+                                                Image(systemName: "location.fill")
+                                                    .foregroundStyle(Color.verdePrincipal)
+                                                Text(hospital.location) // Aqui pode ser o nome da localização ou algo mais descritivo
+                                                    .multilineTextAlignment(.leading)
+                                                    .foregroundStyle(Color.gray)
                                             }
-                                        })
-                                        .sheet(isPresented: $showNumbersSheet) {
-                                                        PhoneNumbersSheet(phoneNumbers: hospital.number)
-                                                .presentationDetents([.fraction(0.3), .large])
-                                            
-                                                    }
-                                        Spacer()
-                                        Button(action: {
-                                            showEmailSheet.toggle()
-                                        }, label: {
-                                            ZStack {
-                                                Rectangle()
-                                                    .frame(width: 175, height: 70)
-                                                    .cornerRadius(15)
-                                                    .foregroundStyle(.gray)
-                                                    .opacity(0.1)
-                                                    .shadow(radius: 5)
-                                                VStack {
-                                                    Image(systemName: "envelope.fill")
-                                                        .font(.system(size: 25, weight: .semibold, design: .rounded))
-                                                        .foregroundStyle(Color.verdePrincipal)
-                                                        .opacity(0.8)
-                                                    
-                                                    Text("Email")
-                                                        .font(.system(size: 12))
-                                                        .bold()
-                                                        .foregroundStyle(Color.verdePrincipal)
-                                                        .padding(.vertical, 3)
-                                                        .opacity(0.8)
-                                                }
-                                            }
-                                        })
-                                        .sheet(isPresented: $showEmailSheet) {
-                                            EmailListView(emails: hospital.email)
-                                                .presentationDetents([.fraction(0.3), .large])
                                         }
-                                    }
+                                    )
                                     
                                 }
-                                
-                            }
-                            .padding(.leading)
-                  Spacer()
-                        Section(header: Text("Especialidades")
-                                .font(.body)
-                                .bold()) {
-                                    VStack{
-//                                        LazyVGrid(columns: columns, spacing: 5) {
-//                                            ForEach(hospital.ambulatorio, id: \.self) { item in
-//                                                Text(item)
-//                                                    .frame(maxWidth: .infinity)
-//                                                                           .frame(height: 30)
-//                                                    .font(.body)
-//                                                    .padding(.horizontal, 10)
-//                                                    .padding(.vertical, 6)
-//                                                    .background(Color.verdePrincipal.opacity(0.2))
-//                                                    .cornerRadius(8)
-//                                            }
-//                                        }
-//                                        .padding(.trailing)
-                                        HStack{
-                                            Text("Ambulatório")
-                                                .multilineTextAlignment(.leading)
-                                                .padding(.top)
-                                            Spacer()
-                                        }
-                                        ScrollView(.horizontal, showsIndicators: false) {
-                                            HStack {
-                                                ForEach(hospital.ambulatorio, id: \.self) { ambulatorio in
-                                                    Text(ambulatorio)
-                                                        .font(.body)
-                                                        .padding(.horizontal, 10)
-                                                        .padding(.vertical, 6)
-                                                        .background(Color.verdePrincipal.opacity(0.1))
-                                                        .cornerRadius(8)
+                                .padding(.horizontal)
+                                //                        .padding(.bottom)
+                                Section(header: Text("Contatos")
+                                    .font(.body)
+                                    .bold()){
+                                        ScrollView(.horizontal, showsIndicators: false){
+                                            HStack{
+                                                Button(action: {
+                                                    showNumbersSheet = true
+                                                }, label: {
+                                                    ZStack {
+                                                        Rectangle()
+                                                            .frame(width: 175, height: 70)
+                                                            .cornerRadius(15)
+                                                            .foregroundStyle(.gray)
+                                                            .opacity(0.1)
+                                                            .shadow(radius: 5)
+                                                        VStack {
+                                                            Image(systemName: "phone.fill")
+                                                                .font(.system(size: 25, weight: .semibold, design: .rounded))
+                                                                .foregroundStyle(Color.verdePrincipal)
+                                                                .opacity(0.8)
+                                                            
+                                                            Text("Telefone")
+                                                                .font(.system(size: 12))
+                                                                .bold()
+                                                                .foregroundStyle(Color.verdePrincipal)
+                                                                .padding(.vertical, 3)
+                                                                .opacity(0.8)
+                                                        }
+                                                    }
+                                                })
+                                                .sheet(isPresented: $showNumbersSheet) {
+                                                    PhoneNumbersSheet(phoneNumbers: hospital.number)
+                                                        .presentationDetents([.fraction(0.3), .large])
+                                                    
+                                                }
+                                                Spacer()
+                                                Button(action: {
+                                                    showEmailSheet.toggle()
+                                                }, label: {
+                                                    ZStack {
+                                                        Rectangle()
+                                                            .frame(width: 175, height: 70)
+                                                            .cornerRadius(15)
+                                                            .foregroundStyle(.gray)
+                                                            .opacity(0.1)
+                                                            .shadow(radius: 5)
+                                                        VStack {
+                                                            Image(systemName: "envelope.fill")
+                                                                .font(.system(size: 25, weight: .semibold, design: .rounded))
+                                                                .foregroundStyle(Color.verdePrincipal)
+                                                                .opacity(0.8)
+                                                            
+                                                            Text("Email")
+                                                                .font(.system(size: 12))
+                                                                .bold()
+                                                                .foregroundStyle(Color.verdePrincipal)
+                                                                .padding(.vertical, 3)
+                                                                .opacity(0.8)
+                                                        }
+                                                    }
+                                                })
+                                                .sheet(isPresented: $showEmailSheet) {
+                                                    EmailListView(emails: hospital.email)
+                                                        .presentationDetents([.fraction(0.3), .large])
                                                 }
                                             }
+                                            
                                         }
-                                        HStack{
-                                            Text("Emergência")
-                                                .multilineTextAlignment(.leading)
-                                                .padding(.top)
-                                            Spacer()
-                                        }
-                                        ScrollView(.horizontal, showsIndicators: false) {
-                                            HStack {
-                                                ForEach(hospital.emergencia, id: \.self) { emergencia in
-                                                    Text(emergencia)
-                                                        .font(.body)
-                                                        .padding(.horizontal, 10)
-                                                        .padding(.vertical, 6)
-                                                        .background(Color.verdePrincipal.opacity(0.1))
-                                                        .cornerRadius(8)
+                                        
+                                    }
+                                    .padding(.leading)
+                                Spacer()
+                                Section(header: Text("Especialidades")
+                                    .font(.body)
+                                    .bold()) {
+                                        VStack{
+                                            //                                        LazyVGrid(columns: columns, spacing: 5) {
+                                            //                                            ForEach(hospital.ambulatorio, id: \.self) { item in
+                                            //                                                Text(item)
+                                            //                                                    .frame(maxWidth: .infinity)
+                                            //                                                                           .frame(height: 30)
+                                            //                                                    .font(.body)
+                                            //                                                    .padding(.horizontal, 10)
+                                            //                                                    .padding(.vertical, 6)
+                                            //                                                    .background(Color.verdePrincipal.opacity(0.2))
+                                            //                                                    .cornerRadius(8)
+                                            //                                            }
+                                            //                                        }
+                                            //                                        .padding(.trailing)
+                                            HStack{
+                                                Text("Ambulatório")
+                                                    .multilineTextAlignment(.leading)
+                                                    .padding(.top)
+                                                Spacer()
+                                            }
+                                            ScrollView(.horizontal, showsIndicators: false) {
+                                                HStack {
+                                                    ForEach(hospital.ambulatorio, id: \.self) { ambulatorio in
+                                                        Text(ambulatorio)
+                                                            .font(.body)
+                                                            .padding(.horizontal, 10)
+                                                            .padding(.vertical, 6)
+                                                            .background(Color.verdePrincipal.opacity(0.1))
+                                                            .cornerRadius(8)
+                                                    }
                                                 }
                                             }
-                                        }
-                                        HStack{
-                                            Text("Clínica Médica")
-                                                .multilineTextAlignment(.leading)
-                                                .padding(.top)
-                                            Spacer()
-                                        }
-                                        ScrollView(.horizontal, showsIndicators: false) {
-                                            HStack {
-                                                ForEach(hospital.clinica, id: \.self) { clinica in
-                                                    Text(clinica)
-                                                        .font(.body)
-                                                        .padding(.horizontal, 10)
-                                                        .padding(.vertical, 6)
-                                                        .background(Color.verdePrincipal.opacity(0.1))
-                                                        .cornerRadius(8)
+                                            HStack{
+                                                Text("Emergência")
+                                                    .multilineTextAlignment(.leading)
+                                                    .padding(.top)
+                                                Spacer()
+                                            }
+                                            ScrollView(.horizontal, showsIndicators: false) {
+                                                HStack {
+                                                    ForEach(hospital.emergencia, id: \.self) { emergencia in
+                                                        Text(emergencia)
+                                                            .font(.body)
+                                                            .padding(.horizontal, 10)
+                                                            .padding(.vertical, 6)
+                                                            .background(Color.verdePrincipal.opacity(0.1))
+                                                            .cornerRadius(8)
+                                                    }
+                                                }
+                                            }
+                                            HStack{
+                                                Text("Clínica Médica")
+                                                    .multilineTextAlignment(.leading)
+                                                    .padding(.top)
+                                                Spacer()
+                                            }
+                                            ScrollView(.horizontal, showsIndicators: false) {
+                                                HStack {
+                                                    ForEach(hospital.clinica, id: \.self) { clinica in
+                                                        Text(clinica)
+                                                            .font(.body)
+                                                            .padding(.horizontal, 10)
+                                                            .padding(.vertical, 6)
+                                                            .background(Color.verdePrincipal.opacity(0.1))
+                                                            .cornerRadius(8)
+                                                    }
                                                 }
                                             }
                                         }
                                     }
+                                    .padding(.leading)
+                                
+                            }
+                            
+                            
                         }
-                        .padding(.leading)
-                       
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                            
+                                .fill(Color.white)
+                                .frame(width: UIScreen.main.bounds.width * 1, height: .infinity)
+                        )
+                        
+                        
+                        .padding(.top, UIScreen.main.bounds.height * 0.35)
                     }
                     
                     
-                }
-                .navigationBarBackButtonHidden(true)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                      
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing){
-                        Button(action: {}, label: {})
-                    }
-                    ToolbarItem(placement: .principal){
-                        Text("")
-                    }
+                    
                 }
                 
+                
+                .ignoresSafeArea()
             }
-            .ignoresSafeArea()
-            
+            .navigationBarBackButtonHidden(false)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    
+//                    ZStack {
+//                        Rectangle()
+//                            .frame(width: 70, height: 35)
+//                            .cornerRadius(10)
+//                            .foregroundStyle(Color.white)
+//                            .opacity(0.6)
+//                    }
+                    
+                }
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button(action: {}, label: {})
+                }
+                ToolbarItem(placement: .principal){
+                    Text("")
+                }
+            }
         }
     }
 }

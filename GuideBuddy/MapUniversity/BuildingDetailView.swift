@@ -16,203 +16,206 @@ struct BuildingDetailView: View {
     
     var body: some View {
         NavigationStack{
-            ScrollView {
-                AsyncImage(url: URL(string: building.image)) { image in
-                    image
-                        .resizable()
-                    //                        .resizable()
-                        .scaledToFit()
-                    //                        .frame(width: 370)
-                    //
-                } placeholder: {
-                    
-                    ProgressView()
-                }
-                .cornerRadius(10.0)
-                .frame(width: 393, height: 267)
-                .clipped()
-                .offset(y: -8)
-                Text(building.title)
-                    .font(.title)
-                    .fontWeight(.bold)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.leading, 15)
-             
-            
-                VStack {
-                    LazyVStack(alignment: .leading, spacing: 15) {
+            ZStack {
+                VStack{
+                    AsyncImage(url: URL(string: building.image)) { image in
+                        image
+                            .resizable()
+                            .frame(width: UIScreen.main.bounds.width * 1, height: UIScreen.main.bounds.height * 0.4)
+                            .clipped()
+                            .scaledToFill()
                         
-                        Section() {
-                            
-                            //                        NavigationLink(
-                            //                            destination: SearchableMap(location: SavedLocation(name: building.title, latitude:building.latitude, longitude: building.longitude)),
-                            //                            label: {
-                            //                                HStack {
-                            //                                    Image(systemName: "location.fill")
-                            //                                        .foregroundStyle(Color.verdePrincipal)
-                            //                                    Text(building.location) // Aqui pode ser o nome da localização ou algo mais descritivo
-                            //                                        .multilineTextAlignment(.leading)
-                            //                                        .foregroundStyle(Color.gray)
-                            //                                }
-                            //                            }
-                            //                        )
-                            
-                        }
-                        .padding(.horizontal)
-                        //                        .padding(.bottom)
-                        Section(header: Text("Contatos")
-                            .font(.body)
-                            .bold()){
-                                ScrollView(.horizontal, showsIndicators: false){
-                                    HStack{
-                                        Button(action: {
-                                            showNumbersSheet = true
-                                        }, label: {
-                                            ZStack {
-                                                Rectangle()
-                                                    .frame(width: 175, height: 70)
-                                                    .cornerRadius(15)
-                                                    .foregroundStyle(.gray)
-                                                    .opacity(0.1)
-                                                    .shadow(radius: 5)
-                                                VStack {
-                                                    Image(systemName: "phone.fill")
-                                                        .font(.system(size: 25, weight: .semibold, design: .rounded))
-                                                        .foregroundStyle(Color.verdePrincipal)
-                                                        .opacity(0.8)
-                                                    
-                                                    Text("Telefone")
-                                                        .font(.system(size: 12))
-                                                        .bold()
-                                                        .foregroundStyle(Color.verdePrincipal)
-                                                        .padding(.vertical, 3)
-                                                        .opacity(0.8)
-                                                }
-                                            }
-                                        })
-                                        .sheet(isPresented: $showNumbersSheet) {
-                                            PhoneNumbersSheet(phoneNumbers: building.cellphoneNumbers)
-                                                .presentationDetents([.fraction(0.3), .large])
-                                            
-                                        }
-                                        Spacer()
-                                        Button(action: {
-                                            showEmailSheet.toggle()
-                                        }, label: {
-                                            ZStack {
-                                                Rectangle()
-                                                    .frame(width: 175, height: 70)
-                                                    .cornerRadius(15)
-                                                    .foregroundStyle(.gray)
-                                                    .opacity(0.1)
-                                                    .shadow(radius: 5)
-                                                VStack {
-                                                    Image(systemName: "envelope.fill")
-                                                        .font(.system(size: 25, weight: .semibold, design: .rounded))
-                                                        .foregroundStyle(Color.verdePrincipal)
-                                                        .opacity(0.8)
-                                                    
-                                                    Text("Email")
-                                                        .font(.system(size: 12))
-                                                        .bold()
-                                                        .foregroundStyle(Color.verdePrincipal)
-                                                        .padding(.vertical, 3)
-                                                        .opacity(0.8)
-                                                }
-                                            }
-                                        })
-                                        .sheet(isPresented: $showEmailSheet) {
-                                            EmailListView(emails: building.email)
-                                                .presentationDetents([.fraction(0.3), .large])
-                                        }
-                                    }
+                    } placeholder: {
+                        
+                        ProgressView()
+                        
+                    }
+                    
+                    
+                    .frame(height: UIScreen.main.bounds.height * 0.4)
+                    .clipped()
+                  
+                    
+                }
+                .frame(width: UIScreen.main.bounds.width * 1, height: UIScreen.main.bounds.height * 0.35)
+                //                .clipped()
+                
+                .padding(.bottom, UIScreen.main.bounds.height * 0.8)
+                
+                
+                ScrollView(showsIndicators: false) {
+                    
+                    VStack{
+                        
+                        VStack {
+                            Text(building.title)
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.leading, 15)
+                                .padding(.top, 15)
+                            LazyVStack(alignment: .leading, spacing: 15) {
+                                
+                                Section() {
+                                    
+                                    //                        NavigationLink(
+                                    //                            destination: SearchableMap(location: SavedLocation(name: building.title, latitude:building.latitude, longitude: building.longitude)),
+                                    //                            label: {
+                                    //                                HStack {
+                                    //                                    Image(systemName: "location.fill")
+                                    //                                        .foregroundStyle(Color.verdePrincipal)
+                                    //                                    Text(building.location) // Aqui pode ser o nome da localização ou algo mais descritivo
+                                    //                                        .multilineTextAlignment(.leading)
+                                    //                                        .foregroundStyle(Color.gray)
+                                    //                                }
+                                    //                            }
+                                    //                        )
                                     
                                 }
+                                .padding(.horizontal)
+                                //                        .padding(.bottom)
+                                Section(header: Text("Contatos")
+                                    .font(.body)
+                                    .bold()){
+                                        ScrollView(.horizontal, showsIndicators: false){
+                                            HStack{
+                                                Button(action: {
+                                                    showNumbersSheet = true
+                                                }, label: {
+                                                    ZStack {
+                                                        Rectangle()
+                                                            .frame(width: 175, height: 70)
+                                                            .cornerRadius(15)
+                                                            .foregroundStyle(.gray)
+                                                            .opacity(0.1)
+                                                            .shadow(radius: 5)
+                                                        VStack {
+                                                            Image(systemName: "phone.fill")
+                                                                .font(.system(size: 25, weight: .semibold, design: .rounded))
+                                                                .foregroundStyle(Color.verdePrincipal)
+                                                                .opacity(0.8)
+                                                            
+                                                            Text("Telefone")
+                                                                .font(.system(size: 12))
+                                                                .bold()
+                                                                .foregroundStyle(Color.verdePrincipal)
+                                                                .padding(.vertical, 3)
+                                                                .opacity(0.8)
+                                                        }
+                                                    }
+                                                })
+                                                .sheet(isPresented: $showNumbersSheet) {
+                                                    PhoneNumbersSheet(phoneNumbers: building.cellphoneNumbers)
+                                                        .presentationDetents([.fraction(0.3), .large])
+                                                    
+                                                }
+                                                Spacer()
+                                                Button(action: {
+                                                    showEmailSheet.toggle()
+                                                }, label: {
+                                                    ZStack {
+                                                        Rectangle()
+                                                            .frame(width: 175, height: 70)
+                                                            .cornerRadius(15)
+                                                            .foregroundStyle(.gray)
+                                                            .opacity(0.1)
+                                                            .shadow(radius: 5)
+                                                        VStack {
+                                                            Image(systemName: "envelope.fill")
+                                                                .font(.system(size: 25, weight: .semibold, design: .rounded))
+                                                                .foregroundStyle(Color.verdePrincipal)
+                                                                .opacity(0.8)
+                                                            
+                                                            Text("Email")
+                                                                .font(.system(size: 12))
+                                                                .bold()
+                                                                .foregroundStyle(Color.verdePrincipal)
+                                                                .padding(.vertical, 3)
+                                                                .opacity(0.8)
+                                                        }
+                                                    }
+                                                })
+                                                .sheet(isPresented: $showEmailSheet) {
+                                                    EmailListView(emails: building.email)
+                                                        .presentationDetents([.fraction(0.3), .large])
+                                                }
+                                            }
+                                            
+                                        }
+                                        
+                                    }
+                                    .padding(.leading)
+                            }
+                        }
+                        
+                        VStack {
+                            LazyVStack(alignment: .leading, spacing: 20) {
+                                
+                                Section(header: Text("Descrição")
+                                    .font(.body)
+                                    .bold())
+                                {
+                                    Text(building.description)
+                                        .font(.body)
+                                    
+                                }
+                                .padding(.horizontal)
+                                
                                 
                             }
-                            .padding(.leading)
-                    }
-                }
-//                AsyncImage(url: URL(string: building.image)) { image in
-//                    image
-//                        .resizable()
-//                    //                        .resizable()
-//                        .scaledToFit()
-//                    //                        .frame(width: 370)
-//                    //
-//                } placeholder: {
-//                    
-//                    ProgressView()
-//                }
-//                .cornerRadius(10.0)
-//                .frame(width: 393, height: 267)
-//                .clipped()
-//                .offset(y: -8)
-//                Text(building.title)
-//                    .font(.title)
-//                    .fontWeight(.bold)
-//                    .multilineTextAlignment(.leading)
-//                    .frame(maxWidth: .infinity, alignment: .leading)
-//                    .fixedSize(horizontal: false, vertical: true)
-//                    .padding(.leading, 15)
-//                
-//                Spacer()
-                
-                VStack {
-                    LazyVStack(alignment: .leading, spacing: 20) {
-                       
-                        Section(header: Text("Descrição")
-                            .font(.body)
-                            .bold())
-                        {
-                            Text(building.description)
-                                .font(.body)
-                          
-                        }
-                        .padding(.horizontal)
-                        
-                   
-                    }
-                    
-                    
-                }
-                .navigationTitle(building.navtitle)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar{
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 25)
-                                .frame(width: 78, height: 30)
-                                .foregroundStyle(.white)
-                                .opacity(0.9)
-                                
-                        }
-                        .offset(x: -76)
-                    }
-                    ToolbarItem(placement: .navigationBarTrailing){
-                        Button(action: {}, label: {})
-                    }
-                    ToolbarItem(placement: .principal){
-                        Text("")
-                    }
-                    ToolbarItem(placement: .principal) {
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 25)
-                                .frame(width: 60, height: 30)
-                                .foregroundStyle(.white)
-                                .opacity(0.6)
                             
-                            Text(building.navtitle)
-                                .foregroundStyle(.black)
-                                .font(.system(size: 17,weight: .medium , design: .rounded))
+                            
                         }
-                        .frame(width: 60, height: 30)
+                        
+                    }
+                    .background(
+                        RoundedRectangle(cornerRadius: 20)
+                        
+                            .fill(Color.white)
+                            .frame(width: UIScreen.main.bounds.width * 1, height: .infinity)
+                    )
+                    
+                    
+                    .padding(.top, UIScreen.main.bounds.height * 0.35)
+                    
+                    .navigationTitle(building.navtitle)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar{
+                        ToolbarItem(placement: .navigationBarLeading) {
+//                            ZStack{
+//                                RoundedRectangle(cornerRadius: 25)
+//                                    .frame(width: 78, height: 30)
+//                                    .foregroundStyle(.white)
+//                                    .opacity(0.9)
+//                                
+//                            }
+//                            .offset(x: -76)
+                        }
+                        ToolbarItem(placement: .navigationBarTrailing){
+                            Button(action: {}, label: {})
+                        }
+                        ToolbarItem(placement: .principal){
+                            Text("")
+                        }
+                        ToolbarItem(placement: .principal) {
+                            ZStack{
+                                RoundedRectangle(cornerRadius: 25)
+                                    .frame(width: 60, height: 30)
+                                    .foregroundStyle(.white)
+                                    .opacity(0.6)
+                                
+                                Text(building.navtitle)
+                                    .foregroundStyle(.black)
+                                    .font(.system(size: 17,weight: .medium , design: .rounded))
+                            }
+                            .frame(width: 60, height: 30)
+                        }
                     }
                 }
+                .ignoresSafeArea()
             }
-            .ignoresSafeArea()
         }
     }
 }
