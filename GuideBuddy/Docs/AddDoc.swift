@@ -45,48 +45,48 @@ struct AdicionarDocumento: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                Text(documento.titulo)
-                    .font(.headline)
-                    .padding(24)
+
                 
                 ScrollView {
-                    LazyVGrid(columns: [ GridItem(.fixed(120)),
-                                         GridItem(.fixed(120)),
-                                         GridItem(.fixed(120))], spacing: 20) {
-                        
-                        VStack {
-                            Button(action: {
-                                isImporting = true
-                            }) {
-                                Image(systemName: "plus")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 30, height: 30)
-                                    .padding(40)
+                    VStack{
+                        LazyVGrid(columns: [ GridItem(.fixed(120)),
+                                             GridItem(.fixed(120)),
+                                             GridItem(.fixed(120))], spacing: 20) {
+                            
+                            VStack {
+                                Button(action: {
+                                    isImporting = true
+                                }) {
+                                    Image(systemName: "plus")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 30, height: 30)
+                                        .padding(40)
+                                }
+                                .background(Color(white: 0.9))
+                                .clipShape(RoundedRectangle(cornerRadius: 12.0))
+                                .foregroundColor(.white)
+                                Text("")
+                                    .font(.caption)
                             }
-                            .background(Color(white: 0.9))
-                            .clipShape(RoundedRectangle(cornerRadius: 12.0))
-                            .foregroundColor(.white)
-                            Text("")
-                                .font(.caption)
-                        }
-                        
-                        ForEach(filteredItems, id: \.id) { item in
-                            if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
-                                buildImageMenu(item: item, uiImage: uiImage)
-                            } else if item.type == 1 {
-                                buildPDFMenu(item: item)
+                            
+                            ForEach(filteredItems, id: \.id) { item in
+                                if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
+                                    buildImageMenu(item: item, uiImage: uiImage)
+                                } else if item.type == 1 {
+                                    buildPDFMenu(item: item)
+                                }
                             }
                         }
                     }
+                    .padding(24)
                 }
-                .padding(24)
-            }
+               
+            
             .fileImporter(isPresented: $isImporting, allowedContentTypes: [.pdf, .image]) { result in
                 handleFileImport(result: result)
             }
-            .navigationTitle("Detalhes")
+            .navigationTitle(documento.titulo)
             .navigationBarTitleDisplayMode(.inline)
 //            .sheet(item: $selectedItem) { item in
 //                if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {

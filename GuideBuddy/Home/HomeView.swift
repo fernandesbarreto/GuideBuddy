@@ -69,6 +69,11 @@ struct HomeView: View {
                 .navigationTitle("Início")
                 .toolbarBackground(.regularMaterial)
                 .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        NavigationLink(destination:ConfigView()) {
+                            Image(systemName: "gearshape")
+                        }
+                    }
 
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)

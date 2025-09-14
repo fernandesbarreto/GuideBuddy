@@ -119,7 +119,7 @@ struct MapUFPE: View {
 
                 .toolbarBackground(.visible, for: .navigationBar)
                 .navigationTitle("Faculdades")
-                .navigationBarTitleDisplayMode(.inline)
+//                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Menu {
@@ -162,7 +162,7 @@ struct MapUFPE: View {
                             Text("IFPE").tag(Faculdades.ifpe)
                         }
                         .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: 150)
+                        .frame(width: 200)
                                        .scaleEffect(0.9)
                     }
                 }

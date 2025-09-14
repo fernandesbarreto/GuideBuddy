@@ -7,35 +7,53 @@
 
 import SwiftUI
 
-struct Emergency: View {
+struct EmergencyService: Identifiable {
+    let id = UUID()
+    let name: String
+    let number: String
+    let description: String
+}
 
+struct Emergency: View {
+    
     let emergencyNumbers = [
-        ("ambulancia".localized, "192"),
-        ("policia_civil".localized, "197"),
-        ("policia_militar".localized, "190"),
-        ("defesa_civil".localized, "199"),
-        ("bombeiro".localized, "193"),
-        ("central_atendimento_mulher".localized, "180")
+        EmergencyService(name: "ambulancia".localized, number: "192", description: "Atendimento de urgência em casos de acidentes ou emergências médicas."),
+        EmergencyService(name: "policia_civil".localized, number: "197", description: "Responsável por investigações e ocorrências policiais."),
+        EmergencyService(name: "policia_militar".localized, number: "190", description: "Atendimento imediato em situações de emergência e crimes em andamento."),
+        EmergencyService(name: "defesa_civil".localized, number: "199", description: "Auxílio em situações de risco, desastres naturais e emergências públicas."),
+        EmergencyService(name: "bombeiro".localized, number: "193", description: "Atendimento a incêndios, resgates e acidentes."),
+        EmergencyService(name: "central_atendimento_mulher".localized, number: "180", description: "Canal de denúncia e apoio para mulheres em situação de violência.")
     ]
     
     var body: some View {
         List {
-            ForEach(emergencyNumbers.sorted { $0.1 > $1.1 }, id: \.1) { service, number in
-                HStack {
-                    Text(service)
-                        .font(.body)
-                    Spacer()
-                    Text(number)
-                        .font(.body)
-                    Button(action: {
-                        makeCall(to: number)
-                    }) {
-                        Image(systemName: "phone.fill")
-                            .foregroundColor(.red)
+            ForEach(emergencyNumbers) { service in
+                HStack{
+                    VStack(alignment: .leading, spacing: 4) {
+                        
+                        Text(service.name)
+                            .font(.headline)
+                        
+                        Text(service.description)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true) // quebra de linha se precisar
                     }
-                   // .buttonStyle(PlainButtonStyle())
+                    .padding(.vertical, 6)
+                    
+                    Spacer()
+                    
+                    HStack{
+                        Text(service.number)
+                            .font(.headline)
+                        Button(action: {
+                            makeCall(to: service.number)
+                        }) {
+                            Image(systemName: "phone.fill")
+                                .foregroundColor(.red)
+                        }
+                    }
                 }
-                .padding(.vertical, 8)
             }
         }
         .toolbarBackground(.regularMaterial)
@@ -50,6 +68,7 @@ struct Emergency: View {
         }
     }
 }
+
 
 struct Emergencia_Previews: PreviewProvider {
     static var previews: some View {

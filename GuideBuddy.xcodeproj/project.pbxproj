@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -117,6 +117,10 @@
 		EBED16962C8B51B200DB4F1B /* LocationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C12771752E7748CC00BD45FF /* Config */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Config; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		EBA4A5B42C7D21A500ECD5C2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -229,6 +233,7 @@
 		EBA4A5B92C7D21A500ECD5C2 /* GuideBuddy */ = {
 			isa = PBXGroup;
 			children = (
+				C12771752E7748CC00BD45FF /* Config */,
 				C1EFA15C2CCBCB99009EBAD5 /* Tesyeee.swift */,
 				C155835A2C93AC1200376E91 /* MapUniversity */,
 				EB58451A2C939D2D00B66DF8 /* Slangs */,
@@ -313,6 +318,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C12771752E7748CC00BD45FF /* Config */,
 			);
 			name = GuiBu;
 			packageProductDependencies = (
