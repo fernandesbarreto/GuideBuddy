@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-	<dict>
-		<key>UTImportedTypeDeclarations</key>
-		<array>
-			<dict />
-		</array>
-	</dict>
+<dict>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>en</string>
+	</array>
+	<key>Privacy - Location When In Use Usage Description (ou digite NSLocationWhenInUseUsageDescription</key>
+	<string>Precisamos da sua localização sempre que o app estiver em uso.</string>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict/>
+	</array>
+</dict>
 </plist>

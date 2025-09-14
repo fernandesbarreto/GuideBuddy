@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "WidHelper1x.png",
+      "filename" : "cardAiGyibu.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "WidHelper2x.png",
+      "filename" : "cardAiGyibu 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "WidHelper3x.png",
+      "filename" : "cardAiGyibu 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

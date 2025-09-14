@@ -30,7 +30,7 @@ struct ListaDeDocumentosView: View {
             }
             .toolbarBackground(.regularMaterial)
             .navigationTitle("Documentos")
-            .navigationBarTitleDisplayMode(.inline)
+//            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button(action: {
                           isAddingCategory = true
                       }) {

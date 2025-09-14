@@ -64,7 +64,7 @@
 		5528906A2C7F5144008B14AA /* DocsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocsList.swift; sourceTree = "<group>"; };
 		5552BFA52C85D76700DE92BF /* HospitalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalData.swift; sourceTree = "<group>"; };
 		5572B2C42C7F669200DC7332 /* AddDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDoc.swift; sourceTree = "<group>"; };
-		5572B2C62C8097CD00DC7332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		5572B2C62C8097CD00DC7332 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = GuideBuddy/Info.plist; sourceTree = SOURCE_ROOT; };
 		5572B2C82C81E83100DC7332 /* hospitalsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hospitalsList.swift; sourceTree = "<group>"; };
 		558BC8B72C90847F006F491E /* Extension1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension1.swift; sourceTree = "<group>"; };
 		C090E20E2C81F3D500F21058 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Localizable.strings"; sourceTree = "<group>"; };

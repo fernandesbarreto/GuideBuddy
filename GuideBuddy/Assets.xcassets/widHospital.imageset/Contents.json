@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "WidHospital1x.png",
+      "filename" : "cardHospitalGuibu.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "WidHospital2x.png",
+      "filename" : "cardHospitalGuibu 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "WidHospital3x.png",
+      "filename" : "cardHospitalGuibu 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

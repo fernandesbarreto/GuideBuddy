@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "SlangsWidgets1x.png",
+      "filename" : "cardSlangsGuibu.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "SlangsWidgets2x.png",
+      "filename" : "cardSlangsGuibu 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "SlangsWidgets3x.png",
+      "filename" : "cardSlangsGuibu 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

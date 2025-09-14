@@ -28,7 +28,7 @@ struct HealthCategories: View {
                 }
             }
             .navigationTitle("Saúde")
-            .navigationBarTitleDisplayMode(.inline)
+//            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
