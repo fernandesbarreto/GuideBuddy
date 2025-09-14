@@ -137,7 +137,7 @@ struct GuideChat: View {
         let query = ChatQuery(
             messages: [.init(
                 role: .user,
-                content: "prompt".localized + question)!],
+                content: "prompt" + question)!],
             model: .gpt4_o_mini)
         
         ourOpenAI.chats(query: query) { result in

@@ -35,8 +35,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 }
 
 struct HomeView: View {
-    @Query(sort: \User.age) private var user: [User]
-    @Query private var selectedImage: [ProfilePhoto]
+    
+    @Query private var user: [User]
     @State private var resultado: Double = 7.5
     @State private var animatedValue: Double = 0.0
     
@@ -44,7 +44,7 @@ struct HomeView: View {
         NavigationStack{
             VStack{
                 VStack{
-                    GreetingSection(user: user)
+                    GreetingSection()
                         .padding(.top, 30)
                     VStack (spacing: UIScreen.main.bounds.height*0.014){
                         AcionarHelperLink()
@@ -99,7 +99,7 @@ struct Hospitals: View {
                 VStack(alignment: .leading) {
                   
                     VStack(alignment: .leading, spacing: 5){
-                        Text("Hospitais".localized)
+                        Text("Hospitais")
                             .font(.system(size: 16, weight: .regular))
                             .foregroundStyle(.black)
                         
@@ -142,26 +142,24 @@ struct Hospitals: View {
 }
 
 struct GreetingSection: View {
-    var user: [User]
+    @Query private var users: [User]
     
     var body: some View {
-        
-            HStack {
-                Text("Olá".localized)
-                    .font(.system(size: 24, weight: .regular, design: .rounded))
-                    .foregroundStyle(Color.black)
-                
-//                Text(user.first?.name ?? "User")
-                Text("Pete")
-                    .font(.system(size: 24, weight: .semibold, design: .rounded))
-                    .foregroundStyle(Color.verdePrincipal)
-                    
-                Spacer()
-            }
-       
+        HStack {
+            Text("Olá,")
+                .font(.system(size: 24, weight: .regular, design: .rounded))
+                .foregroundStyle(Color.black)
+            
+            Text(users.first?.name ?? "Usuário")
+                .font(.system(size: 24, weight: .semibold, design: .rounded))
+                .foregroundStyle(Color.verdePrincipal)
+            
+            Spacer()
+        }
         .padding(.leading, 5)
     }
 }
+
 
 struct AcionarHelperLink: View {
     @StateObject var locationManager = LocationManager()
@@ -388,7 +386,7 @@ struct DailySlangLink: View {
                 VStack(alignment: .leading) {
                   
                     VStack(alignment: .leading, spacing: 5){
-                        Text("Gírias".localized)
+                        Text("Gírias")
                             .font(.system(size: 16, weight: .regular))
                             .foregroundStyle(.black)
                         
@@ -430,24 +428,24 @@ struct DailySlangLink: View {
     }
 }
 
-struct ProfileLink: View {
-    var selectedImage: [ProfilePhoto]
-    
-    var body: some View {
-        NavigationLink(destination: Profile(), label: {
-            if let image = selectedImage.last?.getProfilePhoto() {
-                Image(uiImage: image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 27, height: 27)
-                    .clipShape(Circle())
-            } else {
-                Image(systemName: "person.crop.circle")
-                    .foregroundStyle(Color.verdePrincipal)
-            }
-        })
-    }
-}
+//struct ProfileLink: View {
+//    var selectedImage: [ProfilePhoto]
+//    
+//    var body: some View {
+//        NavigationLink(destination: Profile(), label: {
+//            if let image = selectedImage.last?.getProfilePhoto() {
+//                Image(uiImage: image)
+//                    .resizable()
+//                    .scaledToFill()
+//                    .frame(width: 27, height: 27)
+//                    .clipShape(Circle())
+//            } else {
+//                Image(systemName: "person.crop.circle")
+//                    .foregroundStyle(Color.verdePrincipal)
+//            }
+//        })
+//    }
+//}
 #Preview {
     HomeView()
 }

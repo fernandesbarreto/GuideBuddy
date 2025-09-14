@@ -3,10 +3,12 @@
 //  GuideBuddy
 //
 //  Created by Deivson Pereira da Silva on 28/08/24.
+//
 
 import SwiftUI
 import PDFKit
 import SwiftData
+import UIKit
 
 @Model
 class ItemEntity: Identifiable {
@@ -30,109 +32,81 @@ struct AdicionarDocumento: View {
     @Environment(\.modelContext) private var context: ModelContext
     let documento: Documento
     @State private var isImporting = false
-    @State private var fileURL: URL? = nil
     @Query private var allItems: [ItemEntity]
-    @State private var selectedItem: ItemEntity? = nil
     @State private var showingConfirmation = false
     @State private var activityItems: [Any] = []
     @State private var isShowingShareSheet = false
     
     var filteredItems: [ItemEntity] {
-        allItems.filter { entity in
-            entity.area == documento.titulo
-        }
+        allItems.filter { $0.area == documento.titulo }
     }
     
     var body: some View {
         NavigationStack {
-
-                
-                ScrollView {
-                    VStack{
-                        LazyVGrid(columns: [ GridItem(.fixed(120)),
-                                             GridItem(.fixed(120)),
-                                             GridItem(.fixed(120))], spacing: 20) {
-                            
-                            VStack {
-                                Button(action: {
-                                    isImporting = true
-                                }) {
-                                    Image(systemName: "plus")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 30, height: 30)
-                                        .padding(40)
-                                }
-                                .background(Color(white: 0.9))
-                                .clipShape(RoundedRectangle(cornerRadius: 12.0))
-                                .foregroundColor(.white)
-                                Text("")
-                                    .font(.caption)
+            ScrollView {
+                VStack {
+                    LazyVGrid(columns: [GridItem(.fixed(120)), GridItem(.fixed(120)), GridItem(.fixed(120))], spacing: 20) {
+                        
+                        // Botão para adicionar arquivos
+                        VStack {
+                            Button(action: {
+                                isImporting = true
+                            }) {
+                                Image(systemName: "plus")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 30, height: 30)
+                                    .padding(40)
                             }
-                            
-                            ForEach(filteredItems, id: \.id) { item in
-                                if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
-                                    buildImageMenu(item: item, uiImage: uiImage)
-                                } else if item.type == 1 {
-                                    buildPDFMenu(item: item)
-                                }
+                            .background(Color(white: 0.9))
+                            .clipShape(RoundedRectangle(cornerRadius: 12.0))
+                            .foregroundColor(.white)
+                            Text("")
+                                .font(.caption)
+                        }
+                        
+                        // Lista de itens já adicionados
+                        ForEach(filteredItems, id: \.id) { item in
+                            if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
+                                buildImageMenu(item: item, uiImage: uiImage)
+                            } else if item.type == 1 {
+                                buildPDFMenu(item: item)
                             }
                         }
                     }
-                    .padding(24)
                 }
-               
-            
+                .padding(24)
+            }
             .fileImporter(isPresented: $isImporting, allowedContentTypes: [.pdf, .image]) { result in
                 handleFileImport(result: result)
             }
             .navigationTitle(documento.titulo)
             .navigationBarTitleDisplayMode(.inline)
-//            .sheet(item: $selectedItem) { item in
-//                if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
-//                    ImageView(image: uiImage)
-//                } else if item.type == 1, let pdfPath = item.pdfPath {
-//                    PDFViewWrapper(pdfPath: pdfPath)
-//                }
-//            }
-//            .popover(item: $selectedItem) { item in
-//                if item.type == 0, let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
-//                    ImageView(image: uiImage)
-//                } else if item.type == 1, let pdfPath = item.pdfPath {
-//                    PDFViewWrapper(pdfPath: pdfPath)
-//                }
-//            }
-//            .popover(item: $isShowingShareSheet, content: { _ in
-//                ActivityView(activityItems: activityItems)
-//            })
-            .sheet(isPresented: $isShowingShareSheet) {
-                ActivityView(activityItems: activityItems)
-            }
+        }
+        // Sheet de compartilhamento
+        .sheet(isPresented: $isShowingShareSheet, onDismiss: {
+            activityItems = [] // Limpa os itens ao fechar
+        }) {
+            ActivityView(activityItems: activityItems)
         }
     }
     
+    // MARK: - Menus
     private func buildImageMenu(item: ItemEntity, uiImage: UIImage) -> some View {
         Menu {
-            NavigationLink(
-                destination: DocumentDetailView(item: item) // Leva para a nova tela com o documento
-            ) {
-                Label("Visualizar", systemImage: "eye") // O estilo do botão com ícone e texto
+            NavigationLink(destination: DocumentDetailView(item: item)) {
+                Label("Visualizar", systemImage: "eye")
             }
-
-//            Button(action: {
-//                selectedItem = item
-//            }) {
-//                Label("Visualizar", systemImage: "eye")
-//            }
+            
             Button(action: {
                 activityItems = [uiImage]
-                isShowingShareSheet = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                    isShowingShareSheet = true
+                }
             }) {
                 Label("Compartilhar", systemImage: "square.and.arrow.up")
             }
-            .sheet(isPresented: $isShowingShareSheet) {
-                ActivityView(activityItems: activityItems)
-            }
+            
             Button(action: {
                 showingConfirmation = true
             }) {
@@ -154,39 +128,34 @@ struct AdicionarDocumento: View {
             }
         }
         .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
-            Button("Cancelar", role: .cancel) {
-                showingConfirmation = false
-            }
+            Button("Cancelar", role: .cancel) { showingConfirmation = false }
             Button("Sim, excluir", role: .destructive) {
                 deleteItem(item: item)
                 showingConfirmation = false
             }
         }
     }
-
+    
     private func buildPDFMenu(item: ItemEntity) -> some View {
         Menu {
-            NavigationLink(
-                destination: DocumentDetailView(item: item) // Leva para a nova tela com o documento
-            ) {
-                Label("Visualizar", systemImage: "eye") // O estilo do botão com ícone e texto
+            NavigationLink(destination: DocumentDetailView(item: item)) {
+                Label("Visualizar", systemImage: "eye")
             }
-//            Button(action: {
-//                selectedItem = item
-//            }) {
-//                Label("Visualizar", systemImage: "eye")
-//            }
+            
             Button(action: {
                 if let pdfPath = item.pdfPath {
                     let fileManager = FileManager.default
                     let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
                     let fileURL = documentsDirectory.appendingPathComponent(pdfPath)
                     activityItems = [fileURL]
-                    isShowingShareSheet = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                        isShowingShareSheet = true
+                    }
                 }
             }) {
                 Label("Compartilhar", systemImage: "square.and.arrow.up")
             }
+            
             Button(action: {
                 showingConfirmation = true
             }) {
@@ -208,38 +177,31 @@ struct AdicionarDocumento: View {
             }
         }
         .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
-            Button("Cancelar", role: .cancel) {
-                showingConfirmation = false
-            }
+            Button("Cancelar", role: .cancel) { showingConfirmation = false }
             Button("Sim, excluir", role: .destructive) {
                 deleteItem(item: item)
                 showingConfirmation = false
             }
         }
     }
-
     
+    // MARK: - Importação e Salvamento
     private func handleFileImport(result: Result<URL, Error>) {
         switch result {
         case .success(let url):
-            self.fileURL = url
             _ = url.startAccessingSecurityScopedResource()
             let fileName = url.lastPathComponent
             
             if url.pathExtension == "pdf" {
                 savePDFToSwiftData(url: url, fileName: fileName)
-            } else {
-                if let data = try? Data(contentsOf: url),
-                   let _ = UIImage(data: data) {
-                    saveImageToSwiftData(imageData: data, imageName: fileName)
-                }
+            } else if let data = try? Data(contentsOf: url), UIImage(data: data) != nil {
+                saveImageToSwiftData(imageData: data, imageName: fileName)
             }
         case .failure(let error):
             print("Erro ao importar o arquivo: \(error.localizedDescription)")
         }
     }
-
-
+    
     private func saveImageToSwiftData(imageData: Data, imageName: String) {
         let newItem = ItemEntity(type: 0, imageData: imageData, area: documento.titulo, name: imageName)
         context.insert(newItem)
@@ -250,7 +212,6 @@ struct AdicionarDocumento: View {
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let destinationURL = documentsDirectory.appendingPathComponent(url.lastPathComponent)
-        
         do {
             if !fileManager.fileExists(atPath: destinationURL.path) {
                 try fileManager.copyItem(at: url, to: destinationURL)
@@ -258,22 +219,20 @@ struct AdicionarDocumento: View {
             let newItem = ItemEntity(type: 1, pdfPath: destinationURL.lastPathComponent, area: documento.titulo, name: fileName)
             context.insert(newItem)
             try context.save()
-            print("Saved file at: \(destinationURL.path)")
         } catch {
             print("Failed to copy file: \(error.localizedDescription)")
         }
     }
-
-
+    
     private func deleteItem(item: ItemEntity) {
         context.delete(item)
         try? context.save()
     }
 }
 
+// MARK: - Visualizações Auxiliares
 struct ImageView: View {
     let image: UIImage
-
     var body: some View {
         VStack {
             Image(uiImage: image)
@@ -282,49 +241,38 @@ struct ImageView: View {
                 .padding()
             Spacer()
         }
-            }
+    }
 }
 
 struct PDFViewWrapper: View {
     let pdfPath: String
-
     var body: some View {
         PDFKitView(pdfPath: pdfPath)
-            
     }
+}
+
+struct ActivityView: UIViewControllerRepresentable {
+    var activityItems: [Any]
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+    }
+    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
 }
 
 struct PDFKitView: UIViewRepresentable {
     let pdfPath: String
-
     func makeUIView(context: Context) -> PDFView {
         let pdfView = PDFView()
-        
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let fileURL = documentsDirectory.appendingPathComponent(pdfPath)
-
         if let document = PDFDocument(url: fileURL) {
             pdfView.document = document
         } else {
             print("Failed to load PDF at path: \(fileURL.path)")
         }
-        
         pdfView.autoScales = true
         return pdfView
     }
-
-    func updateUIView(_ uiView: PDFView, context: Context) {
-        // aq eh só um stub pra conformar com a classe
-    }
-}
-
-struct ActivityView: UIViewControllerRepresentable {
-    let activityItems: [Any]
-
-    func makeUIViewController(context: Context) -> UIActivityViewController {
-        UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-    }
-
-    func updateUIViewController(_ uiViewController: UIActivityViewController, context: Context) {}
+    func updateUIView(_ uiView: PDFView, context: Context) {}
 }

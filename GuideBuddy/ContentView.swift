@@ -9,7 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @Query(sort: \User.age) private var user: [User]
+    @Query/*(sort: \User.age)*/ private var user: [User]
     
     var body: some View {
 //        if(user.count == 1) {
