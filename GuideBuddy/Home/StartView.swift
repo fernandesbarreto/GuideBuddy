@@ -18,14 +18,17 @@ class User {
 //    var language: Int
 //    var age: Int
     var documentos: [String]
+    /*var choosenBackground: String */
     
-    init(name: String,/* language: Int, age: Int,*/ documentos: [String]) {
+    init(name: String,/* language: Int, age: Int,*/ documentos: [String]/*, choosenBackground: String*/) {
         self.name = name
 //        self.language = language
 //        self.age = age
         self.documentos = documentos
+//        self.choosenBackground = choosenBackground
     }
 }
+
 @Model
 class Item {
     var name: String
@@ -60,6 +63,8 @@ struct StartView: View {
                                  "Histórico Escolar",
                                  "Laudos Médicos"]
     
+//    let choosenBackground: String = ""
+    
     let languageCodes = ["pt-BR", "en", "es"]
     let language = 0 // padrão inicial
     
@@ -82,7 +87,7 @@ struct StartView: View {
                     }
             } else if isShowingLogin {
                 LoginView { name in
-                    let user = User(name: name, documentos: documentos)
+                    let user = User(name: name, documentos: documentos/*, choosenBackground: choosenBackground*/)
                     context.insert(user)
                     languageManager.setLanguage(languageCodes[language])
                     isShowingLogin = false

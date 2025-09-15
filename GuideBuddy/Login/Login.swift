@@ -17,6 +17,17 @@ struct LoginView: View {
        @State private var name = ""
     @State private var inputName = ""
     @State private var showNameAlert = false
+    let documentosIniciais: [String] = ["Passaporte",
+                                 "Comprovante de residência",
+                                 "Carta de aceite universitário",
+                                 "Passagens",
+                                 "Comprovante financeiro",
+                                 "Visto de Estudo",
+                                 "Carta de Indicação",
+                                 "CPF",
+                                 "Histórico Escolar",
+                                 "Laudos Médicos"]
+    let backround: String = ""
     
     var body: some View {
         NavigationStack {
@@ -50,7 +61,7 @@ struct LoginView: View {
                     
                     Button("Continuar") {
                         if !inputName.isEmpty {
-                            let newUser = User(name: inputName, documentos: [""])
+                            let newUser = User(name: inputName, documentos: documentosIniciais/*, choosenBackground: backround*/)
                             context.insert(newUser)
                         } else {
                             showNameAlert = true

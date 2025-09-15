@@ -14,6 +14,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AparenciaView: View {
     enum ThemeOption: Int, CaseIterable, Identifiable {
@@ -38,9 +39,20 @@ struct AparenciaView: View {
             case .escuro: return "dark_mode"
             }
         }
+
+        var backgroundName: String {
+            switch self {
+            case .sistema: return "defaultBackground"
+            case .claro: return "lightBackground"
+            case .escuro: return "darkBackground"
+            }
+        }
     }
 
-    @AppStorage("selectedTheme") private var selectedTheme: Int = ThemeOption.sistema.rawValue
+    @Environment(\.modelContext) private var context
+    @Query private var users: [User]
+
+    @State private var selectedTheme: ThemeOption = .sistema
 
     var body: some View {
         List {
@@ -57,25 +69,37 @@ struct AparenciaView: View {
                     Spacer()
 
                     Circle()
-                        .strokeBorder(option.rawValue == selectedTheme ? Color.green : Color.gray,
+                        .strokeBorder(option == selectedTheme ? Color.green : Color.gray,
                                       lineWidth: 2)
                         .background(
                             Circle()
-                                .fill(option.rawValue == selectedTheme ? Color.green : Color.clear)
+                                .fill(option == selectedTheme ? Color.green : Color.clear)
                         )
                         .frame(width: 20, height: 20)
                 }
                 .contentShape(Rectangle())
-                .onTapGesture {
-                    selectedTheme = option.rawValue
-                    applyTheme(option)
-                }
+//                .onTapGesture {
+//                    selectedTheme = option
+//                    applyTheme(option)
+//                    saveUserBackground(option.backgroundName)
+//                }
                 .listRowBackground(Color.clear)
             }
         }
         .scrollContentBackground(.hidden)
         .navigationTitle("Aparência")
         .navigationBarTitleDisplayMode(.large)
+//        .onAppear {
+//            if let currentUser = users.first {
+//                // Define o tema inicial com base na variável do usuário
+//                switch currentUser.choosenBackground {
+//                case "lightBackground": selectedTheme = .claro
+//                case "darkBackground": selectedTheme = .escuro
+//                default: selectedTheme = .sistema
+//                }
+//                applyTheme(selectedTheme)
+//            }
+//        }
     }
 
     private func applyTheme(_ option: ThemeOption) {
@@ -92,10 +116,10 @@ struct AparenciaView: View {
             window.overrideUserInterfaceStyle = .dark
         }
     }
-}
 
-#Preview {
-    NavigationStack {
-        AparenciaView()
-    }
+//    private func saveUserBackground(_ backgroundName: String) {
+//        guard let currentUser = users.first else { return }
+//        currentUser.choosenBackground = backgroundName
+//        try? context.save()
+//    }
 }

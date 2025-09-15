@@ -17,12 +17,12 @@ struct EmergencyService: Identifiable {
 struct Emergency: View {
     
     let emergencyNumbers = [
-        EmergencyService(name: "ambulancia", number: "192", description: "Atendimento de urgência em casos de acidentes ou emergências médicas."),
-        EmergencyService(name: "policia_civil", number: "197", description: "Responsável por investigações e ocorrências policiais."),
-        EmergencyService(name: "policia_militar", number: "190", description: "Atendimento imediato em situações de emergência e crimes em andamento."),
-        EmergencyService(name: "defesa_civil", number: "199", description: "Auxílio em situações de risco, desastres naturais e emergências públicas."),
-        EmergencyService(name: "bombeiro", number: "193", description: "Atendimento a incêndios, resgates e acidentes."),
-        EmergencyService(name: "central_atendimento_mulher", number: "180", description: "Canal de denúncia e apoio para mulheres em situação de violência.")
+        EmergencyService(name: "Ambulância", number: "192", description: "Atendimento de urgência em casos de acidentes ou emergências médicas."),
+        EmergencyService(name: "Polícia Civil", number: "197", description: "Responsável por investigações e ocorrências policiais."),
+        EmergencyService(name: "Polícia Militar", number: "190", description: "Atendimento imediato em situações de emergência e crimes em andamento."),
+        EmergencyService(name: "Defesa Civil", number: "199", description: "Auxílio em situações de risco, desastres naturais e emergências públicas."),
+        EmergencyService(name: "Bombeiro", number: "193", description: "Atendimento a incêndios, resgates e acidentes."),
+        EmergencyService(name: "Central de Atendimento à Mulher", number: "180", description: "Canal de denúncia e apoio para mulheres em situação de violência.")
     ]
     
     var body: some View {

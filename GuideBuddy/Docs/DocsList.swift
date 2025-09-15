@@ -10,7 +10,19 @@ import SwiftData
 
 struct ListaDeDocumentosView: View {
     @Query private var user: [User]
-    @State var documentos: [Documento] = []
+    @State var documentos: [Documento] = [
+        Documento(titulo: "Passaporte"),
+        Documento(titulo: "Comprovante de residência"),
+        Documento(titulo: "Carta de aceite universitário"),
+        Documento(titulo: "Passagens"),
+        Documento(titulo: "Comprovante financeiro"),
+        Documento(titulo: "Visto de Estudo"),
+        Documento(titulo: "Carta de Indicação"),
+        Documento(titulo: "CPF"),
+        Documento(titulo: "Histórico Escolar"),
+        Documento(titulo: "Laudos Médicos")
+    ]
+
     @Query private var itemEntity: [ItemEntity]
     
     @State private var isAddingCategory = false
