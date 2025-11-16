@@ -42,45 +42,51 @@ struct HomeView: View {
     
     var body: some View {
         NavigationStack{
-            VStack{
+            ScrollView(.vertical, showsIndicators: false){
                 VStack{
-                    GreetingSection()
-                        .padding(.top, 30)
-                    VStack (spacing: UIScreen.main.bounds.height*0.014){
-                        AcionarHelperLink()
-                        
-                        EmergencyDocumentsSection()
-                        
-                        UniversitiesSection()
-                        
-                        HStack {
-                            Hospitals()
-                            Spacer()
-                            DailySlangLink(resultado: $resultado)
+                    VStack{
+                        GreetingSection()
+                            .padding(.top, 30)
+                        VStack (spacing: UIScreen.main.bounds.height*0.014){
+                            AcionarHelperLink()
                             
+                            EmergencyDocumentsSection()
                             
-                        }
-                        .frame(width: UIScreen.main.bounds.width*0.928, height: UIScreen.main.bounds.height*0.18)
-                    }
-                }
-                .frame(width: UIScreen.main.bounds.width*0.928)
-                .padding(.horizontal)
-                .navigationBarTitleDisplayMode(.inline)
-                .navigationTitle("Início")
-                .toolbarBackground(.regularMaterial)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination:ConfigView()) {
-                            Image(systemName: "gearshape")
+                            UniversitiesSection()
+                            
+                            HStack {
+                                Hospitals()
+                                Spacer()
+                                DailySlangLink(resultado: $resultado)
+                                
+                                
+                            }
+                            .frame(width: UIScreen.main.bounds.width*0.928, height: UIScreen.main.bounds.height*0.18)
                         }
                     }
-
+                    .frame(width: UIScreen.main.bounds.width*0.928)
+                    .padding(.horizontal)
+                    .navigationBarTitleDisplayMode(.inline)
+                    .navigationTitle("Início")
+                    
+                    .toolbar {
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            NavigationLink(destination:ConfigView()) {
+                                Image(systemName: "gearshape")
+                            }
+                        }
+                        
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         }
         .onAppear() {
             print("user defaults ON APPEAR \(String(describing: UserDefaults.standard.value(forKey: "AppleLanguage")))")
+            // Aplica o tema salvo quando HomeView aparece
+            if let currentUser = user.first {
+                applyThemeFromBackground(currentUser.choosenBackground)
+            }
         }
     }
 }
@@ -145,14 +151,17 @@ struct GreetingSection: View {
     @Query private var users: [User]
     
     var body: some View {
-        HStack {
+        let userName = users.first?.name ?? "Usuário"
+        let _ = print("GreetingSection - Nome do usuário: \(userName)")
+        return HStack {
             Text("Olá,")
                 .font(.system(size: 24, weight: .regular, design: .rounded))
-                .foregroundStyle(Color.black)
+             
             
-            Text(users.first?.name ?? "Usuário")
+            Text(userName)
                 .font(.system(size: 24, weight: .semibold, design: .rounded))
                 .foregroundStyle(Color.verdePrincipal)
+                .id(userName) // Força atualização quando o nome muda
             
             Spacer()
         }
@@ -191,18 +200,18 @@ struct AcionarHelperLink: View {
                             .frame(height: 101)
                         
                         HStack(spacing: 5){
-                            Image(systemName: "location")
-                            //                            .font(.body)
-                                .font(.system(size: 12))
-                                .fontWeight(.regular)
-                                .foregroundStyle(.black)
-                                .multilineTextAlignment(.leading)
-                            
-                            Text(locationManager.location)
-                                .font(.system(size: 12))
-                            //                            .font(.caption)
-                                .fontWeight(.regular)
-                                .padding()
+//                            Image(systemName: "location")
+//                            //                            .font(.body)
+//                                .font(.system(size: 12))
+//                                .fontWeight(.regular)
+//                                .foregroundStyle(.black)
+//                                .multilineTextAlignment(.leading)
+//                            
+//                            Text(locationManager.location)
+//                                .font(.system(size: 12))
+//                            //                            .font(.caption)
+//                                .fontWeight(.regular)
+//                                .padding()
                         }
                         .frame(height: 22)
                         

@@ -62,6 +62,17 @@ class SpeechRecognizer: ObservableObject {
     
     func setLocale(locale: Locale) {
         stopTranscribing()  // Stop current transcription
+        // Cria um novo request para o novo idioma
+        self.request = SFSpeechAudioBufferRecognitionRequest()
         self.speechRecognizer = SFSpeechRecognizer(locale: locale)
+        
+        // Verifica se o idioma está disponível
+        if let recognizer = self.speechRecognizer {
+            if recognizer.isAvailable {
+                print("✅ SpeechRecognizer configurado para: \(locale.identifier)")
+            } else {
+                print("⚠️ SpeechRecognizer não disponível para: \(locale.identifier)")
+            }
+        }
     }
 }

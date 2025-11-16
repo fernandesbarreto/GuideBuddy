@@ -297,7 +297,7 @@ struct HospitalView: View {
                         .background(
                             RoundedRectangle(cornerRadius: 20)
                             
-                                .fill(Color.white)
+                                .fill(Color.brancopreto)
                                 .frame(width: UIScreen.main.bounds.width * 1, height: .infinity)
                         )
                         
@@ -314,25 +314,26 @@ struct HospitalView: View {
             }
             .navigationBarBackButtonHidden(false)
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    
-//                    ZStack {
-//                        Rectangle()
-//                            .frame(width: 70, height: 35)
-//                            .cornerRadius(10)
-//                            .foregroundStyle(Color.white)
-//                            .opacity(0.6)
-//                    }
-                    
-                }
-                ToolbarItem(placement: .navigationBarTrailing){
-                    Button(action: {}, label: {})
-                }
-                ToolbarItem(placement: .principal){
-                    Text("")
-                }
-            }
+          
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    
+////                    ZStack {
+////                        Rectangle()
+////                            .frame(width: 70, height: 35)
+////                            .cornerRadius(10)
+////                            .foregroundStyle(Color.white)
+////                            .opacity(0.6)
+////                    }
+//                    
+//                }
+//                ToolbarItem(placement: .navigationBarTrailing){
+//                    Button(action: {}, label: {})
+//                }
+//                ToolbarItem(placement: .principal){
+//                    Text("")
+//                }
+//            }
         }
     }
 }

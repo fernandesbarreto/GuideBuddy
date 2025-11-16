@@ -18,13 +18,15 @@ class ItemEntity: Identifiable {
     var pdfPath: String?
     var area: String
     var name: String
+    @Relationship(deleteRule: .cascade, inverse: \User.documents) var owner: User?
 
-    init(type: Int, imageData: Data? = nil, pdfPath: String? = nil, area: String, name: String) {
+    init(type: Int, imageData: Data? = nil, pdfPath: String? = nil, area: String, name: String, owner: User? = nil) {
         self.type = type
         self.imageData = imageData
         self.pdfPath = pdfPath
         self.area = area
         self.name = name
+        self.owner = owner
     }
 }
 
@@ -32,13 +34,18 @@ struct AdicionarDocumento: View {
     @Environment(\.modelContext) private var context: ModelContext
     let documento: Documento
     @State private var isImporting = false
-    @Query private var allItems: [ItemEntity]
+    @Query private var users: [User]
     @State private var showingConfirmation = false
     @State private var activityItems: [Any] = []
     @State private var isShowingShareSheet = false
     
+    var currentUser: User? {
+        users.first
+    }
+    
     var filteredItems: [ItemEntity] {
-        allItems.filter { $0.area == documento.titulo }
+        guard let user = currentUser else { return [] }
+        return user.documents.filter { $0.area == documento.titulo }
     }
     
     var body: some View {
@@ -203,12 +210,26 @@ struct AdicionarDocumento: View {
     }
     
     private func saveImageToSwiftData(imageData: Data, imageName: String) {
-        let newItem = ItemEntity(type: 0, imageData: imageData, area: documento.titulo, name: imageName)
+        guard let user = currentUser else {
+            print("Erro: Nenhum usuário encontrado")
+            return
+        }
+        let newItem = ItemEntity(type: 0, imageData: imageData, area: documento.titulo, name: imageName, owner: user)
+        user.documents.append(newItem)
         context.insert(newItem)
-        try? context.save()
+        do {
+            try context.save()
+            print("Imagem salva com sucesso para o usuário: \(user.name)")
+        } catch {
+            print("Erro ao salvar imagem: \(error)")
+        }
     }
     
     private func savePDFToSwiftData(url: URL, fileName: String) {
+        guard let user = currentUser else {
+            print("Erro: Nenhum usuário encontrado")
+            return
+        }
         let fileManager = FileManager.default
         let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
         let destinationURL = documentsDirectory.appendingPathComponent(url.lastPathComponent)
@@ -216,9 +237,11 @@ struct AdicionarDocumento: View {
             if !fileManager.fileExists(atPath: destinationURL.path) {
                 try fileManager.copyItem(at: url, to: destinationURL)
             }
-            let newItem = ItemEntity(type: 1, pdfPath: destinationURL.lastPathComponent, area: documento.titulo, name: fileName)
+            let newItem = ItemEntity(type: 1, pdfPath: destinationURL.lastPathComponent, area: documento.titulo, name: fileName, owner: user)
+            user.documents.append(newItem)
             context.insert(newItem)
             try context.save()
+            print("PDF salvo com sucesso para o usuário: \(user.name)")
         } catch {
             print("Failed to copy file: \(error.localizedDescription)")
         }

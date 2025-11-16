@@ -56,7 +56,7 @@ struct EduView: View {
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-                  .background(Color.background)
+                  .background(Color(UIColor.systemBackground)) // Adapta ao tema
         }
     }
 }

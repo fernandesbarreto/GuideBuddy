@@ -23,6 +23,7 @@
 		C1052CB42C9F519300EAD60B /* HospitalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1052CB32C9F519300EAD60B /* HospitalView.swift */; };
 		C1052CB62C9F53A700EAD60B /* ModelHospitalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1052CB52C9F53A700EAD60B /* ModelHospitalView.swift */; };
 		C1052CB82CA0AB6E00EAD60B /* translucid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1052CB72CA0AB6E00EAD60B /* translucid.swift */; };
+		C1066C522EC766F700BCA27E /* LLMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1066C512EC766F300BCA27E /* LLMService.swift */; };
 		C1130E992C8AFBB000CE4F98 /* ProfilePhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */; };
 		C12075EC2C828FB4005277B7 /* GaleryInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12075EB2C828FB4005277B7 /* GaleryInput.swift */; };
 		C1266E5C2CD3C7E100FAFB83 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1266E5B2CD3C7DC00FAFB83 /* StartView.swift */; };
@@ -79,6 +80,7 @@
 		C1052CB32C9F519300EAD60B /* HospitalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HospitalView.swift; sourceTree = "<group>"; };
 		C1052CB52C9F53A700EAD60B /* ModelHospitalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHospitalView.swift; sourceTree = "<group>"; };
 		C1052CB72CA0AB6E00EAD60B /* translucid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = translucid.swift; sourceTree = "<group>"; };
+		C1066C512EC766F300BCA27E /* LLMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LLMService.swift; sourceTree = "<group>"; };
 		C1130E982C8AFBB000CE4F98 /* ProfilePhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoView.swift; sourceTree = "<group>"; };
 		C12075EB2C828FB4005277B7 /* GaleryInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaleryInput.swift; sourceTree = "<group>"; };
 		C1266E5B2CD3C7DC00FAFB83 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		EBB948F52C7D24B2002F5375 /* Edu */ = {
 			isa = PBXGroup;
 			children = (
+				C1066C512EC766F300BCA27E /* LLMService.swift */,
 				EBB948F62C7D24BB002F5375 /* GuideChat.swift */,
 				EB0A4DBB2C7F49C800092BA9 /* QueryHistory.swift */,
 				EB0A4DC12C7FA9EC00092BA9 /* EduView.swift */,
@@ -428,6 +431,7 @@
 				C1266E5C2CD3C7E100FAFB83 /* StartView.swift in Sources */,
 				C17344702C93E7DA00BA20FA /* BuildingDetailView.swift in Sources */,
 				558BC8B82C90847F006F491E /* Extension1.swift in Sources */,
+				C1066C522EC766F700BCA27E /* LLMService.swift in Sources */,
 				5528906B2C7F5144008B14AA /* DocsList.swift in Sources */,
 				5572B2C52C7F669200DC7332 /* AddDoc.swift in Sources */,
 				EBA4A5BB2C7D21A500ECD5C2 /* GuideBuddyApp.swift in Sources */,

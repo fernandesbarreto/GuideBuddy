@@ -84,7 +84,7 @@ struct HealthyPlaceOption: View {
                 HospitalView(hospital: hospital)
             }) {
                 Text(hospital.title)
-                    .foregroundStyle(Color.black)
+                    
                  
             }
 //            .sheet(item: $selectedHospital) { hospital in

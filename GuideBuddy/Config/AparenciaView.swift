@@ -78,48 +78,57 @@ struct AparenciaView: View {
                         .frame(width: 20, height: 20)
                 }
                 .contentShape(Rectangle())
-//                .onTapGesture {
-//                    selectedTheme = option
-//                    applyTheme(option)
-//                    saveUserBackground(option.backgroundName)
-//                }
+                .onTapGesture {
+                    selectedTheme = option
+                    applyTheme(option)
+                    saveUserBackground(option.backgroundName)
+                }
                 .listRowBackground(Color.clear)
             }
         }
         .scrollContentBackground(.hidden)
         .navigationTitle("Aparência")
         .navigationBarTitleDisplayMode(.large)
-//        .onAppear {
-//            if let currentUser = users.first {
-//                // Define o tema inicial com base na variável do usuário
-//                switch currentUser.choosenBackground {
-//                case "lightBackground": selectedTheme = .claro
-//                case "darkBackground": selectedTheme = .escuro
-//                default: selectedTheme = .sistema
-//                }
-//                applyTheme(selectedTheme)
-//            }
-//        }
-    }
-
-    private func applyTheme(_ option: ThemeOption) {
-        guard let window = UIApplication.shared.connectedScenes
-            .compactMap({ ($0 as? UIWindowScene)?.keyWindow })
-            .first else { return }
-
-        switch option {
-        case .sistema:
-            window.overrideUserInterfaceStyle = .unspecified
-        case .claro:
-            window.overrideUserInterfaceStyle = .light
-        case .escuro:
-            window.overrideUserInterfaceStyle = .dark
+        .onAppear {
+            if let currentUser = users.first {
+                // Define o tema inicial com base na variável do usuário
+                switch currentUser.choosenBackground {
+                case "lightBackground": selectedTheme = .claro
+                case "darkBackground": selectedTheme = .escuro
+                default: selectedTheme = .sistema
+                }
+                applyTheme(selectedTheme)
+            }
         }
     }
 
-//    private func saveUserBackground(_ backgroundName: String) {
-//        guard let currentUser = users.first else { return }
-//        currentUser.choosenBackground = backgroundName
-//        try? context.save()
-//    }
+    private func applyTheme(_ option: ThemeOption) {
+        // Aplica o tema em todas as janelas do app
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            for window in windowScene.windows {
+                switch option {
+                case .sistema:
+                    window.overrideUserInterfaceStyle = .unspecified
+                case .claro:
+                    window.overrideUserInterfaceStyle = .light
+                case .escuro:
+                    window.overrideUserInterfaceStyle = .dark
+                }
+            }
+        }
+    }
+
+    private func saveUserBackground(_ backgroundName: String) {
+        guard let currentUser = users.first else {
+            print("Erro: Nenhum usuário encontrado para salvar tema")
+            return
+        }
+        currentUser.choosenBackground = backgroundName
+        do {
+            try context.save()
+            print("✅ Tema salvo com sucesso: \(backgroundName) para usuário: \(currentUser.name)")
+        } catch {
+            print("❌ Erro ao salvar tema: \(error)")
+        }
+    }
 }
