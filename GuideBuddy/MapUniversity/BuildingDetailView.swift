@@ -76,7 +76,7 @@ struct BuildingDetailView: View {
                                 }
                                 .padding(.horizontal)
                                 //                        .padding(.bottom)
-                                Section(header: Text("Contatos")
+                                Section(header: Text("contatos".localized)
                                     .font(.body)
                                     .bold()){
                                         ScrollView(.horizontal, showsIndicators: false){
@@ -97,7 +97,7 @@ struct BuildingDetailView: View {
                                                                 .foregroundStyle(Color.verdePrincipal)
                                                                 .opacity(0.8)
                                                             
-                                                            Text("Telefone")
+                                                            Text("telefone".localized)
                                                                 .font(.system(size: 12))
                                                                 .bold()
                                                                 .foregroundStyle(Color.verdePrincipal)
@@ -128,7 +128,7 @@ struct BuildingDetailView: View {
                                                                 .foregroundStyle(Color.verdePrincipal)
                                                                 .opacity(0.8)
                                                             
-                                                            Text("Email")
+                                                            Text("email".localized)
                                                                 .font(.system(size: 12))
                                                                 .bold()
                                                                 .foregroundStyle(Color.verdePrincipal)
@@ -153,7 +153,7 @@ struct BuildingDetailView: View {
                         VStack {
                             LazyVStack(alignment: .leading, spacing: 20) {
                                 
-                                Section(header: Text("Descrição")
+                                Section(header: Text("descricao".localized)
                                     .font(.body)
                                     .bold())
                                 {

@@ -102,7 +102,7 @@ struct AdicionarDocumento: View {
     private func buildImageMenu(item: ItemEntity, uiImage: UIImage) -> some View {
         Menu {
             NavigationLink(destination: DocumentDetailView(item: item)) {
-                Label("Visualizar", systemImage: "eye")
+                Label("visualizar".localized, systemImage: "eye")
             }
             
             Button(action: {
@@ -111,13 +111,13 @@ struct AdicionarDocumento: View {
                     isShowingShareSheet = true
                 }
             }) {
-                Label("Compartilhar", systemImage: "square.and.arrow.up")
+                Label("compartilhar".localized, systemImage: "square.and.arrow.up")
             }
             
             Button(action: {
                 showingConfirmation = true
             }) {
-                Label("Excluir", systemImage: "trash")
+                Label("excluir".localized, systemImage: "trash")
             }
         } label: {
             VStack {
@@ -134,9 +134,9 @@ struct AdicionarDocumento: View {
                     .truncationMode(.tail)
             }
         }
-        .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
-            Button("Cancelar", role: .cancel) { showingConfirmation = false }
-            Button("Sim, excluir", role: .destructive) {
+        .confirmationDialog("excluir_da_lista".localized, isPresented: $showingConfirmation, titleVisibility: .visible) {
+            Button("cancelar".localized, role: .cancel) { showingConfirmation = false }
+            Button("sim_excluir".localized, role: .destructive) {
                 deleteItem(item: item)
                 showingConfirmation = false
             }
@@ -146,7 +146,7 @@ struct AdicionarDocumento: View {
     private func buildPDFMenu(item: ItemEntity) -> some View {
         Menu {
             NavigationLink(destination: DocumentDetailView(item: item)) {
-                Label("Visualizar", systemImage: "eye")
+                Label("visualizar".localized, systemImage: "eye")
             }
             
             Button(action: {
@@ -160,13 +160,13 @@ struct AdicionarDocumento: View {
                     }
                 }
             }) {
-                Label("Compartilhar", systemImage: "square.and.arrow.up")
+                Label("compartilhar".localized, systemImage: "square.and.arrow.up")
             }
             
             Button(action: {
                 showingConfirmation = true
             }) {
-                Label("Excluir", systemImage: "trash")
+                Label("excluir".localized, systemImage: "trash")
             }
         } label: {
             VStack {
@@ -183,9 +183,9 @@ struct AdicionarDocumento: View {
                     .truncationMode(.tail)
             }
         }
-        .confirmationDialog("Excluir da lista?", isPresented: $showingConfirmation, titleVisibility: .visible) {
-            Button("Cancelar", role: .cancel) { showingConfirmation = false }
-            Button("Sim, excluir", role: .destructive) {
+        .confirmationDialog("excluir_da_lista".localized, isPresented: $showingConfirmation, titleVisibility: .visible) {
+            Button("cancelar".localized, role: .cancel) { showingConfirmation = false }
+            Button("sim_excluir".localized, role: .destructive) {
                 deleteItem(item: item)
                 showingConfirmation = false
             }

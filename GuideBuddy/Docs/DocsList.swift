@@ -41,7 +41,7 @@ struct ListaDeDocumentosView: View {
                 }
             }
             .toolbarBackground(.regularMaterial)
-            .navigationTitle("Documentos")
+            .navigationTitle("documentos".localized)
 //            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(trailing: Button(action: {
                           isAddingCategory = true
@@ -55,9 +55,9 @@ struct ListaDeDocumentosView: View {
                       }
                       .sheet(isPresented: $isAddingCategory) {
                                    VStack {
-                                       Text("Adicionar Nova Categoria")
+                                       Text("adicionar_nova_categoria".localized)
                                            .font(.headline)
-                                       TextField("Nome da Categoria", text: $newCategoryName)
+                                       TextField("nome_da_categoria".localized, text: $newCategoryName)
                                            .textFieldStyle(RoundedBorderTextFieldStyle())
                                            .padding()
 //                                       Button("Adicionar") {
@@ -73,7 +73,7 @@ struct ListaDeDocumentosView: View {
                                        }, label: {
                                            ZStack {
                                                Image("slangButton")
-                                               Text("Adicionar")
+                                               Text("adicionar".localized)
                                                    .foregroundStyle(.white)
                                            }
                                        })

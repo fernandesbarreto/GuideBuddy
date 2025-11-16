@@ -6,7 +6,7 @@
   
 */
 
-
+// Login e Navegação
 "lets_go" = "Vamos lá?";
 "fill_your_details" = "Preencha seus dados";
 "user_name" = "Nome do usuário";
@@ -22,15 +22,37 @@
 "favoritos" = "Favoritos";
 "mapas" = "Mapas";
 "emergency_title" = "Emergência";
-"ambulancia" = "Ambulância";
-"policia_civil" = "Polícia Civil";
-"policia_militar" = "Polícia Militar";
-"defesa_civil" = "Defesa Civil";
-"bombeiro" = "Bombeiro";
-"central_atendimento_mulher" = "Central de Atendimento à Mulher";
-"hospital" = "Hospitais";
-"documento" = "Documentos";
-"faculdade" = "Faculdades";
+"inicio" = "Início";
+"ajustes" = "Ajustes";
+"entrar" = "Entrar";
+"continuar" = "Continuar";
+"bem_vindo" = "Bem-vindo ao GuiBu, %@!";
+"escolha_nome" = "Escolha um nome";
+"digite_seu_nome" = "Digite seu nome";
+"linguagem_preferida" = "Linguagem preferida";
+"mudar_nome" = "Mudar Nome";
+"novo_nome" = "Novo nome";
+"digite_novo_nome" = "Digite o novo nome";
+"salvar" = "Salvar";
+"cancelar" = "Cancelar";
+"ok" = "OK";
+"digite_nome_valido" = "Digite um nome válido";
+
+// HomeView
+"hospitais" = "Hospitais";
+"cuidados_saude" = "Cuidados e saúde\nao seu alcance";
+"ajudante_ia" = "Ajudante IA";
+"use_conhecer_cidade" = "Use para conhecer a\ncidade e descobrir\nsuas curiosidades";
+"acionar" = "Acionar";
+"documentos" = "Documentos";
+"faculdades" = "Faculdades";
+"mapas_infos_universidades" = "Mapas e infos\ndas universidades";
+"ir" = "Ir";
+"girias" = "Gírias";
+"expressoes_linguagem_local" = "Expressões da\nlinguagem local";
+"usuario" = "Usuário";
+
+// Documentos
 "passaporte" = "Passaporte";
 "comprovante_de_residencia" = "Comprovante de residência";
 "carta_aceite" = "Carta de aceite universitário";
@@ -41,6 +63,62 @@
 "cpf" = "CPF";
 "historico_escolar" = "Histórico Escolar";
 "laudo_medico" = "Laudos médicos";
+"adicionar_nova_categoria" = "Adicionar Nova Categoria";
+"nome_da_categoria" = "Nome da Categoria";
+"adicionar" = "Adicionar";
+"detalhes" = "Detalhes";
+
+// Emergência
+"ambulancia" = "Ambulância";
+"policia_civil" = "Polícia Civil";
+"policia_militar" = "Polícia Militar";
+"defesa_civil" = "Defesa Civil";
+"bombeiro" = "Bombeiro";
+"central_atendimento_mulher" = "Central de Atendimento à Mulher";
+"hospital" = "Hospitais";
+
+// Configurações
+"geral" = "GERAL";
+"aparencia" = "Aparência";
+"cores" = "CORES";
+"aspectos_legais" = "ASPECTOS LEGAIS";
+"politica_privacidade" = "Política de privacidade";
+"termos_uso" = "Termos de uso";
+"excluir_conta" = "Excluir conta";
+"sair" = "Sair";
+"padrao_telefone" = "Padrão do telefone";
+"modo_claro" = "Modo claro";
+"modo_escuro" = "Modo escuro";
+"politicas_privacidade" = "Políticas de privacidade";
+"termos_de_uso" = "Termos de Uso";
+
+// Chat
+"search" = "Search";
+"gui_bu" = "GuiBu";
+
+// Mapas
+"mapa" = "Mapa";
+"procure_por_lugar" = "Procure por algum lugar";
+"selecione_filtro" = "Selecione o filtro";
+"em_breve_ufrpe" = "Em breve ficará disponível o mapa da UFRPE";
+"em_breve_ifpe" = "Em breve ficará disponível o mapa do IFPE";
+"ufpe" = " UFPE";
+"ufrpe" = "UFRPE";
+"ifpe" = "IFPE";
+
+// Hospital
+"saude" = "Saúde";
+"numeros" = "Números";
+"email" = "Email";
+"contatos" = "Contatos";
+"telefone" = "Telefone";
+"especialidades" = "Especialidades";
+"ambulatorio" = "Ambulatório";
+"clinica_medica" = "Clínica Médica";
+"descricao_nao_disponivel" = "Descrição não disponível.";
+"descricao" = "Descrição";
+
+// Perfil
 "editar_perfil" = "Editar perfil";
 "anos" = "anos";
 "idade_selecionada" = "Idade selecionada";
@@ -52,6 +130,8 @@
 "apagar_foto" = "Apagar foto";
 "capa" = "Capa";
 "selecionar_linguagem" = "Selecione a linguagem";
+
+// Histórico
 "hoje" = "Hoje";
 "ontem" = "Ontem";
 "semana" = "Últimos 7 Dias";
@@ -59,4 +139,28 @@
 "confirmar" = "Deletar";
 "certeza" = "Você tem certeza de que deseja excluir este item?";
 "deletar" = "Deletar";
+"certeza_curto" = "Certeza?";
+
+// Prompt
 "prompt" = "Você é um assistente virtual para estudantes estrangeiros que residem em Recife. Responda a pergunta, pesquisando se necessário e informando quais locais em Recife podem ser prestativos (lembre de reforçar que deve-se consultar outras fontes: ";
+
+// Documentos - Ações
+"visualizar" = "Visualizar";
+"compartilhar" = "Compartilhar";
+"excluir" = "Excluir";
+"excluir_da_lista" = "Excluir da lista?";
+"sim_excluir" = "Sim, excluir";
+
+// Emergência - Descrições
+"ambulancia_desc" = "Atendimento de urgência em casos de acidentes ou emergências médicas.";
+"policia_civil_desc" = "Responsável por investigações e ocorrências policiais.";
+"policia_militar_desc" = "Atendimento imediato em situações de emergência e crimes em andamento.";
+"defesa_civil_desc" = "Auxílio em situações de risco, desastres naturais e emergências públicas.";
+"bombeiro_desc" = "Atendimento a incêndios, resgates e acidentes.";
+"central_atendimento_mulher_desc" = "Canal de denúncia e apoio para mulheres em situação de violência.";
+
+// Slangs
+"definicao" = "Definição:";
+"exemplo" = "Exemplo:";
+"anterior" = "Anterior";
+"proxima" = "Próxima";

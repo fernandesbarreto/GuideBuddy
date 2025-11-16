@@ -53,7 +53,7 @@ struct PrivacidadeView: View {
             .font(.system(size: 16))
             .padding()
         }
-        .navigationTitle("Políticas de privacidade")
+        .navigationTitle("politicas_privacidade".localized)
         .navigationBarTitleDisplayMode(.large)
     }
 }

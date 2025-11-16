@@ -135,7 +135,7 @@ struct SearchableMap: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.regularMaterial)
             .toolbarBackground(.visible, for: .navigationBar)
-            .navigationTitle("Mapa")
+            .navigationTitle("mapa".localized)
             }
     }
 

@@ -51,7 +51,7 @@ struct GuideChat: View {
                                 Image(systemName: "magnifyingglass")
                                     .foregroundColor(.gray)
                                 
-                                TextField("Search", text: $question)
+                                TextField("search".localized, text: $question)
                                     .disableAutocorrection(true)
                                     .cornerRadius(8)
                                     .foregroundColor(.primary) // Adapta ao tema
@@ -83,7 +83,7 @@ struct GuideChat: View {
                         .frame(height: geometry.size.height * 0.9)
                         .padding(.bottom, geometry.size.height * 0.08)
                         Button(action: restartChat) {
-                            Text("perguntar_novamente")
+                            Text("perguntar_novamente".localized)
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
                                 .padding()

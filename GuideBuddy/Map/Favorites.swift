@@ -46,9 +46,9 @@ struct Favorites: View {
             }
             .alert(isPresented: $showDeleteAlert) {
                 Alert(
-                    title: Text("confirmar"),
-                    message: Text("Certeza?"),
-                    primaryButton: .destructive(Text("deletar")) {
+                    title: Text("confirmar".localized),
+                    message: Text("certeza_curto".localized),
+                    primaryButton: .destructive(Text("deletar".localized)) {
                         if let indexSet = deletionIndexSet {
                             deleteItems(at: indexSet)
                         }
@@ -57,7 +57,7 @@ struct Favorites: View {
                 )
             }
             .toolbarBackground(.regularMaterial)
-            .navigationTitle("favoritos")
+            .navigationTitle("favoritos".localized)
             .navigationBarTitleDisplayMode(.inline)
         }
     }

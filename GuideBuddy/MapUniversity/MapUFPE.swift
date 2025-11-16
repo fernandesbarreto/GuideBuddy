@@ -97,7 +97,7 @@ struct MapUFPE: View {
                         
                         VStack {
                             Spacer()
-                            Text("Em breve ficará disponível o mapa da UFRPE")
+                            Text("em_breve_ufrpe".localized)
                                 .multilineTextAlignment(.center)
                                 .frame(maxWidth: .infinity)
                             Spacer()
@@ -106,7 +106,7 @@ struct MapUFPE: View {
                     case .ifpe:
                         VStack {
                             Spacer()
-                            Text("Em breve ficará disponível o mapa do IFPE")
+                            Text("em_breve_ifpe".localized)
                                 .multilineTextAlignment(.center)
                                 .frame(maxWidth: .infinity)
                             Spacer()
@@ -118,12 +118,12 @@ struct MapUFPE: View {
                 .toolbarBackground(.regularMaterial)
 
                 .toolbarBackground(.visible, for: .navigationBar)
-                .navigationTitle("Faculdades")
+                .navigationTitle("faculdades".localized)
 //                .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Menu {
-                            Text("Selecione o filtro")
+                            Text("selecione_filtro".localized)
                             
                             
                             Button(action: {
@@ -157,9 +157,9 @@ struct MapUFPE: View {
                     }
                     ToolbarItem(placement: .principal) {
                         Picker("Selecione a faculdade", selection: $selectedFaculdade) {
-                            Text(" UFPE").tag(Faculdades.ufpe)
-                            Text("UFRPE").tag(Faculdades.ufrpe)
-                            Text("IFPE").tag(Faculdades.ifpe)
+                            Text("ufpe".localized).tag(Faculdades.ufpe)
+                            Text("ufrpe".localized).tag(Faculdades.ufrpe)
+                            Text("ifpe".localized).tag(Faculdades.ifpe)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .frame(width: 200)

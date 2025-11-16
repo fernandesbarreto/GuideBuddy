@@ -26,9 +26,9 @@ struct AparenciaView: View {
 
         var title: String {
             switch self {
-            case .sistema: return "Padrão do telefone"
-            case .claro: return "Modo claro"
-            case .escuro: return "Modo escuro"
+            case .sistema: return "padrao_telefone".localized
+            case .claro: return "modo_claro".localized
+            case .escuro: return "modo_escuro".localized
             }
         }
 
@@ -87,7 +87,7 @@ struct AparenciaView: View {
             }
         }
         .scrollContentBackground(.hidden)
-        .navigationTitle("Aparência")
+        .navigationTitle("aparencia".localized)
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
             if let currentUser = users.first {

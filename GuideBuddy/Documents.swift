@@ -8,20 +8,23 @@
 import SwiftUI
 
 struct Documents: View {
-    let documentos = [
+    @EnvironmentObject var languageManager: LanguageManager
+    @State private var refreshID = UUID()
     
-        Documento(titulo: "passaporte".localized),
-        Documento(titulo: "comprovante_de_residencia".localized),
-        Documento(titulo: "carta_aceite".localized),
-        Documento(titulo: "passagens".localized),
-        Documento(titulo: "comprovante_fincanceiro".localized),
-        Documento(titulo: "visto_de_estudo".localized),
-        Documento(titulo: "carta_de_indicacao".localized),
-        Documento(titulo: "cpf".localized),
-        Documento(titulo: "historico_escolar".localized),
-        Documento(titulo: "laudo_medico".localized)
-        
-    ]
+    var documentos: [Documento] {
+        [
+            Documento(titulo: "passaporte".localized),
+            Documento(titulo: "comprovante_de_residencia".localized),
+            Documento(titulo: "carta_aceite".localized),
+            Documento(titulo: "passagens".localized),
+            Documento(titulo: "comprovante_fincanceiro".localized),
+            Documento(titulo: "visto_de_estudo".localized),
+            Documento(titulo: "carta_de_indicacao".localized),
+            Documento(titulo: "cpf".localized),
+            Documento(titulo: "historico_escolar".localized),
+            Documento(titulo: "laudo_medico".localized)
+        ]
+    }
     
     var body: some View {
         NavigationStack{
@@ -31,8 +34,14 @@ struct Documents: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("documento")
-            
+            .navigationTitle("documento".localized)
+            .id(refreshID)
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
+                refreshID = UUID()
+            }
+            .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
+                refreshID = UUID()
+            }
         }
     }
     

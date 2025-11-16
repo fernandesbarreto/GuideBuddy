@@ -19,7 +19,7 @@ struct PhoneNumbersSheet: View {
                     }
                 }
             }
-            .navigationTitle("Números")
+            .navigationTitle("numeros".localized)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -44,7 +44,7 @@ struct EmailListView: View {
                         .padding()
                 }
             }
-            .navigationTitle("Email")
+            .navigationTitle("email".localized)
             . navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -143,7 +143,7 @@ struct HospitalView: View {
                                 }
                                 .padding(.horizontal)
                                 //                        .padding(.bottom)
-                                Section(header: Text("Contatos")
+                                Section(header: Text("contatos".localized)
                                     .font(.body)
                                     .bold()){
                                         ScrollView(.horizontal, showsIndicators: false){
@@ -164,7 +164,7 @@ struct HospitalView: View {
                                                                 .foregroundStyle(Color.verdePrincipal)
                                                                 .opacity(0.8)
                                                             
-                                                            Text("Telefone")
+                                                            Text("telefone".localized)
                                                                 .font(.system(size: 12))
                                                                 .bold()
                                                                 .foregroundStyle(Color.verdePrincipal)
@@ -195,7 +195,7 @@ struct HospitalView: View {
                                                                 .foregroundStyle(Color.verdePrincipal)
                                                                 .opacity(0.8)
                                                             
-                                                            Text("Email")
+                                                            Text("email".localized)
                                                                 .font(.system(size: 12))
                                                                 .bold()
                                                                 .foregroundStyle(Color.verdePrincipal)
@@ -215,7 +215,7 @@ struct HospitalView: View {
                                     }
                                     .padding(.leading)
                                 Spacer()
-                                Section(header: Text("Especialidades")
+                                Section(header: Text("especialidades".localized)
                                     .font(.body)
                                     .bold()) {
                                         VStack{
@@ -233,7 +233,7 @@ struct HospitalView: View {
                                             //                                        }
                                             //                                        .padding(.trailing)
                                             HStack{
-                                                Text("Ambulatório")
+                                                Text("ambulatorio".localized)
                                                     .multilineTextAlignment(.leading)
                                                     .padding(.top)
                                                 Spacer()
@@ -251,7 +251,7 @@ struct HospitalView: View {
                                                 }
                                             }
                                             HStack{
-                                                Text("Emergência")
+                                                Text("emergencia".localized)
                                                     .multilineTextAlignment(.leading)
                                                     .padding(.top)
                                                 Spacer()
@@ -269,7 +269,7 @@ struct HospitalView: View {
                                                 }
                                             }
                                             HStack{
-                                                Text("Clínica Médica")
+                                                Text("clinica_medica".localized)
                                                     .multilineTextAlignment(.leading)
                                                     .padding(.top)
                                                 Spacer()

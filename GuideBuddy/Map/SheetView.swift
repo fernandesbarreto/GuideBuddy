@@ -53,7 +53,7 @@ struct UnifiedSheetView: View {
             HStack {
                 Image(systemName: "magnifyingglass")
                 
-                TextField("Procure por algum lugar", text: $search)
+                TextField("procure_por_lugar".localized, text: $search)
                     .autocorrectionDisabled()
                     .onSubmit {
                         Task {

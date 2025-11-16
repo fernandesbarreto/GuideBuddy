@@ -47,7 +47,7 @@ struct DocumentDetailView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(.regularMaterial)
             .toolbarBackground(.visible, for: .navigationBar)
-            .navigationTitle("Detalhes")
+            .navigationTitle("detalhes".localized)
             .navigationBarItems(trailing: Button(action: {
 //                activityItems = [uiImage]
                 isShowingShareSheet = true

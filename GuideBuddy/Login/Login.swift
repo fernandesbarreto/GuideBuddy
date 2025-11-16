@@ -45,10 +45,10 @@ struct LoginView: View {
                 // Usuário já existe
                 VStack{
                     VStack(spacing: 20) {
-                        Text("Bem-vindo ao GuiBu, \(currentUser.name)!")
+                        Text("bem_vindo".localized.replacingOccurrences(of: "%@", with: currentUser.name))
                             .font(.largeTitle)
                         
-                        Button("Mudar Nome") {
+                        Button("mudar_nome".localized) {
                             newName = currentUser.name
                             showChangeNameAlert = true
                         }
@@ -56,26 +56,26 @@ struct LoginView: View {
                     .padding()
                     
                     NavigationLink(destination: HomeView()) {
-                        Text("Entrar")
+                        Text("entrar".localized)
                         
                     }
                 }
             } else {
                 // Primeiro acesso, pede nome
                 VStack(spacing: 20) {
-                    Text("Escolha um nome")
+                    Text("escolha_nome".localized)
                         .font(.title)
                     
-                    TextField("Digite seu nome", text: $inputName)
+                    TextField("digite_seu_nome".localized, text: $inputName)
                         .textFieldStyle(.roundedBorder)
                         .padding()
                     
                     VStack(alignment: .leading, spacing: 8) {
-                        Text("Linguagem preferida")
+                        Text("linguagem_preferida".localized)
                             .font(.system(size: 16, weight: .medium))
                             .padding(.horizontal)
                         
-                        Picker("Linguagem", selection: $selectedLanguage) {
+                        Picker("linguagem".localized, selection: $selectedLanguage) {
                             ForEach(languages, id: \.1) { language in
                                 Text(language.0).tag(language.1)
                             }
@@ -84,7 +84,7 @@ struct LoginView: View {
                         .padding(.horizontal)
                     }
                     
-                    Button("Continuar") {
+                    Button("continuar".localized) {
                         print("=== BOTÃO CONTINUAR PRESSIONADO ===")
                         if !inputName.isEmpty {
                             print("Criando usuário: \(inputName) com linguagem: \(selectedLanguage)")
@@ -132,13 +132,13 @@ struct LoginView: View {
                 .padding()
             }
         }
-        .alert("Digite um nome válido", isPresented: $showNameAlert, actions: {
-            Button("OK", role: .cancel) { }
+        .alert("digite_nome_valido".localized, isPresented: $showNameAlert, actions: {
+            Button("ok".localized, role: .cancel) { }
         })
-        .alert("Mudar Nome", isPresented: $showChangeNameAlert) {
-            TextField("Novo nome", text: $newName)
-            Button("Cancelar", role: .cancel) { }
-            Button("Salvar") {
+        .alert("mudar_nome".localized, isPresented: $showChangeNameAlert) {
+            TextField("novo_nome".localized, text: $newName)
+            Button("cancelar".localized, role: .cancel) { }
+            Button("salvar".localized) {
                 if !newName.isEmpty, let currentUser = users.first {
                     currentUser.name = newName
                     do {
@@ -150,7 +150,7 @@ struct LoginView: View {
                 }
             }
         } message: {
-            Text("Digite o novo nome")
+            Text("digite_novo_nome".localized)
         }
         .onChange(of: users.count) { oldCount, newCount in
             // Quando o usuário é criado, o @Query atualiza e a view muda automaticamente

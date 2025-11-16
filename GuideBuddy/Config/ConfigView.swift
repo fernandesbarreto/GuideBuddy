@@ -9,13 +9,18 @@
 import SwiftUI
 
 struct ConfigView: View {
+    @EnvironmentObject var languageManager: LanguageManager
+    @State private var refreshID = UUID()
     
     // Modelo das seções
-    private let sections: [ConfigSection] = [
-        ConfigSection(title: "CORES", rows: [.appearance/*, .highContrast*/]),
-        ConfigSection(title: "ASPECTOS LEGAIS", rows: [.privacyPolicy, .termsOfUse]),
+    private var sections: [ConfigSection] {
+        [
+            ConfigSection(title: "geral".localized, rows: [.language]),
+            ConfigSection(title: "cores".localized, rows: [.appearance/*, .highContrast*/]),
+            ConfigSection(title: "aspectos_legais".localized, rows: [.privacyPolicy, .termsOfUse]),
 //        ConfigSection(title: "GERAL", rows: [/*.notifications, */.deleteAccount, .logout])
-    ]
+        ]
+    }
     
     var body: some View {
         NavigationStack {
@@ -24,6 +29,10 @@ struct ConfigView: View {
                     Section(header: Text(section.title)) {
                         ForEach(section.rows, id: \.title) { row in
                             switch row {
+                            case .language:
+                                NavigationLink(destination: LanguagePickerView()) {
+                                    Text(row.title)
+                                }
                             case .appearance:
                                 NavigationLink(destination: AparenciaView()) {
                                     Text(row.title)
@@ -47,8 +56,17 @@ struct ConfigView: View {
                     }
                 }
             }
-            .navigationTitle("Ajustes")
+            .navigationTitle("ajustes".localized)
             .navigationBarTitleDisplayMode(.large)
+            .id(refreshID) // Força atualização quando o idioma muda
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
+                // Atualiza a view quando o idioma muda
+                refreshID = UUID()
+            }
+            .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
+                // Atualiza a view quando o idioma muda
+                refreshID = UUID()
+            }
         }
     }
 }
@@ -61,6 +79,7 @@ private struct ConfigSection {
 }
 
 private enum RowType {
+    case language
     case appearance
 //    case highContrast
     case privacyPolicy
@@ -71,13 +90,14 @@ private enum RowType {
     
     var title: String {
         switch self {
-        case .appearance: return "Aparência"
+        case .language: return "linguagem".localized
+        case .appearance: return "aparencia".localized
 //        case .highContrast: return "Modo Alto Contraste"
-        case .privacyPolicy: return "Política de privacidade"
-        case .termsOfUse: return "Termos de uso"
+        case .privacyPolicy: return "politica_privacidade".localized
+        case .termsOfUse: return "termos_uso".localized
 //        case .notifications: return "Notificações"
-        case .deleteAccount: return "Excluir conta"
-        case .logout: return "Sair"
+        case .deleteAccount: return "excluir_conta".localized
+        case .logout: return "sair".localized
         }
     }
 }

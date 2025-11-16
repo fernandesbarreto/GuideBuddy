@@ -27,7 +27,7 @@ struct HealthCategories: View {
                     Text(category.titulo)
                 }
             }
-            .navigationTitle("Saúde")
+            .navigationTitle("saude".localized)
 //            .navigationBarTitleDisplayMode(.inline)
         }
     }

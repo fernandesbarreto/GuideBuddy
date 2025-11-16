@@ -41,7 +41,7 @@ struct EduView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbarBackground(Color.clear.opacity(0.1), for: .navigationBar)
 //            .toolbarBackground(.visible, for: .navigationBar)
-            .navigationTitle("GuiBu")
+            .navigationTitle("gui_bu".localized)
             
             
             .toolbar {

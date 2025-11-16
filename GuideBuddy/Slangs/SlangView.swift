@@ -29,14 +29,14 @@ struct DailySlangView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .fixedSize(horizontal: false, vertical: true)
                     
-                    Text("Definição: \(dailySlang.definition)")
+                    Text("definicao".localized + " \(dailySlang.definition)")
                         .font(.body)
                         .multilineTextAlignment(.leading)
                         .padding([.top, .bottom])
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .fixedSize(horizontal: false, vertical: true)
                     
-                    Text("Exemplo: \(dailySlang.examples)")
+                    Text("exemplo".localized + " \(dailySlang.examples)")
                         .font(.body)
                         .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -80,7 +80,7 @@ struct DailySlangView: View {
                     }) {
                         ZStack {
                             Image("SlangButtonOrange")
-                            Text("Anterior")
+                            Text("anterior".localized)
                                 .foregroundStyle(.white)
                                 .bold()
                         }
@@ -97,7 +97,7 @@ struct DailySlangView: View {
                     }) {
                         ZStack {
                             Image("SlangButtonOrange")
-                            Text("Próxima")
+                            Text("proxima".localized)
                                 .foregroundStyle(.white)
                                 .bold()
                         }
@@ -109,7 +109,7 @@ struct DailySlangView: View {
                 Spacer()
             }
             .padding()
-        .navigationTitle("Gírias")
+        .navigationTitle("girias".localized)
         .navigationBarTitleDisplayMode(.inline)
         }
     }

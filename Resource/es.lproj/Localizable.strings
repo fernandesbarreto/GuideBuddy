@@ -5,13 +5,14 @@
   Created by Raquel Ribeiro Hatem de Farias on 30/08/24.
   
 */
+// Login e Navegação
 "lets_go" = "Vamos allá";
 "fill_your_details" = "Rellena tus datos";
 "user_name" = "Nombre de usuario";
 "user_age" = "Edad";
 "start" = "Comenzar";
 "Editar" = "Editar";
-"ola" = "Hola";
+"ola" = "Hola";
 "linguagem" = "Idioma";
 "perfil" = "Perfil";
 "PerguntarNovamente" = "Preguntar de nuevo";
@@ -20,15 +21,37 @@
 "favoritos" = "Favoritos";
 "mapas" = "Mapas";
 "emergency_title" = "Emergencia";
-"ambulancia" = "Ambulancia";
-"policia_civil" = "Policía Civil";
-"policia_militar" = "Policía Militar";
-"defesa_civil" = "Defensa Civil";
-"bombeiro" = "Bombero";
-"central_atendimento_mulher" = "Centro de Atención a la Mujer";
-"hospital" = "Hospitales";
-"documento" = "Documentos";
-"faculdade" = "Universidades";
+"inicio" = "Inicio";
+"ajustes" = "Ajustes";
+"entrar" = "Entrar";
+"continuar" = "Continuar";
+"bem_vindo" = "¡Bienvenido a GuiBu, %@!";
+"escolha_nome" = "Elige un nombre";
+"digite_seu_nome" = "Ingresa tu nombre";
+"linguagem_preferida" = "Idioma preferido";
+"mudar_nome" = "Cambiar Nombre";
+"novo_nome" = "Nuevo nombre";
+"digite_novo_nome" = "Ingresa el nuevo nombre";
+"salvar" = "Guardar";
+"cancelar" = "Cancelar";
+"ok" = "OK";
+"digite_nome_valido" = "Ingresa un nombre válido";
+
+// HomeView
+"hospitais" = "Hospitales";
+"cuidados_saude" = "Cuidados y salud\na tu alcance";
+"ajudante_ia" = "Asistente IA";
+"use_conhecer_cidade" = "Úsalo para conocer la\nciudad y descubrir\nsus curiosidades";
+"acionar" = "Activar";
+"documentos" = "Documentos";
+"faculdades" = "Universidades";
+"mapas_infos_universidades" = "Mapas e información\nde las universidades";
+"ir" = "Ir";
+"girias" = "Jerga";
+"expressoes_linguagem_local" = "Expresiones del\nlenguaje local";
+"usuario" = "Usuario";
+
+// Documentos
 "passaporte" = "Pasaporte";
 "comprovante_de_residencia" = "Comprobante de residencia";
 "carta_aceite" = "Carta de aceptación universitaria";
@@ -39,22 +62,104 @@
 "cpf" = "CPF (Registro de Contribuyente)";
 "historico_escolar" = "Historial académico";
 "laudo_medico" = "Informes médicos";
+"adicionar_nova_categoria" = "Agregar Nueva Categoría";
+"nome_da_categoria" = "Nombre de la Categoría";
+"adicionar" = "Agregar";
+"detalhes" = "Detalles";
+
+// Emergência
+"ambulancia" = "Ambulancia";
+"policia_civil" = "Policía Civil";
+"policia_militar" = "Policía Militar";
+"defesa_civil" = "Defensa Civil";
+"bombeiro" = "Bombero";
+"central_atendimento_mulher" = "Centro de Atención a la Mujer";
+"hospital" = "Hospitales";
+
+// Configurações
+"geral" = "GENERAL";
+"aparencia" = "Apariencia";
+"cores" = "COLORES";
+"aspectos_legais" = "ASPECTOS LEGALES";
+"politica_privacidade" = "Política de privacidad";
+"termos_uso" = "Términos de uso";
+"excluir_conta" = "Eliminar cuenta";
+"sair" = "Salir";
+"padrao_telefone" = "Predeterminado del sistema";
+"modo_claro" = "Modo claro";
+"modo_escuro" = "Modo oscuro";
+"politicas_privacidade" = "Política de Privacidad";
+"termos_de_uso" = "Términos de Uso";
+
+// Chat
+"search" = "Buscar";
+"gui_bu" = "GuiBu";
+
+// Mapas
+"mapa" = "Mapa";
+"procure_por_lugar" = "Busca un lugar";
+"selecione_filtro" = "Selecciona el filtro";
+"em_breve_ufrpe" = "El mapa de UFRPE estará disponible pronto";
+"em_breve_ifpe" = "El mapa de IFPE estará disponible pronto";
+"ufpe" = " UFPE";
+"ufrpe" = "UFRPE";
+"ifpe" = "IFPE";
+
+// Hospital
+"saude" = "Salud";
+"numeros" = "Números";
+"email" = "Correo";
+"contatos" = "Contactos";
+"telefone" = "Teléfono";
+"especialidades" = "Especialidades";
+"ambulatorio" = "Ambulatorio";
+"clinica_medica" = "Clínica Médica";
+"descricao_nao_disponivel" = "Descripción no disponible.";
+"descricao" = "Descripción";
+
+// Perfil
 "editar_perfil" = "Editar perfil";
 "anos" = "años";
-"idade_selecionada" = "Edade seleccionada";
-"age_select" = "Seleccioa tu edade";
-"editar_foto" = "Editar foto do perfil";
+"idade_selecionada" = "Edad seleccionada";
+"age_select" = "Selecciona tu edad";
+"editar_foto" = "Editar foto de perfil";
 "profile_pic" = "Foto de perfil";
 "tirar_foto" = "Tomar foto";
 "escolher_foto" = "Elegir foto";
 "apagar_foto" = "Borrar foto";
 "capa" = "Capa";
 "selecionar_linguagem" = "Seleccionar idioma";
+
+// Histórico
 "hoje" = "Hoy";
 "ontem" = "Ayer";
 "semana" = "Últimos 7 Días";
 "antes" = "Anterior a 7 Días";
 "confirmar" = "Eliminar";
-"certeza" =  "¿Está seguro de que desea eliminar este elemento?";
+"certeza" = "¿Está seguro de que desea eliminar este elemento?";
 "deletar" = "Eliminar";
+"certeza_curto" = "¿Seguro?";
+
+// Prompt
 "prompt" = "Eres asistente virtual para estudiantes extranjeros residentes en Recife - Brasil. Responda la pregunta, investigando si es necesario e informando qué lugares de Recife pueden ser útiles (recuerde enfatizar que debe consultar otras fuentes: ";
+
+// Documentos - Ações
+"visualizar" = "Ver";
+"compartilhar" = "Compartir";
+"excluir" = "Eliminar";
+"excluir_da_lista" = "¿Eliminar de la lista?";
+"sim_excluir" = "Sí, eliminar";
+
+// Emergência - Descrições
+"ambulancia_desc" = "Atención de urgencia en casos de accidentes o emergencias médicas.";
+"policia_civil_desc" = "Responsable de investigaciones e incidentes policiales.";
+"policia_militar_desc" = "Atención inmediata en situaciones de emergencia y delitos en curso.";
+"defesa_civil_desc" = "Asistencia en situaciones de riesgo, desastres naturales y emergencias públicas.";
+"bombeiro_desc" = "Atención a incendios, rescates y accidentes.";
+"central_atendimento_mulher_desc" = "Canal de denuncia y apoyo para mujeres en situación de violencia.";
+
+// Slangs
+"definicao" = "Definición:";
+"exemplo" = "Ejemplo:";
+"anterior" = "Anterior";
+"proxima" = "Siguiente";

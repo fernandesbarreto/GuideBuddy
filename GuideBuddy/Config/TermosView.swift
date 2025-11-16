@@ -77,7 +77,7 @@ struct TermosView: View {
                 .padding()
                 .multilineTextAlignment(.leading)
         }
-        .navigationTitle("Termos de Uso")
+        .navigationTitle("termos_de_uso".localized)
         
     }
 }

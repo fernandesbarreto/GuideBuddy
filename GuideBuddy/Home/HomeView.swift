@@ -35,10 +35,12 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
 }
 
 struct HomeView: View {
+    @EnvironmentObject var languageManager: LanguageManager
     
     @Query private var user: [User]
     @State private var resultado: Double = 7.5
     @State private var animatedValue: Double = 0.0
+    @State private var refreshID = UUID()
     
     var body: some View {
         NavigationStack{
@@ -67,7 +69,7 @@ struct HomeView: View {
                     .frame(width: UIScreen.main.bounds.width*0.928)
                     .padding(.horizontal)
                     .navigationBarTitleDisplayMode(.inline)
-                    .navigationTitle("Início")
+                    .navigationTitle("inicio".localized)
                     
                     .toolbar {
                         ToolbarItem(placement: .navigationBarTrailing) {
@@ -80,6 +82,7 @@ struct HomeView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
+            .id(refreshID) // Força atualização quando o idioma muda
         }
         .onAppear() {
             print("user defaults ON APPEAR \(String(describing: UserDefaults.standard.value(forKey: "AppleLanguage")))")
@@ -88,10 +91,21 @@ struct HomeView: View {
                 applyThemeFromBackground(currentUser.choosenBackground)
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
+            // Atualiza a view quando o idioma muda
+            refreshID = UUID()
+        }
+        .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
+            // Atualiza a view quando o idioma muda
+            refreshID = UUID()
+        }
     }
 }
 
 struct Hospitals: View {
+    @EnvironmentObject var languageManager: LanguageManager
+    @State private var refreshID = UUID()
+    
     var body: some View {
         NavigationLink(destination: HealthCategories(), label: {
             ZStack{
@@ -105,11 +119,11 @@ struct Hospitals: View {
                 VStack(alignment: .leading) {
                   
                     VStack(alignment: .leading, spacing: 5){
-                        Text("Hospitais")
+                        Text("hospitais".localized)
                             .font(.system(size: 16, weight: .regular))
                             .foregroundStyle(.black)
                         
-                        Text("Cuidados e saúde\nao seu alcance")
+                        Text("cuidados_saude".localized)
                             .multilineTextAlignment(.leading)
                             .font(.system(size: 16, weight: .medium))
                             .foregroundStyle(.black)
@@ -144,17 +158,26 @@ struct Hospitals: View {
             .frame(width: UIScreen.main.bounds.width*0.445, height: UIScreen.main.bounds.height*0.18)
         })
         .frame(width: UIScreen.main.bounds.width*0.445, height: UIScreen.main.bounds.height*0.18)
+        .id(refreshID)
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
+            refreshID = UUID()
+        }
+        .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
+            refreshID = UUID()
+        }
     }
 }
 
 struct GreetingSection: View {
+    @EnvironmentObject var languageManager: LanguageManager
     @Query private var users: [User]
+    @State private var refreshID = UUID()
     
     var body: some View {
-        let userName = users.first?.name ?? "Usuário"
+        let userName = users.first?.name ?? "usuario".localized
         let _ = print("GreetingSection - Nome do usuário: \(userName)")
         return HStack {
-            Text("Olá,")
+            Text("ola".localized + ",")
                 .font(.system(size: 24, weight: .regular, design: .rounded))
              
             
@@ -166,12 +189,22 @@ struct GreetingSection: View {
             Spacer()
         }
         .padding(.leading, 5)
+        .id(refreshID)
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
+            refreshID = UUID()
+        }
+        .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
+            refreshID = UUID()
+        }
     }
 }
 
 
 struct AcionarHelperLink: View {
+    @EnvironmentObject var languageManager: LanguageManager
     @StateObject var locationManager = LocationManager()
+    @State private var refreshID = UUID()
+    
     var body: some View {
         NavigationLink(destination: EduView(), label: {
             ZStack{
@@ -182,7 +215,7 @@ struct AcionarHelperLink: View {
                 HStack{
                     VStack(alignment: .leading, spacing: UIScreen.main.bounds.height*0.0117) {
                         
-                        Text("Ajudante IA")
+                        Text("ajudante_ia".localized)
                             .font(.system(size: 16))
                             .fontWeight(.regular)
                         //                        .font(.body)
@@ -190,7 +223,7 @@ struct AcionarHelperLink: View {
                             .multilineTextAlignment(.leading)
                             .frame(height: 22)
                         
-                        Text("Use para conhecer a\ncidade e descobrir\nsuas curiosidades")
+                        Text("use_conhecer_cidade".localized)
                             .font(.system(size: 20))
                         //                        .font(.title2)
                             .fontWeight(.medium)
@@ -222,7 +255,7 @@ struct AcionarHelperLink: View {
                                     .frame(width: 110, height: 36)
                                     .cornerRadius(31)
                                 
-                                Text("Acionar")
+                                Text("acionar".localized)
                                     .font(.system(size: 14))
                                     .fontWeight(.semibold)
                                     .foregroundStyle(.white)
@@ -239,11 +272,20 @@ struct AcionarHelperLink: View {
             }
             .frame(width: UIScreen.main.bounds.width*0.93, height: UIScreen.main.bounds.height*0.28)
         })
-    
+        .id(refreshID)
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
+            refreshID = UUID()
+        }
+        .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
+            refreshID = UUID()
+        }
     }
 }
 
 struct EmergencyDocumentsSection: View {
+    @EnvironmentObject var languageManager: LanguageManager
+    @State private var refreshID = UUID()
+    
     var body: some View {
        
             HStack{
@@ -268,7 +310,7 @@ struct EmergencyDocumentsSection: View {
                             
                             Spacer()
                             
-                            Text("Documentos")
+                            Text("documentos".localized)
                                 .font(.system(size: 16))
                                 .fontWeight(.regular)
                                 .foregroundStyle(.black)
@@ -302,7 +344,7 @@ struct EmergencyDocumentsSection: View {
                             
                             Spacer()
                             
-                            Text("emergencia")
+                            Text("emergencia".localized)
                                 .font(.system(size: 16))
                                 .fontWeight(.regular)
                                 .foregroundStyle(.black)
@@ -316,11 +358,20 @@ struct EmergencyDocumentsSection: View {
                
             }
             .frame(width: UIScreen.main.bounds.width*0.929, height: UIScreen.main.bounds.height*0.06)
-      
+            .id(refreshID)
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
+                refreshID = UUID()
+            }
+            .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
+                refreshID = UUID()
+            }
     }
 }
 
 struct UniversitiesSection: View {
+    @EnvironmentObject var languageManager: LanguageManager
+    @State private var refreshID = UUID()
+    
     var body: some View {
         HStack{
             
@@ -333,7 +384,7 @@ struct UniversitiesSection: View {
                     HStack{
                         VStack(alignment: .leading, spacing: 8) {
                             
-                            Text("Faculdades")
+                            Text("faculdades".localized)
                                 .font(.system(size: 16))
                                 .fontWeight(.regular)
                             //                        .font(.body)
@@ -341,7 +392,7 @@ struct UniversitiesSection: View {
                                 .multilineTextAlignment(.leading)
                                 .frame(height: 22)
                             
-                            Text("Mapas e infos\ndas universidades")
+                            Text("mapas_infos_universidades".localized)
                                 .font(.system(size: 20))
                             //                        .font(.title2)
                                 .fontWeight(.medium)
@@ -359,7 +410,7 @@ struct UniversitiesSection: View {
                                         .frame(width: 76, height: 36)
                                         .cornerRadius(31)
                                     
-                                    Text("Ir")
+                                    Text("ir".localized)
                                         .font(.system(size: 14))
                                         .fontWeight(.semibold)
                                         .foregroundStyle(.white)
@@ -377,13 +428,21 @@ struct UniversitiesSection: View {
                 .frame(width: UIScreen.main.bounds.width*0.928, height: UIScreen.main.bounds.height*0.18)
                 
             })
-            
+            .id(refreshID)
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
+                refreshID = UUID()
+            }
+            .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
+                refreshID = UUID()
+            }
         }
     }
 }
 
 struct DailySlangLink: View {
+    @EnvironmentObject var languageManager: LanguageManager
     @Binding var resultado: Double
+    @State private var refreshID = UUID()
     
     var body: some View {
         NavigationLink(destination: DailySlangView(), label: {
@@ -395,11 +454,11 @@ struct DailySlangLink: View {
                 VStack(alignment: .leading) {
                   
                     VStack(alignment: .leading, spacing: 5){
-                        Text("Gírias")
+                        Text("girias".localized)
                             .font(.system(size: 16, weight: .regular))
                             .foregroundStyle(.black)
                         
-                        Text("Expressões da\nlinguagem local")
+                        Text("expressoes_linguagem_local".localized)
                             .multilineTextAlignment(.leading)
                             .font(.system(size: 16, weight: .medium))
                             .foregroundStyle(.black)
@@ -434,6 +493,13 @@ struct DailySlangLink: View {
             .frame(width: 160, height: 160)
         })
         .frame(width: UIScreen.main.bounds.width*0.45, height: UIScreen.main.bounds.height*0.18)
+        .id(refreshID)
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
+            refreshID = UUID()
+        }
+        .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
+            refreshID = UUID()
+        }
     }
 }
 
