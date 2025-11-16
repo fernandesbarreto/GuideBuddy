@@ -39,18 +39,13 @@ struct HealthyPlaceOption: View {
 
     @State private var selectedHospital: HospitalModel?
     
+    private let clinicsByCategory: [String: [ClinicModel]] = [
+        "Clínica Médica": susClinicas
+    ]
+    
     private let hospitalsByCategory: [String: [HospitalModel]] = [
-        "Urgência e Emergência": [
-            HospitalModel(title: "Hospital da Restauração", ambulatorio: ["Neurologia", "Neurocirurgia", "Ortopedia/traumatologia", "Cirurgia Vascular", "Cirurgia Geral", "Bucomaxilofacial"], emergencia: ["Cirurgia bucomaxilofacial", "Cirurgia Geral", "Cirurgia Vascular", "Clínica Médica", "Clínica Pediátrica", "Intoxicações", "Neurocirurgia", "Neurologia", "Queimaduras", "Traumato-ortopedia"], clinica: ["Sim"], navTitle: "Restauração", location: "Avenida Agamenon Magalhães, S/N\nDerby, Recife – PE", image: "https://portal.saude.pe.gov.br/wp-content/uploads/2024/06/HR-2.jpg", number: ["(81) 3181.5400"], email: ["cpl@lafepe.pe.gov.br"], latitude: -8.02659, longitude: -34.86425),
-            HospitalModel(title: "UPA Caxangá", ambulatorio: ["Sim"], emergencia: ["Sim"], clinica: ["Pediatria", "Traumato-ortopedia"]
-                          , navTitle: "UPA Caxangá", location: "Avenida Caxangá, S/N – Várzea Recife – PE", image: "https://www.hospitalmarialucinda.org/assets/images/unidades/principal-upa---caxanga-upa-caxanga-01.jpg", number: ["(81) 3184-4355"], email: ["admupacaxanga@fmsa.org.br"], latitude: -8.047071, longitude: -34.877385),
-            HospitalModel(title: "Hospital Ulysses Pernambucano", ambulatorio: ["Sim"], emergencia: ["Sim"], clinica: ["Psiquiatria", "Traumato-ortopedia", "Oftalmologia"], navTitle: "Ulisses Pernambucano", location: "Av. Conselheiro Rosa e Silva, 2130 - Tamarineira, Recife - PE, 52050-020", image: "https://portal.saude.pe.gov.br/wp-content/uploads/2024/06/WhatsApp-Image-2024-06-27-at-16.49.27.jpeg", number: ["(81) 3182-9906", "(81) 3182.9912", "(81) 3182.9921"], email: ["N/A"], latitude: -8.047071, longitude: -34.877385),
-            HospitalModel(title: "UPA Ibura", ambulatorio: ["Sim"], emergencia: ["Sim"], clinica: ["Psiquiatria", "Traumato-ortopedia", "Oftalmologia"], navTitle: "UPA Ibura", location: "Rua Vale do Itajaí, S/N – Ibura – Recife", image: "https://www.diariodepernambuco.com.br/static/app/noticia_127983242361/2021/03/14/855056/20210314141829347316i.jpg", number: ["(81) 3184-4595", "(81) 3184-4616"], email: ["contato@upaibura.org.br"], latitude: -8.128546, longitude: -34.949984),
-            HospitalModel(title: "UPA Curado", ambulatorio: ["Sim"], emergencia: ["Sim"], clinica: ["Pediatria", "Traumatologia"], navTitle: "UPA Curado", location: "Avenida Leonardo da Vinci, 68 – Curado II – Jaboatão dos Guararapes", image: "https://upacurado.org.br/images/carrossel/upa-curado-imageminternet_new.jpg", number: ["(81) 3184-4467"], email: ["julianaandrade@upacurado.org.br"], latitude: -8.081631, longitude: -34.995661)
-            
-            
-        ],
-//        
+        "Urgência e Emergência": allHospitalPlaces,
+//
 //        "Clínica Médica": [
 //            HospitalModel(title: "Dois Irmãos", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
 //            HospitalModel(title: "Engenho do Meio", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
@@ -59,39 +54,188 @@ struct HealthyPlaceOption: View {
 
         
         "Rede SUS - UFPE": [
-            HospitalModel(title: "Serviço de Psicologia Aplicada da UFPE (SPA)", ambulatorio: ["Não"], emergencia: ["Não"], clinica: ["Psicológica"], navTitle: "", location: "Rua Acadêmico Hélio Ramos, 600", image: "https://www.ufpe.br/documents/3488321/3488552/Frente+do+SPA/b0a13b40-7b49-484a-9f43-200496f83c22?t=1622228532711", number: ["(81) 2126-8731"], email: ["secretaria.spa@ufpe.br"], latitude: -8.05044, longitude: -34.95471),
-            HospitalModel(title: "Centro de Especialidades Odontológicas (CEO)", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: ["(81) 2126-8826"], email: ["odonto.preventiva@ufpe.br"], latitude: -8.04628, longitude: -34.95159),
-            HospitalModel(title: "Complexo de Clínicas-escolas de Odontologia", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
-            HospitalModel(title: "Serviço de Radiologia Odontológica", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
-            HospitalModel(title: "Serviço de Patologia Oral", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
-            HospitalModel(title: "Academia Escola", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
-            HospitalModel(title: "Serviço-Escola de Nutrição Emília Aurelian", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
-            HospitalModel(title: "Clínica Escola de Fisioterapia", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
-            HospitalModel(title: "Clínica Escola de Fisioterapia", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
-            HospitalModel(title: "Clínica Escola de Fonoaudiologia da UFPE", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
-            HospitalModel(title: "Clínica Escola de Fonoaudiologia da UFPE", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
-            HospitalModel(title: "Laboratório de Micologia Médica Sylvio Campos", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00),
-            HospitalModel(title: "Unidade de Cuidados Integrados – Serviço Integrado de Saúde (UCIS-SIS)", ambulatorio: [""], emergencia: [""], clinica: [""], navTitle: "", location: "", image: "", number: [""], email: [""], latitude: 00, longitude: 00)
+            HospitalModel(
+                title: "Serviço de Psicologia Aplicada da UFPE (SPA)",
+                ambulatorio: ["Sim"],
+                emergencia: ["Não"],
+                clinica: ["Psicologia"],
+                navTitle: "SPA",
+                location: "Rua Acadêmico Hélio Ramos, 600, Cidade Universitária, Recife, PE",
+                image: "https://www.ufpe.br/documents/3488321/3488552/Frente+do+SPA/b0a13b40-7b49-484a-9f43-200496f83c22?t=1622228532711",
+                number: ["(81) 2126-8731"],
+                email: ["secretaria.spa@ufpe.br"],
+                latitude: -8.05044,
+                longitude: -34.95471
+            ),
+
+            HospitalModel(
+                title: "Centro de Especialidades Odontológicas (CEO)",
+                ambulatorio: ["Sim"],
+                emergencia: ["Não"],
+                clinica: ["Odontologia"],
+                navTitle: "CEO",
+                location: "Av. da Engenharia, Cidade Universitária, Recife, PE",
+                image: "https://scontent.frec21-1.fna.fbcdn.net/v/t39.30808-6/317071687_515346277286346_914962472050471599_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=h7grR2GLqwEQ7kNvwEbt2Ec&_nc_oc=AdlHakGdyq1vbMlOHLYZmYuTnHKfkXizj2xZy5He3CLvFUpKjcyk4EyfDaO8aeWBIyxWg7SMfFVglEsEQUnum9IT&_nc_zt=23&_nc_ht=scontent.frec21-1.fna&_nc_gid=kj-nOPAPRLHMGhjSAGDk6Q&oh=00_AfjjRH2YPD-vuGSeJwvEusdh3CpRjDB1vdAePnCAEMRcyA&oe=69202A71",
+                number: ["(81) 2126-8826"],
+                email: ["odonto.preventiva@ufpe.br"],
+                latitude: -8.04628,
+                longitude: -34.95159
+            ),
+
+            HospitalModel(
+                title: "Complexo de Clínicas-escolas de Odontologia",
+                ambulatorio: ["Sim"],
+                emergencia: ["Não"],
+                clinica: ["Odontologia"],
+                navTitle: "Clínicas Odonto",
+                location: "Av. da Engenharia, Cidade Universitária, Recife, PE",
+                image: "https://scontent.frec21-1.fna.fbcdn.net/v/t39.30808-6/317071687_515346277286346_914962472050471599_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=h7grR2GLqwEQ7kNvwEbt2Ec&_nc_oc=AdlHakGdyq1vbMlOHLYZmYuTnHKfkXizj2xZy5He3CLvFUpKjcyk4EyfDaO8aeWBIyxWg7SMfFVglEsEQUnum9IT&_nc_zt=23&_nc_ht=scontent.frec21-1.fna&_nc_gid=kj-nOPAPRLHMGhjSAGDk6Q&oh=00_AfjjRH2YPD-vuGSeJwvEusdh3CpRjDB1vdAePnCAEMRcyA&oe=69202A71",
+                number: ["(81) 2126-8830"],
+                email: ["odonto.preventiva@ufpe.br"],
+                latitude: -8.04620,
+                longitude: -34.95150
+            ),
+
+            HospitalModel(
+                title: "Serviço de Radiologia Odontológica",
+                ambulatorio: ["Sim"],
+                emergencia: ["Não"],
+                clinica: ["Radiologia Odontológica"],
+                navTitle: "Radiologia Odonto",
+                location: "Av. da Engenharia, Cidade Universitária, Recife, PE",
+                image: "https://scontent.frec21-1.fna.fbcdn.net/v/t39.30808-6/317071687_515346277286346_914962472050471599_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=h7grR2GLqwEQ7kNvwEbt2Ec&_nc_oc=AdlHakGdyq1vbMlOHLYZmYuTnHKfkXizj2xZy5He3CLvFUpKjcyk4EyfDaO8aeWBIyxWg7SMfFVglEsEQUnum9IT&_nc_zt=23&_nc_ht=scontent.frec21-1.fna&_nc_gid=kj-nOPAPRLHMGhjSAGDk6Q&oh=00_AfjjRH2YPD-vuGSeJwvEusdh3CpRjDB1vdAePnCAEMRcyA&oe=69202A71",
+                number: ["Não"],
+                email: ["Não"],
+                latitude: -8.04621,
+                longitude: -34.95152
+            ),
+
+            HospitalModel(
+                title: "Serviço de Patologia Oral",
+                ambulatorio: ["Sim"],
+                emergencia: ["Não"],
+                clinica: ["Patologia Oral"],
+                navTitle: "Patologia Oral",
+                location: "Av. da Engenharia, Cidade Universitária, Recife, PE",
+                image: "https://scontent.frec21-1.fna.fbcdn.net/v/t39.30808-6/317071687_515346277286346_914962472050471599_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=h7grR2GLqwEQ7kNvwEbt2Ec&_nc_oc=AdlHakGdyq1vbMlOHLYZmYuTnHKfkXizj2xZy5He3CLvFUpKjcyk4EyfDaO8aeWBIyxWg7SMfFVglEsEQUnum9IT&_nc_zt=23&_nc_ht=scontent.frec21-1.fna&_nc_gid=kj-nOPAPRLHMGhjSAGDk6Q&oh=00_AfjjRH2YPD-vuGSeJwvEusdh3CpRjDB1vdAePnCAEMRcyA&oe=69202A71",
+                number: ["Não"],
+                email: ["Não"],
+                latitude: -8.04622,
+                longitude: -34.95153
+            ),
+
+            HospitalModel(
+                title: "Academia Escola",
+                ambulatorio: ["Sim"],
+                emergencia: ["Não"],
+                clinica: ["Educação Física"],
+                navTitle: "Academia Escola",
+                location: "Av. Jornalista Aníbal Fernandes, Cidade Universitária, Recife, PE",
+                image: "https://scontent.frec21-1.fna.fbcdn.net/v/t39.30808-6/317071687_515346277286346_914962472050471599_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=h7grR2GLqwEQ7kNvwEbt2Ec&_nc_oc=AdlHakGdyq1vbMlOHLYZmYuTnHKfkXizj2xZy5He3CLvFUpKjcyk4EyfDaO8aeWBIyxWg7SMfFVglEsEQUnum9IT&_nc_zt=23&_nc_ht=scontent.frec21-1.fna&_nc_gid=kj-nOPAPRLHMGhjSAGDk6Q&oh=00_AfjjRH2YPD-vuGSeJwvEusdh3CpRjDB1vdAePnCAEMRcyA&oe=69202A71",
+                number: ["(81) 2126-7696"],
+                email: ["academia.escola@ufpe.br"],
+                latitude: -8.05010,
+                longitude: -34.94860
+            ),
+
+            HospitalModel(
+                title: "Serviço-Escola de Nutrição Emília Aureliano (SENEA)",
+                ambulatorio: ["Sim"],
+                emergencia: ["Não"],
+                clinica: ["Nutrição"],
+                navTitle: "SENEA",
+                location: "Av. da Engenharia, Cidade Universitária, Recife, PE",
+                image: "https://scontent.frec21-1.fna.fbcdn.net/v/t39.30808-6/317071687_515346277286346_914962472050471599_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=h7grR2GLqwEQ7kNvwEbt2Ec&_nc_oc=AdlHakGdyq1vbMlOHLYZmYuTnHKfkXizj2xZy5He3CLvFUpKjcyk4EyfDaO8aeWBIyxWg7SMfFVglEsEQUnum9IT&_nc_zt=23&_nc_ht=scontent.frec21-1.fna&_nc_gid=kj-nOPAPRLHMGhjSAGDk6Q&oh=00_AfjjRH2YPD-vuGSeJwvEusdh3CpRjDB1vdAePnCAEMRcyA&oe=69202A71",
+                number: ["(81) 2126-3181"],
+                email: ["senea.nutricao@ufpe.br"],
+                latitude: -8.04650,
+                longitude: -34.95170
+            ),
+
+            HospitalModel(
+                title: "Clínica Escola de Fisioterapia",
+                ambulatorio: ["Sim"],
+                emergencia: ["Não"],
+                clinica: ["Fisioterapia"],
+                navTitle: "Fisioterapia",
+                location: "Av. Prof. Moraes Rego, 1235, Cidade Universitária, Recife, PE",
+                image: "https://scontent.frec21-1.fna.fbcdn.net/v/t39.30808-6/317071687_515346277286346_914962472050471599_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=h7grR2GLqwEQ7kNvwEbt2Ec&_nc_oc=AdlHakGdyq1vbMlOHLYZmYuTnHKfkXizj2xZy5He3CLvFUpKjcyk4EyfDaO8aeWBIyxWg7SMfFVglEsEQUnum9IT&_nc_zt=23&_nc_ht=scontent.frec21-1.fna&_nc_gid=kj-nOPAPRLHMGhjSAGDk6Q&oh=00_AfjjRH2YPD-vuGSeJwvEusdh3CpRjDB1vdAePnCAEMRcyA&oe=69202A71",
+                number: ["(81) 2126-7696"],
+                email: ["clinica.fisioterapia@ufpe.br"],
+                latitude: -8.05020,
+                longitude: -34.95200
+            ),
+
+            HospitalModel(
+                title: "Clínica Escola de Fonoaudiologia da UFPE",
+                ambulatorio: ["Sim"],
+                emergencia: ["Não"],
+                clinica: ["Fonoaudiologia"],
+                navTitle: "Fonoaudiologia",
+                location: "Av. Prof. Moraes Rego, Cidade Universitária, Recife, PE",
+                image: "https://scontent.frec21-1.fna.fbcdn.net/v/t39.30808-6/317071687_515346277286346_914962472050471599_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=h7grR2GLqwEQ7kNvwEbt2Ec&_nc_oc=AdlHakGdyq1vbMlOHLYZmYuTnHKfkXizj2xZy5He3CLvFUpKjcyk4EyfDaO8aeWBIyxWg7SMfFVglEsEQUnum9IT&_nc_zt=23&_nc_ht=scontent.frec21-1.fna&_nc_gid=kj-nOPAPRLHMGhjSAGDk6Q&oh=00_AfjjRH2YPD-vuGSeJwvEusdh3CpRjDB1vdAePnCAEMRcyA&oe=69202A71",
+                number: ["(81) 2126-7518"],
+                email: ["Não"],
+                latitude: -8.05030,
+                longitude: -34.95210
+            ),
+
+            HospitalModel(
+                title: "Laboratório de Micologia Médica Sylvio Campos",
+                ambulatorio: ["Sim"],
+                emergencia: ["Não"],
+                clinica: ["Micologia"],
+                navTitle: "Micologia",
+                location: "Av. da Engenharia, Cidade Universitária, Recife, PE, CEP 52171-011",
+                image: "https://scontent.frec21-1.fna.fbcdn.net/v/t39.30808-6/317071687_515346277286346_914962472050471599_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=h7grR2GLqwEQ7kNvwEbt2Ec&_nc_oc=AdlHakGdyq1vbMlOHLYZmYuTnHKfkXizj2xZy5He3CLvFUpKjcyk4EyfDaO8aeWBIyxWg7SMfFVglEsEQUnum9IT&_nc_zt=23&_nc_ht=scontent.frec21-1.fna&_nc_gid=kj-nOPAPRLHMGhjSAGDk6Q&oh=00_AfjjRH2YPD-vuGSeJwvEusdh3CpRjDB1vdAePnCAEMRcyA&oe=69202A71",
+                number: ["(81) 2126-8570"],
+                email: ["labmicomed@gmail.com"],
+                latitude: -8.04640,
+                longitude: -34.95140
+            ),
+
+            HospitalModel(
+                title: "Unidade de Cuidados Integrados – Serviço Integrado de Saúde (UCIS-SIS)",
+                ambulatorio: ["Sim"],
+                emergencia: ["Não"],
+                clinica: ["Multidisciplinar"],
+                navTitle: "UCIS-SIS",
+                location: "Rua Lindolfo Color, 65, Engenho do Meio, Recife, PE",
+                image: "https://scontent.frec21-1.fna.fbcdn.net/v/t39.30808-6/317071687_515346277286346_914962472050471599_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=h7grR2GLqwEQ7kNvwEbt2Ec&_nc_oc=AdlHakGdyq1vbMlOHLYZmYuTnHKfkXizj2xZy5He3CLvFUpKjcyk4EyfDaO8aeWBIyxWg7SMfFVglEsEQUnum9IT&_nc_zt=23&_nc_ht=scontent.frec21-1.fna&_nc_gid=kj-nOPAPRLHMGhjSAGDk6Q&oh=00_AfjjRH2YPD-vuGSeJwvEusdh3CpRjDB1vdAePnCAEMRcyA&oe=69202A71",
+                number: ["(81) 2126-3176", "(81) 3355-0405"],
+                email: ["ufpe.sis@ufpe.br"],
+                latitude: -8.05090,
+                longitude: -34.95510
+            )
         ]
-    ]
+]
     
     var body: some View {
-        let hospitalOptions = hospitalsByCategory[category.titulo] ?? []
-//        @State var hospitalOptions: [HospitalModel] = allHospitalPlaces
-        
-        List(hospitalOptions) { hospital in
-            NavigationLink(destination: {
-                HospitalView(hospital: hospital)
-            }) {
-                Text(hospital.title)
-                    
-                 
+        // Verifica se é a categoria "Clínica Médica" para usar ClinicModel
+        if category.titulo == "Clínica Médica" {
+            let clinicOptions = clinicsByCategory[category.titulo] ?? []
+            
+            List(clinicOptions) { clinic in
+                NavigationLink(destination: {
+                    ClinicView(clinic: clinic)
+                }) {
+                    Text(clinic.title)
+                }
             }
-//            .sheet(item: $selectedHospital) { hospital in
-//                HealthyPlaceDescription(hospital: hospital)
-//            }
+            .navigationTitle("\(category.titulo)")
+        } else {
+            // Para outras categorias, usa HospitalModel
+            let hospitalOptions = hospitalsByCategory[category.titulo] ?? []
+            
+            List(hospitalOptions) { hospital in
+                NavigationLink(destination: {
+                    HospitalView(hospital: hospital)
+                }) {
+                    Text(hospital.title)
+                }
+            }
+            .navigationTitle("\(category.titulo)")
         }
-        .navigationTitle("\(category.titulo)")
     }
 }
 

@@ -18,7 +18,7 @@ import SwiftData
 
 struct AparenciaView: View {
     enum ThemeOption: Int, CaseIterable, Identifiable {
-        case sistema
+//        case sistema
         case claro
         case escuro
 
@@ -26,7 +26,7 @@ struct AparenciaView: View {
 
         var title: String {
             switch self {
-            case .sistema: return "padrao_telefone".localized
+//            case .sistema: return "padrao_telefone".localized
             case .claro: return "modo_claro".localized
             case .escuro: return "modo_escuro".localized
             }
@@ -34,7 +34,7 @@ struct AparenciaView: View {
 
         var imageName: String {
             switch self {
-            case .sistema: return "default_mode"
+//            case .sistema: return "default_mode"
             case .claro: return "light_mode"
             case .escuro: return "dark_mode"
             }
@@ -42,7 +42,7 @@ struct AparenciaView: View {
 
         var backgroundName: String {
             switch self {
-            case .sistema: return "defaultBackground"
+//            case .sistema: return "defaultBackground"
             case .claro: return "lightBackground"
             case .escuro: return "darkBackground"
             }
@@ -50,9 +50,12 @@ struct AparenciaView: View {
     }
 
     @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) var dismiss
     @Query private var users: [User]
 
-    @State private var selectedTheme: ThemeOption = .sistema
+    @State private var selectedTheme: ThemeOption = .claro
+    @State private var isUpdating = false
+    @State private var isViewVisible = true
 
     var body: some View {
         List {
@@ -69,19 +72,36 @@ struct AparenciaView: View {
                     Spacer()
 
                     Circle()
-                        .strokeBorder(option == selectedTheme ? Color.green : Color.gray,
+                        .strokeBorder(option == selectedTheme ? Color.docGreen2 : Color.gray,
                                       lineWidth: 2)
                         .background(
                             Circle()
-                                .fill(option == selectedTheme ? Color.green : Color.clear)
+                                .fill(option == selectedTheme ? Color.docGreen2 : Color.clear)
                         )
                         .frame(width: 20, height: 20)
                 }
                 .contentShape(Rectangle())
                 .onTapGesture {
+                    // Evita múltiplas atualizações simultâneas e atualizações quando a view não está visível
+                    guard !isUpdating && isViewVisible else { return }
+                    
+                    // Não faz nada se já está no mesmo tema
+                    if selectedTheme == option {
+                        return
+                    }
+                    
+                    isUpdating = true
+                    
                     selectedTheme = option
                     applyTheme(option)
                     saveUserBackground(option.backgroundName)
+                    
+                    // Permite novas atualizações após um pequeno delay
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        if self.isViewVisible {
+                            self.isUpdating = false
+                        }
+                    }
                 }
                 .listRowBackground(Color.clear)
             }
@@ -90,40 +110,53 @@ struct AparenciaView: View {
         .navigationTitle("aparencia".localized)
         .navigationBarTitleDisplayMode(.large)
         .onAppear {
+            isViewVisible = true
             if let currentUser = users.first {
                 // Define o tema inicial com base na variável do usuário
                 switch currentUser.choosenBackground {
                 case "lightBackground": selectedTheme = .claro
                 case "darkBackground": selectedTheme = .escuro
-                default: selectedTheme = .sistema
+                default: selectedTheme = .claro
                 }
                 applyTheme(selectedTheme)
             }
         }
+        .onDisappear {
+            isViewVisible = false
+        }
     }
 
     private func applyTheme(_ option: ThemeOption) {
-        // Aplica o tema em todas as janelas do app
-        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            for window in windowScene.windows {
-                switch option {
-                case .sistema:
-                    window.overrideUserInterfaceStyle = .unspecified
-                case .claro:
-                    window.overrideUserInterfaceStyle = .light
-                case .escuro:
-                    window.overrideUserInterfaceStyle = .dark
+        // Aplica o tema em todas as janelas do app na thread principal
+        // Verifica se a view ainda está visível antes de aplicar
+        guard isViewVisible else { return }
+        
+        DispatchQueue.main.async {
+            guard self.isViewVisible else { return }
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                for window in windowScene.windows {
+                    switch option {
+//                    case .sistema:
+//                        window.overrideUserInterfaceStyle = .unspecified
+                    case .claro:
+                        window.overrideUserInterfaceStyle = .light
+                    case .escuro:
+                        window.overrideUserInterfaceStyle = .dark
+                    }
                 }
             }
         }
     }
 
     private func saveUserBackground(_ backgroundName: String) {
+        guard isViewVisible else { return }
         guard let currentUser = users.first else {
             print("Erro: Nenhum usuário encontrado para salvar tema")
             return
         }
         currentUser.choosenBackground = backgroundName
+        
+        // Salva no SwiftData
         do {
             try context.save()
             print("✅ Tema salvo com sucesso: \(backgroundName) para usuário: \(currentUser.name)")

@@ -173,7 +173,7 @@ struct BuildingDetailView: View {
                     .background(
                         RoundedRectangle(cornerRadius: 20)
                         
-                            .fill(Color.white)
+                            .fill(Color.brancopreto)
                             .frame(width: UIScreen.main.bounds.width * 1, height: .infinity)
                     )
                     
@@ -193,9 +193,7 @@ struct BuildingDetailView: View {
 //                            }
 //                            .offset(x: -76)
                         }
-                        ToolbarItem(placement: .navigationBarTrailing){
-                            Button(action: {}, label: {})
-                        }
+                       
                         ToolbarItem(placement: .principal){
                             Text("")
                         }

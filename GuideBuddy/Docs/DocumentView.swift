@@ -17,8 +17,7 @@ struct DocumentDetailView: View {
     @State private var scale: CGFloat = 1.0
     
     var body: some View {
-        NavigationStack{
-            ZStack {
+        ZStack {
                 if let imageData = item.imageData, let uiImage = UIImage(data: imageData) {
                     Image(uiImage: uiImage)
                         .resizable()
@@ -76,7 +75,6 @@ struct DocumentDetailView: View {
                               showingConfirmation = false
                           }
                       }
-        }
     }
 }
 

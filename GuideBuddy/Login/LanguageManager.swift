@@ -31,13 +31,30 @@ import SwiftUI
 
 class LanguageManager: ObservableObject { // Ensure this is ObservableObject
     @Published var currentLanguage: String = "pt-BR"
+    private var isUpdating = false
     
     func setLanguage(_ language: String) {
-        currentLanguage = language
-        print("language is \(language)")
-        UserDefaults.standard.set(language, forKey: "AppleLanguage")
-        UserDefaults.standard.synchronize()
-        print("user defaults \(String(describing: UserDefaults.standard.value(forKey: "AppleLanguage")))")
+        // Evita atualizações simultâneas
+        guard !isUpdating else { return }
+        
+        // Só atualiza se for diferente
+        guard currentLanguage != language else { return }
+        
+        isUpdating = true
+        
+        // Garante que a atualização seja feita na thread principal
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.currentLanguage = language
+            UserDefaults.standard.set(language, forKey: "AppleLanguage")
+            UserDefaults.standard.synchronize()
+            print("✅ Idioma atualizado: \(language)")
+            
+            // Permite novas atualizações após um pequeno delay
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.isUpdating = false
+            }
+        }
     }
 
     func localizedString(for key: String) -> String {

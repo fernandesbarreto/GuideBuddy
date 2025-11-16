@@ -49,8 +49,7 @@ struct AdicionarDocumento: View {
     }
     
     var body: some View {
-        NavigationStack {
-            ScrollView {
+        ScrollView {
                 VStack {
                     LazyVGrid(columns: [GridItem(.fixed(120)), GridItem(.fixed(120)), GridItem(.fixed(120))], spacing: 20) {
                         
@@ -89,7 +88,6 @@ struct AdicionarDocumento: View {
             }
             .navigationTitle(documento.titulo)
             .navigationBarTitleDisplayMode(.inline)
-        }
         // Sheet de compartilhamento
         .sheet(isPresented: $isShowingShareSheet, onDismiss: {
             activityItems = [] // Limpa os itens ao fechar

@@ -10,9 +10,12 @@ import SwiftData
 
 struct LanguagePickerView: View {
     @Environment(\.modelContext) private var context
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject var languageManager: LanguageManager
     @Query private var users: [User]
-    @State private var refreshID = UUID()
+    @State private var isUpdating = false
+    @State private var isViewVisible = true
+    @State private var currentLanguage: String = "pt-BR" // Armazena o idioma atual localmente
     
     let languages = [
         ("Português", "pt-BR"),
@@ -22,10 +25,6 @@ struct LanguagePickerView: View {
     
     var currentUser: User? {
         users.first
-    }
-    
-    var currentLanguage: String {
-        currentUser?.preferredLanguage ?? "pt-BR"
     }
     
     var body: some View {
@@ -38,11 +37,11 @@ struct LanguagePickerView: View {
                     Spacer()
                     
                     Circle()
-                        .strokeBorder(language.1 == currentLanguage ? Color.green : Color.gray,
+                        .strokeBorder(language.1 == currentLanguage ? Color.docGreen2 : Color.gray,
                                       lineWidth: 2)
                         .background(
                             Circle()
-                                .fill(language.1 == currentLanguage ? Color.green : Color.clear)
+                                .fill(language.1 == currentLanguage ? Color.docGreen2 : Color.clear)
                         )
                         .frame(width: 20, height: 20)
                 }
@@ -56,24 +55,37 @@ struct LanguagePickerView: View {
         .scrollContentBackground(.hidden)
         .navigationTitle("selecionar_linguagem".localized)
         .navigationBarTitleDisplayMode(.large)
-        .id(refreshID) // Força atualização quando o idioma muda
+        .id("LanguagePickerView-Stable") // ID estável para evitar que a view seja recriada
         .onAppear {
-            // Sincroniza o LanguageManager com o idioma do usuário
-            if let userLanguage = currentUser?.preferredLanguage {
-                languageManager.setLanguage(userLanguage)
+            isViewVisible = true
+            // Carrega o idioma atual do usuário
+            if let user = users.first {
+                currentLanguage = user.preferredLanguage
             }
         }
-        .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
-            // Atualiza a view quando o idioma muda
-            refreshID = UUID()
+        .onDisappear {
+            isViewVisible = false
         }
     }
     
     private func selectLanguage(_ languageCode: String) {
+        // Evita múltiplas atualizações simultâneas e atualizações quando a view não está visível
+        guard !isUpdating && isViewVisible else { return }
+        
         guard let user = currentUser else {
             print("Erro: Nenhum usuário encontrado para salvar idioma")
             return
         }
+        
+        // Não faz nada se já está no mesmo idioma
+        if user.preferredLanguage == languageCode {
+            return
+        }
+        
+        isUpdating = true
+        
+        // Atualiza o idioma localmente primeiro (para feedback visual imediato)
+        currentLanguage = languageCode
         
         // Atualiza o idioma no usuário
         user.preferredLanguage = languageCode
@@ -84,18 +96,21 @@ struct LanguagePickerView: View {
             print("✅ Idioma salvo com sucesso: \(languageCode) para usuário: \(user.name)")
         } catch {
             print("❌ Erro ao salvar idioma: \(error)")
+            // Reverte o idioma local se houver erro
+            currentLanguage = user.preferredLanguage
+            isUpdating = false
             return
         }
         
         // Atualiza o LanguageManager (isso também atualiza o UserDefaults)
         languageManager.setLanguage(languageCode)
         
-        // Força atualização da view
-        refreshID = UUID()
-        
-        // Notifica o sistema que o idioma mudou
-        // Isso força as views a recarregarem as strings localizadas
-        NotificationCenter.default.post(name: NSNotification.Name("LanguageChanged"), object: nil)
+        // Permite novas atualizações após um pequeno delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            if self.isViewVisible {
+                self.isUpdating = false
+            }
+        }
     }
 }
 

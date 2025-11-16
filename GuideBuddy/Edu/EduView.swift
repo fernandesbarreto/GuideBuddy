@@ -12,8 +12,7 @@ struct EduView: View {
     @State var answer = ""
     
     var body: some View {
-        NavigationStack {
-            VStack {
+        VStack {
 //                NavBar(
 //                    actionLeading: {
 //                        print("Trailing button tapped")
@@ -57,7 +56,6 @@ struct EduView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
                   .background(Color(UIColor.systemBackground)) // Adapta ao tema
-        }
     }
 }
 

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Documents: View {
     @EnvironmentObject var languageManager: LanguageManager
-    @State private var refreshID = UUID()
     
     var documentos: [Documento] {
         [
@@ -27,29 +26,25 @@ struct Documents: View {
     }
     
     var body: some View {
-        NavigationStack{
-            List(documentos) { doc in
-                NavigationLink(destination: AdicionarDocumento(documento: doc)) {
-                    Text(doc.titulo)
-                }
-            }
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle("documento".localized)
-            .id(refreshID)
-            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
-                refreshID = UUID()
-            }
-            .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
-                refreshID = UUID()
+        List(documentos) { doc in
+            NavigationLink(destination: AdicionarDocumento(documento: doc)) {
+                Text(doc.titulo)
             }
         }
+        .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("documento".localized)
     }
     
 }
 
 struct Documento: Identifiable {
-    let id = UUID()
+    let id: UUID
     let titulo: String
+    
+    init(titulo: String) {
+        self.id = UUID()
+        self.titulo = titulo
+    }
 }
 
 #Preview {

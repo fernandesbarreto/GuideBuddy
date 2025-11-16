@@ -10,7 +10,6 @@ import SwiftUI
 
 struct ConfigView: View {
     @EnvironmentObject var languageManager: LanguageManager
-    @State private var refreshID = UUID()
     
     // Modelo das seções
     private var sections: [ConfigSection] {
@@ -23,51 +22,40 @@ struct ConfigView: View {
     }
     
     var body: some View {
-        NavigationStack {
-            List {
-                ForEach(sections, id: \.title) { section in
-                    Section(header: Text(section.title)) {
-                        ForEach(section.rows, id: \.title) { row in
-                            switch row {
-                            case .language:
-                                NavigationLink(destination: LanguagePickerView()) {
-                                    Text(row.title)
-                                }
-                            case .appearance:
-                                NavigationLink(destination: AparenciaView()) {
-                                    Text(row.title)
-                                }
-                            case .privacyPolicy:
-                                NavigationLink(destination: PrivacidadeView()) {
-                                    Text(row.title)
-                                }
-                            case .termsOfUse:
-                                NavigationLink(destination: TermosView()) {
-                                    Text(row.title)
-                                }
-                            case .deleteAccount:
+        List {
+            ForEach(sections, id: \.title) { section in
+                Section(header: Text(section.title)) {
+                    ForEach(section.rows, id: \.title) { row in
+                        switch row {
+                        case .language:
+                            NavigationLink(destination: LanguagePickerView()) {
                                 Text(row.title)
-                                    .foregroundColor(.red)
-                            case .logout:
-                                Text(row.title)
-                                    .foregroundColor(.gray)
                             }
+                        case .appearance:
+                            NavigationLink(destination: AparenciaView()) {
+                                Text(row.title)
+                            }
+                        case .privacyPolicy:
+                            NavigationLink(destination: PrivacidadeView()) {
+                                Text(row.title)
+                            }
+                        case .termsOfUse:
+                            NavigationLink(destination: TermosView()) {
+                                Text(row.title)
+                            }
+                        case .deleteAccount:
+                            Text(row.title)
+                                .foregroundColor(.red)
+                        case .logout:
+                            Text(row.title)
+                                .foregroundColor(.gray)
                         }
                     }
                 }
             }
-            .navigationTitle("ajustes".localized)
-            .navigationBarTitleDisplayMode(.large)
-            .id(refreshID) // Força atualização quando o idioma muda
-            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("LanguageChanged"))) { _ in
-                // Atualiza a view quando o idioma muda
-                refreshID = UUID()
-            }
-            .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
-                // Atualiza a view quando o idioma muda
-                refreshID = UUID()
-            }
         }
+        .navigationTitle("ajustes".localized)
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 

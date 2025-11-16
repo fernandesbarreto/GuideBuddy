@@ -15,6 +15,7 @@ struct PhoneNumbersSheet: View {
                 ForEach(phoneNumbers, id: \.self) { number in
                     if let phoneURL = URL(string: "tel://\(number.filter { $0.isNumber })") {
                         Link(number, destination: phoneURL)
+                            .foregroundStyle(.primary)
                             .padding()
                     }
                 }
@@ -41,6 +42,7 @@ struct EmailListView: View {
                     sendEmail(to: email)
                 }) {
                     Text(email)
+                        .foregroundStyle(.primary)
                         .padding()
                 }
             }
@@ -344,6 +346,221 @@ struct HospitalView: View {
             UIApplication.shared.open(url)
         }
     }
+
+struct ClinicView: View {
+    var clinic: ClinicModel
+    @Environment(\.presentationMode) var presentationMode
+    @State var showNumbersSheet = false
+    @State var showEmailSheet = false
+    
+    var body: some View {
+        NavigationStack {
+            VStack {
+                ZStack {
+                    VStack {
+                        // Placeholder para imagem (clínicas não têm imagem)
+                        Rectangle()
+                            .fill(Color.verdePrincipal.opacity(0.1))
+                            .frame(width: UIScreen.main.bounds.width * 1, height: UIScreen.main.bounds.height * 0.35)
+                            .overlay(
+                                Image(systemName: "cross.case.fill")
+                                    .font(.system(size: 60))
+                                    .foregroundStyle(Color.verdePrincipal.opacity(0.5))
+                            )
+                    }
+                    .frame(width: UIScreen.main.bounds.width * 1, height: UIScreen.main.bounds.height * 0.35)
+                    .padding(.bottom, UIScreen.main.bounds.height * 0.8)
+                    
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            Text(clinic.title)
+                                .font(.title)
+                                .fontWeight(.bold)
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.leading, 15)
+                                .padding(.top, 15)
+                            
+                            LazyVStack(alignment: .leading, spacing: 15) {
+                                Section() {
+                                    // Só mostra o NavigationLink se tiver latitude e longitude
+                                    if let latitude = clinic.latitude, let longitude = clinic.longitude {
+                                        NavigationLink(
+                                            destination: SearchableMap(location: SavedLocation(name: clinic.title, latitude: latitude, longitude: longitude)),
+                                            label: {
+                                                HStack {
+                                                    Image(systemName: "location.fill")
+                                                        .foregroundStyle(Color.verdePrincipal)
+                                                    Text(clinic.location)
+                                                        .multilineTextAlignment(.leading)
+                                                        .foregroundStyle(Color.gray)
+                                                }
+                                            }
+                                        )
+                                    } else {
+                                        HStack {
+                                            Image(systemName: "location.fill")
+                                                .foregroundStyle(Color.verdePrincipal)
+                                            Text(clinic.location)
+                                                .multilineTextAlignment(.leading)
+                                                .foregroundStyle(Color.gray)
+                                        }
+                                    }
+                                }
+                                .padding(.horizontal)
+                                
+                                Section(header: Text("contatos".localized)
+                                    .font(.body)
+                                    .bold()) {
+                                    ScrollView(.horizontal, showsIndicators: false) {
+                                        HStack {
+                                            Button(action: {
+                                                showNumbersSheet = true
+                                            }, label: {
+                                                ZStack {
+                                                    Rectangle()
+                                                        .frame(width: 175, height: 70)
+                                                        .cornerRadius(15)
+                                                        .foregroundStyle(.gray)
+                                                        .opacity(0.1)
+                                                        .shadow(radius: 5)
+                                                    VStack {
+                                                        Image(systemName: "phone.fill")
+                                                            .font(.system(size: 25, weight: .semibold, design: .rounded))
+                                                            .foregroundStyle(Color.verdePrincipal)
+                                                            .opacity(0.8)
+                                                        
+                                                        Text("telefone".localized)
+                                                            .font(.system(size: 12))
+                                                            .bold()
+                                                            .foregroundStyle(Color.verdePrincipal)
+                                                            .padding(.vertical, 3)
+                                                            .opacity(0.8)
+                                                    }
+                                                }
+                                            })
+                                            .sheet(isPresented: $showNumbersSheet) {
+                                                PhoneNumbersSheet(phoneNumbers: clinic.number)
+                                                    .presentationDetents([.fraction(0.3), .large])
+                                            }
+                                            Spacer()
+                                            Button(action: {
+                                                showEmailSheet.toggle()
+                                            }, label: {
+                                                ZStack {
+                                                    Rectangle()
+                                                        .frame(width: 175, height: 70)
+                                                        .cornerRadius(15)
+                                                        .foregroundStyle(.gray)
+                                                        .opacity(0.1)
+                                                        .shadow(radius: 5)
+                                                    VStack {
+                                                        Image(systemName: "envelope.fill")
+                                                            .font(.system(size: 25, weight: .semibold, design: .rounded))
+                                                            .foregroundStyle(Color.verdePrincipal)
+                                                            .opacity(0.8)
+                                                        
+                                                        Text("email".localized)
+                                                            .font(.system(size: 12))
+                                                            .bold()
+                                                            .foregroundStyle(Color.verdePrincipal)
+                                                            .padding(.vertical, 3)
+                                                            .opacity(0.8)
+                                                    }
+                                                }
+                                            })
+                                            .sheet(isPresented: $showEmailSheet) {
+                                                EmailListView(emails: clinic.email)
+                                                    .presentationDetents([.fraction(0.3), .large])
+                                            }
+                                        }
+                                    }
+                                }
+                                .padding(.leading)
+                                
+                                Spacer()
+                                
+                                Section(header: Text("especialidades".localized)
+                                    .font(.body)
+                                    .bold()) {
+                                    VStack {
+                                        HStack {
+                                            Text("ambulatorio".localized)
+                                                .multilineTextAlignment(.leading)
+                                                .padding(.top)
+                                            Spacer()
+                                        }
+                                        ScrollView(.horizontal, showsIndicators: false) {
+                                            HStack {
+                                                ForEach(clinic.ambulatorio, id: \.self) { ambulatorio in
+                                                    Text(ambulatorio)
+                                                        .font(.body)
+                                                        .padding(.horizontal, 10)
+                                                        .padding(.vertical, 6)
+                                                        .background(Color.verdePrincipal.opacity(0.1))
+                                                        .cornerRadius(8)
+                                                }
+                                            }
+                                        }
+                                        HStack {
+                                            Text("emergencia".localized)
+                                                .multilineTextAlignment(.leading)
+                                                .padding(.top)
+                                            Spacer()
+                                        }
+                                        ScrollView(.horizontal, showsIndicators: false) {
+                                            HStack {
+                                                ForEach(clinic.emergencia, id: \.self) { emergencia in
+                                                    Text(emergencia)
+                                                        .font(.body)
+                                                        .padding(.horizontal, 10)
+                                                        .padding(.vertical, 6)
+                                                        .background(Color.verdePrincipal.opacity(0.1))
+                                                        .cornerRadius(8)
+                                                }
+                                            }
+                                        }
+                                        HStack {
+                                            Text("clinica_medica".localized)
+                                                .multilineTextAlignment(.leading)
+                                                .padding(.top)
+                                            Spacer()
+                                        }
+                                        ScrollView(.horizontal, showsIndicators: false) {
+                                            HStack {
+                                                ForEach(clinic.clinica, id: \.self) { clinica in
+                                                    Text(clinica)
+                                                        .font(.body)
+                                                        .padding(.horizontal, 10)
+                                                        .padding(.vertical, 6)
+                                                        .background(Color.verdePrincipal.opacity(0.1))
+                                                        .cornerRadius(8)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                .padding(.leading)
+                            }
+                        }
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color.brancopreto)
+                                .frame(width: UIScreen.main.bounds.width * 1, height: .infinity)
+                        )
+                        .padding(.top, UIScreen.main.bounds.height * 0.35)
+                    }
+                }
+                .ignoresSafeArea()
+            }
+            .navigationBarBackButtonHidden(false)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle(clinic.navTitle)
+        }
+    }
+}
+
 #Preview {
     HospitalView(hospital: HospitalModel(title: "Hospital da Restauração",
                                          ambulatorio: ["Ambulatório", "Neurologia", "Neurocirurgia", "Ortopedia/traumatologia", "Cirurgia Vascular", "Cirurgia Geral", "Bucomaxilofacial", "Clínica Médica", "Emergência", "Cirurgia bucomaxilofacial", "Cirurgia Geral", "Cirurgia Vascular", "Clínica Médica", "Clínica Pediátrica", "Intoxicações", "Neurocirurgia", "Neurologia", "Queimaduras", "Traumato-ortopedia"],

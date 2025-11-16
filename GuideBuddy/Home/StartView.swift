@@ -48,15 +48,18 @@ import SwiftData
 
 // Função helper para aplicar tema globalmente
 func applyThemeFromBackground(_ backgroundName: String) {
-    if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-        for window in windowScene.windows {
-            switch backgroundName {
-            case "lightBackground":
-                window.overrideUserInterfaceStyle = .light
-            case "darkBackground":
-                window.overrideUserInterfaceStyle = .dark
-            default:
-                window.overrideUserInterfaceStyle = .unspecified
+    // Garante que a atualização da UI seja feita na thread principal
+    DispatchQueue.main.async {
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            for window in windowScene.windows {
+                switch backgroundName {
+                case "lightBackground":
+                    window.overrideUserInterfaceStyle = .light
+                case "darkBackground":
+                    window.overrideUserInterfaceStyle = .dark
+                default:
+                    window.overrideUserInterfaceStyle = .unspecified
+                }
             }
         }
     }
