@@ -16,50 +16,126 @@
 import SwiftUI
 
 struct PrivacidadeView: View {
+    @EnvironmentObject var languageManager: LanguageManager
+    @State private var refreshID = UUID()
+    
+    private var privacyText: String {
+        """
+        \("privacy_title".localized)
+        
+        \("privacy_intro".localized)
+        
+        \("privacy_section_1_title".localized)
+        
+        \("privacy_section_1_text".localized)
+        
+        \("privacy_section_1_1_title".localized)
+        \("privacy_section_1_1_text".localized)
+        
+        \("privacy_section_1_2_title".localized)
+        \("privacy_section_1_2_text".localized)
+        
+        \("privacy_section_1_3_title".localized)
+        \("privacy_section_1_3_text".localized)
+        
+        \("privacy_section_2_title".localized)
+        
+        \("privacy_section_2_text".localized)
+        
+        \("privacy_section_2_1_title".localized)
+        \("privacy_section_2_1_text".localized)
+        
+        \("privacy_section_2_2_title".localized)
+        \("privacy_section_2_2_text".localized)
+        
+        \("privacy_section_3_title".localized)
+        
+        \("privacy_section_3_text".localized)
+        
+        \("privacy_section_3_1".localized)
+        \("privacy_section_3_2".localized)
+        \("privacy_section_3_3".localized)
+        
+        \("privacy_section_4_title".localized)
+        
+        \("privacy_section_4_1_title".localized)
+        \("privacy_section_4_1_text".localized)
+        
+        \("privacy_section_4_2_title".localized)
+        \("privacy_section_4_2_text".localized)
+        
+        \("privacy_section_5_title".localized)
+        
+        \("privacy_section_5_1".localized)
+        
+        \("privacy_section_5_2_title".localized)
+        \("privacy_section_5_2_text".localized)
+        
+        \("privacy_section_5_3".localized)
+        
+        \("privacy_section_6_title".localized)
+        
+        \("privacy_section_6_1_title".localized)
+        \("privacy_section_6_1_text".localized)
+        
+        \("privacy_section_6_2".localized)
+        
+        \("privacy_section_7_title".localized)
+        
+        \("privacy_section_7_1".localized)
+        
+        \("privacy_section_7_2_title".localized)
+        \("privacy_section_7_2_text".localized)
+        
+        \("privacy_section_7_3".localized)
+        
+        \("privacy_section_8_title".localized)
+        
+        \("privacy_section_8_text".localized)
+        
+        \("privacy_section_8_1".localized)
+        \("privacy_section_8_2".localized)
+        \("privacy_section_8_3".localized)
+        \("privacy_section_8_4".localized)
+        \("privacy_section_8_5".localized)
+        \("privacy_section_8_6".localized)
+        
+        \("privacy_section_9_title".localized)
+        
+        \("privacy_section_9_text".localized)
+        
+        \("privacy_section_10_title".localized)
+        
+        \("privacy_section_10_text".localized)
+        
+        \("privacy_section_11_title".localized)
+        
+        \("privacy_section_11_text".localized)
+        """
+    }
+    
     var body: some View {
         ScrollView {
-            Text("""
-            Esta Política de Privacidade descreve como a equipe de desenvolvimento do aplicativo GuiBU, representada por Pedro Henrique Nunes da Silveira Bezerra (CPF 076.052.684-24) e demais colaboradores, com sede em Rua Nova da Mangueira, 782, Brasil, e-mail de contato guibu.app@gmail.com, coleta, utiliza, compartilha e protege os dados dos usuários do GuiBU.
-            Esta versão foi atualizada em 25 de abril de 2025.
-
-            Ao instalar e utilizar o GuiBU, você concorda com as práticas aqui descritas. Para que você possa criar sua conta e manter suas personalizações de cômodos e plantas, solicitamos o seu endereço de e-mail e oferecemos a opção de login via Google ou Apple ID. Além disso, o aplicativo requer acesso à câmera e à galeria do seu dispositivo, bem como autorização para uso do Face ID, exclusivamente para que nossa ferramenta de inteligência artificial:
-
-            1 - Analise imagens das suas plantas.
-            2 - Avalie seu estado de saúde.
-            3 - Forneça feedbacks personalizados.
-
-            Todas essas solicitações ocorrem mediante seu consentimento explícito no momento do cadastro e do uso dessas funcionalidades.
-            Os dados coletados são tratados em conformidade com a Lei Geral de Proteção de Dados (LGPD), com base em:
-
-            1 - Execução de contrato para viabilizar as funcionalidades contratadas.
-            2 - Consentimento para uso da câmera, galeria e Face ID.
-            3 - Legítimo interesse para aprimoramento do aplicativo por meio de análises de uso e publicidade segmentada.
-
-            Para esses fins, podemos compartilhar informações anônimas e agregadas com o Google Analytics, bem como dados para campanhas de marketing veiculadas via Instagram Ads e Facebook Ads. Exceto por esses parceiros e pelos provedores de serviços de nuvem responsáveis pelo armazenamento, não compartilhamos seus dados pessoais com outras empresas.
-
-            Todos os dados são armazenados em servidores em nuvem, protegidos por criptografia em trânsito (TLS) e em repouso (AES-256), além de controles de acesso baseados em função (RBAC), garantindo a confidencialidade e integridade das suas informações. Mantemos seus dados enquanto sua conta estiver ativa, sem prazo predeterminado de retenção; no entanto, você pode solicitar a qualquer momento a exclusão ou correção de seus dados. Para isso, envie uma mensagem para guibu.app@gmail.com com o assunto “Exclusão de Dados”. Seu pedido será processado em até 15 dias úteis.
-
-            Em atenção aos seus direitos previstos na LGPD, você pode:
-
-            1 - Confirmar a existência de tratamento
-            2 - Acessar seus dados
-            3 - Corrigir informações inexatas
-            4 - Solicitar anonimização, bloqueio ou eliminação
-            5 - Revogar o consentimento fornecido
-
-            Caso tenha dúvidas, reclamações ou deseje exercer seus direitos, entre em contato pelo e-mail guibu.app@gmail.com.
-            Reservamo-nos o direito de atualizar esta Política de Privacidade a qualquer momento; a versão mais recente estará sempre disponível neste documento, com a data de “Última atualização” devidamente revisada.
-            """)
-            .font(.system(size: 16))
-            .padding()
+            Text(privacyText)
+                .font(.system(size: 16))
+                .padding()
         }
+        .id(refreshID)
         .navigationTitle("politicas_privacidade".localized)
         .navigationBarTitleDisplayMode(.large)
+        .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
+            if oldValue != newValue {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    refreshID = UUID()
+                }
+            }
+        }
     }
 }
 
 #Preview {
     NavigationStack {
         PrivacidadeView()
+            .environmentObject(LanguageManager())
     }
 }

@@ -10,6 +10,12 @@ import PDFKit
 import SwiftData
 import UIKit
 
+// Wrapper para tornar [Any] Identifiable para uso com .sheet(item:)
+struct ShareableItems: Identifiable {
+    let id = UUID()
+    let items: [Any]
+}
+
 @Model
 class ItemEntity: Identifiable {
     var id = UUID()
@@ -36,8 +42,7 @@ struct AdicionarDocumento: View {
     @State private var isImporting = false
     @Query private var users: [User]
     @State private var showingConfirmation = false
-    @State private var activityItems: [Any] = []
-    @State private var isShowingShareSheet = false
+    @State private var shareableItems: ShareableItems? = nil
     
     var currentUser: User? {
         users.first
@@ -64,7 +69,7 @@ struct AdicionarDocumento: View {
                                     .frame(width: 30, height: 30)
                                     .padding(40)
                             }
-                            .background(Color(white: 0.9))
+                            .background(Color.guibuGray)
                             .clipShape(RoundedRectangle(cornerRadius: 12.0))
                             .foregroundColor(.white)
                             Text("")
@@ -89,10 +94,8 @@ struct AdicionarDocumento: View {
             .navigationTitle(documento.titulo)
             .navigationBarTitleDisplayMode(.inline)
         // Sheet de compartilhamento
-        .sheet(isPresented: $isShowingShareSheet, onDismiss: {
-            activityItems = [] // Limpa os itens ao fechar
-        }) {
-            ActivityView(activityItems: activityItems)
+        .sheet(item: $shareableItems) { shareable in
+            ActivityView(activityItems: shareable.items)
         }
     }
     
@@ -104,10 +107,7 @@ struct AdicionarDocumento: View {
             }
             
             Button(action: {
-                activityItems = [uiImage]
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                    isShowingShareSheet = true
-                }
+                shareableItems = ShareableItems(items: [uiImage])
             }) {
                 Label("compartilhar".localized, systemImage: "square.and.arrow.up")
             }
@@ -127,7 +127,7 @@ struct AdicionarDocumento: View {
                     .cornerRadius(10)
                 Text(item.name)
                     .font(.caption)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.gray)
                     .lineLimit(1)
                     .truncationMode(.tail)
             }
@@ -152,9 +152,12 @@ struct AdicionarDocumento: View {
                     let fileManager = FileManager.default
                     let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
                     let fileURL = documentsDirectory.appendingPathComponent(pdfPath)
-                    activityItems = [fileURL]
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                        isShowingShareSheet = true
+                    
+                    // Verifica se o arquivo existe antes de compartilhar
+                    if fileManager.fileExists(atPath: fileURL.path) {
+                        shareableItems = ShareableItems(items: [fileURL])
+                    } else {
+                        print("❌ Erro: Arquivo PDF não encontrado em: \(fileURL.path)")
                     }
                 }
             }) {
@@ -176,7 +179,7 @@ struct AdicionarDocumento: View {
                     .cornerRadius(10)
                 Text(item.name)
                     .font(.caption)
-                    .foregroundStyle(.black)
+                    .foregroundStyle(.primary)
                     .lineLimit(1)
                     .truncationMode(.tail)
             }

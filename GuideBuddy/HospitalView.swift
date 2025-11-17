@@ -128,20 +128,20 @@ struct HospitalView: View {
                             LazyVStack(alignment: .leading, spacing: 15) {
                                 
                                 Section() {
-                                    
-                                    NavigationLink(
-                                        destination: SearchableMap(location: SavedLocation(name: hospital.title, latitude:hospital.latitude, longitude: hospital.longitude)),
-                                        label: {
-                                            HStack {
-                                                Image(systemName: "location.fill")
-                                                    .foregroundStyle(Color.verdePrincipal)
-                                                Text(hospital.location) // Aqui pode ser o nome da localização ou algo mais descritivo
-                                                    .multilineTextAlignment(.leading)
-                                                    .foregroundStyle(Color.gray)
-                                            }
+                                    Button(action: {
+                                        openInAppleMaps(name: hospital.title, location: hospital.location, latitude: hospital.latitude, longitude: hospital.longitude)
+                                    }) {
+                                        HStack {
+                                            Image(systemName: "location.fill")
+                                                .foregroundStyle(Color.verdePrincipal)
+                                            Text(hospital.location)
+                                                .multilineTextAlignment(.leading)
+                                                .foregroundStyle(Color.gray)
+                                            Spacer()
+                                            Image(systemName: "arrow.up.right.square")
+                                                .foregroundStyle(Color.gray.opacity(0.6))
                                         }
-                                    )
-                                    
+                                    }
                                 }
                                 .padding(.horizontal)
                                 //                        .padding(.bottom)
@@ -346,12 +346,48 @@ struct HospitalView: View {
             UIApplication.shared.open(url)
         }
     }
+    
+    func openInAppleMaps(name: String, location: String, latitude: Double, longitude: Double) {
+        // Usa o nome do item como query principal
+        let encodedQuery = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? name
+        
+        // Tenta abrir com o esquema maps:// primeiro (Maps nativo)
+        if let mapsURL = URL(string: "maps://?q=\(encodedQuery)") {
+            if UIApplication.shared.canOpenURL(mapsURL) {
+                UIApplication.shared.open(mapsURL)
+                return
+            }
+        }
+        
+        // Fallback para http://maps.apple.com (abre no navegador e redireciona)
+        if let appleMapsURL = URL(string: "http://maps.apple.com/?q=\(encodedQuery)") {
+            UIApplication.shared.open(appleMapsURL)
+        }
+    }
 
 struct ClinicView: View {
     var clinic: ClinicModel
     @Environment(\.presentationMode) var presentationMode
     @State var showNumbersSheet = false
     @State var showEmailSheet = false
+    
+    func openInAppleMaps(name: String, location: String, latitude: Double?, longitude: Double?) {
+        // Usa o nome do item como query principal
+        let encodedQuery = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? name
+        
+        // Tenta abrir com o esquema maps:// primeiro (Maps nativo)
+        if let mapsURL = URL(string: "maps://?q=\(encodedQuery)") {
+            if UIApplication.shared.canOpenURL(mapsURL) {
+                UIApplication.shared.open(mapsURL)
+                return
+            }
+        }
+        
+        // Fallback para http://maps.apple.com (abre no navegador e redireciona)
+        if let appleMapsURL = URL(string: "http://maps.apple.com/?q=\(encodedQuery)") {
+            UIApplication.shared.open(appleMapsURL)
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -384,27 +420,18 @@ struct ClinicView: View {
                             
                             LazyVStack(alignment: .leading, spacing: 15) {
                                 Section() {
-                                    // Só mostra o NavigationLink se tiver latitude e longitude
-                                    if let latitude = clinic.latitude, let longitude = clinic.longitude {
-                                        NavigationLink(
-                                            destination: SearchableMap(location: SavedLocation(name: clinic.title, latitude: latitude, longitude: longitude)),
-                                            label: {
-                                                HStack {
-                                                    Image(systemName: "location.fill")
-                                                        .foregroundStyle(Color.verdePrincipal)
-                                                    Text(clinic.location)
-                                                        .multilineTextAlignment(.leading)
-                                                        .foregroundStyle(Color.gray)
-                                                }
-                                            }
-                                        )
-                                    } else {
+                                    Button(action: {
+                                        openInAppleMaps(name: clinic.title, location: clinic.location, latitude: clinic.latitude, longitude: clinic.longitude)
+                                    }) {
                                         HStack {
                                             Image(systemName: "location.fill")
                                                 .foregroundStyle(Color.verdePrincipal)
                                             Text(clinic.location)
                                                 .multilineTextAlignment(.leading)
                                                 .foregroundStyle(Color.gray)
+                                            Spacer()
+                                            Image(systemName: "arrow.up.right.square")
+                                                .foregroundStyle(Color.gray.opacity(0.6))
                                         }
                                     }
                                 }

@@ -115,7 +115,7 @@ struct MapUFPE: View {
                     }
 //
                 }
-                .toolbarBackground(.regularMaterial)
+               
 
                 .toolbarBackground(.visible, for: .navigationBar)
                 .navigationTitle("faculdades".localized)
@@ -131,11 +131,11 @@ struct MapUFPE: View {
                             }) {
                                 Label("Blocos", systemImage: "building")
                             }
-                            Button(action: {
-                                selectedBuildings = .nucleos
-                            }) {
-                                Label("Núcleos", systemImage: "building.columns")
-                            }
+//                            Button(action: {
+//                                selectedBuildings = .nucleos
+//                            }) {
+//                                Label("Núcleos", systemImage: "building.columns")
+//                            }
                            
                             Button(action: {
                                 selectedBuildings = .parada
@@ -155,16 +155,16 @@ struct MapUFPE: View {
 
                        
                     }
-                    ToolbarItem(placement: .principal) {
-                        Picker("Selecione a faculdade", selection: $selectedFaculdade) {
-                            Text("ufpe".localized).tag(Faculdades.ufpe)
-                            Text("ufrpe".localized).tag(Faculdades.ufrpe)
-                            Text("ifpe".localized).tag(Faculdades.ifpe)
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: 200)
-                                       .scaleEffect(0.9)
-                    }
+//                    ToolbarItem(placement: .principal) {
+//                        Picker("Selecione a faculdade", selection: $selectedFaculdade) {
+//                            Text("ufpe".localized).tag(Faculdades.ufpe)
+//                            Text("ufrpe".localized).tag(Faculdades.ufrpe)
+//                            Text("ifpe".localized).tag(Faculdades.ifpe)
+//                        }
+//                        .pickerStyle(SegmentedPickerStyle())
+//                        .frame(width: 200)
+//                                       .scaleEffect(0.9)
+//                    }
                 }
             }
         }

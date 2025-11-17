@@ -7,14 +7,19 @@
 
 
 import SwiftUI
+import SwiftData
 
 struct ConfigView: View {
     @EnvironmentObject var languageManager: LanguageManager
+    @Environment(\.modelContext) private var context
+    @Query private var users: [User]
+    @State private var showChangeNameAlert = false
+    @State private var newName = ""
     
     // Modelo das seções
     private var sections: [ConfigSection] {
         [
-            ConfigSection(title: "geral".localized, rows: [.language]),
+            ConfigSection(title: "geral".localized, rows: [.editName, .language]),
             ConfigSection(title: "cores".localized, rows: [.appearance/*, .highContrast*/]),
             ConfigSection(title: "aspectos_legais".localized, rows: [.privacyPolicy, .termsOfUse]),
 //        ConfigSection(title: "GERAL", rows: [/*.notifications, */.deleteAccount, .logout])
@@ -27,6 +32,23 @@ struct ConfigView: View {
                 Section(header: Text(section.title)) {
                     ForEach(section.rows, id: \.title) { row in
                         switch row {
+                        case .editName:
+                            Button(action: {
+                                if let currentUser = users.first {
+                                    newName = currentUser.name
+                                    showChangeNameAlert = true
+                                }
+                            }) {
+                                HStack {
+                                    Text(row.title)
+                                    Spacer()
+                                    if let currentUser = users.first {
+                                        Text(currentUser.name)
+                                            .foregroundColor(.gray)
+                                    }
+                                }
+                            }
+                            .foregroundColor(.primary)
                         case .language:
                             NavigationLink(destination: LanguagePickerView()) {
                                 Text(row.title)
@@ -56,6 +78,23 @@ struct ConfigView: View {
         }
         .navigationTitle("ajustes".localized)
         .navigationBarTitleDisplayMode(.large)
+        .alert("mudar_nome".localized, isPresented: $showChangeNameAlert) {
+            TextField("novo_nome".localized, text: $newName)
+            Button("cancelar".localized, role: .cancel) { }
+            Button("salvar".localized) {
+                if !newName.isEmpty, let currentUser = users.first {
+                    currentUser.name = newName
+                    do {
+                        try context.save()
+                        print("✅ Nome salvo com sucesso: \(newName)")
+                    } catch {
+                        print("❌ Erro ao salvar nome: \(error)")
+                    }
+                }
+            }
+        } message: {
+            Text("digite_novo_nome".localized)
+        }
     }
 }
 
@@ -67,6 +106,7 @@ private struct ConfigSection {
 }
 
 private enum RowType {
+    case editName
     case language
     case appearance
 //    case highContrast
@@ -78,6 +118,7 @@ private enum RowType {
     
     var title: String {
         switch self {
+        case .editName: return "mudar_nome".localized
         case .language: return "linguagem".localized
         case .appearance: return "aparencia".localized
 //        case .highContrast: return "Modo Alto Contraste"

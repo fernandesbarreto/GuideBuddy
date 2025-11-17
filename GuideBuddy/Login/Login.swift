@@ -12,6 +12,7 @@ import SwiftData
 
 struct LoginView: View {
     @Environment(\.modelContext) private var context
+    @EnvironmentObject var languageManager: LanguageManager
     @Query private var users: [User]
     var onComplete: (String) -> Void
     @State private var name = ""
@@ -21,6 +22,7 @@ struct LoginView: View {
     @State private var newName = ""
     @State private var selectedLanguage = "pt-BR"
     @State private var userCreated = false
+    @State private var refreshID = UUID()
     
     let languages = [
         ("Português", "pt-BR"),
@@ -62,74 +64,119 @@ struct LoginView: View {
                 }
             } else {
                 // Primeiro acesso, pede nome
-                VStack(spacing: 20) {
-                    Text("escolha_nome".localized)
-                        .font(.title)
+                VStack {
+                    Spacer()
                     
-                    TextField("digite_seu_nome".localized, text: $inputName)
-                        .textFieldStyle(.roundedBorder)
-                        .padding()
+                    // Logo do GuiBu no centro
+                    Image("GuiBu")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 100, height: 100)
                     
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("linguagem_preferida".localized)
-                            .font(.system(size: 16, weight: .medium))
-                            .padding(.horizontal)
+                    Spacer()
+                    
+                    // Parte de preenchimento na parte de baixo
+                    VStack(alignment: .leading, spacing: 30) {
+                        VStack(alignment: .leading, spacing: 10){
+                            Text("escolha_nome".localized)
+                                .font(.title3)
+                                .fontWeight(.medium)
+                            
+                            TextField("digite_seu_nome".localized, text: $inputName)
+                                .padding()
+                                .background(Color(.systemGray6))
+                                .cornerRadius(12)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .stroke(Color.gray.opacity(0.3), lineWidth: 1)
+                                )
+                            
+                            
+                        }
                         
-                        Picker("linguagem".localized, selection: $selectedLanguage) {
-                            ForEach(languages, id: \.1) { language in
-                                Text(language.0).tag(language.1)
-                            }
-                        }
-                        .pickerStyle(.menu)
-                        .padding(.horizontal)
-                    }
-                    
-                    Button("continuar".localized) {
-                        print("=== BOTÃO CONTINUAR PRESSIONADO ===")
-                        if !inputName.isEmpty {
-                            print("Criando usuário: \(inputName) com linguagem: \(selectedLanguage)")
-                            let newUser = User(name: inputName, documentos: documentosIniciais, choosenBackground: "defaultBackground", preferredLanguage: selectedLanguage)
-                            print("Usuário criado: \(newUser.name)")
+                        VStack(alignment: .leading, spacing: 10) {
+                            Text("linguagem_preferida".localized)
+                                .font(.title3)
+                                .fontWeight(.medium)
+                              
                             
-                            // Insere no contexto
-                            context.insert(newUser)
-                            
-                            // Salva o contexto
-                            do {
-                                try context.save()
-                                print("✅ Context.save() executado com sucesso!")
-                                
-                                // Aguarda um momento para o SwiftData processar
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                                    // Verifica se foi salvo usando o mesmo contexto
-                                    let fetchDescriptor = FetchDescriptor<User>()
-                                    do {
-                                        let savedUsers = try context.fetch(fetchDescriptor)
-                                        print("   Usuários encontrados após salvar: \(savedUsers.count)")
-                                        if savedUsers.count > 0 {
-                                            print("   ✅ Primeiro usuário: \(savedUsers.first?.name ?? "sem nome")")
-                                        }
-                                    } catch {
-                                        print("   ❌ Erro ao buscar usuários: \(error)")
-                                    }
-                                    
-                                    userCreated = true
-                                    // Chama o callback
-                                    onComplete(inputName)
+                            Picker("linguagem".localized, selection: $selectedLanguage) {
+                                ForEach(languages, id: \.1) { language in
+                                    Text(language.0).tag(language.1)
                                 }
-                            } catch {
-                                print("❌ Erro ao salvar usuário: \(error)")
-                                print("   Detalhes: \(error.localizedDescription)")
-                                userCreated = false
                             }
-                        } else {
-                            showNameAlert = true
+                            .pickerStyle(.menu)
+                            .onChange(of: selectedLanguage) { oldValue, newValue in
+                                // Atualiza o LanguageManager quando o usuário seleciona um idioma
+                                languageManager.setLanguage(newValue)
+                            }
+                        
                         }
+                        
+                        Button(action: {
+                            print("=== BOTÃO CONTINUAR PRESSIONADO ===")
+                            if !inputName.isEmpty {
+                                print("Criando usuário: \(inputName) com linguagem: \(selectedLanguage)")
+                                let newUser = User(name: inputName, documentos: documentosIniciais, choosenBackground: "defaultBackground", preferredLanguage: selectedLanguage)
+                                print("Usuário criado: \(newUser.name)")
+                                
+                                // Insere no contexto
+                                context.insert(newUser)
+                                
+                                // Salva o contexto
+                                do {
+                                    try context.save()
+                                    print("✅ Context.save() executado com sucesso!")
+                                    
+                                    // Aguarda um momento para o SwiftData processar
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                        // Verifica se foi salvo usando o mesmo contexto
+                                        let fetchDescriptor = FetchDescriptor<User>()
+                                        do {
+                                            let savedUsers = try context.fetch(fetchDescriptor)
+                                            print("   Usuários encontrados após salvar: \(savedUsers.count)")
+                                            if savedUsers.count > 0 {
+                                                print("   ✅ Primeiro usuário: \(savedUsers.first?.name ?? "sem nome")")
+                                            }
+                                        } catch {
+                                            print("   ❌ Erro ao buscar usuários: \(error)")
+                                        }
+                                        
+                                        userCreated = true
+                                        // Chama o callback
+                                        onComplete(inputName)
+                                    }
+                                } catch {
+                                    print("❌ Erro ao salvar usuário: \(error)")
+                                    print("   Detalhes: \(error.localizedDescription)")
+                                    userCreated = false
+                                }
+                            } else {
+                                showNameAlert = true
+                            }
+                        }) {
+                            Text("continuar".localized)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 15)
+                                .background(inputName.isEmpty ? Color.gray : Color.docGreen2)
+                                .foregroundColor(.white)
+                                .cornerRadius(12)
+                        }
+                        .disabled(inputName.isEmpty)
+                        .padding(.horizontal, 20)
                     }
-                    .disabled(inputName.isEmpty)
-                    .buttonStyle(.borderedProminent)
+                    .padding(.bottom, 40)
                 }
                 .padding()
+                .id(refreshID)
+            }
+        }
+        .onChange(of: languageManager.currentLanguage) { oldValue, newValue in
+            // Força atualização da view quando o idioma muda
+            if oldValue != newValue {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    refreshID = UUID()
+                }
             }
         }
         .alert("digite_nome_valido".localized, isPresented: $showNameAlert, actions: {

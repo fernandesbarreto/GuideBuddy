@@ -5,9 +5,11 @@
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>en</string>
+		<string>pt-BR</string>
+		<string>es</string>
 	</array>
-	<key>Privacy - Location When In Use Usage Description (ou digite NSLocationWhenInUseUsageDescription</key>
-	<string>Precisamos da sua localização sempre que o app estiver em uso.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>O GuiBu precisa da sua localização para exibir mapas interativos da universidade e fornecer informações de navegação para hospitais, clínicas e serviços da UFPE.</string>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict/>

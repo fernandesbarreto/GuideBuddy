@@ -14,6 +14,25 @@ struct BuildingDetailView: View {
     @State var showNumbersSheet = false
     @State var showEmailSheet = false
     
+    func openInAppleMaps(name: String) {
+        // Usa o nome do prédio + UFPE para buscar no Maps
+        let query = "\(name) UFPE Recife"
+        let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
+        
+        // Tenta abrir com o esquema maps:// primeiro (Maps nativo)
+        if let mapsURL = URL(string: "maps://?q=\(encodedQuery)") {
+            if UIApplication.shared.canOpenURL(mapsURL) {
+                UIApplication.shared.open(mapsURL)
+                return
+            }
+        }
+        
+        // Fallback para http://maps.apple.com (abre no navegador e redireciona)
+        if let appleMapsURL = URL(string: "http://maps.apple.com/?q=\(encodedQuery)") {
+            UIApplication.shared.open(appleMapsURL)
+        }
+    }
+    
     var body: some View {
         NavigationStack{
             ZStack {
@@ -59,20 +78,20 @@ struct BuildingDetailView: View {
                             LazyVStack(alignment: .leading, spacing: 15) {
                                 
                                 Section() {
-                                    
-                                    //                        NavigationLink(
-                                    //                            destination: SearchableMap(location: SavedLocation(name: building.title, latitude:building.latitude, longitude: building.longitude)),
-                                    //                            label: {
-                                    //                                HStack {
-                                    //                                    Image(systemName: "location.fill")
-                                    //                                        .foregroundStyle(Color.verdePrincipal)
-                                    //                                    Text(building.location) // Aqui pode ser o nome da localização ou algo mais descritivo
-                                    //                                        .multilineTextAlignment(.leading)
-                                    //                                        .foregroundStyle(Color.gray)
-                                    //                                }
-                                    //                            }
-                                    //                        )
-                                    
+                                    Button(action: {
+                                        openInAppleMaps(name: building.title)
+                                    }) {
+                                        HStack {
+                                            Image(systemName: "location.fill")
+                                                .foregroundStyle(Color.verdePrincipal)
+                                            Text("Cidade Universitária, Recife, PE")
+                                                .multilineTextAlignment(.leading)
+                                                .foregroundStyle(Color.gray)
+                                            Spacer()
+                                            Image(systemName: "arrow.up.right.square")
+                                                .foregroundStyle(Color.gray.opacity(0.6))
+                                        }
+                                    }
                                 }
                                 .padding(.horizontal)
                                 //                        .padding(.bottom)
